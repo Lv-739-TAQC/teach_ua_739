@@ -63,5 +63,5 @@ build/
 .DS_Store
 
 #protected data for project
-src/test/resources/data.property
+src/test/resources/data.properties
 
