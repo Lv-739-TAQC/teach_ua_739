@@ -1,6 +1,6 @@
 package org.ssu.edu.teachua.ui;
 
-import org.ssu.edu.teachua.ui.home.HomePage;
+import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
 import org.testng.annotations.Test;
 
