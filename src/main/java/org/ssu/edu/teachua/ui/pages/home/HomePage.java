@@ -1,4 +1,4 @@
-package org.ssu.edu.teachua.ui.home;
+package org.ssu.edu.teachua.ui.pages.home;
 
 import org.openqa.selenium.WebDriver;
 import org.ssu.edu.teachua.ui.base.BasePage;
