@@ -9,9 +9,9 @@ import org.ssu.edu.teachua.ui.base.BaseComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 
 public class HeaderComponent extends BaseComponent {
-    @FindBy(how = How.XPATH, using = "//*[@id='root']/section/header/div[1]")
+    @FindBy(how = How.XPATH, using = "./div[1]")
     private WebElement logo;
-    @FindBy(how = How.XPATH, using = "//*[@id='root']/section/header/div[2]/ul/li[4]/span/a")
+    @FindBy(how = How.XPATH, using = "./div[2]/ul/li[4]/span/a")
     private WebElement aboutButton;
 
     public HeaderComponent(WebDriver driver, WebElement node) {
