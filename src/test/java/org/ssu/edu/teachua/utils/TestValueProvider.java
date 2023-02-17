@@ -7,7 +7,7 @@ public class TestValueProvider {
     private final Properties properties;
 
     public TestValueProvider() throws IOException {
-        FileInputStream fileInputStream = new FileInputStream(" src/test/resources/data.properties");
+        FileInputStream fileInputStream = new FileInputStream("src/test/resources/data.properties");
         InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
         properties = new Properties();
         properties.load(inputStreamReader);
