@@ -22,7 +22,7 @@ public class ChallengesPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//span[@class='ant-input-group-addon']")
     private WebElement searchButton;
     @FindBy(how = How.XPATH, using = "//*[@class='ant-table-row ant-table-row-level-0 editable-row']")
-    private WebElement challengeItem;
+    private List<WebElement> challengeItem;
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-table-cell']//a)[1]")
     private WebElement challengeId;
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-table-cell']//a)[2]")
@@ -75,12 +75,12 @@ public class ChallengesPage extends BasePage {
     public ChallengesPage clickAndFillSearchField(String textToSearch) {
         searchField.click();
         searchField.sendKeys(textToSearch);
-        return new ChallengesPage(driver);
+        return this;
     }
 
     public ChallengesPage clickSearchButton() {
         searchButton.click();
-        return new ChallengesPage(driver);
+        return this;
     }
 
     public ChallengesPage clickChallengeId() {
@@ -102,71 +102,73 @@ public class ChallengesPage extends BasePage {
         challengeTitle.click();
         return new ChallengesPage(driver);
     }
-
-    public ChallengesPage clickEditChallengeSortNumberAndSave(String challengeSortNumber) {
+    public ChallengesPage clickEditChallenge() {
         editChallenge.click();
+        return this;
+    }
+    public ChallengesPage clickEditChallengeSortNumber(String challengeSortNumber) {
         editChallengeSortNumber.click();
         editChallengeSortNumber.sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
         editChallengeSortNumber.sendKeys(challengeSortNumber);
-        saveEditedChallenge.click();
-        return new ChallengesPage(driver);
+        return this;
     }
 
-    public ChallengesPage clickEditChallengeNameAndSave(String challengeName) {
-        editChallenge.click();
+    public ChallengesPage clickEditChallengeName(String challengeName) {
         editChallengeName.click();
         editChallengeName.sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
         editChallengeName.sendKeys(challengeName);
-        saveEditedChallenge.click();
-        return new ChallengesPage(driver);
+        return this;
     }
 
-    public ChallengesPage clickEditChallengeTitleAndSave(String challengeTitle) {
-        editChallenge.click();
+    public ChallengesPage clickEditChallengeTitle(String challengeTitle) {
         editChallengeTitle.click();
         editChallengeTitle.sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
         editChallengeTitle.sendKeys(challengeTitle);
+        return this;
+    }
+    public ChallengesPage clickSaveEditedChallenge() {
         saveEditedChallenge.click();
-        return new ChallengesPage(driver);
+        return this;
     }
 
-    public ChallengesPage clickEditChallengeAndCancel() {
-        editChallenge.click();
+    public ChallengesPage clickCancelEditingOfChallenge() {
         cancelEditedChallenge.click();
-        return new ChallengesPage(driver);
+        return this;
+    }
+    public ChallengesPage clickDeleteChallenge() {
+        deleteChallenge.click();
+        return this;
     }
 
-    public ChallengesPage clickDeleteChallengeAndConfirm() {
-        deleteChallenge.click();
+    public ChallengesPage clickConfirmDeletionOfChallenge() {
         confirmDeletingChallenge.click();
-        return new ChallengesPage(driver);
+        return this;
     }
 
-    public ChallengesPage clickDeleteChallengeAndCancel() {
-        deleteChallenge.click();
+    public ChallengesPage clickCancelDeletionOfChallenge() {
         cancelDeletingChallenge.click();
-        return new ChallengesPage(driver);
+        return this;
     }
 
     public ChallengesPage clickGoToPreviousPage() {
         goToPreviousPage.click();
-        return new ChallengesPage(driver);
+        return this;
     }
 
     public ChallengesPage clickGoToNextPage() {
         goToNextPage.click();
-        return new ChallengesPage(driver);
+        return this;
     }
 
     public ChallengesPage clickStepOverNextFivePages() {
         stepOverNextFivePages.click();
-        return new ChallengesPage(driver);
+        return this;
     }
 
     private List<ChallengeComponent> initChallenges() {
