@@ -1,6 +1,7 @@
 package org.ssu.edu.teachua.ui.pages.challenges;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,9 +14,9 @@ import java.util.List;
 
 public class ChallengesPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//*[@class='back-btn']")
-    private WebElement goToTheListOfTasks;
+    private WebElement goToTheListOfTasksButton;
     @FindBy(how = How.XPATH, using = "//a[@href='/dev/admin/addChallenge']")
-    private WebElement addChallenge;
+    private WebElement addChallengeButton;
     @FindBy(how = How.XPATH, using = "//span[contains(@class, 'ant-input-group')]//*[@type='text']")
     private WebElement searchField;
     @FindBy(how = How.XPATH, using = "//span[@class='ant-input-group-addon']")
@@ -60,18 +61,18 @@ public class ChallengesPage extends BasePage {
     }
 
     public ChallengesPage clickGoToTheListOfTasks() {
-        goToTheListOfTasks.click();
+        goToTheListOfTasksButton.click();
         return new ChallengesPage(driver);
     }
 
-    public ChallengesPage clickAddChallenge() {
-        addChallenge.click();
+    public ChallengesPage clickToAddChallengePage() {
+        addChallengeButton.click();
         return new ChallengesPage(driver);
     }
 
-    public ChallengesPage clickAndFillSearchField(String textToSend) {
+    public ChallengesPage clickAndFillSearchField(String textToSearch) {
         searchField.click();
-        searchField.sendKeys(textToSend);
+        searchField.sendKeys(textToSearch);
         return new ChallengesPage(driver);
     }
 
@@ -100,29 +101,35 @@ public class ChallengesPage extends BasePage {
         return new ChallengesPage(driver);
     }
 
-    public ChallengesPage clickEditChallengeSortNumberAndSave(String textToSend) {
+    public ChallengesPage clickEditChallengeSortNumberAndSave(String challengeSortNumber) {
         editChallenge.click();
         editChallengeSortNumber.click();
-        editChallengeSortNumber.clear();
-        editChallengeSortNumber.sendKeys(textToSend);
+        editChallengeSortNumber.sendKeys(
+                Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
+        );
+        editChallengeSortNumber.sendKeys(challengeSortNumber);
         saveEditedChallenge.click();
         return new ChallengesPage(driver);
     }
 
-    public ChallengesPage clickEditChallengeNameAndSave(String textToSend) {
+    public ChallengesPage clickEditChallengeNameAndSave(String challengeName) {
         editChallenge.click();
         editChallengeName.click();
-        editChallengeName.clear();
-        editChallengeName.sendKeys(textToSend);
+        editChallengeName.sendKeys(
+                Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
+        );
+        editChallengeName.sendKeys(challengeName);
         saveEditedChallenge.click();
         return new ChallengesPage(driver);
     }
 
-    public ChallengesPage clickEditChallengeTitleAndSave(String textToSend) {
+    public ChallengesPage clickEditChallengeTitleAndSave(String challengeTitle) {
         editChallenge.click();
         editChallengeTitle.click();
-        editChallengeTitle.clear();
-        editChallengeTitle.sendKeys(textToSend);
+        editChallengeTitle.sendKeys(
+                Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
+        );
+        editChallengeTitle.sendKeys(challengeTitle);
         saveEditedChallenge.click();
         return new ChallengesPage(driver);
     }
@@ -168,5 +175,7 @@ public class ChallengesPage extends BasePage {
         }
         return challenges;
     }
-
+    public ChallengeComponent moveToChallenge(int challengeNumber) {
+        return challenges.get(challengeNumber);
+    }
 }

@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BasePage;
 
+import java.io.File;
+
 public class AddChallengePage extends BasePage {
     @FindBy(how = How.XPATH, using = "//input[@id='sortNumber']")
     private WebElement challengeSortNumber;
@@ -21,8 +23,12 @@ public class AddChallengePage extends BasePage {
     private WebElement challengeSave;
     @FindBy(how = How.XPATH, using = "//*[@class='back-btn'and @href='/dev/admin/challenges']")
     private WebElement goToTheListOfChallenges;
+    @FindBy(how = How.XPATH, using = "//*[@class='ant-message']")
+    private WebElement errorMessage;
 
-    public AddChallengePage(WebDriver driver) { super(driver); }
+    public AddChallengePage(WebDriver driver) {
+        super(driver);
+    }
 
     public WebElement getChallengeSortNumber() {
         return challengeSortNumber;
@@ -52,32 +58,42 @@ public class AddChallengePage extends BasePage {
         return goToTheListOfChallenges;
     }
 
-    public AddChallengePage clickAndFillChallengeSortNumber(String textToSend) {
+    public WebElement getErrorMessage() {
+        return errorMessage;
+    }
+
+    public AddChallengePage clickAndFillChallengeSortNumber(String challengeSortNumber) {
         getChallengeSortNumber().click();
-        getChallengeSortNumber().sendKeys(textToSend);
+        getChallengeSortNumber().sendKeys(challengeSortNumber);
         return new AddChallengePage(driver);
     }
 
-    public AddChallengePage clickAndFillChallengeName(String textToSend) {
+    public AddChallengePage clickAndFillChallengeName(String challengeName) {
         getChallengeName().click();
-        getChallengeName().sendKeys(textToSend);
+        getChallengeName().sendKeys(challengeName);
         return new AddChallengePage(driver);
     }
 
-    public AddChallengePage clickAndFillChallengeTitle(String textToSend) {
+    public AddChallengePage clickAndFillChallengeTitle(String challengeTitle) {
         getChallengeTitle().click();
-        getChallengeTitle().sendKeys(textToSend);
+        getChallengeTitle().sendKeys(challengeTitle);
         return new AddChallengePage(driver);
     }
 
-    public AddChallengePage clickAndFillChallengeDescription(String textToSend) {
+    public AddChallengePage clickAndFillChallengeDescription(String challengeDescription) {
         getChallengeDescription().click();
-        getChallengeDescription().sendKeys(textToSend);
+        getChallengeDescription().sendKeys(challengeDescription);
         return new AddChallengePage(driver);
     }
 
     public AddChallengePage clickToChallengeUploadPhoto() {
         getChallengeUploadPhoto().click();
+        return new AddChallengePage(driver);
+    }
+
+    public AddChallengePage clickAddPhoto(File image) {
+        getChallengeUploadPhoto().sendKeys(image.getAbsolutePath());
+        sleep(3000);
         return new AddChallengePage(driver);
     }
 
@@ -89,5 +105,9 @@ public class AddChallengePage extends BasePage {
     public AddChallengePage clickGoToTheListOfChallenges() {
         getGoToTheListOfChallenges().click();
         return new AddChallengePage(driver);
+    }
+
+    public String checkErrorMessage() {
+        return getErrorMessage().getText();
     }
 }
