@@ -21,6 +21,8 @@ public class ChallengesPage extends BasePage {
     private WebElement searchField;
     @FindBy(how = How.XPATH, using = "//span[@class='ant-input-group-addon']")
     private WebElement searchButton;
+    @FindBy(how = How.XPATH, using = "//*[@class='ant-table-row ant-table-row-level-0 editable-row']")
+    private WebElement challengeItem;
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-table-cell']//a)[1]")
     private WebElement challengeId;
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-table-cell']//a)[2]")
@@ -175,6 +177,7 @@ public class ChallengesPage extends BasePage {
         }
         return challenges;
     }
+
     public ChallengeComponent moveToChallenge(int challengeNumber) {
         return challenges.get(challengeNumber);
     }
