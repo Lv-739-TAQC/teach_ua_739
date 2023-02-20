@@ -12,8 +12,6 @@ import java.util.stream.Collectors;
 
 public class AddClubComponent extends BaseComponent {
 
-    //first page
-
     @FindBy(how = How.XPATH, using = "//div[@class='add-club-dropdown']/button")
     private WebElement addButton; // hover mouse for open dropdown
 
@@ -22,6 +20,8 @@ public class AddClubComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = "//div[@class='ant-modal-body'])[2]")
     private WebElement addClubPopUp;
+
+    //first page
 
     @FindBy(how = How.XPATH, using = "//div/form[@id='basic']//div/span[contains(@class, 'add-club-input')]")
     private WebElement nameField; // min 5 characters
