@@ -6,26 +6,25 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import java.io.File;
 
 public class EditChallengePage extends AddChallengePage {
     @FindBy(how = How.XPATH, using = "//button[@id='isActive']")
-    private WebElement editChallengeStatus;
+    private WebElement changeStatus;
     @FindBy(how = How.XPATH, using = "//*[@class='anticon anticon-eye']")
     private WebElement previewPhoto;
     @FindBy(how = How.XPATH, using = "//*[@class='anticon anticon-delete']")
     private WebElement deletePhoto;
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-btn ant-btn-default flooded-button'])[3]")
-    private WebElement changeChallengeDateButton;
-    @FindBy(how = How.XPATH, using = "//*[@class='back-btn'and @href='/dev/challenges/undefined']")
+    private WebElement changeDateButton;
+    @FindBy(how = How.XPATH, using = "(//*[@class='ant-btn ant-btn-default flooded-button'])[2]")
     private WebElement viewChallengeButton;
 
     public EditChallengePage(WebDriver driver) {
         super(driver);
     }
 
-    public EditChallengePage clickEditChallengeStatus() {
-        editChallengeStatus.click();
+    public EditChallengePage clickChangeStatus() {
+        changeStatus.click();
         return this;
     }
 
@@ -39,46 +38,46 @@ public class EditChallengePage extends AddChallengePage {
         return this;
     }
 
-    public EditChallengePage clickChangeChallengeDateButton() {
-        changeChallengeDateButton.click();
+    public EditChallengePage clickChangeDateButton() {
+        changeDateButton.click();
         return new EditChallengePage(driver);
     }
 
-    public EditChallengePage clickViewChallenge() {
+    public EditChallengePage clickViewChallengeButton() {
         viewChallengeButton.click();
         return new EditChallengePage(driver);
     }
 
     @Override
-    public AddChallengePage clickToFillChallengeSortNumber(String sortNumber) {
-        getChallengeSortNumber().sendKeys(
+    public AddChallengePage fillSortNumber(String sortNumber) {
+        getSortNumber().sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
-        return super.clickToFillChallengeSortNumber(sortNumber);
+        return super.fillSortNumber(sortNumber);
     }
 
     @Override
-    public AddChallengePage clickToFillChallengeName(String name) {
-        getChallengeName().sendKeys(
+    public AddChallengePage fillName(String name) {
+        getName().sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
-        return super.clickToFillChallengeName(name);
+        return super.fillName(name);
     }
 
     @Override
-    public AddChallengePage clickToFillChallengeTitle(String title) {
-        getChallengeTitle().sendKeys(
+    public AddChallengePage fillTitle(String title) {
+        getTitle().sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
-        return super.clickToFillChallengeTitle(title);
+        return super.fillTitle(title);
     }
 
     @Override
-    public AddChallengePage clickToFillChallengeDescription(String description) {
-        getChallengeDescription().sendKeys(
+    public AddChallengePage fillDescription(String description) {
+        getDescription().sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
-        return super.clickToFillChallengeDescription(description);
+        return super.fillDescription(description);
     }
 
 }
