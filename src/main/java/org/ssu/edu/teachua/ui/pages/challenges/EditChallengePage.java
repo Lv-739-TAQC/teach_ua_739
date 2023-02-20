@@ -16,9 +16,9 @@ public class EditChallengePage extends AddChallengePage {
     @FindBy(how = How.XPATH, using = "//*[@class='anticon anticon-delete']")
     private WebElement deletePhoto;
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-btn ant-btn-default flooded-button'])[3]")
-    private WebElement changeChallengeDate;
+    private WebElement changeChallengeDateButton;
     @FindBy(how = How.XPATH, using = "//*[@class='back-btn'and @href='/dev/challenges/undefined']")
-    private WebElement viewChallenge;
+    private WebElement viewChallengeButton;
 
     public EditChallengePage(WebDriver driver) {
         super(driver);
@@ -26,96 +26,59 @@ public class EditChallengePage extends AddChallengePage {
 
     public EditChallengePage clickEditChallengeStatus() {
         editChallengeStatus.click();
-        return new EditChallengePage(driver);
+        return this;
     }
 
     public EditChallengePage clickPreviewPhoto() {
         previewPhoto.click();
-        return new EditChallengePage(driver);
+        return this;
     }
 
     public EditChallengePage clickDeletePhoto() {
         deletePhoto.click();
-        return new EditChallengePage(driver);
+        return this;
     }
 
-    public EditChallengePage clickChangeChallengeDate() {
-        changeChallengeDate.click();
+    public EditChallengePage clickChangeChallengeDateButton() {
+        changeChallengeDateButton.click();
         return new EditChallengePage(driver);
     }
 
     public EditChallengePage clickViewChallenge() {
-        viewChallenge.click();
+        viewChallengeButton.click();
         return new EditChallengePage(driver);
     }
 
     @Override
-    public AddChallengePage clickAndFillChallengeSortNumber(String challengeSortNumber) {
-        getChallengeSortNumber().click();
+    public AddChallengePage clickToFillChallengeSortNumber(String sortNumber) {
         getChallengeSortNumber().sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
-        getChallengeSortNumber().sendKeys(challengeSortNumber);
-        return new AddChallengePage(driver);
+        return super.clickToFillChallengeSortNumber(sortNumber);
     }
 
     @Override
-    public AddChallengePage clickAndFillChallengeName(String challengeName) {
-        getChallengeName().click();
+    public AddChallengePage clickToFillChallengeName(String name) {
         getChallengeName().sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
-        getChallengeName().sendKeys(challengeName);
-        return new AddChallengePage(driver);
+        return super.clickToFillChallengeName(name);
     }
 
     @Override
-    public AddChallengePage clickAndFillChallengeTitle(String challengeTitle) {
-        getChallengeTitle().click();
+    public AddChallengePage clickToFillChallengeTitle(String title) {
         getChallengeTitle().sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
-        getChallengeTitle().sendKeys(challengeTitle);
-        return new AddChallengePage(driver);
+        return super.clickToFillChallengeTitle(title);
     }
 
     @Override
-    public AddChallengePage clickAndFillChallengeDescription(String challengeDescription) {
-        getChallengeDescription().click();
+    public AddChallengePage clickToFillChallengeDescription(String description) {
         getChallengeDescription().sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
-        getChallengeDescription().sendKeys(challengeDescription);
-        return new AddChallengePage(driver);
+        return super.clickToFillChallengeDescription(description);
     }
 
-    @Override
-    public AddChallengePage clickToChallengeUploadPhoto() {
-        getChallengeUploadPhoto().click();
-        return new AddChallengePage(driver);
-    }
-
-    @Override
-    public AddChallengePage clickAddPhoto(File image) {
-        getChallengeUploadPhoto().sendKeys(image.getAbsolutePath());
-        sleep(3000);
-        return new AddChallengePage(driver);
-    }
-
-    @Override
-    public AddChallengePage clickToChallengeSave() {
-        getChallengeSave().click();
-        return new AddChallengePage(driver);
-    }
-
-    @Override
-    public AddChallengePage clickGoToTheListOfChallenges() {
-        getGoToTheListOfChallenges().click();
-        return new AddChallengePage(driver);
-    }
-
-    @Override
-    public String checkErrorMessage() {
-        return getErrorMessage().getText();
-    }
 }

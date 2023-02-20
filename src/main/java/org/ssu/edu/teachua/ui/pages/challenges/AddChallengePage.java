@@ -10,19 +10,19 @@ import java.io.File;
 
 public class AddChallengePage extends BasePage {
     @FindBy(how = How.XPATH, using = "//input[@id='sortNumber']")
-    private WebElement challengeSortNumber;
+    private WebElement sortNumber;
     @FindBy(how = How.XPATH, using = "//input[@id='name']")
-    private WebElement challengeName;
+    private WebElement name;
     @FindBy(how = How.XPATH, using = "//input[@id='title']")
-    private WebElement challengeTitle;
+    private WebElement title;
     @FindBy(how = How.XPATH, using = "//*[@class='ql-container ql-snow']")
-    private WebElement challengeDescription;
+    private WebElement description;
     @FindBy(how = How.XPATH, using = "//span[@class='upload-label']")
-    private WebElement challengeUploadPhoto;
+    private WebElement uploadPhoto;
     @FindBy(how = How.XPATH, using = "//*[@type='submit' and contains(@class,'add-contact-type-button')]")
-    private WebElement challengeSave;
+    private WebElement saveButton;
     @FindBy(how = How.XPATH, using = "//*[@class='back-btn'and @href='/dev/admin/challenges']")
-    private WebElement goToTheListOfChallenges;
+    private WebElement goToTheListOfChallengesButton;
     @FindBy(how = How.XPATH, using = "//*[@class='ant-message']")
     private WebElement errorMessage;
 
@@ -31,79 +31,68 @@ public class AddChallengePage extends BasePage {
     }
 
     public WebElement getChallengeSortNumber() {
-        return challengeSortNumber;
+        return sortNumber;
     }
 
-    public WebElement getChallengeName() {
-        return challengeName;
-    }
+    public WebElement getChallengeName() { return name; }
 
     public WebElement getChallengeTitle() {
-        return challengeTitle;
+        return title;
     }
 
     public WebElement getChallengeDescription() {
-        return challengeDescription;
+        return description;
     }
 
     public WebElement getChallengeUploadPhoto() {
-        return challengeUploadPhoto;
+        return uploadPhoto;
     }
 
-    public WebElement getChallengeSave() {
-        return challengeSave;
+    public WebElement getChallengeSaveButton() {
+        return saveButton;
     }
 
-    public WebElement getGoToTheListOfChallenges() {
-        return goToTheListOfChallenges;
+    public WebElement getGoToTheListOfChallengesButton() {
+        return goToTheListOfChallengesButton;
     }
 
     public WebElement getErrorMessage() {
         return errorMessage;
     }
 
-    public AddChallengePage clickAndFillChallengeSortNumber(String challengeSortNumber) {
-        getChallengeSortNumber().click();
-        getChallengeSortNumber().sendKeys(challengeSortNumber);
-        return new AddChallengePage(driver);
+    public AddChallengePage clickToFillChallengeSortNumber(String sortNumber) {
+        getChallengeSortNumber().sendKeys(sortNumber);
+        return this;
     }
 
-    public AddChallengePage clickAndFillChallengeName(String challengeName) {
-        getChallengeName().click();
-        getChallengeName().sendKeys(challengeName);
-        return new AddChallengePage(driver);
+    public AddChallengePage clickToFillChallengeName(String name) {
+        getChallengeName().sendKeys(name);
+        return this;
     }
 
-    public AddChallengePage clickAndFillChallengeTitle(String challengeTitle) {
-        getChallengeTitle().click();
-        getChallengeTitle().sendKeys(challengeTitle);
-        return new AddChallengePage(driver);
+    public AddChallengePage clickToFillChallengeTitle(String title) {
+        getChallengeTitle().sendKeys(title);
+        return this;
     }
 
-    public AddChallengePage clickAndFillChallengeDescription(String challengeDescription) {
-        getChallengeDescription().click();
-        getChallengeDescription().sendKeys(challengeDescription);
-        return new AddChallengePage(driver);
+    public AddChallengePage clickToFillChallengeDescription(String description) {
+        getChallengeDescription().sendKeys(description);
+        return this;
     }
 
-    public AddChallengePage clickToChallengeUploadPhoto() {
-        getChallengeUploadPhoto().click();
-        return new AddChallengePage(driver);
-    }
 
     public AddChallengePage clickAddPhoto(File image) {
         getChallengeUploadPhoto().sendKeys(image.getAbsolutePath());
-        sleep(3000);
+        return this;
+    }
+
+    public AddChallengePage clickToChallengeSaveButton() {
+        getChallengeSaveButton().click();
         return new AddChallengePage(driver);
     }
 
-    public AddChallengePage clickToChallengeSave() {
-        getChallengeSave().click();
-        return new AddChallengePage(driver);
-    }
-
-    public AddChallengePage clickGoToTheListOfChallenges() {
-        getGoToTheListOfChallenges().click();
+    public AddChallengePage clickGoToTheListOfChallengesButton() {
+        getGoToTheListOfChallengesButton().click();
         return new AddChallengePage(driver);
     }
 

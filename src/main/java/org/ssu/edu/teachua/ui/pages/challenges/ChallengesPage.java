@@ -24,45 +24,45 @@ public class ChallengesPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//*[@class='ant-table-row ant-table-row-level-0 editable-row']")
     private List<WebElement> challengeItem;
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-table-cell']//a)[1]")
-    private WebElement challengeId;
+    private WebElement id;
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-table-cell']//a)[2]")
-    private WebElement challengeSortNumber;
+    private WebElement sortNumber;
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-table-cell']//a)[3]")
-    private WebElement challengeName;
+    private WebElement name;
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-table-cell']//a)[4]")
-    private WebElement challengeTitle;
-    @FindBy(how = How.XPATH, using = "(//*[text()='Редагувати'])[1]")
-    private WebElement editChallenge;
+    private WebElement title;
+    @FindBy(how = How.XPATH, using = "//*[text()='Редагувати']") //"(//*[text()='Редагувати'])[1]"
+    private WebElement editItem;
     @FindBy(how = How.XPATH, using = "//input[@id='sortNumber']")
-    private WebElement editChallengeSortNumber;
+    private WebElement editNumber;
     @FindBy(how = How.XPATH, using = "//input[@id='name']")
-    private WebElement editChallengeName;
+    private WebElement editName;
     @FindBy(how = How.XPATH, using = "//input[@id='title']")
-    private WebElement editChallengeTitle;
+    private WebElement editTitle;
     @FindBy(how = How.XPATH, using = "(//*[text()='Зберегти'])")
-    private WebElement saveEditedChallenge;
+    private WebElement saveChanges;
     @FindBy(how = How.XPATH, using = "(//*[text()='Відмінити'])")
-    private WebElement cancelEditedChallenge;
-    @FindBy(how = How.XPATH, using = "(//*[text()='Видалити'])[1]")
-    private WebElement deleteChallenge;
+    private WebElement cancelEditing;
+    @FindBy(how = How.XPATH, using = "//*[text()='Видалити']") //"(//*[text()='Видалити'])[1]"
+    private WebElement deleteItem;
     @FindBy(how = How.XPATH, using = "//button[contains(@class, 'popConfirm-ok')]")
-    private WebElement confirmDeletingChallenge;
+    private WebElement confirmDeleting;
     @FindBy(how = How.XPATH, using = "//button[contains(@class, 'popConfirm-cancel')]")
-    private WebElement cancelDeletingChallenge;
+    private WebElement cancelDeleting;
     @FindBy(how = How.XPATH, using = "//*[@title='Previous Page']")
     private WebElement goToPreviousPage;
     @FindBy(how = How.XPATH, using = "//*[@title='Next Page']")
     private WebElement goToNextPage;
     @FindBy(how = How.XPATH, using = "//*[@title='Next 5 Pages']")
     private WebElement stepOverNextFivePages;
-    private final List<ChallengeComponent> challenges;
+    private final List<ChallengeComponent> challengesComponents;
 
     public ChallengesPage(WebDriver driver) {
         super(driver);
-        challenges = initChallenges();
+        challengesComponents = initChallenges();
     }
 
-    public ChallengesPage clickGoToTheListOfTasks() {
+    public ChallengesPage goToTheListOfTasks() {
         goToTheListOfTasksButton.click();
         return new ChallengesPage(driver);
     }
@@ -72,8 +72,7 @@ public class ChallengesPage extends BasePage {
         return new ChallengesPage(driver);
     }
 
-    public ChallengesPage clickAndFillSearchField(String textToSearch) {
-        searchField.click();
+    public ChallengesPage fillSearchField(String textToSearch) {
         searchField.sendKeys(textToSearch);
         return this;
     }
@@ -84,75 +83,87 @@ public class ChallengesPage extends BasePage {
     }
 
     public ChallengesPage clickChallengeId() {
-        challengeId.click();
+        id.click();
         return new ChallengesPage(driver);
     }
 
     public ChallengesPage clickChallengeSortNumber() {
-        challengeSortNumber.click();
+        sortNumber.click();
         return new ChallengesPage(driver);
     }
 
     public ChallengesPage clickChallengeName() {
-        challengeName.click();
+        name.click();
         return new ChallengesPage(driver);
     }
 
     public ChallengesPage clickChallengeTitle() {
-        challengeTitle.click();
+        title.click();
         return new ChallengesPage(driver);
     }
-    public ChallengesPage clickEditChallenge() {
-        editChallenge.click();
+    public String readId() {
+        return id.getText();
+    }
+
+    public String readSortNumber() {
+        return sortNumber.getText();
+    }
+
+    public String readName() {
+        return name.getText();
+    }
+
+    public String readTitle() {
+        return title.getText();
+    }
+    public ChallengesPage editChallenge() {
+        editItem.click();
         return this;
     }
-    public ChallengesPage clickEditChallengeSortNumber(String challengeSortNumber) {
-        editChallengeSortNumber.click();
-        editChallengeSortNumber.sendKeys(
+    public ChallengesPage editSortNumber(String sortNumber) {
+        editNumber.sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
-        editChallengeSortNumber.sendKeys(challengeSortNumber);
+        editNumber.sendKeys(sortNumber);
         return this;
     }
 
-    public ChallengesPage clickEditChallengeName(String challengeName) {
-        editChallengeName.click();
-        editChallengeName.sendKeys(
+    public ChallengesPage editName(String name) {
+        editName.sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
-        editChallengeName.sendKeys(challengeName);
+        editName.sendKeys(name);
         return this;
     }
 
-    public ChallengesPage clickEditChallengeTitle(String challengeTitle) {
-        editChallengeTitle.click();
-        editChallengeTitle.sendKeys(
+    public ChallengesPage editTitle(String title) {
+        editTitle.sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
-        editChallengeTitle.sendKeys(challengeTitle);
+        editTitle.sendKeys(title);
         return this;
     }
-    public ChallengesPage clickSaveEditedChallenge() {
-        saveEditedChallenge.click();
-        return this;
-    }
-
-    public ChallengesPage clickCancelEditingOfChallenge() {
-        cancelEditedChallenge.click();
-        return this;
-    }
-    public ChallengesPage clickDeleteChallenge() {
-        deleteChallenge.click();
+    public ChallengesPage saveEditedChallenge() {
+        saveChanges.click();
         return this;
     }
 
-    public ChallengesPage clickConfirmDeletionOfChallenge() {
-        confirmDeletingChallenge.click();
+    public ChallengesPage cancelEditingOfChallenge() {
+        cancelEditing.click();
+        return this;
+    }
+    public ChallengesPage deleteChallenge() {
+        deleteItem.click();
         return this;
     }
 
-    public ChallengesPage clickCancelDeletionOfChallenge() {
-        cancelDeletingChallenge.click();
+    public ChallengesPage confirmDeletion() {
+        confirmDeleting.click();
+        return this;
+    }
+
+    public ChallengesPage cancelDeletion() {
+        cancelDeleting.click();
         return this;
     }
 
@@ -172,15 +183,17 @@ public class ChallengesPage extends BasePage {
     }
 
     private List<ChallengeComponent> initChallenges() {
-        List<WebElement> elements = driver.findElements(By.xpath("//*[@class='ant-table-row ant-table-row-level-0 editable-row']"));
+        List<WebElement> elements = challengeItem;
         List<ChallengeComponent> challenges = new ArrayList<>();
         for (WebElement element : elements) {
             challenges.add(new ChallengeComponent(driver, element));
         }
         return challenges;
     }
-
-    public ChallengeComponent moveToChallenge(int challengeNumber) {
-        return challenges.get(challengeNumber);
+    public int countChallengeItems() {
+        return challengesComponents.size();
+    }
+    public ChallengeComponent moveGoSomeChallenge(int challengeComponentNumber) {
+        return challengesComponents.get(challengeComponentNumber);
     }
 }
