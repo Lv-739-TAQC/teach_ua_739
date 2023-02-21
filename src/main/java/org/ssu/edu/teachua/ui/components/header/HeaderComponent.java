@@ -15,7 +15,7 @@ import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.news.NewsPage;
 
 public class HeaderComponent extends BaseComponent {
-    @FindBy(how = How.XPATH, using = "//div[@class='ant-dropdown ant-dropdown-show-arrow ant-dropdown-placement-bottom ']//ul[@class='ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light']")
+    @FindBy(how = How.XPATH, using = "//div[@class='ant-dropdown ant-dropdown-show-arrow ant-dropdown-placement-bottom ']//ul[@class]")
     private WebElement profileMenuNode;
     @FindBy(how = How.XPATH, using = "//div[@class='logo']")
     private WebElement logo;
