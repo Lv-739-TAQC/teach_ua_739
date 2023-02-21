@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 
 public class AdminMenuComponent extends UserMenuComponent {
 
-    public AdminMenuComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
-    }
+	public AdminMenuComponent(WebDriver driver, WebElement node) {
+		super(driver, node);
+	}
 }
