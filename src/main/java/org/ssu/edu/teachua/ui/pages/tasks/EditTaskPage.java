@@ -1,6 +1,7 @@
 package org.ssu.edu.teachua.ui.pages.tasks;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -27,7 +28,8 @@ public class EditTaskPage extends AddTaskPage{
 
     @Override
     public AddTaskPage typeName(String name) {
-        nameInput.clear();
+        nameInput.click();
+        nameInput.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         return super.typeName(name);
     }
 
