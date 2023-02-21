@@ -13,47 +13,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChallengesPage extends BasePage {
-    @FindBy(how = How.XPATH, using = "//*[@class='back-btn']")
-    private WebElement tasksButton;
-    @FindBy(how = How.XPATH, using = "//a[@href='/dev/admin/addChallenge']")
-    private WebElement addChallengeButton;
-    @FindBy(how = How.XPATH, using = "//span[contains(@class, 'ant-input-group')]//*[@type='text']")
+    @FindBy(how = How.XPATH, using = ".//*[@class='back-btn']")
+    private WebElement tasksBtn;
+    @FindBy(how = How.XPATH, using = ".//a[@href='/dev/admin/addChallenge']")
+    private WebElement addChallengeBtn;
+    @FindBy(how = How.XPATH, using = ".//span[contains(@class, 'ant-input-group')]//*[@type='text']")
     private WebElement searchField;
-    @FindBy(how = How.XPATH, using = "//span[@class='ant-input-group-addon']")
-    private WebElement searchButton;
-    @FindBy(how = How.XPATH, using = "//*[@class='ant-table-row ant-table-row-level-0 editable-row']")
+    @FindBy(how = How.XPATH, using = ".//span[@class='ant-input-group-addon']")
+    private WebElement searchBtn;
+    @FindBy(how = How.XPATH, using = ".//*[contains(@class, 'level-0 editable-row')]")
     private List<WebElement> item;
-    @FindBy(how = How.XPATH, using = "(//*[@class='ant-table-cell']//a)[1]")
+    @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[1]")
     private WebElement id;
-    @FindBy(how = How.XPATH, using = "(//*[@class='ant-table-cell']//a)[2]")
+    @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[2]")
     private WebElement sortNumber;
-    @FindBy(how = How.XPATH, using = "(//*[@class='ant-table-cell']//a)[3]")
+    @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[3]")
     private WebElement name;
-    @FindBy(how = How.XPATH, using = "(//*[@class='ant-table-cell']//a)[4]")
+    @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[4]")
     private WebElement title;
-    @FindBy(how = How.XPATH, using = "//*[text()='Редагувати']") //"(//*[text()='Редагувати'])[1]"
+    @FindBy(how = How.XPATH, using = ".//*[text()='Редагувати']")
     private WebElement editItem;
-    @FindBy(how = How.XPATH, using = "//input[@id='sortNumber']")
+    @FindBy(how = How.XPATH, using = ".//input[@id='sortNumber']")
     private WebElement editNumber;
-    @FindBy(how = How.XPATH, using = "//input[@id='name']")
+    @FindBy(how = How.XPATH, using = ".//input[@id='name']")
     private WebElement editName;
-    @FindBy(how = How.XPATH, using = "//input[@id='title']")
+    @FindBy(how = How.XPATH, using = ".//input[@id='title']")
     private WebElement editTitle;
-    @FindBy(how = How.XPATH, using = "(//*[text()='Зберегти'])")
+    @FindBy(how = How.XPATH, using = "(.//*[text()='Зберегти'])")
     private WebElement saveChanges;
-    @FindBy(how = How.XPATH, using = "(//*[text()='Відмінити'])")
+    @FindBy(how = How.XPATH, using = "(.//*[text()='Відмінити'])")
     private WebElement cancelEditing;
-    @FindBy(how = How.XPATH, using = "//*[text()='Видалити']") //"(//*[text()='Видалити'])[1]"
+    @FindBy(how = How.XPATH, using = ".//*[text()='Видалити']")
     private WebElement deleteItem;
-    @FindBy(how = How.XPATH, using = "//button[contains(@class, 'popConfirm-ok')]")
+    @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'popConfirm-ok')]")
     private WebElement confirmDeleting;
-    @FindBy(how = How.XPATH, using = "//button[contains(@class, 'popConfirm-cancel')]")
+    @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'popConfirm-cancel')]")
     private WebElement cancelDeleting;
-    @FindBy(how = How.XPATH, using = "//*[@title='Previous Page']")
+    @FindBy(how = How.XPATH, using = ".//*[@title='Previous Page']")
     private WebElement previousPage;
-    @FindBy(how = How.XPATH, using = "//*[@title='Next Page']")
+    @FindBy(how = How.XPATH, using = ".//*[@title='Next Page']")
     private WebElement nextPage;
-    @FindBy(how = How.XPATH, using = "//*[@title='Next 5 Pages']")
+    @FindBy(how = How.XPATH, using = ".//*[@title='Next 5 Pages']")
     private WebElement stepOverNextFivePages;
     private final List<ChallengeComponent> challengesComponents;
 
@@ -62,13 +62,13 @@ public class ChallengesPage extends BasePage {
         challengesComponents = initChallenges();
     }
 
-    public ChallengesPage goToListOfTasks() {
-        tasksButton.click();
+    public ChallengesPage openTasks() {
+        tasksBtn.click();
         return new ChallengesPage(driver);
     }
 
-    public ChallengesPage clickToAddChallengeButton() {
-        addChallengeButton.click();
+    public ChallengesPage addChallenge() {
+        addChallengeBtn.click();
         return new ChallengesPage(driver);
     }
 
@@ -78,7 +78,7 @@ public class ChallengesPage extends BasePage {
     }
 
     public ChallengesPage clickSearchButton() {
-        searchButton.click();
+        searchBtn.click();
         return this;
     }
 
@@ -102,28 +102,12 @@ public class ChallengesPage extends BasePage {
         return new ChallengesPage(driver);
     }
 
-    public String readId() {
-        return id.getText();
-    }
-
-    public String readSortNumber() {
-        return sortNumber.getText();
-    }
-
-    public String readName() {
-        return name.getText();
-    }
-
-    public String readTitle() {
-        return title.getText();
-    }
-
     public ChallengesPage editChallenge() {
         editItem.click();
         return this;
     }
 
-    public ChallengesPage editSortNumber(String sortNumber) {
+    public ChallengesPage editChallengeSortNumber(String sortNumber) {
         editNumber.sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
@@ -131,7 +115,7 @@ public class ChallengesPage extends BasePage {
         return this;
     }
 
-    public ChallengesPage editName(String name) {
+    public ChallengesPage editChallengeName(String name) {
         editName.sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
@@ -139,7 +123,7 @@ public class ChallengesPage extends BasePage {
         return this;
     }
 
-    public ChallengesPage editTitle(String title) {
+    public ChallengesPage editChallengeTitle(String title) {
         editTitle.sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
@@ -172,12 +156,12 @@ public class ChallengesPage extends BasePage {
         return this;
     }
 
-    public ChallengesPage goToPreviousPage() {
+    public ChallengesPage openPreviousPage() {
         previousPage.click();
         return this;
     }
 
-    public ChallengesPage goToNextPage() {
+    public ChallengesPage openNextPage() {
         nextPage.click();
         return this;
     }
@@ -199,8 +183,23 @@ public class ChallengesPage extends BasePage {
     public int countChallengeItems() {
         return challengesComponents.size();
     }
+    public String readId() {
+        return id.getText();
+    }
 
-    public ChallengeComponent moveGoSomeChallenge(int challengeComponentNumber) {
-        return challengesComponents.get(challengeComponentNumber);
+    public String readSortNumber() {
+        return sortNumber.getText();
+    }
+
+    public String readName() {
+        return name.getText();
+    }
+
+    public String readTitle() {
+        return title.getText();
+    }
+
+    public ChallengeComponent getSomeChallenge(int componentNumber) {
+        return challengesComponents.get(componentNumber);
     }
 }
