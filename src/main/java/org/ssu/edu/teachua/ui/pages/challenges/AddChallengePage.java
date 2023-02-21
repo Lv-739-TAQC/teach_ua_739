@@ -64,7 +64,6 @@ public class AddChallengePage extends BasePage {
 
     public AddChallengePage fillSortNumber(String sortNumber) {
         getSortNumber().sendKeys(sortNumber);
-
         return this;
     }
 
