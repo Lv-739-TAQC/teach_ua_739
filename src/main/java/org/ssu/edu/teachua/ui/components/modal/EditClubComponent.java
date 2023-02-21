@@ -59,6 +59,19 @@ public class EditClubComponent extends AddClubComponent {
 
     //All fields is the same as in AddClubLocation, but descriptionField need to be clear
 
+    //error messages
+
+    @FindBy(how = How.XPATH, using = ".//div[@id='edit_category_name_help']")
+    private WebElement editErrMsgNameField;
+
+    @FindBy(how = How.XPATH, using = ".//div[@id='edit_category_selectedCategories_help']")
+    private WebElement editErrMsgCategories;
+
+    //errMsgPhone and errMsgDescription is the same as in the AddClubComponent
+
+    @FindBy(how = How.XPATH, using = "(.//span[@aria-label='check-circle'])[4]")
+    private WebElement editCheckCircle;
+
     public EditClubComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }

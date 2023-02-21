@@ -87,6 +87,23 @@ public class AddClubComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = "//div[contains(@class, 'ant-input-textarea')]")
     private WebElement descriptionField; //min 40 max 1500 characters
 
+    //error messages
+
+    @FindBy(how = How.XPATH, using = ".//div[@id='basic_name_help']")
+    private WebElement errMsgNameField;
+
+    @FindBy(how = How.XPATH, using = ".//div[@id='basic_categories_help']")
+    private WebElement errMsgCategories;
+
+    @FindBy(how = How.XPATH, using = ".//div[@id='basic_contactТелефон_help']")
+    private WebElement errMsgPhone;
+
+    @FindBy(how = How.XPATH, using = ".//div[@id='basic_description_help']")
+    private WebElement errMsgDescription;
+
+    @FindBy(how = How.XPATH, using = "(.//span[@aria-label='check-circle'])[3]")
+    private WebElement addCheckCircle;
+
     public AddClubComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }
