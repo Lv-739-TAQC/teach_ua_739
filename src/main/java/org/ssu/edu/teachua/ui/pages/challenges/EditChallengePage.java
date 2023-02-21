@@ -79,5 +79,5 @@ public class EditChallengePage extends AddChallengePage {
         );
         return super.fillDescription(description);
     }
-
 }
+
