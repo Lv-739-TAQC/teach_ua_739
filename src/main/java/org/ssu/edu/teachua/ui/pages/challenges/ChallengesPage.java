@@ -1,13 +1,11 @@
 package org.ssu.edu.teachua.ui.pages.challenges;
 
-
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BasePage;
-import org.ssu.edu.teachua.ui.components.challenges.ChallengeComponent;
+import org.ssu.edu.teachua.ui.components.challenge.ChallengeComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,24 +27,6 @@ public class ChallengesPage extends BasePage {
     private WebElement challengeName;
     @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[4]")
     private WebElement challengeTitle;
-    @FindBy(how = How.XPATH, using = ".//*[text()='Редагувати']")
-    private WebElement editBtn;
-    @FindBy(how = How.XPATH, using = ".//input[@id='sortNumber']")
-    private WebElement editSortNumber;
-    @FindBy(how = How.XPATH, using = ".//input[@id='name']")
-    private WebElement editName;
-    @FindBy(how = How.XPATH, using = ".//input[@id='title']")
-    private WebElement editTitle;
-    @FindBy(how = How.XPATH, using = "(.//*[text()='Зберегти'])")
-    private WebElement saveChangesBtn;
-    @FindBy(how = How.XPATH, using = "(.//*[text()='Відмінити'])")
-    private WebElement cancelEditingBtn;
-    @FindBy(how = How.XPATH, using = ".//*[text()='Видалити']")
-    private WebElement deleteBtn;
-    @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'popConfirm-ok')]")
-    private WebElement confirmDeletingBtn;
-    @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'popConfirm-cancel')]")
-    private WebElement cancelDeletingBtn;
     @FindBy(how = How.XPATH, using = ".//*[@title='Previous Page']")
     private WebElement previousPage;
     @FindBy(how = How.XPATH, using = ".//*[@title='Next Page']")
@@ -59,6 +39,7 @@ public class ChallengesPage extends BasePage {
 
     public ChallengesPage(WebDriver driver) {
         super(driver);
+        challengeComponents = fillComponentsWithChallenges();
     }
 
     public ChallengesPage openTasks() {
@@ -81,80 +62,6 @@ public class ChallengesPage extends BasePage {
         return this;
     }
 
-//    public ChallengesPage clickId() {
-//        challengeId.click();
-//        return new ChallengesPage(driver);
-//    }
-//
-//    public ChallengesPage clickSortNumber() {
-//        challengeSortNumber.click();
-//        return new ChallengesPage(driver);
-//    }
-//
-//    public ChallengesPage clickName() {
-//        challengeName.click();
-//        return new ChallengesPage(driver);
-//    }
-//
-//    public ChallengesPage clickTitle() {
-//        challengeTitle.click();
-//        return new ChallengesPage(driver);
-//    }
-
-//    public ChallengesPage editChallenge() {
-//        editBtn.click();
-//        return this;
-//    }
-//
-//    public ChallengesPage editChallengeSortNumber(String sortNumber) {
-//        editSortNumber.sendKeys(
-//                Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
-//        );
-//        editSortNumber.sendKeys(sortNumber);
-//        return this;
-//    }
-//
-//    public ChallengesPage editChallengeName(String name) {
-//        editName.sendKeys(
-//                Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
-//        );
-//        editName.sendKeys(name);
-//        return this;
-//    }
-//
-//    public ChallengesPage editChallengeTitle(String title) {
-//        editTitle.sendKeys(
-//                Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
-//        );
-//        editTitle.sendKeys(title);
-//        return this;
-//    }
-//
-//    public ChallengesPage saveEditedItem() {
-//        saveChangesBtn.click();
-//        return this;
-//    }
-//
-//    public ChallengesPage cancelEditingOfItem() {
-//        cancelEditingBtn.click();
-//        return this;
-//    }
-//
-//    public ChallengesPage deleteItem() {
-//        deleteBtn.click();
-//        return this;
-//    }
-//
-//    public ChallengesPage confirmDeletion() {
-//        confirmDeletingBtn.click();
-//        return this;
-//    }
-//
-//    public ChallengesPage cancelDeletion() {
-//        cancelDeletingBtn.click();
-//        return this;
-//    }
-
     public ChallengesPage openPreviousPage() {
         previousPage.click();
         return this;
@@ -170,7 +77,7 @@ public class ChallengesPage extends BasePage {
         return this;
     }
 
-    private List<ChallengeComponent> initChallenges() {
+    private List<ChallengeComponent> fillComponentsWithChallenges() {
         List<ChallengeComponent> components = new ArrayList<>();
         for (WebElement element : challengeLocators) {
             components.add(new ChallengeComponent(driver, element));
@@ -181,6 +88,11 @@ public class ChallengesPage extends BasePage {
     public int countAllChallenges() {
         return challengeComponents.size();
     }
+
+    public ChallengeComponent getChallengeByIndex(int index) {
+        return challengeComponents.get(index);
+    }
+
     public String readId() {
         return challengeId.getText();
     }
@@ -197,9 +109,6 @@ public class ChallengesPage extends BasePage {
         return challengeTitle.getText();
     }
 
-    public ChallengeComponent getChallengeByIndex(int componentNumber) {
-        return challengeComponents.get(componentNumber);
-    }
 }
 
 

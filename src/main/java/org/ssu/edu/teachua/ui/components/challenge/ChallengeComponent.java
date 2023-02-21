@@ -1,94 +1,133 @@
-package org.ssu.edu.teachua.ui.components.challenges;
+package org.ssu.edu.teachua.ui.components.challenge;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BaseComponent;
 import org.ssu.edu.teachua.ui.pages.challenges.ChallengesPage;
 
 public class ChallengeComponent extends BaseComponent {
-    private final String challengeId = "challengeId";
-    private final String challengeSortNumber = "challengeSortNumber";
-    private final String challengeName = "challengeName";
-    private final String challengeTitle = "challengeTitle";
-    private final String editSortNumber = "editSortNumber";
-    private final String editName = "editName";
-    private final String editTitle = "editTitle";
-    private final String editBtn = "editBtn";
-    private final String deleteBtn = "deleteBtn";
-    private final String saveChangesBtn = "saveChangesBtn";
-    private final String cancelEditingBtn = "cancelEditingBtn";
-    private final String confirmDeletingBtn = "confirmDeletingBtn";
-    private final String cancelDeletingBtn = "cancelDeletingBtn";
+    @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[1]")
+    private WebElement challengeId;
+    @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[2]")
+    private WebElement challengeSortNumber;
+    @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[3]")
+    private WebElement challengeName;
+    @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[4]")
+    private WebElement challengeTitle;
+    @FindBy(how = How.XPATH, using = ".//*[text()='Редагувати']")
+    private WebElement editBtn;
+    @FindBy(how = How.XPATH, using = ".//input[@id='sortNumber']")
+    private WebElement editSortNumber;
+    @FindBy(how = How.XPATH, using = ".//input[@id='name']")
+    private WebElement editName;
+    @FindBy(how = How.XPATH, using = ".//input[@id='title']")
+    private WebElement editTitle;
+    @FindBy(how = How.XPATH, using = "(.//*[text()='Зберегти'])")
+    private WebElement saveChangesBtn;
+    @FindBy(how = How.XPATH, using = "(.//*[text()='Відмінити'])")
+    private WebElement cancelEditingBtn;
+    @FindBy(how = How.XPATH, using = ".//*[text()='Видалити']")
+    private WebElement deleteBtn;
+    @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'popConfirm-ok')]")
+    private WebElement confirmDeletingBtn;
+    @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'popConfirm-cancel')]")
+    private WebElement cancelDeletingBtn;
+
     public ChallengeComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }
-    //delete later the next two lines:
-    public WebElement getCurrentRoot() {
-        return componentRoot;
-    }
+
     public ChallengesPage clickChallengeId() {
-        getCurrentRoot().findElement(By.className(challengeId)).click();
+        challengeId.click();
         return new ChallengesPage(driver);
     }
+
     public ChallengesPage clickChallengeSortNumber() {
-        getCurrentRoot().findElement(By.className(challengeSortNumber)).click();
+        challengeSortNumber.click();
         return new ChallengesPage(driver);
     }
+
     public ChallengesPage clickChallengeName() {
-        getCurrentRoot().findElement(By.className(challengeName)).click();
+        challengeName.click();
         return new ChallengesPage(driver);
     }
+
     public ChallengesPage clickChallengeTitle() {
-        getCurrentRoot().findElement(By.className(challengeTitle)).click();
+        challengeTitle.click();
         return new ChallengesPage(driver);
     }
 
     public ChallengesPage clickEditButton() {
-        getCurrentRoot().findElement(By.className(editBtn)).click();
+        editBtn.click();
         return new ChallengesPage(driver); //this
     }
+
     public ChallengesPage editChallengeSortNumber(String sortNumber) {
-        getCurrentRoot().findElement(By.className(editSortNumber)).sendKeys(
+        editSortNumber.sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
-        getCurrentRoot().findElement(By.className(editSortNumber)).sendKeys(sortNumber);
+        editSortNumber.sendKeys(sortNumber);
         return new ChallengesPage(driver); //this
     }
+
     public ChallengesPage editChallengeName(String name) {
-        getCurrentRoot().findElement(By.className(editName)).sendKeys(
+        editName.sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
-        getCurrentRoot().findElement(By.className(editName)).sendKeys(name);
+        editName.sendKeys(name);
         return new ChallengesPage(driver); //this
     }
+
     public ChallengesPage editChallengeTitle(String title) {
-        getCurrentRoot().findElement(By.className(editTitle)).sendKeys(
+        editTitle.sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
-        getCurrentRoot().findElement(By.className(editTitle)).sendKeys(title);
+        editTitle.sendKeys(title);
         return new ChallengesPage(driver); //this
     }
+
     public ChallengesPage clickSaveButton() {
-        getCurrentRoot().findElement(By.className(saveChangesBtn)).click();
+        saveChangesBtn.click();
         return new ChallengesPage(driver); //this
     }
+
     public ChallengesPage clickCancelEditingButton() {
-        getCurrentRoot().findElement(By.className(cancelEditingBtn)).click();
+        cancelEditingBtn.click();
         return new ChallengesPage(driver); //this
     }
+
     public ChallengesPage clickDeleteButton() {
-        getCurrentRoot().findElement(By.className(deleteBtn)).click();
+        deleteBtn.click();
         return new ChallengesPage(driver); //this
     }
+
     public ChallengesPage clickConfirmDeletingButton() {
-        getCurrentRoot().findElement(By.className(confirmDeletingBtn)).click();
+        confirmDeletingBtn.click();
         return new ChallengesPage(driver); //this
     }
+
     public ChallengesPage clickCancelDeletingButton() {
-        getCurrentRoot().findElement(By.className(cancelDeletingBtn)).click();
+        cancelDeletingBtn.click();
         return new ChallengesPage(driver); //this
+    }
+
+    public String readId() {
+        return challengeId.getText();
+    }
+
+    public String readSortNumber() {
+        return challengeSortNumber.getText();
+    }
+
+    public String readName() {
+        return challengeName.getText();
+    }
+
+    public String readTitle() {
+        return challengeTitle.getText();
     }
 }
 
