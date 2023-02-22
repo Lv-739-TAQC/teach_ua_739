@@ -87,84 +87,84 @@ public class AddChallengePage extends BasePage {
     }
 
     public AddChallengePage fillSortNumber(String sortNumber) {
-        getSortNumber().sendKeys(sortNumber);
+        waitForElementToBeClickable(getSortNumber()).sendKeys(sortNumber);
         return this;
     }
 
     public AddChallengePage clearSortNumber() {
-        getSortNumber().sendKeys(
+        waitForElementToBeClickable(getSortNumber()).sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
         return this;
     }
 
     public AddChallengePage fillName(String name) {
-        getName().sendKeys(name);
+        waitForElementToBeClickable(getName()).sendKeys(name);
         return this;
     }
 
     public AddChallengePage clearName() {
-        getName().sendKeys(
+        waitForElementToBeClickable(getName()).sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
         return this;
     }
 
     public AddChallengePage fillTitle(String title) {
-        getTitle().sendKeys(title);
+        waitForElementToBeClickable(getTitle()).sendKeys(title);
         return this;
     }
 
     public AddChallengePage clearTitle() {
-        getTitle().sendKeys(
+        waitForElementToAppear(getTitle()).sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
         );
         return this;
     }
 
     public AddChallengePage fillDescription(String description) {
-        getDescription().sendKeys(description);
+        waitForElementToBeClickable(getDescription()).sendKeys(description);
         return this;
     }
 
     public AddChallengePage clearDescription(String description) {
-        getDescription().sendKeys(description);
+        waitForElementToBeClickable(getDescription()).sendKeys(description);
         return this;
     }
 
 
     public AddChallengePage addPhoto(String imagePath) {
-        getUploadPhoto().sendKeys(imagePath);
+        waitForElementToBeClickable(getUploadPhoto()).sendKeys(imagePath);
         waitForElementToAppear(getPhotoAppeared());
         return this;
     }
 
     public AddChallengePage clickPreviewPhoto() {
-        getPhotoPreview().click();
+        waitForElementToBeClickable(getPhotoPreview()).click();
         return this;
     }
 
     public AddChallengePage clickDeletePhoto() {
-        getDeletePhoto().click();
+        waitForElementToBeClickable(getDeletePhoto()).click();
         return this;
     }
 
     public AddChallengePage clickSave() {
-        getSaveButton().click();
+        waitForElementToBeClickable(getSaveButton()).click();
         return this;
     }
 
     public ChallengesPage goToChallenges() {
-        getGoToChallengesBtn().click();
+        waitForElementToBeClickable(getGoToChallengesBtn()).click();
         return new ChallengesPage(driver);
     }
 
     public ViewChallengePage clickViewChallenge() {
-        getViewChallengeBtn().click();
+        waitForElementToBeClickable(getViewChallengeBtn()).click();
         return new ViewChallengePage(driver);
     }
 
     public String checkErrorMessage() {
-        return getErrorMessage().getText();
+        return waitForElementToAppear(getErrorMessage()).getText();
     }
 }

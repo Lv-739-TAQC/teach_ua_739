@@ -19,12 +19,12 @@ public class EditChallengePage extends AddChallengePage {
     }
 
     public EditChallengePage changeStatus() {
-        changeStatus.click();
+        waitForElementToBeClickable(changeStatus).click();
         return this;
     }
 
     public EditChallengePage clickChangeDate() {
-        changeDateBtn.click();
+        waitForElementToBeClickable(changeDateBtn).click();
         return new EditChallengePage(driver);
     }
 }
