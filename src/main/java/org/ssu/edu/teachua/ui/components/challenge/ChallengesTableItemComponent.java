@@ -8,7 +8,7 @@ import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BaseComponent;
 import org.ssu.edu.teachua.ui.pages.challenges.ChallengesPage;
 
-public class ChallengeComponent extends BaseComponent {
+public class ChallengesTableItemComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[1]")
     private WebElement challengeId;
     @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[2]")
@@ -36,7 +36,7 @@ public class ChallengeComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'popConfirm-cancel')]")
     private WebElement cancelDeletingBtn;
 
-    public ChallengeComponent(WebDriver driver, WebElement node) {
+    public ChallengesTableItemComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }
 
@@ -60,9 +60,9 @@ public class ChallengeComponent extends BaseComponent {
         return new ChallengesPage(driver);
     }
 
-    public ChallengesPage clickEditButton() {
+    public ChallengesTableItemComponent clickEditButton() {
         editBtn.click();
-        return new ChallengesPage(driver); //this
+        return this;
     }
 
     public ChallengesPage editChallengeSortNumber(String sortNumber) {
@@ -99,9 +99,9 @@ public class ChallengeComponent extends BaseComponent {
         return new ChallengesPage(driver); //this
     }
 
-    public ChallengesPage clickDeleteButton() {
+    public ChallengesTableItemComponent clickDeleteButton() {
         deleteBtn.click();
-        return new ChallengesPage(driver); //this
+        return this;
     }
 
     public ChallengesPage clickConfirmDeletingButton() {
