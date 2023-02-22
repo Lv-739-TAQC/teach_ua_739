@@ -49,15 +49,15 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         return checkBoxes;
     }
 
-    public AddClubMainInfoComponent enterChildAgeFrom() {
+    public AddClubMainInfoComponent enterChildAgeFrom(String childAge) {
         this.childAgeFrom.click();
-        this.childAgeFrom.sendKeys((CharSequence) childAgeFrom);
+        this.childAgeFrom.sendKeys(childAge);
         return this;
     }
 
-    public AddClubMainInfoComponent enterChildAgeFor() {
+    public AddClubMainInfoComponent enterChildAgeFor(String childAgeTo) {
         this.childAgeFor.click();
-        this.childAgeFor.sendKeys((CharSequence) childAgeFor);
+        this.childAgeFor.sendKeys(childAgeTo);
         return this;
     }
 
@@ -65,10 +65,6 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         this.belongingToCenter.click();
         this.belongingToCenter.sendKeys((CharSequence) belongingToCenter);
         return this;
-    }
-
-    public void setCenterList(List<WebElement> centerList) {
-        this.centerList = centerList;
     }
 
     public List<AddClubMainInfoComponent> getCenterList() {

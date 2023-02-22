@@ -35,14 +35,6 @@ public abstract class BaseClubComponent extends BaseComponent {
         return clubDescriptionComponent;
     }
 
-    protected WebElement getNextStepButton() {
-        return nextStepButton;
-    }
-
-    protected WebElement getPreviousPageButton() {
-        return previousPageButton;
-    }
-
     public BaseClubComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }

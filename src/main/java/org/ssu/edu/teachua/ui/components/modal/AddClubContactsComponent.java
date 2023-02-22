@@ -8,28 +8,28 @@ import org.openqa.selenium.support.How;
 public class AddClubContactsComponent extends BaseClubComponent {
 
     @FindBy(how = How.XPATH, using = ".//div/span[@class='add-club-location']")
-    private WebElement addLocationButton;
+    protected WebElement addLocationButton;
 
     @FindBy(how = How.XPATH, using = ".//button[@role]")
-    private WebElement onlineSwitchButton;
+    protected WebElement onlineSwitchButton;
 
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactFacebook']")
-    private WebElement contactFacebookField;
+    protected WebElement contactFacebookField;
 
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactContact']")
-    private WebElement contactContactField;
+    protected WebElement contactContactField;
 
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactПошта']")
-    private WebElement contactEmailField;
+    protected WebElement contactEmailField;
 
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactSkype']")
-    private WebElement contactSkypeField;
+    protected WebElement contactSkypeField;
 
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactWhatsApp']")
-    private WebElement contactWhatsAppField;
+    protected WebElement contactWhatsAppField;
 
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactТелефон']")
-    private WebElement contactPhoneField;
+    protected WebElement contactPhoneField;
 
     public AddClubContactsComponent(WebDriver driver, WebElement node) {
         super(driver, node);
@@ -37,7 +37,8 @@ public class AddClubContactsComponent extends BaseClubComponent {
 
     public AddClubContactsComponent clickAddLocationButton() {
         this.addLocationButton.click();
-        return new AddLocationComponent(driver, getAddLocationComponent);
+        return this;
+        // need create getAddLocationComponent
     }
 
     public AddClubContactsComponent clickOnlineSwitchButton() {

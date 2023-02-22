@@ -10,16 +10,16 @@ import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 public class AddClubDescriptionComponent extends BaseClubComponent {
 
     @FindBy(how = How.XPATH, using = "(.//span[@class='add-club-upload'])[1]")
-    private WebElement uploadLogo;
+    protected WebElement uploadLogo;
 
     @FindBy(how = How.XPATH, using = "(.//span[@class='add-club-upload'])[2]")
-    private WebElement uploadBackgroundPicture;
+    protected WebElement uploadBackgroundPicture;
 
     @FindBy(how = How.XPATH, using = ".//div[contains(@class,'ant-upload')]//span[@aria-label='plus']")
-    private WebElement uploadGallery;
+    protected WebElement uploadGallery;
 
     @FindBy(how = How.XPATH, using = ".//div[contains(@class, 'ant-input-textarea')]")
-    private WebElement descriptionField; //min 40 max 1500 characters
+    protected WebElement descriptionField; //min 40 max 1500 characters
 
     public AddClubDescriptionComponent uploadNewLogo(String logoPath) {
         this.uploadLogo.sendKeys(logoPath);
