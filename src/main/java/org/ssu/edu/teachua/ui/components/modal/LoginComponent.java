@@ -5,15 +5,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BaseComponent;
+import org.ssu.edu.teachua.ui.pages.home.HomePage;
 
 public class LoginComponent extends BaseComponent {
-    @FindBy(how = How.XPATH, using = "//input[@id='basic_email']")
+    @FindBy(how = How.XPATH, using = ".//input[@id='basic_email']")
     private WebElement emailField;
-    @FindBy (how = How.XPATH, using = "//input[@id='basic_password']")
+    @FindBy (how = How.XPATH, using = ".//input[@id='basic_password']")
     private WebElement passwordField;
-    @FindBy (how = How.XPATH, using = "//*[@class='ant-btn ant-btn-default login-button']")
+    @FindBy (how = How.XPATH, using = ".//button[contains(@type,'submit')]")
     private WebElement logInButton;
-    @FindBy (how = How.XPATH, using = "//div[@class='ant-modal modal-login']//button[contains(@aria-label,'Close')]")
+    @FindBy (how = How.XPATH, using = ".//button[contains(@aria-label,'Close')]")
     private WebElement closeButton;
 
     public LoginComponent(WebDriver driver, WebElement node) {
@@ -28,9 +29,9 @@ public class LoginComponent extends BaseComponent {
         passwordField.sendKeys(password);
         return this;
     }
-    public LoginComponent clickLoginButton() {
+    public HomePage clickLoginButton() {
         logInButton.click();
-        return this;
+        return new HomePage(driver);
     }
 
 }
