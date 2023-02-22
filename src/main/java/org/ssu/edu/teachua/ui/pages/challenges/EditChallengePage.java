@@ -8,15 +8,15 @@ import org.openqa.selenium.support.How;
 
 
 public class EditChallengePage extends AddChallengePage {
-    @FindBy(how = How.XPATH, using = ".//button[@id='isActive']")
+    @FindBy(how = How.XPATH, using = "//button[@id='isActive']")
     private WebElement changeStatus;
-    @FindBy(how = How.XPATH, using = ".//*[@class='anticon anticon-eye']")
+    @FindBy(how = How.XPATH, using = "//*[@class='anticon anticon-eye']")
     private WebElement previewPhoto;
-    @FindBy(how = How.XPATH, using = ".//*[@class='anticon anticon-delete']")
+    @FindBy(how = How.XPATH, using = "//*[@class='anticon anticon-delete']")
     private WebElement deletePhoto;
-    @FindBy(how = How.XPATH, using = "(.//*[@class='ant-btn ant-btn-default flooded-button'])[3]")
+    @FindBy(how = How.XPATH, using = "(//*[@class='ant-btn ant-btn-default flooded-button'])[3]")
     private WebElement changeDateBtn;
-    @FindBy(how = How.XPATH, using = "(.//*[@class='ant-btn ant-btn-default flooded-button'])[2]")
+    @FindBy(how = How.XPATH, using = "(//*[@class='ant-btn ant-btn-default flooded-button'])[2]")
     private WebElement viewChallengeBtn;
 
     public EditChallengePage(WebDriver driver) {

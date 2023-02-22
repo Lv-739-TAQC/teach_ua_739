@@ -7,23 +7,23 @@ import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BasePage;
 
 public class AddChallengePage extends BasePage {
-    @FindBy(how = How.XPATH, using = ".//input[@id='sortNumber']")
+    @FindBy(how = How.XPATH, using = "//input[@id='sortNumber']")
     private WebElement sortNumber;
-    @FindBy(how = How.XPATH, using = ".//input[@id='name']")
+    @FindBy(how = How.XPATH, using = "//input[@id='name']")
     private WebElement name;
-    @FindBy(how = How.XPATH, using = ".//input[@id='title']")
+    @FindBy(how = How.XPATH, using = "//input[@id='title']")
     private WebElement title;
-    @FindBy(how = How.XPATH, using = ".//div[contains(@class,'ql-editor')]")
+    @FindBy(how = How.XPATH, using = "//div[contains(@class,'ql-editor')]")
     private WebElement description;
-    @FindBy(how = How.XPATH, using = ".//span[@class='ant-upload'][@role='button']")
+    @FindBy(how = How.XPATH, using = "//span[@class='ant-upload'][@role='button']")
     private WebElement uploadPhoto;
-    @FindBy(how = How.XPATH, using = ".//*[@class='ant-upload-list-item-info']")
+    @FindBy(how = How.XPATH, using = "//*[@class='ant-upload-list-item-info']")
     private WebElement photoAppeared;
-    @FindBy(how = How.XPATH, using = ".//*[@type='submit' and contains(@class,'add-contact-type-button')]")
+    @FindBy(how = How.XPATH, using = "//*[@type='submit' and contains(@class,'add-contact-type-button')]")
     private WebElement saveBtn;
-    @FindBy(how = How.XPATH, using = ".//*[@class='back-btn'and @href='/dev/admin/challenges']")
+    @FindBy(how = How.XPATH, using = "//*[@class='back-btn'and @href='/dev/admin/challenges']")
     private WebElement challengesBtn;
-    @FindBy(how = How.XPATH, using = ".//*[@class='ant-message']")
+    @FindBy(how = How.XPATH, using = "//*[@class='ant-message']")
     private WebElement errorMessage;
 
     public AddChallengePage(WebDriver driver) {
