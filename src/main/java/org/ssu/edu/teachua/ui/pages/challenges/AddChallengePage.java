@@ -1,10 +1,12 @@
 package org.ssu.edu.teachua.ui.pages.challenges;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BasePage;
+import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
 
 public class AddChallengePage extends BasePage {
     @FindBy(how = How.XPATH, using = "//input[@id='sortNumber']")
@@ -19,10 +21,16 @@ public class AddChallengePage extends BasePage {
     private WebElement uploadPhoto;
     @FindBy(how = How.XPATH, using = "//*[@class='ant-upload-list-item-info']")
     private WebElement photoAppeared;
+    @FindBy(how = How.XPATH, using = "//*[@class='anticon anticon-eye']")
+    private WebElement previewPhoto;
+    @FindBy(how = How.XPATH, using = "//*[@class='anticon anticon-delete']")
+    private WebElement deletePhoto;
     @FindBy(how = How.XPATH, using = "//*[@type='submit' and contains(@class,'add-contact-type-button')]")
     private WebElement saveBtn;
     @FindBy(how = How.XPATH, using = "//*[@class='back-btn'and @href='/dev/admin/challenges']")
     private WebElement challengesBtn;
+    @FindBy(how = How.XPATH, using = "(//*[@class='ant-btn ant-btn-default flooded-button'])[2]")
+    private WebElement viewChallengeBtn;
     @FindBy(how = How.XPATH, using = "//*[@class='ant-message']")
     private WebElement errorMessage;
 
@@ -50,12 +58,28 @@ public class AddChallengePage extends BasePage {
         return uploadPhoto;
     }
 
+    public WebElement getPhotoAppeared() {
+        return photoAppeared;
+    }
+
+    public WebElement getPhotoPreview() {
+        return previewPhoto;
+    }
+
+    public WebElement getDeletePhoto() {
+        return deletePhoto;
+    }
+
     public WebElement getSaveButton() {
         return saveBtn;
     }
 
     public WebElement getGoToChallengesBtn() {
         return challengesBtn;
+    }
+
+    public WebElement getViewChallengeBtn() {
+        return viewChallengeBtn;
     }
 
     public WebElement getErrorMessage() {
@@ -67,8 +91,22 @@ public class AddChallengePage extends BasePage {
         return this;
     }
 
+    public AddChallengePage clearSortNumber() {
+        getSortNumber().sendKeys(
+                Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
+        );
+        return this;
+    }
+
     public AddChallengePage fillName(String name) {
         getName().sendKeys(name);
+        return this;
+    }
+
+    public AddChallengePage clearName() {
+        getName().sendKeys(
+                Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
+        );
         return this;
     }
 
@@ -77,7 +115,19 @@ public class AddChallengePage extends BasePage {
         return this;
     }
 
+    public AddChallengePage clearTitle() {
+        getTitle().sendKeys(
+                Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
+        );
+        return this;
+    }
+
     public AddChallengePage fillDescription(String description) {
+        getDescription().sendKeys(description);
+        return this;
+    }
+
+    public AddChallengePage clearDescription(String description) {
         getDescription().sendKeys(description);
         return this;
     }
@@ -85,6 +135,17 @@ public class AddChallengePage extends BasePage {
 
     public AddChallengePage addPhoto(String imagePath) {
         getUploadPhoto().sendKeys(imagePath);
+        waitForElementToAppear(getPhotoAppeared());
+        return this;
+    }
+
+    public AddChallengePage clickPreviewPhoto() {
+        getPhotoPreview().click();
+        return this;
+    }
+
+    public AddChallengePage clickDeletePhoto() {
+        getDeletePhoto().click();
         return this;
     }
 
@@ -96,6 +157,11 @@ public class AddChallengePage extends BasePage {
     public ChallengesPage goToChallenges() {
         getGoToChallengesBtn().click();
         return new ChallengesPage(driver);
+    }
+
+    public ViewChallengePage clickViewChallenge() {
+        getViewChallengeBtn().click();
+        return new ViewChallengePage(driver);
     }
 
     public String checkErrorMessage() {
