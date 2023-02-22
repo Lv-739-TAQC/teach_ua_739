@@ -1,11 +1,12 @@
 package org.ssu.edu.teachua.ui.pages.challenges;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BasePage;
-import org.ssu.edu.teachua.ui.components.challenge.ChallengesTableItemComponent;
+import org.ssu.edu.teachua.ui.components.challenge.ViewChallengesTableItemComponent;
 import org.ssu.edu.teachua.ui.pages.tasks.TasksPage;
 
 import java.util.ArrayList;
@@ -26,64 +27,80 @@ public class ChallengesPage extends BasePage {
     private WebElement nextPage;
     @FindBy(how = How.XPATH, using = "//*[@title='Next 5 Pages']")
     private WebElement stepOverNextFivePages;
-    @FindBy(how = How.XPATH, using = "//*[contains(@class, 'level-0 editable-row')]")
-    private List<WebElement> challengeLocators;
-    private List<ChallengesTableItemComponent> challengeComponents;
+    @FindBy(how = How.XPATH, using = "(//th[@class='ant-table-cell'])[1]")
+    private WebElement nameOfFirstTableHeaderElement;
+    @FindBy(how = How.XPATH, using = "(//th[@class='ant-table-cell'])[2]")
+    private WebElement nameOfSecondTableHeaderElement;
+    @FindBy(how = How.XPATH, using = "(//th[@class='ant-table-cell'])[3]")
+    private WebElement nameOfThirdTableHeaderElement;
+    @FindBy(how = How.XPATH, using = "(//th[@class='ant-table-cell'])[4]")
+    private WebElement nameOfFourthTableHeaderElement;
 
     public ChallengesPage(WebDriver driver) {
         super(driver);
-        challengeComponents = fillComponentsWithChallenges();
     }
 
     public TasksPage openTasks() {
-        tasksBtn.click();
+        waitForElementToBeClickable(tasksBtn).click();
         return new TasksPage(driver);
     }
 
     public AddChallengePage addChallenge() {
-        addChallengeBtn.click();
+        waitForElementToBeClickable(addChallengeBtn).click();
         return new AddChallengePage(driver);
     }
 
     public ChallengesPage fillSearchField(String textToSearch) {
-        searchField.sendKeys(textToSearch);
+        waitForElementToBeClickable(searchField).sendKeys(textToSearch);
         return this;
     }
 
     public ChallengesPage clickSearchButton() {
-        searchBtn.click();
-        return this;
+        waitForElementToBeClickable(searchBtn).click();
+        return new ChallengesPage(driver);
     }
 
     public ChallengesPage openPreviousPage() {
-        previousPage.click();
-        return this;
+        waitForElementToBeClickable(previousPage).click();
+        return new ChallengesPage(driver);
     }
 
     public ChallengesPage openNextPage() {
-        nextPage.click();
-        return this;
+        waitForElementToBeClickable(nextPage).click();
+        return new ChallengesPage(driver);
     }
 
     public ChallengesPage stepOverNextFivePages() {
-        stepOverNextFivePages.click();
-        return this;
+        waitForElementToBeClickable(stepOverNextFivePages).click();
+        return new ChallengesPage(driver);
+    }
+    public String getNameOfFirstTableHeaderElement() {
+        return waitForElementToAppear(nameOfFirstTableHeaderElement).getText();
+    }
+    public String getNameOfSecondTableHeaderElement() {
+        return waitForElementToAppear(nameOfSecondTableHeaderElement).getText();
+    }
+    public String getNameOfThirdTableHeaderElement() {
+        return waitForElementToAppear(nameOfThirdTableHeaderElement).getText();
+    }
+    public String getNameOfFourthTableHeaderElement() {
+        return waitForElementToAppear(nameOfFourthTableHeaderElement).getText();
     }
 
-    private List<ChallengesTableItemComponent> fillComponentsWithChallenges() {
-        List<ChallengesTableItemComponent> components = new ArrayList<>();
-        for (WebElement element : challengeLocators) {
-            components.add(new ChallengesTableItemComponent(driver, element));
+    private List<ViewChallengesTableItemComponent> getChallengesTableItems() {
+        List<ViewChallengesTableItemComponent> challengesComponents = new ArrayList<>();
+        for (WebElement challengeNode : waitForElementsToAppear(driver.findElements(By.xpath("//*[contains(@class, 'level-0 editable-row')]")))) {
+            challengesComponents.add(new ViewChallengesTableItemComponent(driver, challengeNode));
         }
-        return components;
+        return challengesComponents;
     }
 
-    public int countAllChallenges() {
-        return challengeComponents.size();
+    public int getCountAllChallenges() {
+        return getChallengesTableItems().size();
     }
 
-    public ChallengesTableItemComponent getChallengeByIndex(int index) {
-        return challengeComponents.get(index);
+    public ViewChallengesTableItemComponent selectCertainChallenge(int challengeIndex) {
+        return getChallengesTableItems().get(challengeIndex);
     }
 
 }
