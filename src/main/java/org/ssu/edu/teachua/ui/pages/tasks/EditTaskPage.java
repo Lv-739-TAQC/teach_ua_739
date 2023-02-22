@@ -47,8 +47,7 @@ public class EditTaskPage extends AddTaskPage{
 
     @Override
     public AddTaskPage selectChallenge(String challenge) {
-        Actions act =  new Actions(driver);
-        act.moveToElement(challengeDropdown).click().perform();
+        actions.moveToElement(challengeDropdown).click().perform();
         driver.findElement(By.xpath(String.format(CHALLENGE_NAME_XPATH, challenge))).click();
         return this;
     }
