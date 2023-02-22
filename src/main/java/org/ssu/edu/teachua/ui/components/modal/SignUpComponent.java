@@ -58,6 +58,10 @@ public class SignUpComponent extends BaseComponent {
         closeButton.click();
         return new HomePage(driver);
     }
+    public SignUpComponent clickSignUpButton() {
+        signUpButton.click();
+        return this;
+    }
 
 
     public String enterLastNameFieldValue() {
