@@ -9,7 +9,9 @@ import org.ssu.edu.teachua.ui.components.modal.AddCenterComponent;
 import org.ssu.edu.teachua.ui.components.modal.AddClubComponent;
 import org.ssu.edu.teachua.ui.components.modal.EditProfileComponent;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProfilePage extends BasePage {
 
@@ -17,7 +19,7 @@ public class ProfilePage extends BasePage {
     private WebElement profileTitle;
 
     @FindBy(how = How.XPATH, using = "//div[@class='user-name']")
-    private WebElement usernameField;
+    private WebElement userNameField;
 
     @FindBy(how = How.XPATH, using = "//div[@class='user-role']")
     private WebElement userRoleField;
@@ -28,14 +30,25 @@ public class ProfilePage extends BasePage {
     @FindBy(how = How.XPATH, using = "//div[@class='user-email-data']")
     private WebElement userEmailField;
 
+    @FindBy(how = How.XPATH, using =
+            "//div[@class='ant-modal user-edit']//div[@class='ant-modal-content']"
+    )
+    private WebElement editProfileNode;
+
     @FindBy(how = How.XPATH, using = "//div[@class='edit-button']//button")
     private WebElement editProfileButton;
 
     @FindBy(how = How.XPATH, using = "//button[contains(@class, 'add-button')]")
     private WebElement addButton;
 
+    @FindBy(how = How.XPATH, using = "//div[contains(@class, 'modal-add-club')]")
+    private WebElement addClubNode;
+
     @FindBy(how = How.XPATH, using = "//li[contains(@data-menu-id, 'tmp_key-0')]")
     private WebElement addClubButton;
+
+    @FindBy(how = How.XPATH, using = "//div[contains(@class, 'modal addCenter')]")
+    private WebElement addCenterNode;
 
     @FindBy(how = How.XPATH, using = "//li[contains(@data-menu-id, 'tmp_key-1')]")
     private WebElement addCenterButton;
@@ -53,29 +66,16 @@ public class ProfilePage extends BasePage {
         super(driver);
     }
 
-    public String getProfileTitle() {
-        return waitForElementToAppear(profileTitle).getText();
-    }
-
-    public String getUsernameField() {
-        return waitForElementToAppear(usernameField).getText();
-    }
-
-    public String getUserRoleField() {
-        return waitForElementToAppear(userRoleField).getText();
-    }
-
-    public String getUserPhoneField() {
-        return waitForElementToAppear(userPhoneField).getText();
-    }
-
-    public String getUserEmailField() {
-        return waitForElementToAppear(userEmailField).getText();
+    public List<String> getProfilePageContent() {
+        List<WebElement> pageContent = waitForElementsToAppear(Arrays.asList(
+                profileTitle, userNameField, userRoleField, userPhoneField, userEmailField
+        ));
+        return pageContent.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
     public EditProfileComponent clickEditProfileButton() {
         waitForElementToBeClickable(editProfileButton).click();
-        return new EditProfileComponent(driver, editProfileButton);
+        return new EditProfileComponent(driver, editProfileNode);
     }
 
     public ProfilePage clickAddButton() {
@@ -85,12 +85,12 @@ public class ProfilePage extends BasePage {
 
     public AddClubComponent clickAddClubButton() {
         waitForElementToBeClickable(addClubButton).click();
-        return new AddClubComponent(driver, addClubButton);
+        return new AddClubComponent(driver, addClubNode);
     }
 
     public AddCenterComponent clickAddCenterButton() {
         waitForElementToBeClickable(addCenterButton).click();
-        return new AddCenterComponent(driver, addCenterButton);
+        return new AddCenterComponent(driver, addCenterNode);
     }
 
     public ProfilePage clickClubDots(int clubIndex) {
@@ -100,7 +100,7 @@ public class ProfilePage extends BasePage {
 
     public AddClubComponent clickEditClubButton() {
         waitForElementToBeClickable(editClubButton).click();
-        return new AddClubComponent(driver, editClubButton);
+        return new AddClubComponent(driver, addClubNode);
     }
 
     public ProfilePage clickDeleteClubButton() {

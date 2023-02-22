@@ -25,26 +25,22 @@ public class ViewNewsPage extends BasePage {
     private WebElement otherNewsTitle;
 
     @FindBy(how = How.XPATH, using = "//div[@class='slick-track']/*[position() <= 3]")
-    private List<WebElement> otherNewsLocators;
-
-    private List<NewsCardComponent> otherNewsComponents;
-
+    private List<WebElement> otherNewsNodes;
 
     public ViewNewsPage(WebDriver driver) {
         super(driver);
-        otherNewsComponents = fillComponentsWithOtherNews();
     }
 
-    private List<NewsCardComponent> fillComponentsWithOtherNews() {
-        List<NewsCardComponent> components = new ArrayList<>();
-        for (WebElement element : waitForElementsToAppear(otherNewsLocators)) {
-            components.add(new NewsCardComponent(driver, element));
+    private List<NewsCardComponent> getCardsWithOtherNews() {
+        List<NewsCardComponent> otherNewsComponents = new ArrayList<>();
+        for (WebElement otherNewsNode : waitForElementsToAppear(otherNewsNodes)) {
+            otherNewsComponents.add(new NewsCardComponent(driver, otherNewsNode));
         }
-        return components;
+        return otherNewsComponents;
     }
 
     public int getCountAllOtherNews() {
-        return otherNewsComponents.size();
+        return getCardsWithOtherNews().size();
     }
 
     public String getNewsTitle() {
@@ -63,7 +59,7 @@ public class ViewNewsPage extends BasePage {
         return otherNewsTitle.getText();
     }
 
-    public NewsCardComponent getCertainOtherNews(int componentNumber) {
-        return otherNewsComponents.get(componentNumber);
+    public NewsCardComponent chooseCertainOtherNews(int componentNumber) {
+        return getCardsWithOtherNews().get(componentNumber);
     }
 }

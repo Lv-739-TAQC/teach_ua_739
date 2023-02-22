@@ -20,44 +20,37 @@ public class NewsPage extends BasePage {
     private WebElement clubsTitle;
 
     @FindBy(how = How.XPATH, using = "//div[@id='newsContainer']")
-    private List<WebElement> newsLocators;
+    private List<WebElement> newsNodes;
 
     @FindBy(how = How.XPATH, using = "//div[@class='ant-card-body']")
-    private List<WebElement> clubLocators;
-
-    private List<NewsCardComponent> newsComponents;
-
-    private List<ClubCardComponent> clubComponents;
-
+    private List<WebElement> clubNodes;
 
     public NewsPage(WebDriver driver) {
         super(driver);
-        newsComponents = fillComponentsWithNews();
-        clubComponents = fillComponentsWithClubs();
     }
 
-    private List<NewsCardComponent> fillComponentsWithNews() {
-        List<NewsCardComponent> components = new ArrayList<>();
-        for (WebElement element : waitForElementsToAppear(newsLocators)) {
-            components.add(new NewsCardComponent(driver, element));
+    public List<NewsCardComponent> getCardsWithNews() {
+        List<NewsCardComponent> newsComponents = new ArrayList<>();
+        for (WebElement newsNode : waitForElementsToAppear(newsNodes)) {
+            newsComponents.add(new NewsCardComponent(driver, newsNode));
         }
-        return components;
+        return newsComponents;
     }
 
-    private List<ClubCardComponent> fillComponentsWithClubs() {
-        List<ClubCardComponent> components = new ArrayList<>();
-        for (WebElement element : waitForElementsToAppear(clubLocators)) {
-            components.add(new ClubCardComponent(driver, element));
+    public List<ClubCardComponent> getCardsWithClubs() {
+        List<ClubCardComponent> clubComponents = new ArrayList<>();
+        for (WebElement clubNode : waitForElementsToAppear(clubNodes)) {
+            clubComponents.add(new ClubCardComponent(driver, clubNode));
         }
-        return components;
+        return clubComponents;
     }
 
     public int getCountAllNews() {
-        return newsComponents.size();
+        return getCardsWithNews().size();
     }
 
     public int getCountAllClubs() {
-        return clubComponents.size();
+        return getCardsWithClubs().size();
     }
 
     public String getNewsTitle() {
@@ -68,11 +61,11 @@ public class NewsPage extends BasePage {
         return waitForElementToAppear(clubsTitle).getText();
     }
 
-    public NewsCardComponent getCertainNews(int componentNumber) {
-        return newsComponents.get(componentNumber);
+    public NewsCardComponent chooseCertainNews(int componentNumber) {
+        return getCardsWithNews().get(componentNumber);
     }
 
-    public ClubCardComponent getCertainClub(int componentNumber) {
-        return clubComponents.get(componentNumber);
+    public ClubCardComponent chooseCertainClub(int componentNumber) {
+        return getCardsWithClubs().get(componentNumber);
     }
 }

@@ -10,12 +10,15 @@ import java.time.Duration;
 import java.util.List;
 
 public abstract class Base {
+
+    private static final int EXPLICIT_WAIT = 100;
+
     protected WebDriver driver;
     protected WebDriverWait wait;
 
     public Base(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT));
         PageFactory.initElements(driver, this);
     }
 
