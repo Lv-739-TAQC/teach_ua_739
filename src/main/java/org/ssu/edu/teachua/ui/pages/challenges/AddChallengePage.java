@@ -90,12 +90,12 @@ public class AddChallengePage extends BasePage {
 
     public AddChallengePage clickSave() {
         getSaveButton().click();
-        return new AddChallengePage(driver);
+        return this;
     }
 
-    public AddChallengePage goToChallenges() {
+    public ChallengesPage goToChallenges() {
         getGoToChallengesBtn().click();
-        return new AddChallengePage(driver);
+        return new ChallengesPage(driver);
     }
 
     public String checkErrorMessage() {

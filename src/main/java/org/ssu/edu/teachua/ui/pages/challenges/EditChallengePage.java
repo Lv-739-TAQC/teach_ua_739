@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
 
 
 public class EditChallengePage extends AddChallengePage {
@@ -43,9 +44,9 @@ public class EditChallengePage extends AddChallengePage {
         return new EditChallengePage(driver);
     }
 
-    public EditChallengePage clickViewChallenge() {
+    public ViewChallengePage clickViewChallenge() {
         viewChallengeBtn.click();
-        return new EditChallengePage(driver);
+        return new ViewChallengePage(driver);
     }
 
     @Override
