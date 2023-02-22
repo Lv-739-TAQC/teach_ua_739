@@ -31,7 +31,7 @@ public class ViewNewsPage extends BasePage {
         super(driver);
     }
 
-    private List<NewsCardComponent> getCardsWithOtherNews() {
+    public List<NewsCardComponent> getCardsWithOtherNews() {
         List<NewsCardComponent> otherNewsComponents = new ArrayList<>();
         for (WebElement otherNewsNode : waitForElementsToAppear(otherNewsNodes)) {
             otherNewsComponents.add(new NewsCardComponent(driver, otherNewsNode));
