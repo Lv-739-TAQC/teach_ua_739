@@ -6,10 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class AddCenterContactsComponent extends BaseAddCenterComponent {
-    public AddCenterContactsComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
-    }
-
     @FindBy(how = How.XPATH, using = ".//input[@id='contacts_contactFacebook']")
     private WebElement facebook;
     @FindBy(how = How.XPATH, using = ".//input[@id='contacts_contactContact']")
@@ -27,6 +23,9 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'prev-btn')]")
     private WebElement backButton;
 
+    public AddCenterContactsComponent(WebDriver driver) {
+        super(driver);
+    }
 
     // @Step("Contacts: add center facebook")
     public AddCenterContactsComponent enterCenterFacebook(String centerFacebook) {
@@ -79,13 +78,13 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
     // @Step("Contacts: Press Next step button")
     public AddCenterDescriptionComponent pressNextButton() {
         this.nextStepButton.click();
-        return new AddCenterDescriptionComponent(driver, addCenterContainer);
+        return new AddCenterDescriptionComponent(driver);
     }
 
     // @Step("Contacts: Press Back button")
     public AddCenterMainInfoComponent pressBackButton() {
         this.backButton.click();
-        return new AddCenterMainInfoComponent(driver, addCenterContainer);
+        return new AddCenterMainInfoComponent(driver);
     }
 
 }

@@ -38,7 +38,7 @@ public class UserMenuComponent extends BaseComponent implements MenuComponent {
 
     public AddCenterMainInfoComponent openAddCentreForm() {
         addCentre.click();
-        return new AddCenterMainInfoComponent(driver, addCentreForm);
+        return new AddCenterMainInfoComponent(driver);
     }
 
     public void SearchCertificates() {

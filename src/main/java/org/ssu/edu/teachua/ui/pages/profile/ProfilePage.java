@@ -91,7 +91,7 @@ public class ProfilePage extends BasePage {
 
     public AddCenterMainInfoComponent clickAddCenterButton() {
         waitForElementToBeClickable(addCenterButton).click();
-        return new AddCenterMainInfoComponent(driver, addCenterNode);
+        return new AddCenterMainInfoComponent(driver);
     }
 
     public ProfilePage clickClubDots(int clubIndex) {

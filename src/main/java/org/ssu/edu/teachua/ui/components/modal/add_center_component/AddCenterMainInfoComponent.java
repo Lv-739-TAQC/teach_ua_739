@@ -7,9 +7,6 @@ import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.modal.AddLocationComponent;
 
 public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
-    public AddCenterMainInfoComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
-    }
 
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_name']")
     private WebElement centerName;
@@ -25,6 +22,10 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
 
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'next-btn')]")
     private WebElement nextStepButton;
+
+    public AddCenterMainInfoComponent(WebDriver driver) {
+        super(driver);
+    }
 
 
     // @Step("Main info: enter the name of the center")
@@ -50,7 +51,7 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
     // @Step("Main info: Press Next step button")
     public AddCenterContactsComponent pressNextButton() {
         this.nextStepButton.click();
-        return new AddCenterContactsComponent(driver, addCenterContainer);
+        return new AddCenterContactsComponent(driver);
     }
 
 }

@@ -43,9 +43,8 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
         return this;
     }
 
-    public BasePage clickNextStepButton() {
+    public void clickEndButton() {
         nextStepButton.click();
-        return new ProfilePage(driver);
     }
 
     public AddClubContactsComponent clickPreviousPageButton() {

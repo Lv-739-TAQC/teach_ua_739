@@ -6,10 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
-    public AddCenterDescriptionComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
-    }
-
     @FindBy(how = How.XPATH, using = ".//span[@class='add-club-upload']")
     private WebElement centerLogo;
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_urlBackground']")
@@ -20,7 +16,9 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
     private WebElement nextStepButton;
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'prev-btn')]")
     private WebElement backButton;
-
+    public AddCenterDescriptionComponent(WebDriver driver) {
+        super(driver);
+    }
 
     // @Step("Description: add center logo")
     public AddCenterDescriptionComponent addCenterLogo(String centerLogoPath) {
@@ -47,13 +45,13 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
     // @Step("Description: Press Next step button")
     public AddCenterClubsComponent pressNextButton() {
         this.nextStepButton.click();
-        return new AddCenterClubsComponent(driver, addCenterContainer);
+        return new AddCenterClubsComponent(driver);
     }
 
     // @Step("Description: Press Back button")
     public AddCenterContactsComponent pressBackButton() {
         this.backButton.click();
-        return new AddCenterContactsComponent(driver, addCenterContainer);
+        return new AddCenterContactsComponent(driver);
     }
 
 }
