@@ -9,7 +9,7 @@ import org.openqa.selenium.support.How;
 public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent{
 
     @FindBy(how = How.XPATH, using = ".//input[@type='checkbox']")
-    private WebElement remount;
+    private WebElement remote;
 
     @FindBy(how = How.XPATH, using = ".//input[@role='spinbutton']")
     private WebElement ageField;
@@ -18,8 +18,8 @@ public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent{
         super(driver, node);
     }
 
-    public void chooseRemount() {
-        remount.click();
+    public void chooseRemote() {
+        remote.click();
     }
 
     public void chooseCategory(String category){
