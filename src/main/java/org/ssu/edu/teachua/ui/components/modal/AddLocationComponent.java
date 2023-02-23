@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
 import org.ssu.edu.teachua.ui.base.BaseComponent;
+import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 
 public class AddLocationComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = ".//*[@id='name']")
@@ -75,7 +76,7 @@ public class AddLocationComponent extends BaseComponent {
         return this;
     }
 
-    public AddLocationComponent pressAddLocationToListButton() {
+    public AddCenterMainInfoComponent pressAddLocationToListButton() {
         this.addLocationToListButton.click();
         return new AddCenterMainInfoComponent(driver);
     }
