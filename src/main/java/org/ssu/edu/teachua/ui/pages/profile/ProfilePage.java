@@ -5,9 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BasePage;
-import org.ssu.edu.teachua.ui.components.modal.AddCenterComponent;
-import org.ssu.edu.teachua.ui.components.modal.AddClubComponent;
+import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
+import org.ssu.edu.teachua.ui.components.modal.edit_club_component.EditClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.components.modal.EditProfileComponent;
+import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 
 import java.util.Arrays;
 import java.util.List;
@@ -83,14 +84,14 @@ public class ProfilePage extends BasePage {
         return this;
     }
 
-    public AddClubComponent clickAddClubButton() {
+    public AddClubMainInfoComponent clickAddClubButton() {
         waitForElementToBeClickable(addClubButton).click();
-        return new AddClubComponent(driver, addClubNode);
+        return new AddClubMainInfoComponent(driver, addClubNode);
     }
 
-    public AddCenterComponent clickAddCenterButton() {
+    public AddCenterMainInfoComponent clickAddCenterButton() {
         waitForElementToBeClickable(addCenterButton).click();
-        return new AddCenterComponent(driver, addCenterNode);
+        return new AddCenterMainInfoComponent(driver, addCenterNode);
     }
 
     public ProfilePage clickClubDots(int clubIndex) {
@@ -98,9 +99,9 @@ public class ProfilePage extends BasePage {
         return this;
     }
 
-    public AddClubComponent clickEditClubButton() {
+    public EditClubMainInfoComponent clickEditClubButton() {
         waitForElementToBeClickable(editClubButton).click();
-        return new AddClubComponent(driver, addClubNode);
+        return new EditClubMainInfoComponent(driver, addClubNode);
     }
 
     public ProfilePage clickDeleteClubButton() {

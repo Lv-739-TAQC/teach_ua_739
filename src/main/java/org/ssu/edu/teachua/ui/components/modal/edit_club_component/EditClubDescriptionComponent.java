@@ -1,8 +1,9 @@
-package org.ssu.edu.teachua.ui.components.modal;
+package org.ssu.edu.teachua.ui.components.modal.edit_club_component;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.ssu.edu.teachua.ui.base.BasePage;
+import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubDescriptionComponent;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 
 public class EditClubDescriptionComponent extends AddClubDescriptionComponent {

@@ -5,8 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class Contacts extends BaseAddCenterComponent {
-    public Contacts(WebDriver driver, WebElement node) {
+public class AddCenterContactsComponent extends BaseAddCenterComponent {
+    public AddCenterContactsComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }
 
@@ -29,7 +29,7 @@ public class Contacts extends BaseAddCenterComponent {
 
 
     // @Step("Contacts: add center facebook")
-    public Contacts enterCenterFacebook(String centerFacebook) {
+    public AddCenterContactsComponent enterCenterFacebook(String centerFacebook) {
         facebook.click();
         facebook.clear();
         facebook.sendKeys(centerFacebook);
@@ -37,7 +37,7 @@ public class Contacts extends BaseAddCenterComponent {
     }
 
     // @Step("Contacts: add center site")
-    public Contacts enterCenterSite(String centerSite) {
+    public AddCenterContactsComponent enterCenterSite(String centerSite) {
         site.click();
         site.clear();
         site.sendKeys(centerSite);
@@ -45,7 +45,7 @@ public class Contacts extends BaseAddCenterComponent {
     }
 
     // @Step("Contacts: add center e-mail")
-    public Contacts enterCenterMail(String centerMail) {
+    public AddCenterContactsComponent enterCenterMail(String centerMail) {
         mail.click();
         mail.clear();
         mail.sendKeys(centerMail);
@@ -53,7 +53,7 @@ public class Contacts extends BaseAddCenterComponent {
     }
 
     // @Step("Contacts: add center Skype")
-    public Contacts enterCenterSkype(String centerSkype) {
+    public AddCenterContactsComponent enterCenterSkype(String centerSkype) {
         skype.click();
         skype.clear();
         skype.sendKeys(centerSkype);
@@ -61,7 +61,7 @@ public class Contacts extends BaseAddCenterComponent {
     }
 
     // @Step("Contacts: add center What'sApp number")
-    public Contacts enterCenterWhatsAppNumber(String centerWhatsApp) {
+    public AddCenterContactsComponent enterCenterWhatsAppNumber(String centerWhatsApp) {
         whatsApp.click();
         whatsApp.clear();
         whatsApp.sendKeys(centerWhatsApp);
@@ -69,7 +69,7 @@ public class Contacts extends BaseAddCenterComponent {
     }
 
     // @Step("Contacts: add center phone number")
-    public Contacts enterPhone(String contactPhone) {
+    public AddCenterContactsComponent enterPhone(String contactPhone) {
         phone.click();
         phone.clear();
         phone.sendKeys(contactPhone);
@@ -77,15 +77,15 @@ public class Contacts extends BaseAddCenterComponent {
     }
 
     // @Step("Contacts: Press Next step button")
-    public Description pressNextButton() {
+    public AddCenterDescriptionComponent pressNextButton() {
         this.nextStepButton.click();
-        return new Description(driver, addCenterContainer);
+        return new AddCenterDescriptionComponent(driver, addCenterContainer);
     }
 
     // @Step("Contacts: Press Back button")
-    public MainInfo pressBackButton() {
+    public AddCenterMainInfoComponent pressBackButton() {
         this.backButton.click();
-        return new MainInfo(driver, addCenterContainer);
+        return new AddCenterMainInfoComponent(driver, addCenterContainer);
     }
 
 }

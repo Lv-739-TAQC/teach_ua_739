@@ -1,9 +1,10 @@
-package org.ssu.edu.teachua.ui.components.modal;
+package org.ssu.edu.teachua.ui.components.modal.add_club_component;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.ssu.edu.teachua.ui.components.modal.BaseClubComponent;
 
 public class AddClubContactsComponent extends BaseClubComponent {
 

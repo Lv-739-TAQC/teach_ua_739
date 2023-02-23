@@ -6,8 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.modal.AddLocationComponent;
 
-public class MainInfo extends BaseAddCenterComponent {
-    public MainInfo(WebDriver driver, WebElement node) {
+public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
+    public AddCenterMainInfoComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }
 
@@ -28,7 +28,7 @@ public class MainInfo extends BaseAddCenterComponent {
 
 
     // @Step("Main info: enter the name of the center")
-    public MainInfo enterCenterName(String centerName) {
+    public AddCenterMainInfoComponent enterCenterName(String centerName) {
         this.centerName.click();
         this.centerName.clear();
         this.centerName.sendKeys(centerName);
@@ -42,15 +42,15 @@ public class MainInfo extends BaseAddCenterComponent {
     }
 
     // @Step("Main info: check a location from the list")
-    public MainInfo checkLocation() {
+    public AddCenterMainInfoComponent checkLocation() {
         locationToCheck.click();
         return this;
     }
 
     // @Step("Main info: Press Next step button")
-    public Contacts pressNextButton() {
+    public AddCenterContactsComponent pressNextButton() {
         this.nextStepButton.click();
-        return new Contacts(driver, addCenterContainer);
+        return new AddCenterContactsComponent(driver, addCenterContainer);
     }
 
 }

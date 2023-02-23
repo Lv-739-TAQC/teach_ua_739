@@ -6,8 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 
-public class Clubs extends BaseAddCenterComponent {
-    public Clubs(WebDriver driver, WebElement node) {
+public class AddCenterClubsComponent extends BaseAddCenterComponent {
+    public AddCenterClubsComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }
 
@@ -20,7 +20,7 @@ public class Clubs extends BaseAddCenterComponent {
 
 
     // @Step("Clubs: check a club from the list")
-    public Clubs checkClub(String club) {
+    public AddCenterClubsComponent checkClub(String club) {
         clubToCheck.click();
         return this;
     }
@@ -32,9 +32,9 @@ public class Clubs extends BaseAddCenterComponent {
     }
 
     // @Step("Clubs: Press Back button")
-    public Description pressBackButton() {
+    public AddCenterDescriptionComponent pressBackButton() {
         this.backButton.click();
-        return new Description(driver, addCenterContainer);
+        return new AddCenterDescriptionComponent(driver, addCenterContainer);
     }
 
 }

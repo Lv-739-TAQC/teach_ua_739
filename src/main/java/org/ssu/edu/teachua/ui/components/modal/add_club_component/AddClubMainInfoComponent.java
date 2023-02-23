@@ -1,8 +1,9 @@
-package org.ssu.edu.teachua.ui.components.modal;
+package org.ssu.edu.teachua.ui.components.modal.add_club_component;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.ssu.edu.teachua.ui.components.modal.BaseClubComponent;
 
 import java.util.ArrayList;
 import java.util.List;
