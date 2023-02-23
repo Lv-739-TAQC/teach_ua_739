@@ -5,7 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class AdminMenuComponent extends UserMenuComponent {
+import java.awt.*;
+
+public class AdminMenuComponent extends UserMenuComponent implements MenuComponent {
 	
 	@FindBy(how = How.XPATH, using = "//ul[@class='ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light']//li[4]")
 	private WebElement contentButton; 
