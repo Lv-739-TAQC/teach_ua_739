@@ -4,27 +4,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.ssu.edu.teachua.ui.base.BaseComponent;
 
-public class Description extends BaseComponent {
+public class Description extends BaseAddCenterComponent {
     public Description(WebDriver driver, WebElement node) {
         super(driver, node);
     }
 
     @FindBy(how = How.XPATH, using = ".//span[@class='add-club-upload']")
     private WebElement centerLogo;
-
-    @FindBy(how = How.XPATH, using = ".//*[@id='basic_urlBackground']")
+    @FindBy(how = How.XPATH, using = ".//input[@id='basic_urlBackground']")
     private WebElement centerPhoto;
-
-    @FindBy(how = How.XPATH, using = ".//*[@id='basic_description']")
+    @FindBy(how = How.XPATH, using = ".//textarea[@id='basic_description']")
     private WebElement centerDescription;
-
+    @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'next-btn')]")
+    private WebElement nextStepButton;
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'prev-btn')]")
     private WebElement backButton;
-
-    @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'next-btn')]")
-    private WebElement nextButton;
 
 
     // @Step("Description: add center logo")
@@ -49,16 +44,16 @@ public class Description extends BaseComponent {
         return this;
     }
 
-    // @Step("Description: press back button")
-    public Description pressBackButton() {
-        backButton.click();
-        return this;
+    // @Step("Description: Press Next step button")
+    public Clubs pressNextButton() {
+        this.nextStepButton.click();
+        return new Clubs(driver, addCenterContainer);
     }
 
-    // @Step("Contacts: press Next step button")
-    public Description pressNextButton() {
-        nextButton.click();
-        return this;
+    // @Step("Description: Press Back button")
+    public Contacts pressBackButton() {
+        this.backButton.click();
+        return new Contacts(driver, addCenterContainer);
     }
 
 }
