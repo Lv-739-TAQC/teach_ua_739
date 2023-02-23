@@ -83,9 +83,8 @@ public class AddLocationComponent extends BaseComponent {
     }
 
     //     @Step("Add new location pop-up: press add new location button to add it to the list of existing locations")
-    public AddLocationComponent pressAddLocationToListButton() {
+    public void pressAddLocationToListButton() {
         this.addLocationToListButton.click();
-        return this;
     }
 
 }
