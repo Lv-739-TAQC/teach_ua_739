@@ -20,8 +20,8 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
     @FindBy(how = How.XPATH, using = ".//div[contains(@class, 'ant-input-textarea')]")
     protected WebElement descriptionField; //min 40 max 1500 characters
 
-    public AddClubDescriptionComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
+    public AddClubDescriptionComponent(WebDriver driver) {
+        super(driver);
     }
 
     public AddClubDescriptionComponent uploadNewLogo(String logoPath) {
@@ -51,6 +51,6 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
 
     public AddClubContactsComponent clickPreviousPageButton() {
         previousPageButton.click();
-        return new AddClubContactsComponent(driver, getClubContactsComponent());
+        return new AddClubContactsComponent(driver);
     }
 }

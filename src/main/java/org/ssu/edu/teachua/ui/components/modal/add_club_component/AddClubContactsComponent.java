@@ -32,8 +32,8 @@ public class AddClubContactsComponent extends BaseClubComponent {
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactТелефон']")
     protected WebElement contactPhoneField;
 
-    public AddClubContactsComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
+    public AddClubContactsComponent(WebDriver driver) {
+        super(driver);
     }
 
     public AddClubContactsComponent clickAddLocationButton() {
@@ -91,11 +91,11 @@ public class AddClubContactsComponent extends BaseClubComponent {
 
     public AddClubDescriptionComponent clickNextStepButton() {
         nextStepButton.click();
-        return new AddClubDescriptionComponent(driver, getClubDescriptionComponent());
+        return new AddClubDescriptionComponent(driver);
     }
 
     public AddClubMainInfoComponent clickPreviousPageButton() {
         previousPageButton.click();
-        return new AddClubMainInfoComponent(driver, getClubMainInfoComponent());
+        return new AddClubMainInfoComponent(driver);
     }
 }

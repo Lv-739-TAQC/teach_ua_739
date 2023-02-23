@@ -1,15 +1,14 @@
 package org.ssu.edu.teachua.ui.components.modal.edit_club_component;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.ssu.edu.teachua.ui.base.BasePage;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubDescriptionComponent;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 
 public class EditClubDescriptionComponent extends AddClubDescriptionComponent {
 
-    public EditClubDescriptionComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
+    public EditClubDescriptionComponent(WebDriver driver) {
+        super(driver);
     }
 
     public EditClubDescriptionComponent editUploadNewLogo(String logoPath) {
@@ -41,6 +40,6 @@ public class EditClubDescriptionComponent extends AddClubDescriptionComponent {
 
     public EditClubContactsComponent clickPreviousPageButton() {
         previousPageButton.click();
-        return new EditClubContactsComponent(driver, getClubContactsComponent());
+        return new EditClubContactsComponent(driver);
     }
 }

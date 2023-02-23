@@ -33,7 +33,7 @@ public class UserMenuComponent extends BaseComponent implements MenuComponent {
 
     public AddClubMainInfoComponent openAddClubForm() {
         addCentre.click();
-        return new AddClubMainInfoComponent(driver, addClubForm);
+        return new AddClubMainInfoComponent(driver);
     }
 
     public AddCenterMainInfoComponent openAddCentreForm() {

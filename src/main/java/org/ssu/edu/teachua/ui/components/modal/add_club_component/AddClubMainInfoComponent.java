@@ -29,8 +29,8 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
     @FindBy(how = How.XPATH, using = ".//div[@aria-selected='false' and @class]")
     private List<WebElement> centerList;
 
-    public AddClubMainInfoComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
+    public AddClubMainInfoComponent(WebDriver driver) {
+        super(driver);
     }
 
     public AddClubMainInfoComponent enterClubName(String nameField) {
@@ -42,7 +42,7 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
     public List<AddClubMainInfoComponent> getCategoriesCheckBoxes() {
         List<AddClubMainInfoComponent> checkBoxes = new ArrayList<>();
         for (WebElement element : categoriesCheckBoxes) {
-            checkBoxes.add(new AddClubMainInfoComponent(driver, element));
+            checkBoxes.add(new AddClubMainInfoComponent(driver));
         }
         return checkBoxes;
     }
@@ -72,14 +72,14 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
     public List<AddClubMainInfoComponent> getCenterList() {
         List<AddClubMainInfoComponent> centers = new ArrayList<>();
         for (WebElement element : centerList) {
-            centers.add(new AddClubMainInfoComponent(driver, element));
+            centers.add(new AddClubMainInfoComponent(driver));
         }
         return centers;
     }
 
     public AddClubContactsComponent clickNextStepButton() {
         nextStepButton.click();
-        return new AddClubContactsComponent(driver, getClubContactsComponent());
+        return new AddClubContactsComponent(driver);
     }
 
 }

@@ -86,7 +86,7 @@ public class ProfilePage extends BasePage {
 
     public AddClubMainInfoComponent clickAddClubButton() {
         waitForElementToBeClickable(addClubButton).click();
-        return new AddClubMainInfoComponent(driver, addClubNode);
+        return new AddClubMainInfoComponent(driver);
     }
 
     public AddCenterMainInfoComponent clickAddCenterButton() {
@@ -101,7 +101,7 @@ public class ProfilePage extends BasePage {
 
     public EditClubMainInfoComponent clickEditClubButton() {
         waitForElementToBeClickable(editClubButton).click();
-        return new EditClubMainInfoComponent(driver, addClubNode);
+        return new EditClubMainInfoComponent(driver);
     }
 
     public ProfilePage clickDeleteClubButton() {

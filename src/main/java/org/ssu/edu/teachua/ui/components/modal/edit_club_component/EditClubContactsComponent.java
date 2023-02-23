@@ -23,8 +23,8 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'cancel-button')]")
     private WebElement cancelDeleteLocationButton;
 
-    public EditClubContactsComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
+    public EditClubContactsComponent(WebDriver driver) {
+        super(driver);
     }
 
     public EditClubContactsComponent clickEditLocationButton() {
@@ -97,11 +97,11 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
 
     public EditClubDescriptionComponent clickEditNextStepButton() {
         nextStepButton.click();
-        return new EditClubDescriptionComponent(driver, getClubDescriptionComponent());
+        return new EditClubDescriptionComponent(driver);
     }
 
     public EditClubDescriptionComponent clickEditPreviousPageButton() {
         previousPageButton.click();
-        return new EditClubDescriptionComponent(driver, getClubMainInfoComponent());
+        return new EditClubDescriptionComponent(driver);
     }
 }
