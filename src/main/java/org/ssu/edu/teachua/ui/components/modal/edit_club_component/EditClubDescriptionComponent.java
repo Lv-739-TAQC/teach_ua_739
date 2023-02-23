@@ -1,9 +1,7 @@
 package org.ssu.edu.teachua.ui.components.modal.edit_club_component;
 
 import org.openqa.selenium.WebDriver;
-import org.ssu.edu.teachua.ui.base.BasePage;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubDescriptionComponent;
-import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 
 public class EditClubDescriptionComponent extends AddClubDescriptionComponent {
 
@@ -12,33 +10,37 @@ public class EditClubDescriptionComponent extends AddClubDescriptionComponent {
     }
 
     public EditClubDescriptionComponent editUploadNewLogo(String logoPath) {
+        waitForElementToAppear(uploadLogo);
         this.uploadLogo.sendKeys(logoPath);
         return this;
     }
 
     public EditClubDescriptionComponent editUploadNewBackgroundPicture(String picturePath) {
+        waitForElementToAppear(uploadBackgroundPicture);
         this.uploadBackgroundPicture.sendKeys(picturePath);
         return this;
     }
 
     public EditClubDescriptionComponent editUploadNewGallery(String galleryPath) {
+        waitForElementToAppear(uploadGallery);
         this.uploadGallery.sendKeys(galleryPath);
         return this;
     }
 
     public EditClubDescriptionComponent editEnterDescription(String description) {
+        waitForElementToBeClickable(descriptionField);
         this.descriptionField.click();
         this.descriptionField.clear();
         this.descriptionField.sendKeys(description);
         return this;
     }
 
-    public BasePage clickNextStepButton() {
+    public void clickEditEndButton() {
+        waitForElementToBeClickable(nextStepButton);
         nextStepButton.click();
-        return new ProfilePage(driver);
     }
 
-    public EditClubContactsComponent clickPreviousPageButton() {
+    public EditClubContactsComponent clickEditPreviousPageButton() {
         previousPageButton.click();
         return new EditClubContactsComponent(driver);
     }

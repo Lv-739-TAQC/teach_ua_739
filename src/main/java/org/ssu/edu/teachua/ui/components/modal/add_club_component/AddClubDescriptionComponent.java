@@ -25,31 +25,37 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
     }
 
     public AddClubDescriptionComponent uploadNewLogo(String logoPath) {
+        waitForElementToAppear(uploadLogo);
         this.uploadLogo.sendKeys(logoPath);
         return this;
     }
 
     public AddClubDescriptionComponent uploadNewBackgroundPicture(String picturePath) {
+        waitForElementToAppear(uploadBackgroundPicture);
         this.uploadBackgroundPicture.sendKeys(picturePath);
         return this;
     }
 
     public AddClubDescriptionComponent uploadNewGallery(String galleryPath) {
+        waitForElementToAppear(uploadGallery);
         this.uploadGallery.sendKeys(galleryPath);
         return this;
     }
 
     public AddClubDescriptionComponent enterDescription(String description) {
+        waitForElementToBeClickable(descriptionField);
         this.descriptionField.click();
         this.descriptionField.sendKeys(description);
         return this;
     }
 
     public void clickEndButton() {
+        waitForElementToBeClickable(nextStepButton);
         nextStepButton.click();
     }
 
     public AddClubContactsComponent clickPreviousPageButton() {
+        waitForElementToBeClickable(previousPageButton);
         previousPageButton.click();
         return new AddClubContactsComponent(driver);
     }

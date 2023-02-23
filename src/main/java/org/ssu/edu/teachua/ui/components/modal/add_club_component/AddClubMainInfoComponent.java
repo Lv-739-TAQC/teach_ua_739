@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.modal.BaseClubComponent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddClubMainInfoComponent extends BaseClubComponent {
@@ -33,51 +32,46 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         super(driver);
     }
 
-    public AddClubMainInfoComponent enterClubName(String nameField) {
+    public AddClubMainInfoComponent enterClubName(String name) {
+        this.waitForElementToBeClickable(nameField);
         this.nameField.click();
-        this.nameField.sendKeys(nameField);
+        this.nameField.sendKeys(name);
         return this;
     }
 
-    public List<AddClubMainInfoComponent> getCategoriesCheckBoxes() {
-        List<AddClubMainInfoComponent> checkBoxes = new ArrayList<>();
-        for (WebElement element : categoriesCheckBoxes) {
-            checkBoxes.add(new AddClubMainInfoComponent(driver));
-        }
-        return checkBoxes;
-    }
-
-    public void setCategoriesCheckBoxes(List<WebElement> categoriesCheckBoxes) {
-        this.categoriesCheckBoxes = categoriesCheckBoxes;
+    public AddClubMainInfoComponent getCategoriesCheckBoxes(int category) {
+        waitForElementsToAppear(categoriesCheckBoxes).get(category).click();
+        return this;
     }
 
     public AddClubMainInfoComponent enterChildAgeFrom(String childAge) {
+        waitForElementToBeClickable(childAgeFrom);
         this.childAgeFrom.click();
         this.childAgeFrom.sendKeys(childAge);
         return this;
     }
 
     public AddClubMainInfoComponent enterChildAgeFor(String childAgeTo) {
+        waitForElementToBeClickable(childAgeFor);
         this.childAgeFor.click();
         this.childAgeFor.sendKeys(childAgeTo);
         return this;
     }
 
     public AddClubMainInfoComponent getBelongingToCenter() {
+        waitForElementToBeClickable(belongingToCenter);
         this.belongingToCenter.click();
-        this.belongingToCenter.sendKeys((CharSequence) belongingToCenter);
+        waitForElementsToAppear(centerList);
         return this;
     }
 
-    public List<AddClubMainInfoComponent> getCenterList() {
-        List<AddClubMainInfoComponent> centers = new ArrayList<>();
-        for (WebElement element : centerList) {
-            centers.add(new AddClubMainInfoComponent(driver));
-        }
-        return centers;
+    public AddClubMainInfoComponent getCenter(int center) {
+        waitForElementsToAppear(centerList).get(center).click();
+        return this;
     }
 
     public AddClubContactsComponent clickNextStepButton() {
+        waitForElementToBeClickable(nextStepButton);
         nextStepButton.click();
         return new AddClubContactsComponent(driver);
     }

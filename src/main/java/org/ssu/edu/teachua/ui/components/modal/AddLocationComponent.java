@@ -29,6 +29,10 @@ public class AddLocationComponent extends BaseComponent {
         super(driver, node);
     }
 
+    public AddLocationComponent(WebDriver driver) {
+        super(driver);
+    }
+
     //    @Step("Add new location pop-up: enter location name")
     public AddLocationComponent enterLocationName(String locationName) {
         this.locationName.click();

@@ -30,14 +30,17 @@ public abstract class BaseClubComponent extends BaseComponent {
     }
 
     protected WebElement getClubMainInfoComponent() {
+        waitForElementToAppear(clubMainInfoComponent);
         return clubMainInfoComponent;
     }
 
     protected WebElement getClubContactsComponent() {
+        waitForElementToAppear(clubContactsComponent);
         return clubContactsComponent;
     }
 
     protected WebElement getClubDescriptionComponent() {
+        waitForElementToAppear(clubDescriptionComponent);
         return clubDescriptionComponent;
     }
 }
