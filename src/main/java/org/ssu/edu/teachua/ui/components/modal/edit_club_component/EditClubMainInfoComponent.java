@@ -1,9 +1,10 @@
-package org.ssu.edu.teachua.ui.components.modal;
+package org.ssu.edu.teachua.ui.components.modal.edit_club_component;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +29,8 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
     @FindBy(how = How.XPATH, using = ".//div[@aria-selected='false' and @class]")
     private List<WebElement> editCenterList;
 
-    public EditClubMainInfoComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
+    public EditClubMainInfoComponent(WebDriver driver) {
+        super(driver);
     }
 
     public EditClubMainInfoComponent enterNewClubName(String nameField) {
@@ -45,8 +46,9 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
 
     public List<EditClubMainInfoComponent> getEditCategoriesCheckBoxes() {
         List<EditClubMainInfoComponent> checkBoxes = new ArrayList<>();
-        for(WebElement element : editCategoriesCheckBoxes) {
-            checkBoxes.add(new EditClubMainInfoComponent(driver, element));
+        for (WebElement element : editCategoriesCheckBoxes) {
+//            ToDo
+//            checkBoxes.add();
         }
         return checkBoxes;
     }
@@ -73,14 +75,14 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
 
     public List<EditClubMainInfoComponent> getEditCenterList() {
         List<EditClubMainInfoComponent> centers = new ArrayList<>();
-        for(WebElement element : editCenterList) {
-            centers.add(new EditClubMainInfoComponent(driver, element));
+        for (WebElement element : editCenterList) {
+            centers.add(new EditClubMainInfoComponent(driver));
         }
         return centers;
     }
 
     public EditClubContactsComponent clickNextStepButton() {
         nextStepButton.click();
-        return new EditClubContactsComponent(driver, getClubContactsComponent());
+        return new EditClubContactsComponent(driver);
     }
 }

@@ -1,11 +1,10 @@
-package org.ssu.edu.teachua.ui.components.modal;
+package org.ssu.edu.teachua.ui.components.modal.add_club_component;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.ssu.edu.teachua.ui.base.BasePage;
-import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
+import org.ssu.edu.teachua.ui.components.modal.BaseClubComponent;
 
 public class AddClubDescriptionComponent extends BaseClubComponent {
 
@@ -20,6 +19,10 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
 
     @FindBy(how = How.XPATH, using = ".//div[contains(@class, 'ant-input-textarea')]")
     protected WebElement descriptionField; //min 40 max 1500 characters
+
+    public AddClubDescriptionComponent(WebDriver driver) {
+        super(driver);
+    }
 
     public AddClubDescriptionComponent uploadNewLogo(String logoPath) {
         this.uploadLogo.sendKeys(logoPath);
@@ -42,17 +45,12 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
         return this;
     }
 
-    public BasePage clickNextStepButton() {
+    public void clickEndButton() {
         nextStepButton.click();
-        return new ProfilePage(driver);
     }
 
     public AddClubContactsComponent clickPreviousPageButton() {
         previousPageButton.click();
-        return new AddClubContactsComponent(driver, getClubContactsComponent());
-    }
-
-    public AddClubDescriptionComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
+        return new AddClubContactsComponent(driver);
     }
 }

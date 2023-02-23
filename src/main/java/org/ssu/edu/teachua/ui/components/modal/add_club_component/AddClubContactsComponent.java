@@ -1,9 +1,10 @@
-package org.ssu.edu.teachua.ui.components.modal;
+package org.ssu.edu.teachua.ui.components.modal.add_club_component;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.ssu.edu.teachua.ui.components.modal.BaseClubComponent;
 
 public class AddClubContactsComponent extends BaseClubComponent {
 
@@ -31,8 +32,8 @@ public class AddClubContactsComponent extends BaseClubComponent {
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactТелефон']")
     protected WebElement contactPhoneField;
 
-    public AddClubContactsComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
+    public AddClubContactsComponent(WebDriver driver) {
+        super(driver);
     }
 
     public AddClubContactsComponent clickAddLocationButton() {
@@ -90,11 +91,11 @@ public class AddClubContactsComponent extends BaseClubComponent {
 
     public AddClubDescriptionComponent clickNextStepButton() {
         nextStepButton.click();
-        return new AddClubDescriptionComponent(driver, getClubDescriptionComponent());
+        return new AddClubDescriptionComponent(driver);
     }
 
     public AddClubMainInfoComponent clickPreviousPageButton() {
         previousPageButton.click();
-        return new AddClubMainInfoComponent(driver, getClubMainInfoComponent());
+        return new AddClubMainInfoComponent(driver);
     }
 }

@@ -14,4 +14,8 @@ public abstract class BaseComponent extends Base {
         componentRoot = node;
         PageFactory.initElements(new DefaultElementLocatorFactory(componentRoot), this);
     }
+
+    public BaseComponent(WebDriver driver) {
+        super(driver);
+    }
 }

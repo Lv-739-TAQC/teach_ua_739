@@ -10,11 +10,11 @@ import org.ssu.edu.teachua.ui.pages.home.HomePage;
 public class LoginComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_email']")
     private WebElement emailField;
-    @FindBy (how = How.XPATH, using = ".//input[@id='basic_password']")
+    @FindBy(how = How.XPATH, using = ".//input[@id='basic_password']")
     private WebElement passwordField;
-    @FindBy (how = How.XPATH, using = ".//button[contains(@type,'submit')]")
+    @FindBy(how = How.XPATH, using = ".//button[contains(@type,'submit')]")
     private WebElement logInButton;
-    @FindBy (how = How.XPATH, using = ".//button[contains(@aria-label,'Close')]")
+    @FindBy(how = How.XPATH, using = ".//button[contains(@aria-label,'Close')]")
     private WebElement closeButton;
 
     public LoginComponent(WebDriver driver, WebElement node) {
@@ -25,10 +25,12 @@ public class LoginComponent extends BaseComponent {
         emailField.sendKeys(email);
         return this;
     }
+
     public LoginComponent enterPassword(String password) {
         passwordField.sendKeys(password);
         return this;
     }
+
     public HomePage clickLoginButton() {
         logInButton.click();
         return new HomePage(driver);

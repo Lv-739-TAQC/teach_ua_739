@@ -1,14 +1,12 @@
 package org.ssu.edu.teachua.ui.pages.tasks;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BasePage;
 import org.ssu.edu.teachua.ui.components.date_picker.SelectDateComponent;
-import org.ssu.edu.teachua.ui.pages.view.ViewTaskPage;
 
 public class AddTaskPage extends BasePage {
 

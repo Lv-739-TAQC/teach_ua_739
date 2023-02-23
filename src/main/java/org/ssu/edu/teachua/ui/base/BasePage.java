@@ -3,8 +3,6 @@ package org.ssu.edu.teachua.ui.base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.header.HeaderComponent;
 
 public abstract class BasePage extends Base {

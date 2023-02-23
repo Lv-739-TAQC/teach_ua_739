@@ -9,33 +9,37 @@ import org.ssu.edu.teachua.ui.pages.home.HomePage;
 
 
 public class SignUpComponent extends BaseComponent {
-    @FindBy (how = How.XPATH, using = ".//input[@id='lastName']")
+    @FindBy(how = How.XPATH, using = ".//input[@id='lastName']")
     private WebElement lastNameField;
-    @FindBy (how = How.XPATH, using = ".//input[@id='firstName']")
+    @FindBy(how = How.XPATH, using = ".//input[@id='firstName']")
     private WebElement firstNameField;
-    @FindBy (how = How.XPATH, using = ".//input[@id='phone']")
+    @FindBy(how = How.XPATH, using = ".//input[@id='phone']")
     private WebElement phoneField;
-    @FindBy (how = How.XPATH, using = ".//input[@id='email']")
+    @FindBy(how = How.XPATH, using = ".//input[@id='email']")
     private WebElement emailField;
-    @FindBy (how = How.XPATH, using = ".//input[@id='password']")
+    @FindBy(how = How.XPATH, using = ".//input[@id='password']")
     private WebElement passwordField;
-    @FindBy (how = How.XPATH, using = ".//input[@id='confirm']")
+    @FindBy(how = How.XPATH, using = ".//input[@id='confirm']")
     private WebElement confirmPasswordField;
-    @FindBy (how = How.XPATH, using = ".//div[@class='ant-modal modal-registration']//button[contains(@aria-label,'Close')]")
+    @FindBy(how = How.XPATH, using = ".//div[@class='ant-modal modal-registration']//button[contains(@aria-label,'Close')]")
     private WebElement closeButton;
-    @FindBy (how = How.XPATH, using = ".//button[@class='ant-btn ant-btn-default registration-button']")
+    @FindBy(how = How.XPATH, using = ".//button[@class='ant-btn ant-btn-default registration-button']")
     private WebElement signUpButton;
 
-    public SignUpComponent (WebDriver driver, WebElement node) {super(driver, node);}
+    public SignUpComponent(WebDriver driver, WebElement node) {
+        super(driver, node);
+    }
 
     public SignUpComponent enterLastName(String lastName) {
         lastNameField.sendKeys(lastName);
         return this;
     }
+
     public SignUpComponent enterFirstName(String firstName) {
         firstNameField.sendKeys(firstName);
         return this;
     }
+
     public SignUpComponent enterPhone(String phone) {
         phoneField.sendKeys(phone);
         return this;
@@ -50,14 +54,17 @@ public class SignUpComponent extends BaseComponent {
         passwordField.sendKeys(password);
         return this;
     }
+
     public SignUpComponent enterConfirmPassword(String confirmPassword) {
         confirmPasswordField.sendKeys(confirmPassword);
         return this;
     }
+
     public HomePage clickCloseButton() {
         closeButton.click();
         return new HomePage(driver);
     }
+
     public HomePage clickSignUpButton() {
         signUpButton.click();
         return new HomePage(driver);

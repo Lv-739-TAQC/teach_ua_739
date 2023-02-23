@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent{
+public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
 
     @FindBy(how = How.XPATH, using = ".//input[@type='checkbox']")
     private WebElement remote;
@@ -22,11 +22,11 @@ public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent{
         remote.click();
     }
 
-    public void chooseCategory(String category){
+    public void chooseCategory(String category) {
         driver.findElement(By.xpath(String.format(".//input[@value='%s']", category))).click();
     }
 
-    public AdvancedSearchClubComponent setAge(int age){
+    public AdvancedSearchClubComponent setAge(int age) {
         ageField.sendKeys(Integer.toString(age));
         return this;
     }

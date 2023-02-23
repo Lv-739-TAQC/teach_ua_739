@@ -5,11 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class Description extends BaseAddCenterComponent {
-    public Description(WebDriver driver, WebElement node) {
-        super(driver, node);
-    }
-
+public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
     @FindBy(how = How.XPATH, using = ".//span[@class='add-club-upload']")
     private WebElement centerLogo;
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_urlBackground']")
@@ -21,15 +17,18 @@ public class Description extends BaseAddCenterComponent {
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'prev-btn')]")
     private WebElement backButton;
 
+    public AddCenterDescriptionComponent(WebDriver driver) {
+        super(driver);
+    }
 
     // @Step("Description: add center logo")
-    public Description addCenterLogo(String centerLogoPath) {
+    public AddCenterDescriptionComponent addCenterLogo(String centerLogoPath) {
         centerLogo.sendKeys(centerLogoPath);
         return this;
     }
 
     // @Step("Description: add center photo")
-    public Description addCenterPhoto(String photo) {
+    public AddCenterDescriptionComponent addCenterPhoto(String photo) {
         centerPhoto.click();
         centerPhoto.clear();
         centerPhoto.sendKeys(photo);
@@ -37,7 +36,7 @@ public class Description extends BaseAddCenterComponent {
     }
 
     // @Step("Description: add center description")
-    public Description addCenterDescription(String description) {
+    public AddCenterDescriptionComponent addCenterDescription(String description) {
         centerDescription.click();
         centerDescription.clear();
         centerDescription.sendKeys(description);
@@ -45,15 +44,15 @@ public class Description extends BaseAddCenterComponent {
     }
 
     // @Step("Description: Press Next step button")
-    public Clubs pressNextButton() {
+    public AddCenterClubsComponent pressNextButton() {
         this.nextStepButton.click();
-        return new Clubs(driver, addCenterContainer);
+        return new AddCenterClubsComponent(driver);
     }
 
     // @Step("Description: Press Back button")
-    public Contacts pressBackButton() {
+    public AddCenterContactsComponent pressBackButton() {
         this.backButton.click();
-        return new Contacts(driver, addCenterContainer);
+        return new AddCenterContactsComponent(driver);
     }
 
 }

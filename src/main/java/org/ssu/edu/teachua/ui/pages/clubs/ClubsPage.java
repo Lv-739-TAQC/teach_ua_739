@@ -13,15 +13,17 @@ public class ClubsPage extends BasePage {
 
 
     private final List<ClubCardComponent> clubs;
+
     public ClubsPage(WebDriver driver) {
         super(driver);
         clubs = initClubsCard();
 
     }
+
     private List<ClubCardComponent> initClubsCard() {
         List<WebElement> elements = driver.findElements(By.xpath("//div[@class='ant-card ant-card-bordered card']"));
-        List<ClubCardComponent> cards=new ArrayList<>();
-        for(WebElement element: elements){
+        List<ClubCardComponent> cards = new ArrayList<>();
+        for (WebElement element : elements) {
             cards.add(new ClubCardComponent(driver, element));
         }
         return cards;

@@ -1,9 +1,10 @@
-package org.ssu.edu.teachua.ui.components.modal;
+package org.ssu.edu.teachua.ui.components.modal.edit_club_component;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubContactsComponent;
 
 public class EditClubContactsComponent extends AddClubContactsComponent {
 
@@ -22,8 +23,8 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'cancel-button')]")
     private WebElement cancelDeleteLocationButton;
 
-    public EditClubContactsComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
+    public EditClubContactsComponent(WebDriver driver) {
+        super(driver);
     }
 
     public EditClubContactsComponent clickEditLocationButton() {
@@ -96,11 +97,11 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
 
     public EditClubDescriptionComponent clickEditNextStepButton() {
         nextStepButton.click();
-        return new EditClubDescriptionComponent(driver, getClubDescriptionComponent());
+        return new EditClubDescriptionComponent(driver);
     }
 
     public EditClubDescriptionComponent clickEditPreviousPageButton() {
         previousPageButton.click();
-        return new EditClubDescriptionComponent(driver, getClubMainInfoComponent());
+        return new EditClubDescriptionComponent(driver);
     }
 }
