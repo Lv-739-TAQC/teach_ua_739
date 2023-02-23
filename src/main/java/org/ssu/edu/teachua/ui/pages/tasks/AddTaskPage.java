@@ -38,39 +38,39 @@ public class AddTaskPage extends BasePage {
     }
 
     public AddTaskPage selectStartDate(int day, int month, int year) {
-        startDateInput.click();
+        waitForElementToAppear(startDateInput).click();
         WebElement selectDateNode = driver.findElement(By.xpath("//div[contains(@class, 'ant-picker-dropdown')]"));
         new SelectDateComponent(driver, selectDateNode).selectDate(day, month, year);
         return this;
     }
 
     public AddTaskPage uploadPhoto(String photoPath) {
-        photoInput.sendKeys(photoPath);
+        waitForElementToAppear(photoInput).sendKeys(photoPath);
         return this;
     }
 
     public AddTaskPage typeName(String name) {
-        nameInput.sendKeys(name);
+        waitForElementToAppear(nameInput).sendKeys(name);
         return this;
     }
 
     public AddTaskPage typeTitle(String title) {
-        titleInput.sendKeys(title);
+        waitForElementToAppear(titleInput).sendKeys(title);
         return this;
     }
 
     public AddTaskPage typeDescription(String title) {
-        descriptionInput.sendKeys(title);
+        waitForElementToAppear(descriptionInput).sendKeys(title);
         return this;
     }
 
     public AddTaskPage selectChallenge(String challenge) {
-        challengeDropdown.click();
-        driver.findElement(By.xpath(String.format(CHALLENGE_NAME_XPATH, challenge))).click();
+        waitForElementToAppear(challengeDropdown).click();
+        waitForElementToAppear(driver.findElement(By.xpath(String.format(CHALLENGE_NAME_XPATH, challenge)))).click();
         return this;
     }
 
     public void clickSaveButton() {
-        saveBtn.click();
+        waitForElementToAppear(saveBtn).click();
     }
 }

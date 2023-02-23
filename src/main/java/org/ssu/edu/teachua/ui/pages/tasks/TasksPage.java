@@ -20,12 +20,12 @@ public class TasksPage extends BasePage {
     }
 
     public ChallengesPage openChallengesPage() {
-        challengesBtn.click();
+        waitForElementToAppear(challengesBtn).click();
         return new ChallengesPage(driver);
     }
 
     public AddTaskPage openAddTaskPage() {
-        addTaskBtn.click();
+        waitForElementToAppear(addTaskBtn).click();
         return new AddTaskPage(driver);
     }
 }
