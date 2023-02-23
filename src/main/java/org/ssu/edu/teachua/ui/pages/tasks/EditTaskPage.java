@@ -20,35 +20,35 @@ public class EditTaskPage extends AddTaskPage{
 
     @Override
     public AddTaskPage selectStartDate(int day, int month, int year) {
-        startDateInput.click();
-        WebElement selectDateNode = driver.findElement(By.xpath("//div[contains(@class, 'ant-picker-dropdown')]"));
+        waitForElementToAppear(startDateInput).click();
+        WebElement selectDateNode = waitForElementToAppear(driver.findElement(By.xpath("//div[contains(@class, 'ant-picker-dropdown')]")));
         new SelectDateComponent(driver, selectDateNode).selectDate(day, month, year);
         return this;
     }
 
     @Override
     public AddTaskPage typeName(String name) {
-        nameInput.click();
+        waitForElementToAppear(nameInput).click();
         nameInput.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         return super.typeName(name);
     }
 
     @Override
     public AddTaskPage typeTitle(String title) {
-        titleInput.clear();
+        waitForElementToAppear(titleInput).clear();
         return super.typeTitle(title);
     }
 
     @Override
     public AddTaskPage typeDescription(String title) {
-        descriptionInput.clear();
+        waitForElementToAppear(descriptionInput).clear();
         return super.typeDescription(title);
     }
 
     @Override
     public AddTaskPage selectChallenge(String challenge) {
-        actions.moveToElement(challengeDropdown).click().perform();
-        driver.findElement(By.xpath(String.format(CHALLENGE_NAME_XPATH, challenge))).click();
+        actions.moveToElement(waitForElementToAppear(challengeDropdown)).click().perform();
+        waitForElementToAppear(driver.findElement(By.xpath(String.format(CHALLENGE_NAME_XPATH, challenge)))).click();
         return this;
     }
 }
