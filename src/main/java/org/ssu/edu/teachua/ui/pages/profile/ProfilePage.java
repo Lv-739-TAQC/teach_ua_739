@@ -53,7 +53,22 @@ public class ProfilePage extends BasePage {
     @FindBy(how = How.XPATH, using = "//li[contains(@data-menu-id, 'tmp_key-1')]")
     private WebElement addCenterButton;
 
-    @FindBy(how = How.XPATH, using = "//div[@class='update-club-dropdown']")
+    @FindBy(how = How.XPATH, using = "//div[contains(@class, 'club-center-select')]")
+    private WebElement chooseOption;
+
+    @FindBy(how = How.XPATH, using =
+            "//div[contains(@class, 'option')]//span[contains(text(), 'гуртки')]"
+    )
+    private WebElement chooseClubOption;
+
+    @FindBy(how = How.XPATH, using =
+            "//div[contains(@class, 'option')]//span[contains(text(), 'центри')]"
+    )
+    private WebElement chooseCenterOption;
+
+    @FindBy(how = How.XPATH, using =
+            "//div[@class='side-menu']//div[contains(@class, 'club-dropdown')]"
+    )
     private List<WebElement> clubDots;
 
     @FindBy(how = How.XPATH, using = "//li[contains(@data-menu-id, 'edit_club')]")
@@ -61,6 +76,19 @@ public class ProfilePage extends BasePage {
 
     @FindBy(how = How.XPATH, using = "//li[contains(@data-menu-id, 'delete_club')]")
     private WebElement deleteClubButton;
+
+    @FindBy(how = How.XPATH, using = "//div[@class='center-edit-button']")
+    private List<WebElement> centerDots;
+
+    @FindBy(how = How.XPATH, using =
+            "//ul[contains(@class, 'update-menu')]//li[contains(@data-menu-id, 'tmp_key-0')]"
+    )
+    private WebElement editCenterButton;
+
+    @FindBy(how = How.XPATH, using =
+            "//ul[contains(@class, 'update-menu')]//li[contains(@data-menu-id, 'tmp_key-1')]"
+    )
+    private WebElement deleteCenterButton;
 
     public ProfilePage(WebDriver driver) {
         super(driver);
@@ -78,8 +106,8 @@ public class ProfilePage extends BasePage {
         return new EditProfileComponent(driver, editProfileNode);
     }
 
-    public ProfilePage clickAddButton() {
-        waitForElementToBeClickable(addButton).click();
+    public ProfilePage moveToAddButton() {
+        actions.moveToElement(waitForElementToAppear(addButton)).perform();
         return this;
     }
 
@@ -93,8 +121,25 @@ public class ProfilePage extends BasePage {
         return new AddCenterComponent(driver, addCenterNode);
     }
 
-    public ProfilePage clickClubDots(int clubIndex) {
-        waitForElementsToAppear(clubDots).get(clubIndex).click();
+    public ProfilePage clickOption() {
+        waitForElementToBeClickable(chooseOption).click();
+        return this;
+    }
+
+    public ProfilePage clickClubOption() {
+        waitForElementToBeClickable(chooseClubOption).click();
+        return this;
+    }
+
+    public ProfilePage clickCenterOption() {
+        waitForElementToBeClickable(chooseCenterOption).click();
+        return this;
+    }
+
+    public ProfilePage moveToClubDots(int clubIndex) {
+        actions.moveToElement(
+                waitForElementsToAppear(clubDots).get(clubIndex)
+        ).perform();
         return this;
     }
 
@@ -105,6 +150,23 @@ public class ProfilePage extends BasePage {
 
     public ProfilePage clickDeleteClubButton() {
         waitForElementToBeClickable(deleteClubButton).click();
+        return this;
+    }
+
+    public ProfilePage moveToCenterDots(int centerIndex) {
+        actions.moveToElement(
+                waitForElementsToAppear(centerDots).get(centerIndex)
+        ).perform();
+        return this;
+    }
+
+    public AddCenterComponent clickEditCenterButton() {
+        waitForElementToBeClickable(editCenterButton).click();
+        return new AddCenterComponent(driver, addCenterNode);
+    }
+
+    public ProfilePage clickDeleteCenterButton() {
+        waitForElementToBeClickable(deleteCenterButton).click();
         return this;
     }
 }
