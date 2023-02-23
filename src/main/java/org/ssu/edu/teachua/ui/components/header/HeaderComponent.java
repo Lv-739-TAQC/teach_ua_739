@@ -1,12 +1,12 @@
 package org.ssu.edu.teachua.ui.components.header;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.menus.AdminMenuComponent;
 import org.ssu.edu.teachua.ui.components.menus.GuestMenuComponent;
+import org.ssu.edu.teachua.ui.components.menus.MenuComponent;
 import org.ssu.edu.teachua.ui.components.menus.UserMenuComponent;
 import org.ssu.edu.teachua.ui.pages.about.AboutPage;
 import org.ssu.edu.teachua.ui.base.BaseComponent;
@@ -15,22 +15,21 @@ import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.news.NewsPage;
 
 public class HeaderComponent extends BaseComponent {
-    @FindBy(how = How.XPATH, using = "//div[@class='ant-dropdown ant-dropdown-show-arrow ant-dropdown-placement-bottom ']//ul[@class]")
+    @FindBy(how = How.XPATH, using = "//header")
     private WebElement profileMenuNode;
-    @FindBy(how = How.XPATH, using = "//div[@class='logo']")
+    @FindBy(how = How.XPATH, using = ".//div[@class='logo']")
     private WebElement logo;
-    @FindBy(how = How.XPATH, using = "//a[@href='/dev/clubs']")
+    @FindBy(how = How.XPATH, using = ".//span/a[@href='/dev/clubs']")
     private WebElement clubsButton;
-    @FindBy(how = How.XPATH, using = "//a[@href='/dev/news']")
+    @FindBy(how = How.XPATH, using = ".//div[@class='center-side']//a[@href='/dev/news']")
     private WebElement newsButton;
-    @FindBy(how = How.XPATH, using = "//a[@href='/dev/about']")
+    @FindBy(how = How.XPATH, using = ".//div[@class='center-side']//a[@href='/dev/about']")
     private WebElement aboutButton;
-    @FindBy(how = How.XPATH, using = "//div[@class='ant-dropdown-trigger user-profile']")
+    @FindBy(how = How.XPATH, using = ".//span[@aria-label='user']")
     private WebElement userProfileButton;
 
-
-    public HeaderComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
+    public HeaderComponent(WebDriver driver,WebElement node) {
+        super(driver,node);
     }
 
     public HomePage clickLogo() {
@@ -53,18 +52,29 @@ public class HeaderComponent extends BaseComponent {
         return new AboutPage(driver);
     }
 
-    public GuestMenuComponent clickGuestMenuButton() {
+    public AdminMenuComponent openAdminProfileMenu() {
         userProfileButton.click();
-        return new GuestMenuComponent(driver, profileMenuNode);
+        return new AdminMenuComponent(driver,profileMenuNode);
     }
 
-    public UserMenuComponent clickUserMenuButton() {
+    public UserMenuComponent openUserProfileMenu() {
         userProfileButton.click();
-        return new UserMenuComponent(driver, profileMenuNode);
+        return new UserMenuComponent(driver,profileMenuNode);
     }
 
-    public AdminMenuComponent clickAdminMenuButton() {
+    public GuestMenuComponent openGuestProfileMenu() {
         userProfileButton.click();
-        return new AdminMenuComponent(driver, profileMenuNode);
+        return new GuestMenuComponent(driver,profileMenuNode);
+    }
+
+    public MenuComponent openProfileMenu() {
+        userProfileButton.click();
+        String role = localStorage.getItem("role");
+        if (role.equals("ROLE_ADMIN") || role.equals("ROLE_MANAGER")) {
+            return new AdminMenuComponent(driver,profileMenuNode);
+        } else if (role.equals("ROLE_USER")) {
+            return new UserMenuComponent(driver,profileMenuNode);
+        }
+        return new GuestMenuComponent(driver,profileMenuNode);
     }
 }

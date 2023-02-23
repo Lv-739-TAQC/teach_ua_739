@@ -12,6 +12,8 @@ public class FirstTest extends TestRunnerUI {
                 .getHeader()
                 .clickAboutButton()
                 .getHeader()
-                .clickLogo();
+                .clickLogo()
+                .getHeader()
+                .openGuestProfileMenu();
     }
 }
