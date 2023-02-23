@@ -8,6 +8,10 @@ import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 
 public class EditClubDescriptionComponent extends AddClubDescriptionComponent {
 
+    public EditClubDescriptionComponent(WebDriver driver, WebElement node) {
+        super(driver, node);
+    }
+
     public EditClubDescriptionComponent editUploadNewLogo(String logoPath) {
         this.uploadLogo.sendKeys(logoPath);
         return this;
@@ -38,9 +42,5 @@ public class EditClubDescriptionComponent extends AddClubDescriptionComponent {
     public EditClubContactsComponent clickPreviousPageButton() {
         previousPageButton.click();
         return new EditClubContactsComponent(driver, getClubContactsComponent());
-    }
-
-    public EditClubDescriptionComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
     }
 }

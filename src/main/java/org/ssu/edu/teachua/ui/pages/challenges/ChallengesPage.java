@@ -74,15 +74,19 @@ public class ChallengesPage extends BasePage {
         waitForElementToBeClickable(stepOverNextFivePages).click();
         return new ChallengesPage(driver);
     }
+
     public String getNameOfFirstTableHeaderElement() {
         return waitForElementToAppear(nameOfFirstTableHeaderElement).getText();
     }
+
     public String getNameOfSecondTableHeaderElement() {
         return waitForElementToAppear(nameOfSecondTableHeaderElement).getText();
     }
+
     public String getNameOfThirdTableHeaderElement() {
         return waitForElementToAppear(nameOfThirdTableHeaderElement).getText();
     }
+
     public String getNameOfFourthTableHeaderElement() {
         return waitForElementToAppear(nameOfFourthTableHeaderElement).getText();
     }

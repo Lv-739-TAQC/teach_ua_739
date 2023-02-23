@@ -16,6 +16,7 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
     private WebElement nextStepButton;
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'prev-btn')]")
     private WebElement backButton;
+
     public AddCenterDescriptionComponent(WebDriver driver) {
         super(driver);
     }

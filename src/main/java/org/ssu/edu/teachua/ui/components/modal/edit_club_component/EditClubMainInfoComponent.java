@@ -46,7 +46,7 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
 
     public List<EditClubMainInfoComponent> getEditCategoriesCheckBoxes() {
         List<EditClubMainInfoComponent> checkBoxes = new ArrayList<>();
-        for(WebElement element : editCategoriesCheckBoxes) {
+        for (WebElement element : editCategoriesCheckBoxes) {
             checkBoxes.add(new EditClubMainInfoComponent(driver, element));
         }
         return checkBoxes;
@@ -74,7 +74,7 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
 
     public List<EditClubMainInfoComponent> getEditCenterList() {
         List<EditClubMainInfoComponent> centers = new ArrayList<>();
-        for(WebElement element : editCenterList) {
+        for (WebElement element : editCenterList) {
             centers.add(new EditClubMainInfoComponent(driver, element));
         }
         return centers;

@@ -5,10 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BasePage;
-import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
-import org.ssu.edu.teachua.ui.components.modal.edit_club_component.EditClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.components.modal.EditProfileComponent;
 import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
+import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
+import org.ssu.edu.teachua.ui.components.modal.edit_club_component.EditClubMainInfoComponent;
 
 import java.util.Arrays;
 import java.util.List;

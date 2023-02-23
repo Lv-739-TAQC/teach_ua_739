@@ -64,19 +64,19 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
         return new AdvancedSearchCenterComponent(driver, centerRadio);
     }
 
-    public AdvancedSearchCenterComponent selectCity(String city){
+    public AdvancedSearchCenterComponent selectCity(String city) {
         citySelector.click();
         driver.findElement(By.xpath(String.format(XPATH, city))).click();
         return this;
     }
 
-    public AdvancedSearchCenterComponent selectDistrict(String district){
+    public AdvancedSearchCenterComponent selectDistrict(String district) {
         districtSelector.click();
         driver.findElement(By.xpath(String.format(XPATH, district))).click();
         return this;
     }
 
-    public AdvancedSearchCenterComponent selectStation(String station){
+    public AdvancedSearchCenterComponent selectStation(String station) {
         stationSelector.click();
         driver.findElement(By.xpath(String.format(XPATH, station))).click();
         return this;

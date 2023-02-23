@@ -26,13 +26,16 @@ public class EditChallengesTableItemComponent extends BaseComponent {
     private WebElement cancelSavingChangesBtn;
     @FindBy(how = How.XPATH, using = ".//*[text()='Відмінити']")
     private WebElement cancelEditingBtn;
+
     public EditChallengesTableItemComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }
+
     public EditChallengePage clickChallengeId() {
         waitForElementToBeClickable(challengeId).click();
         return new EditChallengePage(driver);
     }
+
     public EditChallengesTableItemComponent clearChallengeSortNumber() {
         waitForElementToBeClickable(editSortNumber).sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)

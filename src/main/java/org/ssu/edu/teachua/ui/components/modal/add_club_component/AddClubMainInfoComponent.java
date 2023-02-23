@@ -1,6 +1,7 @@
 package org.ssu.edu.teachua.ui.components.modal.add_club_component;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.modal.BaseClubComponent;
@@ -38,16 +39,16 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         return this;
     }
 
-    public void setCategoriesCheckBoxes(List<WebElement> categoriesCheckBoxes) {
-        this.categoriesCheckBoxes = categoriesCheckBoxes;
-    }
-
     public List<AddClubMainInfoComponent> getCategoriesCheckBoxes() {
         List<AddClubMainInfoComponent> checkBoxes = new ArrayList<>();
-        for(WebElement element : categoriesCheckBoxes) {
+        for (WebElement element : categoriesCheckBoxes) {
             checkBoxes.add(new AddClubMainInfoComponent(driver, element));
         }
         return checkBoxes;
+    }
+
+    public void setCategoriesCheckBoxes(List<WebElement> categoriesCheckBoxes) {
+        this.categoriesCheckBoxes = categoriesCheckBoxes;
     }
 
     public AddClubMainInfoComponent enterChildAgeFrom(String childAge) {
@@ -70,7 +71,7 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
 
     public List<AddClubMainInfoComponent> getCenterList() {
         List<AddClubMainInfoComponent> centers = new ArrayList<>();
-        for(WebElement element : centerList) {
+        for (WebElement element : centerList) {
             centers.add(new AddClubMainInfoComponent(driver, element));
         }
         return centers;
