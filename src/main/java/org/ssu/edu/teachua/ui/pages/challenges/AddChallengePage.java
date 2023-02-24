@@ -169,4 +169,16 @@ public class AddChallengePage extends BasePage {
     public String checkErrorMessage() {
         return waitForElementToAppear(getErrorMessage()).getText();
     }
+    public String getBorderColorForNameField() {
+        String borderColor= name.getCssValue("border-color");
+        return borderColor;
+    }
+    public String getBorderColorForTitleField() {
+        String borderColor= title.getCssValue("border-color");
+        return borderColor;
+    }
+    public String getBorderColorForDescriptionField() {
+        String borderColor= description.getCssValue("border-color");
+        return borderColor;
+    }
 }

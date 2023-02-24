@@ -8,6 +8,8 @@ import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BaseComponent;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.attributeContains;
+
 
 public class EditProfileComponent extends BaseComponent {
 
@@ -127,6 +129,10 @@ public class EditProfileComponent extends BaseComponent {
     public String getAlertMessageCurrentPassword() {
         return waitForElementToAppear(alertMessageCurrentPassword).getText();
     }
+    public String getBorderColorForEditCurrentPasswordField() {
+        String borderColor= editCurrentPasswordField.getCssValue("border-color");
+        return borderColor;
+    }
 
     public EditProfileComponent enterNewPassword(String password) {
         waitForElementToBeClickable(newPasswordField).click();
@@ -138,7 +144,10 @@ public class EditProfileComponent extends BaseComponent {
     public String getAlertMessageNewPassword() {
         return waitForElementToAppear(alertMessageNewPassword).getText();
     }
-
+    public String getBorderColorForNewPasswordField() {
+        String borderColor= newPasswordField.getCssValue("border-color");
+        return borderColor;
+    }
     public EditProfileComponent confirmNewPassword(String password) {
         waitForElementToBeClickable(confirmPasswordField).click();
         confirmPasswordField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -149,7 +158,10 @@ public class EditProfileComponent extends BaseComponent {
     public String getAlertMessageConfirmPassword() {
         return waitForElementToAppear(alertMessageConfirmPassword).getText();
     }
-
+    public String getBorderColorForConfirmPasswordField() {
+        String borderColor= confirmPasswordField.getCssValue("border-color");
+        return borderColor;
+    }
     public ProfilePage clickSaveChangesButton() {
         waitForElementToBeClickable(saveChangesButton).click();
         return new ProfilePage(driver);
