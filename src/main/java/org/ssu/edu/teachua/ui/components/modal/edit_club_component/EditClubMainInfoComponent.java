@@ -10,7 +10,7 @@ import java.util.List;
 
 public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
 
-    @FindBy(how = How.XPATH, using = ".//div/form[@id='edit_category']//div/span[contains(@class, 'add-club-input')]")
+    @FindBy(how = How.XPATH, using = ".//input[@id='edit_category_name']")
     private WebElement editNameField; //min 5 characters //need to be clear
 
     @FindBy(how = How.XPATH, using = ".//div/form[@id='edit_category']//div/label/span[contains(@class, 'ant-checkbox')]")

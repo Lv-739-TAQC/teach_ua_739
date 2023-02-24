@@ -17,7 +17,7 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
     @FindBy(how = How.XPATH, using = ".//div[contains(@class,'ant-upload')]//span[@aria-label='plus']")
     protected WebElement uploadGallery;
 
-    @FindBy(how = How.XPATH, using = ".//div[contains(@class, 'ant-input-textarea')]")
+    @FindBy(how = How.XPATH, using = ".//textarea[@id='basic_description']")
     protected WebElement descriptionField; //min 40 max 1500 characters
 
     public AddClubDescriptionComponent(WebDriver driver) {
