@@ -8,34 +8,31 @@ import org.ssu.edu.teachua.ui.base.BaseComponent;
 import org.ssu.edu.teachua.ui.components.modal.LoginComponent;
 import org.ssu.edu.teachua.ui.components.modal.SignUpComponent;
 
-public class GuestMenuComponent extends BaseComponent implements MenuComponent {
+public class GuestMenuComponent extends BaseComponent {
 
-    @FindBy(how = How.XPATH, using = ".//div[@class='ant-dropdown-trigger user-profile']")
-    private WebElement profileMenuButton;
-    @FindBy(how = How.XPATH, using = ".//ul[@class='ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light']//li[1]")
+    @FindBy(how = How.XPATH, using = ".//li[contains(@data-menu-id, 'register')]")
     private WebElement registration;
-    @FindBy(how = How.XPATH, using = ".//ul[@class='ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light']//li[2]")
+
+    @FindBy(how = How.XPATH, using = ".//li[contains(@data-menu-id, 'login')]")
     private WebElement login;
 
+    @FindBy(how = How.XPATH, using = "//div[@class='ant-modal modal-registration']")
+    private WebElement registerModalForm;
 
-    @FindBy(how = How.XPATH, using = ".//div[@class='ant-modal modal-registration']")
-    private WebElement registrationForm;
-    @FindBy(how = How.XPATH, using = ".//div[@class='ant-modal modal-login']")
-    private WebElement loginForm;
-
+    @FindBy(how = How.XPATH, using = "//div[@class='ant-modal modal-login']")
+    private WebElement loginModalForm;
 
     public GuestMenuComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }
 
     public SignUpComponent openRegistrationForm() {
-        registration.click();
-        return new SignUpComponent(driver, registrationForm);
+        waitForElementToBeClickable(registration).click();
+        return new SignUpComponent(driver, registerModalForm);
     }
 
     public LoginComponent openLogInForm() {
-        login.click();
-        return new LoginComponent(driver, loginForm);
+        waitForElementToBeClickable(login).click();
+        return new LoginComponent(driver, loginModalForm);
     }
-
 }

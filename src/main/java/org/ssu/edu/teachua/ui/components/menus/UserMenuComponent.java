@@ -10,48 +10,48 @@ import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInf
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 
-public class UserMenuComponent extends BaseComponent implements MenuComponent {
+public class UserMenuComponent extends BaseComponent {
 
-    @FindBy(how = How.XPATH, using = "//ul[@class='ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light']//li[1]")
-    private WebElement addClub;
-    @FindBy(how = How.XPATH, using = "//ul[@class='ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light']//li[2]")
-    private WebElement addCentre;
-    @FindBy(how = How.XPATH, using = "//ul[@class='ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light']//li[3]")
+    @FindBy(how = How.XPATH, using = ".//li[contains(@data-menu-id, 'add_club')]")
+    private WebElement addClubButton;
+
+    @FindBy(how = How.XPATH, using = ".//li[contains(@data-menu-id, 'add_centre')]")
+    private WebElement addCentreButton;
+
+    @FindBy(how = How.XPATH, using = ".//li[contains(@data-menu-id, 'search_certificates')]")
     private WebElement searchCertificates;
-    @FindBy(how = How.XPATH, using = "//ul[@class='ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light']//li[4]")
+
+    @FindBy(how = How.XPATH, using = ".//li[contains(@data-menu-id, 'profile')]")
     private WebElement profilePage;
-    @FindBy(how = How.XPATH, using = "//ul[@class='ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light']//li[5]")
+
+    @FindBy(how = How.XPATH, using = ".//li[contains(@data-menu-id, 'logout')]")
     private WebElement logOut;
-    @FindBy(how = How.XPATH, using = "//div[@class='ant-modal modal-add-club']")
-    private WebElement addClubForm;
-    @FindBy(how = How.XPATH, using = "//div[@class='ant-modal addCenter']")
-    private WebElement addCentreForm;
 
     public UserMenuComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }
 
     public AddClubMainInfoComponent openAddClubForm() {
-        addCentre.click();
+        waitForElementToBeClickable(addClubButton).click();
         return new AddClubMainInfoComponent(driver);
     }
 
     public AddCenterMainInfoComponent openAddCentreForm() {
-        addCentre.click();
+        waitForElementToBeClickable(addCentreButton).click();
         return new AddCenterMainInfoComponent(driver);
     }
 
-    public void SearchCertificates() {
-        searchCertificates.click();
+    public void openSearchCertificates() {
+        waitForElementToBeClickable(searchCertificates).click();
     }
 
     public ProfilePage openProfilePage() {
-        searchCertificates.click();
+        waitForElementToBeClickable(profilePage).click();
         return new ProfilePage(driver);
     }
 
-    public HomePage logOut() {
-        logOut.click();
+    public HomePage clickLogOut() {
+        waitForElementToBeClickable(logOut).click();
         return new HomePage(driver);
     }
 }
