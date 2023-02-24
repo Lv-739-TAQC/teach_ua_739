@@ -127,8 +127,10 @@ public class AddChallengePage extends BasePage {
         return this;
     }
 
-    public AddChallengePage clearDescription(String description) {
-        waitForElementToBeClickable(getDescription()).sendKeys(description);
+    public AddChallengePage clearDescription() {
+        waitForElementToAppear(getTitle()).sendKeys(
+                Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
+        );
         return this;
     }
 
