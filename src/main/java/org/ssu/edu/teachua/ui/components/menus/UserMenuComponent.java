@@ -11,7 +11,8 @@ import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 
 public class UserMenuComponent extends BaseComponent implements MenuComponent {
-
+	
+	
     @FindBy(how = How.XPATH, using = "//ul[@class='ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light']//li[1]")
     private WebElement addClub;
     @FindBy(how = How.XPATH, using = "//ul[@class='ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light']//li[2]")
@@ -32,7 +33,7 @@ public class UserMenuComponent extends BaseComponent implements MenuComponent {
     }
 
     public AddClubMainInfoComponent openAddClubForm() {
-        addCentre.click();
+    	addClub.click();
         return new AddClubMainInfoComponent(driver);
     }
 
@@ -41,17 +42,14 @@ public class UserMenuComponent extends BaseComponent implements MenuComponent {
         return new AddCenterMainInfoComponent(driver);
     }
 
-    public void SearchCertificates() {
-        searchCertificates.click();
-    }
-
     public ProfilePage openProfilePage() {
-        searchCertificates.click();
-        return new ProfilePage(driver);
+    	profilePage.click();
+    	return new ProfilePage(driver);
     }
 
     public HomePage logOut() {
         logOut.click();
+        sleep(3);
         return new HomePage(driver);
     }
 }

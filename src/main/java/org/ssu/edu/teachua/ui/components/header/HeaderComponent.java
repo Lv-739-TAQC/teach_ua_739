@@ -27,7 +27,12 @@ public class HeaderComponent extends BaseComponent {
     private WebElement aboutButton;
     @FindBy(how = How.XPATH, using = ".//span[@aria-label='user']")
     private WebElement userProfileButton;
-
+    
+    @FindBy(how = How.XPATH, using = ".//span[@class='ant-avatar ant-avatar-lg ant-avatar-circle ant-avatar-image ant-avatar-icon avatarIfLogin']")
+    private WebElement adminProfileButton;
+    
+    
+    
     public HeaderComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }
@@ -53,17 +58,17 @@ public class HeaderComponent extends BaseComponent {
     }
 
     public AdminMenuComponent openAdminProfileMenu() {
-        userProfileButton.click();
+    	adminProfileButton.click();
         return new AdminMenuComponent(driver, profileMenuNode);
     }
 
     public UserMenuComponent openUserProfileMenu() {
-        userProfileButton.click();
+    	userProfileButton.click();
         return new UserMenuComponent(driver, profileMenuNode);
     }
 
     public GuestMenuComponent openGuestProfileMenu() {
-        userProfileButton.click();
+    	userProfileButton.click();
         return new GuestMenuComponent(driver, profileMenuNode);
     }
 
