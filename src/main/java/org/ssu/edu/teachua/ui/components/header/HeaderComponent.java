@@ -21,6 +21,9 @@ public class HeaderComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = ".//span/a[@href='/dev/clubs']")
     private WebElement clubsButton;
 
+    @FindBy(how = How.XPATH, using = ".//*[@id='challenge_ONE']")
+    private WebElement challengesButton;
+
     @FindBy(how = How.XPATH, using = ".//div[@class='center-side']//a[@href='/dev/news']")
     private WebElement newsButton;
 
@@ -48,6 +51,11 @@ public class HeaderComponent extends BaseComponent {
     public ClubsPage clickClubsButton() {
         waitForElementToBeClickable(clubsButton).click();
         return new ClubsPage(driver);
+    }
+
+    public WebElement clickChallengesButton() {
+        waitForElementToBeClickable(clickChallengesButton()).click();
+        return null;
     }
 
     public NewsPage clickNewsButton() {
