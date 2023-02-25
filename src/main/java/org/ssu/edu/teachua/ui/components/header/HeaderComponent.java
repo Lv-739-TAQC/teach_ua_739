@@ -1,5 +1,7 @@
 package org.ssu.edu.teachua.ui.components.header;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +14,10 @@ import org.ssu.edu.teachua.ui.pages.about.AboutPage;
 import org.ssu.edu.teachua.ui.pages.clubs.ClubsPage;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.news.NewsPage;
+import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HeaderComponent extends BaseComponent {
 
@@ -39,8 +45,8 @@ public class HeaderComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = ".//ul[contains(@class, 'ant-dropdown-menu')]")
     private WebElement profileMenuNode;
 
-    public HeaderComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
+    public HeaderComponent(WebDriver driver,WebElement node) {
+        super(driver,node);
     }
 
     public HomePage clickLogo() {
@@ -53,9 +59,21 @@ public class HeaderComponent extends BaseComponent {
         return new ClubsPage(driver);
     }
 
-    public WebElement clickChallengesButton() {
-        waitForElementToBeClickable(clickChallengesButton()).click();
-        return null;
+    public HeaderComponent clickChallengesButton() {
+        waitForElementToBeClickable(challengesButton).click();
+        return this;
+    }
+
+    public ViewChallengePage clickChallengeButton(int id) {
+        WebElement challenge = getChallenges().get(id);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",challenge);
+        challenge.click();
+        return new ViewChallengePage(driver);
+    }
+
+    public List<WebElement> getChallenges() {
+        By challenges = By.xpath("//span/a[contains(@href, 'dev/challenges')]");
+        return driver.findElements(challenges);
     }
 
     public NewsPage clickNewsButton() {
@@ -70,16 +88,16 @@ public class HeaderComponent extends BaseComponent {
 
     public AdminMenuComponent openAdminProfileMenu() {
         waitForElementToBeClickable(userIconLogin).click();
-        return new AdminMenuComponent(driver, profileMenuNode);
+        return new AdminMenuComponent(driver,profileMenuNode);
     }
 
     public UserMenuComponent openUserProfileMenu() {
         waitForElementToBeClickable(userIconLogin).click();
-        return new UserMenuComponent(driver, profileMenuNode);
+        return new UserMenuComponent(driver,profileMenuNode);
     }
 
     public GuestMenuComponent openGuestProfileMenu() {
         waitForElementToBeClickable(userIconNotLogin).click();
-        return new GuestMenuComponent(driver, profileMenuNode);
+        return new GuestMenuComponent(driver,profileMenuNode);
     }
 }
