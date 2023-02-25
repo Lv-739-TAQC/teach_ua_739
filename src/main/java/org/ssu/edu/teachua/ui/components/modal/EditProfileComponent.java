@@ -163,6 +163,10 @@ public class EditProfileComponent extends BaseComponent {
         waitForElementToBeClickable(saveChangesButton).click();
         return new ProfilePage(driver);
     }
+    public EditProfileComponent clickSaveAfterEnteringInvalidData() {
+        waitForElementToBeClickable(saveChangesButton).click();
+        return this;
+    }
 
     public ProfilePage clickCloseButton() {
         waitForElementToBeClickable(closeButton).click();
