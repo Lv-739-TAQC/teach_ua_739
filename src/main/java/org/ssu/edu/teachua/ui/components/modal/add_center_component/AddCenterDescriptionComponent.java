@@ -21,13 +21,11 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
         super(driver);
     }
 
-    // @Step("Description: add center logo")
     public AddCenterDescriptionComponent addCenterLogo(String centerLogoPath) {
         centerLogo.sendKeys(centerLogoPath);
         return this;
     }
 
-    // @Step("Description: add center photo")
     public AddCenterDescriptionComponent addCenterPhoto(String photo) {
         centerPhoto.click();
         centerPhoto.clear();
@@ -35,7 +33,6 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
         return this;
     }
 
-    // @Step("Description: add center description")
     public AddCenterDescriptionComponent addCenterDescription(String description) {
         centerDescription.click();
         centerDescription.clear();
@@ -43,13 +40,11 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
         return this;
     }
 
-    // @Step("Description: Press Next step button")
     public AddCenterClubsComponent pressNextButton() {
         this.nextStepButton.click();
         return new AddCenterClubsComponent(driver);
     }
 
-    // @Step("Description: Press Back button")
     public AddCenterContactsComponent pressBackButton() {
         this.backButton.click();
         return new AddCenterContactsComponent(driver);

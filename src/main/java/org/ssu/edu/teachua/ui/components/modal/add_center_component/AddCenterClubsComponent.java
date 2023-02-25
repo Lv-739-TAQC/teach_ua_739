@@ -18,19 +18,16 @@ public class AddCenterClubsComponent extends BaseAddCenterComponent {
         super(driver);
     }
 
-    // @Step("Clubs: check a club from the list")
     public AddCenterClubsComponent checkClub(String club) {
         clubToCheck.click();
         return this;
     }
 
-    // @Step("Clubs: press Finish button")
     public ProfilePage pressFinishButton() {
         finishButton.click();
         return new ProfilePage(driver);
     }
 
-    // @Step("Clubs: Press Back button")
     public AddCenterDescriptionComponent pressBackButton() {
         this.backButton.click();
         return new AddCenterDescriptionComponent(driver);
