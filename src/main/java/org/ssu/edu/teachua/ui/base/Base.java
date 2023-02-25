@@ -14,7 +14,7 @@ import java.util.List;
 
 public abstract class Base {
 
-    private static final int EXPLICIT_WAIT = 15;
+    private static final int EXPLICIT_WAIT = 100;
 
     protected WebDriver driver;
     protected WebDriverWait wait;
