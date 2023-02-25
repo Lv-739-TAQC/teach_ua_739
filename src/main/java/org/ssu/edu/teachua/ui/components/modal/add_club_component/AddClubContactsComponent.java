@@ -83,14 +83,14 @@ public class AddClubContactsComponent extends BaseClubComponent {
     }
 
     public AddClubContactsComponent enterContactPhone(String contactPhone) {
-        this.contactPhoneField.click();
+        waitForElementToBeClickable(this.contactPhoneField).click();
         this.contactPhoneField.clear();
         this.contactPhoneField.sendKeys(contactPhone);
         return this;
     }
 
     public AddClubDescriptionComponent clickNextStepButton() {
-        nextStepButton.click();
+        waitForElementToBeClickable(nextStepButton).click();
         return new AddClubDescriptionComponent(driver);
     }
 

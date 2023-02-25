@@ -9,26 +9,27 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-import java.io.IOException;
 import java.time.Duration;
 
 public class TestRunnerUI {
+
     protected WebDriver driver;
-    protected static TestValueProvider valueProvider;
+    protected static TestValueProvider testValueProvider;
+
     @BeforeSuite
-    public void initTestValueProvider() throws IOException {
-        if (valueProvider == null) {
-            valueProvider = new TestValueProvider();
+    public void initTestValueProvider() {
+        if (testValueProvider == null) {
+            testValueProvider = new TestValueProvider();
         }
     }
 
     @BeforeMethod
-    public void initDriver(){
+    public void initDriver() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(valueProvider.getBaseUiUrl());
+        driver.get(testValueProvider.getBaseUiUrl());
         driver.findElement(By.id("details-button")).click();
         driver.findElement(By.id("proceed-link")).click();
     }
