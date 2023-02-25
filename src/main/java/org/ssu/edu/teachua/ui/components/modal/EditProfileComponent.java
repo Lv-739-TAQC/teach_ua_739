@@ -130,8 +130,7 @@ public class EditProfileComponent extends BaseComponent {
         return waitForElementToAppear(alertMessageCurrentPassword).getText();
     }
     public String getBorderColorForEditCurrentPasswordField() {
-        String borderColor= editCurrentPasswordField.getCssValue("border-color");
-        return borderColor;
+        return editCurrentPasswordField.getCssValue("border-color");
     }
 
     public EditProfileComponent enterNewPassword(String password) {
@@ -145,8 +144,7 @@ public class EditProfileComponent extends BaseComponent {
         return waitForElementToAppear(alertMessageNewPassword).getText();
     }
     public String getBorderColorForNewPasswordField() {
-        String borderColor= newPasswordField.getCssValue("border-color");
-        return borderColor;
+        return newPasswordField.getCssValue("border-color");
     }
     public EditProfileComponent confirmNewPassword(String password) {
         waitForElementToBeClickable(confirmPasswordField).click();
@@ -159,8 +157,7 @@ public class EditProfileComponent extends BaseComponent {
         return waitForElementToAppear(alertMessageConfirmPassword).getText();
     }
     public String getBorderColorForConfirmPasswordField() {
-        String borderColor= confirmPasswordField.getCssValue("border-color");
-        return borderColor;
+        return confirmPasswordField.getCssValue("border-color");
     }
     public ProfilePage clickSaveChangesButton() {
         waitForElementToBeClickable(saveChangesButton).click();

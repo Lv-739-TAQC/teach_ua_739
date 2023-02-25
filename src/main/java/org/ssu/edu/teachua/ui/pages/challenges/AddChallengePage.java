@@ -174,15 +174,12 @@ public class AddChallengePage extends BasePage {
         return this;
     }
     public String getBorderColorForNameField() {
-        String borderColor= name.getCssValue("border-color");
-        return borderColor;
+        return name.getCssValue("border-color");
     }
     public String getBorderColorForTitleField() {
-        String borderColor= title.getCssValue("border-color");
-        return borderColor;
+        return title.getCssValue("border-color");
     }
     public String getBorderColorForDescriptionField() {
-        String borderColor= description.getCssValue("border-color");
-        return borderColor;
+        return description.getCssValue("border-color");
     }
 }
