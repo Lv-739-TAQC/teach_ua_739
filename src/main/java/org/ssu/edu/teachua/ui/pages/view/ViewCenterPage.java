@@ -8,7 +8,7 @@ import org.ssu.edu.teachua.ui.base.BasePage;
 
 public class ViewCenterPage extends BasePage {
 
-    @FindBy(how = How.XPATH, using = "//button[contains(@class, 'apply-button')]")
+    @FindBy(how = How.XPATH, using = "//button[contains(@class,'apply-button')]")
     private WebElement enrollCenterButton;
     @FindBy(how = How.XPATH, using = "//button[contains(@class,'details-button')]")
     private WebElement downloadButton;

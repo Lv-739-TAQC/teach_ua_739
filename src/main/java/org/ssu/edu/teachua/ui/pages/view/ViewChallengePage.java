@@ -20,8 +20,8 @@ public class ViewChallengePage extends BasePage {
     private WebElement previousTask;
     @FindBy(how = How.XPATH, using = "//div[@class='challenge-day-block']//span[contains(@class,'arrows-next')]")
     private WebElement nextTask;
-    @FindBy(how = How.XPATH, using = "//a[@href='/dev/challenges/task/385']")
-    private WebElement taskURL;
+    @FindBy(how = How.XPATH, using = "//div[@class='primitive-card']")
+    private WebElement taskLink;
 
 
     public ViewChallengePage(WebDriver driver) {
