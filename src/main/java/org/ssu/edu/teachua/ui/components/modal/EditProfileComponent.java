@@ -63,6 +63,8 @@ public class EditProfileComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'submit-button')]")
     private WebElement saveChangesButton;
+    @FindBy(how = How.XPATH, using = "//span[contains(@class, 'status-error ant-input-affix-wrapper-has-feedback')]")
+    private WebElement borderColor;
 
     @FindBy(how = How.XPATH, using = ".//button[@class='ant-modal-close']")
     private WebElement closeButton;
@@ -129,8 +131,9 @@ public class EditProfileComponent extends BaseComponent {
     public String getAlertMessageCurrentPassword() {
         return waitForElementToAppear(alertMessageCurrentPassword).getText();
     }
-    public String getBorderColorForEditCurrentPasswordField() {
-        return editCurrentPasswordField.getCssValue("border-color");
+
+    public String getBorderColorForPasswordField() {
+        return borderColor.getCssValue("border-color");
     }
 
     public EditProfileComponent enterNewPassword(String password) {
@@ -143,9 +146,7 @@ public class EditProfileComponent extends BaseComponent {
     public String getAlertMessageNewPassword() {
         return waitForElementToAppear(alertMessageNewPassword).getText();
     }
-    public String getBorderColorForNewPasswordField() {
-        return newPasswordField.getCssValue("border-color");
-    }
+
     public EditProfileComponent confirmNewPassword(String password) {
         waitForElementToBeClickable(confirmPasswordField).click();
         confirmPasswordField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -156,13 +157,12 @@ public class EditProfileComponent extends BaseComponent {
     public String getAlertMessageConfirmPassword() {
         return waitForElementToAppear(alertMessageConfirmPassword).getText();
     }
-    public String getBorderColorForConfirmPasswordField() {
-        return confirmPasswordField.getCssValue("border-color");
-    }
+
     public ProfilePage clickSaveChangesButton() {
         waitForElementToBeClickable(saveChangesButton).click();
         return new ProfilePage(driver);
     }
+
     public EditProfileComponent clickSaveAfterEnteringInvalidData() {
         waitForElementToBeClickable(saveChangesButton).click();
         return this;
