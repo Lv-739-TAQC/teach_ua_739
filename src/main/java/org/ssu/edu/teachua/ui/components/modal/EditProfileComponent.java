@@ -63,8 +63,12 @@ public class EditProfileComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'submit-button')]")
     private WebElement saveChangesButton;
-    @FindBy(how = How.XPATH, using = "//span[contains(@class, 'status-error ant-input-affix-wrapper-has-feedback')]")
-    private WebElement borderColor;
+    @FindBy(how = How.XPATH, using = "(//span[contains(@class, 'status-error ant-input-affix-wrapper-has-feedback')])[1]")
+    private WebElement borderColorCurrentPasswordField;
+    @FindBy(how = How.XPATH, using = "(//span[contains(@class, 'status-error ant-input-affix-wrapper-has-feedback')])[2]")
+    private WebElement borderColorNewPasswordField;
+    @FindBy(how = How.XPATH, using = "(//span[contains(@class, 'status-error ant-input-affix-wrapper-has-feedback')])[3]")
+    private WebElement borderColorConfirmPasswordField;
 
     @FindBy(how = How.XPATH, using = ".//button[@class='ant-modal-close']")
     private WebElement closeButton;
@@ -132,8 +136,14 @@ public class EditProfileComponent extends BaseComponent {
         return waitForElementToAppear(alertMessageCurrentPassword).getText();
     }
 
-    public String getBorderColorForPasswordField() {
-        return borderColor.getCssValue("border-color");
+    public String getBorderColorForCurrentPasswordField() {
+        return borderColorCurrentPasswordField.getCssValue("border-color");
+    }
+    public String getBorderColorForNewPasswordField() {
+        return borderColorNewPasswordField.getCssValue("border-color");
+    }
+    public String getBorderColorForConfirmPasswordField() {
+        return borderColorConfirmPasswordField.getCssValue("border-color");
     }
 
     public EditProfileComponent enterNewPassword(String password) {
