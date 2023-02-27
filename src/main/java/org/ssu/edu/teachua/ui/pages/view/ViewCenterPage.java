@@ -9,19 +9,19 @@ import org.ssu.edu.teachua.ui.base.BasePage;
 public class ViewCenterPage extends BasePage {
 
     @FindBy(how = How.XPATH, using = "//button[contains(@class,'apply-button')]")
-    private WebElement enrollCenterButton;
+    protected WebElement enrollButton;
     @FindBy(how = How.XPATH, using = "//button[contains(@class,'details-button')]")
-    private WebElement downloadButton;
+    protected WebElement downloadButton;
     @FindBy(how = How.XPATH, using = "//a[contains(@href,'https://maps.google.com/maps')]")
-    private WebElement mapButton;
+    protected WebElement mapButton;
 
 
     public ViewCenterPage(WebDriver driver) {
         super(driver);
     }
 
-    public ViewCenterPage clickEnrollClub() {
-        enrollCenterButton.click();
+    public ViewCenterPage clickEnrollCenter() {
+        enrollButton.click();
         return this;
     }
 
@@ -33,4 +33,5 @@ public class ViewCenterPage extends BasePage {
     public void clickOnMap() {
         mapButton.click();
     }
+
 }

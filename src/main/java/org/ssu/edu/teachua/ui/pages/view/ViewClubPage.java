@@ -4,27 +4,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.ssu.edu.teachua.ui.base.BasePage;
 import org.ssu.edu.teachua.ui.components.modal.FeedbackComponent;
 import org.ssu.edu.teachua.ui.components.modal.EnrollClubComponent;
 
 
-public class ViewClubPage extends BasePage {
+public class ViewClubPage extends ViewCenterPage {
 
     @FindBy(how = How.XPATH, using = "//div[contains(@class,'modal SignUpForClub')]")
     private WebElement enrollClubNode;
     @FindBy(how = How.XPATH, using = "//div[contains(@class,'comment-modal')]")
     private WebElement leaveFeedbackNode;
-    @FindBy(how = How.XPATH, using = "//button[contains(@class, 'apply-button')]")
-    private WebElement enrollClubButton;
-    @FindBy(how = How.XPATH, using = "//button[contains(@class,'details-button')]")
-    private WebElement downloadButton;
     @FindBy(how = How.XPATH, using = "//div[@id='carousel']/span[@aria-label='left']")
     private WebElement previousImage;
     @FindBy(how = How.XPATH, using = "//div[@id='carousel']/span[@aria-label='right']")
     private WebElement nextImage;
-    @FindBy(how = How.XPATH, using = "//a[contains(@href,'https://maps.google.com/maps')]")
-    private WebElement mapButton;
     @FindBy(how = How.XPATH, using = "//a[@href='https://agclub.com.ua/']")
     private WebElement clubURL;
     @FindBy(how = How.XPATH, using = "//button[@type='button' and contains(@class,'comment-button')]")
@@ -39,7 +32,7 @@ public class ViewClubPage extends BasePage {
     }
 
     public EnrollClubComponent clickEnrollClub() {
-        enrollClubButton.click();
+        enrollButton.click();
         return new EnrollClubComponent(driver, enrollClubNode);
     }
 
