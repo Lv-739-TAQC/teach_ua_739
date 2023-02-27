@@ -55,7 +55,7 @@ public class ViewChallengePage extends BasePage {
     }
 
     public ViewTaskPage clickOnTask() {
-        taskURL.click();
+        taskLink.click();
         return new ViewTaskPage(driver);
     }
 
