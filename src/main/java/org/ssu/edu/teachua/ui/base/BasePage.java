@@ -11,7 +11,7 @@ public abstract class BasePage extends Base {
     @FindBy(how = How.XPATH, using = "//body")
     private WebElement headerNode;
 
-    private final HeaderComponent header;
+    protected HeaderComponent header;
 
     public BasePage(WebDriver driver) {
         super(driver);
