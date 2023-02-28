@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.ssu.edu.teachua.ui.components.modal.AddLocationComponent;
 import org.ssu.edu.teachua.ui.components.modal.BaseClubComponent;
 
 public class AddClubContactsComponent extends BaseClubComponent {
@@ -36,18 +37,20 @@ public class AddClubContactsComponent extends BaseClubComponent {
         super(driver);
     }
 
-    public AddClubContactsComponent clickAddLocationButton() {
+    public AddLocationComponent clickAddLocationButton() {
+        waitForElementToBeClickable(addLocationButton);
         this.addLocationButton.click();
-        return this;
-        // need create getAddLocationComponent
+        return new AddLocationComponent(driver);
     }
 
     public AddClubContactsComponent clickOnlineSwitchButton() {
+        waitForElementToBeClickable(onlineSwitchButton);
         this.onlineSwitchButton.click();
         return this;
     }
 
     public AddClubContactsComponent enterContactFacebook(String contactFacebook) {
+        waitForElementToBeClickable(contactFacebookField);
         this.contactFacebookField.click();
         this.contactFacebookField.clear();
         this.contactFacebookField.sendKeys(contactFacebook);
@@ -55,6 +58,7 @@ public class AddClubContactsComponent extends BaseClubComponent {
     }
 
     public AddClubContactsComponent enterContactContact(String contactContact) {
+        waitForElementToBeClickable(contactContactField);
         this.contactContactField.click();
         this.contactContactField.clear();
         this.contactContactField.sendKeys(contactContact);
@@ -62,6 +66,7 @@ public class AddClubContactsComponent extends BaseClubComponent {
     }
 
     public AddClubContactsComponent enterContactEmail(String contactEmail) {
+        waitForElementToBeClickable(contactEmailField);
         this.contactEmailField.click();
         this.contactEmailField.clear();
         this.contactEmailField.sendKeys(contactEmail);
@@ -69,6 +74,7 @@ public class AddClubContactsComponent extends BaseClubComponent {
     }
 
     public AddClubContactsComponent enterContactSkype(String contactSkype) {
+        waitForElementToBeClickable(contactSkypeField);
         this.contactSkypeField.click();
         this.contactSkypeField.clear();
         this.contactSkypeField.sendKeys(contactSkype);
@@ -76,6 +82,7 @@ public class AddClubContactsComponent extends BaseClubComponent {
     }
 
     public AddClubContactsComponent enterContactWhatsApp(String contactWhatsApp) {
+        waitForElementToBeClickable(contactWhatsAppField);
         this.contactWhatsAppField.click();
         this.contactWhatsAppField.clear();
         this.contactWhatsAppField.sendKeys(contactWhatsApp);
@@ -83,18 +90,21 @@ public class AddClubContactsComponent extends BaseClubComponent {
     }
 
     public AddClubContactsComponent enterContactPhone(String contactPhone) {
-        waitForElementToBeClickable(this.contactPhoneField).click();
+        waitForElementToBeClickable(contactPhoneField);
+        this.contactPhoneField.click();
         this.contactPhoneField.clear();
         this.contactPhoneField.sendKeys(contactPhone);
         return this;
     }
 
     public AddClubDescriptionComponent clickNextStepButton() {
-        waitForElementToBeClickable(nextStepButton).click();
+        waitForElementToBeClickable(nextStepButton);
+        nextStepButton.click();
         return new AddClubDescriptionComponent(driver);
     }
 
     public AddClubMainInfoComponent clickPreviousPageButton() {
+        waitForElementToBeClickable(previousPageButton);
         previousPageButton.click();
         return new AddClubMainInfoComponent(driver);
     }

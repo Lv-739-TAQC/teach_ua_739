@@ -32,9 +32,10 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         super(driver);
     }
 
-    public AddClubMainInfoComponent enterClubName(String nameField) {
-        waitForElementToBeClickable(this.nameField).click();
-        this.nameField.sendKeys(nameField);
+    public AddClubMainInfoComponent enterClubName(String name) {
+        this.waitForElementToBeClickable(nameField);
+        this.nameField.click();
+        this.nameField.sendKeys(name);
         return this;
     }
 
@@ -43,20 +44,24 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         return this;
     }
 
-    public AddClubMainInfoComponent enterChildAgeFrom(String childAgeFrom) {
-        waitForElementToBeClickable(this.childAgeFrom).click();
-        this.childAgeFrom.sendKeys(childAgeFrom);
+    public AddClubMainInfoComponent enterChildAgeFrom(String childAge) {
+        waitForElementToBeClickable(childAgeFrom);
+        this.childAgeFrom.click();
+        this.childAgeFrom.sendKeys(childAge);
         return this;
     }
 
     public AddClubMainInfoComponent enterChildAgeFor(String childAgeTo) {
-        waitForElementToBeClickable(this.childAgeFor).click();
+        waitForElementToBeClickable(childAgeFor);
+        this.childAgeFor.click();
         this.childAgeFor.sendKeys(childAgeTo);
         return this;
     }
 
     public AddClubMainInfoComponent getBelongingToCenter() {
-        waitForElementToBeClickable(this.belongingToCenter).click();
+        waitForElementToBeClickable(belongingToCenter);
+        this.belongingToCenter.click();
+        waitForElementsToAppear(centerList);
         return this;
     }
 
@@ -66,7 +71,8 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
     }
 
     public AddClubContactsComponent clickNextStepButton() {
-        waitForElementToBeClickable(nextStepButton).click();
+        waitForElementToBeClickable(nextStepButton);
+        nextStepButton.click();
         return new AddClubContactsComponent(driver);
     }
 }
