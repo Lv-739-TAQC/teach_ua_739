@@ -4,7 +4,6 @@ import org.ssu.edu.teachua.ui.components.modal.EditProfileComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
-import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -13,8 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TUA359 extends TestRunnerUI {
-    public static final String RED_BORDER_COLOR = "rgb(255, 0, 0)";
-    public static final List<String> ERROR_MSG = Arrays.asList(
+
+    public final String RED_BORDER_COLOR = "rgb(255, 0, 0)";
+    public final List<String> ERROR_MSG = Arrays.asList(
             "Будь ласка, підтвердіть новий пароль",
             "Будь ласка, введіть новий пароль",
             "Будь ласка, введіть діючий пароль"
@@ -25,16 +25,14 @@ public class TUA359 extends TestRunnerUI {
 
         SoftAssert softAssert = new SoftAssert();
 
-        TestValueProvider adminCredentials = new TestValueProvider();
-
         HomePage homePage = new HomePage(driver);
         ProfilePage profilePage = new ProfilePage(driver);
 
         homePage.getHeader()
                 .openGuestProfileMenu()
                 .openLogInForm()
-                .enterEmail(adminCredentials.getAdminEmail())
-                .enterPassword(adminCredentials.getAdminPassword())
+                .enterEmail(valueProvider.getAdminEmail())
+                .enterPassword(valueProvider.getAdminPassword())
                 .clickLoginButton()
                 .getHeader()
                 .openAdminProfileMenu()
