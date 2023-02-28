@@ -21,7 +21,7 @@ public class SignUpComponent extends BaseComponent {
     private WebElement passwordField;
     @FindBy(how = How.XPATH, using = ".//input[@id='confirm']")
     private WebElement confirmPasswordField;
-    @FindBy(how = How.XPATH, using = ".//div[@class='ant-modal modal-registration']//button[contains(@aria-label,'Close')]")
+    @FindBy(how = How.XPATH, using = ".//div[@Class='ant-modal-content']//button[contains(@aria-label,'Close')]")
     private WebElement closeButton;
     @FindBy(how = How.XPATH, using = ".//button[@class='ant-btn ant-btn-default registration-button']")
     private WebElement signUpButton;
