@@ -1,6 +1,7 @@
 package org.ssu.edu.teachua.utils;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 public class TestValueProvider {
@@ -28,5 +29,10 @@ public class TestValueProvider {
 
     public String getBaseUiUrl() {
         return properties.getProperty("baseUiUrl");
+    }
+
+    public String getFilePath(String fileName) {
+        return Paths.get(Paths.get(System.getProperty("user.dir")).toString(),
+                "src", "test", "resources", fileName).toString();
     }
 }
