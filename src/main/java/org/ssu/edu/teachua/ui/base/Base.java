@@ -46,7 +46,9 @@ public abstract class Base {
     protected List<WebElement> waitForElementsToAppear(List<WebElement> elements) {
         return wait.until(ExpectedConditions.visibilityOfAllElements(elements));
     }
-
+    protected void waitForElementToDisappear(WebElement element) {
+        wait.until(ExpectedConditions.invisibilityOf(element));
+    }
     // temporary falling asleep :
     protected void sleep(long s) {
         try {

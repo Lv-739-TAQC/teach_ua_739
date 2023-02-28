@@ -17,9 +17,11 @@ public class AddChallengePage extends BasePage {
     private WebElement title;
     @FindBy(how = How.XPATH, using = "//div[contains(@class,'ql-editor')]")
     private WebElement description;
+    @FindBy(how = How.XPATH, using = "//input[@id='picture']")
+    protected WebElement photoInput;
     @FindBy(how = How.XPATH, using = "//span[@class='ant-upload'][@role='button']")
     private WebElement uploadPhoto;
-    @FindBy(how = How.XPATH, using = "//*[@class='ant-upload-list-item-info']")
+    @FindBy(how = How.XPATH, using = "//div[contains(@class, 'ant-upload-list-item-done')]")
     private WebElement photoAppeared;
     @FindBy(how = How.XPATH, using = "//*[@class='anticon anticon-eye']")
     private WebElement previewPhoto;
@@ -127,15 +129,18 @@ public class AddChallengePage extends BasePage {
         return this;
     }
 
-    public AddChallengePage clearDescription(String description) {
-        waitForElementToBeClickable(getDescription()).sendKeys(description);
+    public AddChallengePage clearDescription() {
+        waitForElementToAppear(getTitle()).sendKeys(
+                Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
+        );
         return this;
     }
 
 
     public AddChallengePage addPhoto(String imagePath) {
-        waitForElementToBeClickable(getUploadPhoto()).sendKeys(imagePath);
+        photoInput.sendKeys(imagePath);
         waitForElementToAppear(getPhotoAppeared());
+        sleep(5);
         return this;
     }
 
@@ -166,5 +171,18 @@ public class AddChallengePage extends BasePage {
 
     public String checkErrorMessage() {
         return waitForElementToAppear(getErrorMessage()).getText();
+    }
+    public AddChallengePage waitForErrorMessageToDisappear() {
+        waitForElementToDisappear(errorMessage);
+        return this;
+    }
+    public String getBorderColorForNameField() {
+        return name.getCssValue("border-color");
+    }
+    public String getBorderColorForTitleField() {
+        return title.getCssValue("border-color");
+    }
+    public String getBorderColorForDescriptionField() {
+        return description.getCssValue("border-color");
     }
 }

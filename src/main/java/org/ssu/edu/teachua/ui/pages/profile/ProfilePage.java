@@ -108,4 +108,8 @@ public class ProfilePage extends BasePage {
         waitForElementToBeClickable(deleteClubButton).click();
         return this;
     }
+
+    public WebElement getEditProfileNode() {
+        return editProfileNode;
+    }
 }

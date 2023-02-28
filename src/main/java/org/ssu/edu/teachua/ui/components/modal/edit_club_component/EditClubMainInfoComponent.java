@@ -6,12 +6,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
 
-    @FindBy(how = How.XPATH, using = ".//div/form[@id='edit_category']//div/span[contains(@class, 'add-club-input')]")
+    @FindBy(how = How.XPATH, using = ".//input[@id='edit_category_name']")
     private WebElement editNameField; //min 5 characters //need to be clear
 
     @FindBy(how = How.XPATH, using = ".//div/form[@id='edit_category']//div/label/span[contains(@class, 'ant-checkbox')]")
@@ -33,34 +32,29 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
         super(driver);
     }
 
-    public EditClubMainInfoComponent enterNewClubName(String nameField) {
+    public EditClubMainInfoComponent enterNewClubName(String editName) {
+        waitForElementToBeClickable(editNameField);
         this.editNameField.click();
         this.editNameField.clear();
-        this.editNameField.sendKeys(nameField);
+        this.editNameField.sendKeys(editName);
         return this;
     }
 
-    public void setCategoriesCheckBoxes(List<WebElement> categoriesCheckBoxes) {
-        this.editCategoriesCheckBoxes = categoriesCheckBoxes;
-    }
-
-    public List<EditClubMainInfoComponent> getEditCategoriesCheckBoxes() {
-        List<EditClubMainInfoComponent> checkBoxes = new ArrayList<>();
-        for (WebElement element : editCategoriesCheckBoxes) {
-//            ToDo
-//            checkBoxes.add();
-        }
-        return checkBoxes;
+    public EditClubMainInfoComponent editCategoriesCheckBoxes(int editCategory) {
+        waitForElementsToAppear(editCategoriesCheckBoxes).get(editCategory).click();
+        return this;
     }
 
     public EditClubMainInfoComponent enterEditChildAgeFrom(String editChildAge) {
+        waitForElementToBeClickable(editChildAgeFrom);
         this.editChildAgeFrom.click();
-        this.editChildAgeFor.clear();
+        this.editChildAgeFrom.clear();
         this.editChildAgeFrom.sendKeys(editChildAge);
         return this;
     }
 
     public EditClubMainInfoComponent enterEditChildAgeFor(String editChildAgeTo) {
+        waitForElementToBeClickable(editChildAgeFor);
         this.editChildAgeFor.click();
         this.editChildAgeFor.clear();
         this.editChildAgeFor.sendKeys(editChildAgeTo);
@@ -68,20 +62,19 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
     }
 
     public EditClubMainInfoComponent getEditBelongingToCenter() {
+        waitForElementToBeClickable(editBelongingToCenter);
         this.editBelongingToCenter.click();
-        this.editBelongingToCenter.sendKeys((CharSequence) editBelongingToCenter);
+        waitForElementsToAppear(editCenterList);
         return this;
     }
 
-    public List<EditClubMainInfoComponent> getEditCenterList() {
-        List<EditClubMainInfoComponent> centers = new ArrayList<>();
-        for (WebElement element : editCenterList) {
-            centers.add(new EditClubMainInfoComponent(driver));
-        }
-        return centers;
+    public EditClubMainInfoComponent editGetCenter(int editCenter) {
+        waitForElementsToAppear(editCenterList).get(editCenter).click();
+        return this;
     }
 
-    public EditClubContactsComponent clickNextStepButton() {
+    public EditClubContactsComponent clickEditNextStepButton() {
+        waitForElementToBeClickable(nextStepButton);
         nextStepButton.click();
         return new EditClubContactsComponent(driver);
     }
