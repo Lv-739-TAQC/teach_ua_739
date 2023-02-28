@@ -16,7 +16,6 @@ import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.news.NewsPage;
 import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HeaderComponent extends BaseComponent {
@@ -44,6 +43,9 @@ public class HeaderComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = ".//ul[contains(@class, 'ant-dropdown-menu')]")
     private WebElement profileMenuNode;
+
+    @FindBy(how = How.XPATH, using = ".//div[contains(@class, 'submenu-placement-rightTop')]/ul/li/span/a")
+    private List<WebElement> dropdownChallengeElements;
 
     public HeaderComponent(WebDriver driver,WebElement node) {
         super(driver,node);
@@ -99,5 +101,11 @@ public class HeaderComponent extends BaseComponent {
     public GuestMenuComponent openGuestProfileMenu() {
         waitForElementToBeClickable(userIconNotLogin).click();
         return new GuestMenuComponent(driver,profileMenuNode);
+    }
+
+    public String getChallengeUrl(int id) {
+        WebElement challenge = getChallenges().get(id);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",challenge);
+        return challenge.getAttribute("href");
     }
 }
