@@ -4,9 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.ssu.edu.teachua.ui.base.BasePage;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.modal.FeedbackComponent;
 import org.ssu.edu.teachua.ui.components.modal.EnrollClubComponent;
-
 
 public class ViewClubPage extends ViewCenterPage {
 
@@ -26,6 +29,10 @@ public class ViewClubPage extends ViewCenterPage {
     private WebElement moreDetailsButton;
     @FindBy(how = How.XPATH, using = "//span[@class='feedback']")
     private WebElement showFeedback;
+    @FindBy(how = How.XPATH, using =
+            "//div[@class='apply-box']//button[contains(@class, 'apply-button')]"
+    )
+    private WebElement subscribeButton;
 
     public ViewClubPage(WebDriver driver) {
         super(driver);
@@ -74,5 +81,7 @@ public class ViewClubPage extends ViewCenterPage {
         return this;
     }
 
-
+    public boolean isSubscribeButtonEnabled() {
+        return waitForElementToAppear(subscribeButton).isEnabled();
+    }
 }

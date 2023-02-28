@@ -20,6 +20,9 @@ import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class HeaderComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = ".//div[@class='logo']")
@@ -36,6 +39,14 @@ public class HeaderComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = ".//div[@class='center-side']//a[@href='/dev/about']")
     private WebElement aboutButton;
+
+    @FindBy(how = How.XPATH, using = ".//div[@class='ant-dropdown-trigger city']")
+    private WebElement locationButton;
+
+    @FindBy(how = How.XPATH, using =
+            "(//ul[contains(@class, 'dropdown-menu-vertical')])[2]//li[contains(@class, 'child')]"
+    )
+    private List<WebElement> locationsList;
 
     @FindBy(how = How.XPATH, using = ".//span[contains(@class, 'avatarIfNotLogin')]")
     private WebElement userIconNotLogin;
@@ -88,6 +99,22 @@ public class HeaderComponent extends BaseComponent {
     public AboutPage clickAboutButton() {
         waitForElementToBeClickable(aboutButton).click();
         return new AboutPage(driver);
+    }
+
+    public HeaderComponent clickLocationButton() {
+        waitForElementToBeClickable(locationButton).click();
+        return this;
+    }
+
+    public List<String> parseList() {
+        return waitForElementsToAppear(locationsList).stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+    }
+
+    public HeaderComponent chooseLocation(String location) {
+        locationsList.get(parseList().indexOf(location)).click();
+        return this;
     }
 
     public AdminMenuComponent openAdminProfileMenu() {

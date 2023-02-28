@@ -10,11 +10,18 @@ import org.ssu.edu.teachua.ui.components.search.AdvancedSearchClubComponent;
 
 public class HomePage extends BasePage {
 
+    @FindBy(how = How.XPATH, using = "//div[contains(@class, 'ant-message-success')]")
+    private WebElement loginSuccessMsg;
+
     @FindBy(how = How.XPATH, using = ".//span[@title='Розширений пошук']")
     private WebElement advancedSearchIcon;
 
     public HomePage(WebDriver driver) {
         super(driver);
+    }
+
+    public String getLoginSuccessMsg() {
+        return waitForElementToAppear(loginSuccessMsg).getText();
     }
 
     public AdvancedSearchClubComponent clickAdvancedSearchIcon() {
