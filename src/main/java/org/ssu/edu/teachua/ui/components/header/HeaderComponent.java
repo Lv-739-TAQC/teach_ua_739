@@ -16,6 +16,8 @@ import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.news.NewsPage;
 import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class HeaderComponent extends BaseComponent {
