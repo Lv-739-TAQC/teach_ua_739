@@ -3,7 +3,6 @@ package org.ssu.edu.teachua.ui;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchCenterComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
