@@ -17,23 +17,18 @@ import java.util.List;
 public class TestCasesTetiana extends TestRunnerUI {
 
     @Test
-    public void testTua146 () throws IOException {
+    public void testTua146 () throws IOException, ParseException {
         HomePage homePage = new HomePage(driver);
 
         List<Date> newsDates = new ArrayList<>();
-        List<Date> descNewsDates = new ArrayList<>();
 
         List<NewsCardComponent> newsCards = homePage.getHeader()
                .clickNewsButton()
                .getCardsWithNews();
         for (NewsCardComponent newsCard : newsCards) {
-            try {
-                newsDates.add(new SimpleDateFormat("dd.MM.yyyy").parse(newsCard.getNewsDate()));
-                descNewsDates.add(new SimpleDateFormat("dd.MM.yyyy").parse(newsCard.getNewsDate()));
-            } catch (ParseException e) {
-                System.out.println(e.getMessage());
-            }
+            newsDates.add(new SimpleDateFormat("dd.MM.yyyy").parse(newsCard.getNewsDate()));
         }
+        List<Date> descNewsDates = new ArrayList<>(newsDates);
 
         Collections.sort(descNewsDates, Collections.reverseOrder());
 
@@ -44,7 +39,10 @@ public class TestCasesTetiana extends TestRunnerUI {
     public void testTua71 () throws IOException {
         HomePage homePage = new HomePage(driver);
 
-        String expected = "https://speak-ukrainian.org.ua/dev/challenges/561";
+         homePage.getHeader()
+                .clickChallengesButton()
+                .clickChallengeButton(5);
+        String expected = driver.getCurrentUrl();
 
         String testChallengePage = homePage.getHeader()
                 .clickChallengesButton()
