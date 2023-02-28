@@ -11,7 +11,7 @@ import java.util.List;
 public class AddClubMainInfoComponent extends BaseClubComponent {
 
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_name']")
-    private WebElement nameField; // min 5 characters
+    private WebElement nameField;
 
     @FindBy(how = How.XPATH, using = ".//div/form[@id='basic']//div/label/span[contains(@class, 'ant-checkbox')]")
     private List<WebElement> categoriesCheckBoxes;
@@ -23,7 +23,7 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
     private WebElement childAgeFor;
 
     @FindBy(how = How.XPATH, using = ".//div/form[@id='basic']//div[contains(@class, 'ant-select-in')]")
-    private WebElement belongingToCenter; //click for open dropdown
+    private WebElement belongingToCenter;
 
     @FindBy(how = How.XPATH, using = ".//div[@aria-selected='false' and @class]")
     private List<WebElement> centerList;
@@ -39,8 +39,8 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         return this;
     }
 
-    public AddClubMainInfoComponent getCategoriesCheckBoxes(int category) {
-        waitForElementsToAppear(categoriesCheckBoxes).get(category).click();
+    public AddClubMainInfoComponent getCategoriesCheckBoxes(int categoriesNumber) {
+        waitForElementsToAppear(this.categoriesCheckBoxes).get(categoriesNumber).click();
         return this;
     }
 
@@ -65,8 +65,8 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         return this;
     }
 
-    public AddClubMainInfoComponent getCenter(int center) {
-        waitForElementsToAppear(centerList).get(center).click();
+    public AddClubMainInfoComponent getCertainCenter(int centerNumber) {
+        waitForElementsToAppear(centerList).get(centerNumber).click();
         return this;
     }
 
@@ -75,6 +75,4 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         nextStepButton.click();
         return new AddClubContactsComponent(driver);
     }
-
 }
-

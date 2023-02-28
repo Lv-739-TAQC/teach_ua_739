@@ -9,21 +9,22 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-import java.io.IOException;
 import java.time.Duration;
 
 public class TestRunnerUI {
+
     protected WebDriver driver;
     protected static TestValueProvider valueProvider;
+
     @BeforeSuite
-    public void initTestValueProvider() throws IOException {
+    public void initTestValueProvider() {
         if (valueProvider == null) {
             valueProvider = new TestValueProvider();
         }
     }
 
     @BeforeMethod
-    public void initDriver(){
+    public void initDriver() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
