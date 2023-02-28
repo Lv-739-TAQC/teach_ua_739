@@ -5,13 +5,18 @@ import java.nio.file.Paths;
 import java.util.Properties;
 
 public class TestValueProvider {
+
+    private final static String PROPERTIES_PATH = "src/test/resources/data.properties";
     private final Properties properties;
 
-    public TestValueProvider() throws IOException {
-        FileInputStream fileInputStream = new FileInputStream("src/test/resources/data.properties");
-        InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+    public TestValueProvider() {
         properties = new Properties();
-        properties.load(inputStreamReader);
+        try {
+            FileInputStream fileInputStream = new FileInputStream(PROPERTIES_PATH);
+            properties.load(fileInputStream);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public String getAdminEmail() {

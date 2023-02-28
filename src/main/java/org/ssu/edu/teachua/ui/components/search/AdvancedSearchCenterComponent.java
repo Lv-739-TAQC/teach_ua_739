@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BaseComponent;
 
+import java.util.List;
+
 public class AdvancedSearchCenterComponent extends BaseComponent {
 
     private final String XPATH = "//div[@class='ant-select-item ant-select-item-option' and @title='%s']";
@@ -49,6 +51,8 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = ".//button[@class='ant-btn ant-btn-default mobile-button clear-button']")
     private WebElement clearButton;
+    @FindBy(how = How.XPATH, using = "//div[text()='Розширений пошук']/parent::div")
+    private List<WebElement> advancedSearchModal;
 
     public AdvancedSearchCenterComponent(WebDriver driver, WebElement node) {
         super(driver, node);
@@ -56,12 +60,12 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
 
     public AdvancedSearchClubComponent chooseClub() {
         clubRadio.click();
-        return new AdvancedSearchClubComponent(driver, clubRadio);
+        return new AdvancedSearchClubComponent(driver, componentRoot);
     }
 
     public AdvancedSearchCenterComponent chooseCenter() {
         centerRadio.click();
-        return new AdvancedSearchCenterComponent(driver, centerRadio);
+        return new AdvancedSearchCenterComponent(driver, componentRoot);
     }
 
     public AdvancedSearchCenterComponent selectCity(String city) {
@@ -70,16 +74,43 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
         return this;
     }
 
+    public boolean isCityParameterActivated() {
+        return waitForElementToAppear(citySelector).isDisplayed();
+    }
+
     public AdvancedSearchCenterComponent selectDistrict(String district) {
         districtSelector.click();
         driver.findElement(By.xpath(String.format(XPATH, district))).click();
         return this;
     }
 
+    public boolean isDistrictParameterActivated() {
+        return waitForElementToAppear(districtSelector).isDisplayed();
+    }
+
     public AdvancedSearchCenterComponent selectStation(String station) {
         stationSelector.click();
         driver.findElement(By.xpath(String.format(XPATH, station))).click();
         return this;
+    }
+    public boolean isAdvancedSearchModalDisplayed() {
+    return advancedSearchModal.size() > 0;
+    }
+
+    public boolean isStationParameterActivated() {
+        return waitForElementToAppear(stationSelector).isDisplayed();
+    }
+
+    public boolean isOnlineParameterDeactivated() {
+        return driver.findElements(By.xpath(".//div[@id='basic_isOnline']")).size() == 0;
+    }
+
+    public boolean isCategoriesParameterDeactivated() {
+        return driver.findElements(By.xpath(".//div[@id='basic_categoriesName']")).size() == 0;
+    }
+
+    public boolean isChildAgeParameterDeactivated() {
+        return driver.findElements(By.xpath(".//span[@id='basic_age']")).size() == 0;
     }
 
     public void chooseSortByName() {

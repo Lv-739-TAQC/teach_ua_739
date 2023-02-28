@@ -30,6 +30,10 @@ public class AddLocationComponent extends BaseComponent {
         super(driver, node);
     }
 
+    public AddLocationComponent(WebDriver driver) {
+        super(driver);
+    }
+
     public AddLocationComponent enterLocationName(String locationName) {
         this.locationName.click();
         this.locationName.clear();
