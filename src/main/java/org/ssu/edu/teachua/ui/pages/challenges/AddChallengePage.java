@@ -138,7 +138,7 @@ public class AddChallengePage extends BasePage {
 
 
     public AddChallengePage addPhoto(String imagePath) {
-        getUploadPhoto().sendKeys(imagePath);
+        photoInput.sendKeys(imagePath);
         waitForElementToAppear(getPhotoAppeared());
         sleep(5);
         return this;
