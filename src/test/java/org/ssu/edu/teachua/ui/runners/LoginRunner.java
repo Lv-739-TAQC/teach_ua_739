@@ -12,8 +12,8 @@ public class LoginRunner extends TestRunnerUI {
         homePage.getHeader()
                 .openGuestProfileMenu()
                 .openLogInForm()
-                .enterEmail(testValueProvider.getAdminEmail())
-                .enterPassword(testValueProvider.getAdminPassword())
+                .enterEmail(valueProvider.getAdminEmail())
+                .enterPassword(valueProvider.getAdminPassword())
                 .clickLoginButton();
     }
 }

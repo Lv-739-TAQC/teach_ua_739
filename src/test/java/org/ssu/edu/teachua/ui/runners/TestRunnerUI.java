@@ -14,12 +14,12 @@ import java.time.Duration;
 public class TestRunnerUI {
 
     protected WebDriver driver;
-    protected static TestValueProvider testValueProvider;
+    protected static TestValueProvider valueProvider;
 
     @BeforeSuite
     public void initTestValueProvider() {
-        if (testValueProvider == null) {
-            testValueProvider = new TestValueProvider();
+        if (valueProvider == null) {
+            valueProvider = new TestValueProvider();
         }
     }
 
@@ -29,7 +29,7 @@ public class TestRunnerUI {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(testValueProvider.getBaseUiUrl());
+        driver.get(valueProvider.getBaseUiUrl());
         driver.findElement(By.id("details-button")).click();
         driver.findElement(By.id("proceed-link")).click();
     }
