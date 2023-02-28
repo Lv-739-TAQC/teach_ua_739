@@ -1,6 +1,5 @@
 package org.ssu.edu.teachua.ui;
 
-import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
 import org.testng.Assert;
@@ -16,7 +15,7 @@ public class ChallengesTest extends TestRunnerUI {
 
     @Test
     public void verifyThatAdminCannotCreateChallengeWithInvalidDataInDescriptionFieldOnDescriptionTab() throws InterruptedException {
-        AddChallengePage addChallengePage = new HomePage(driver)
+        String errorMessage = new HomePage(driver)
                 .getHeader()
                 .openGuestProfileMenu()
                 .openLogInForm()
@@ -34,8 +33,9 @@ public class ChallengesTest extends TestRunnerUI {
                 .fillTitle(TITLE)
                 .fillDescription(DESCRIPTION)
                 .addPhoto(PHOTO_PATH)
-                .clickSave();
+                .clickSave()
+                .checkErrorMessage();
 
-        Assert.assertEquals(addChallengePage.checkErrorMessage(), "description Помилка. Текст містить недопустимі символи");
+        Assert.assertEquals(errorMessage, "description Помилка. Текст містить недопустимі символи");
     }
 }
