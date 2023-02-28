@@ -18,7 +18,7 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
     private WebElement locationToCheck;
 
     @FindBy(how = How.XPATH, using = ".//main[contains(@class, 'add-club-container')]")
-    private WebElement addLocationContainer;
+    protected WebElement addLocationContainer;
 
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'next-btn')]")
     private WebElement nextStepButton;
@@ -27,8 +27,6 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
         super(driver);
     }
 
-
-    // @Step("Main info: enter the name of the center")
     public AddCenterMainInfoComponent enterCenterName(String centerName) {
         this.centerName.click();
         this.centerName.clear();
@@ -36,19 +34,16 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
         return this;
     }
 
-    // @Step("Main info: press add new location button")
     public AddLocationComponent pressAddLocationButton() {
         addLocationButton.click();
         return new AddLocationComponent(driver, addLocationContainer);
     }
 
-    // @Step("Main info: check a location from the list")
     public AddCenterMainInfoComponent checkLocation() {
         locationToCheck.click();
         return this;
     }
 
-    // @Step("Main info: Press Next step button")
     public AddCenterContactsComponent pressNextButton() {
         this.nextStepButton.click();
         return new AddCenterContactsComponent(driver);

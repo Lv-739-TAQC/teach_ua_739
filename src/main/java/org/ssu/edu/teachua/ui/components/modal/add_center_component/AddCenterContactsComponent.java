@@ -27,7 +27,6 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
         super(driver);
     }
 
-    // @Step("Contacts: add center facebook")
     public AddCenterContactsComponent enterCenterFacebook(String centerFacebook) {
         facebook.click();
         facebook.clear();
@@ -35,7 +34,6 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
         return this;
     }
 
-    // @Step("Contacts: add center site")
     public AddCenterContactsComponent enterCenterSite(String centerSite) {
         site.click();
         site.clear();
@@ -43,7 +41,6 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
         return this;
     }
 
-    // @Step("Contacts: add center e-mail")
     public AddCenterContactsComponent enterCenterMail(String centerMail) {
         mail.click();
         mail.clear();
@@ -51,7 +48,6 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
         return this;
     }
 
-    // @Step("Contacts: add center Skype")
     public AddCenterContactsComponent enterCenterSkype(String centerSkype) {
         skype.click();
         skype.clear();
@@ -59,7 +55,6 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
         return this;
     }
 
-    // @Step("Contacts: add center What'sApp number")
     public AddCenterContactsComponent enterCenterWhatsAppNumber(String centerWhatsApp) {
         whatsApp.click();
         whatsApp.clear();
@@ -67,7 +62,6 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
         return this;
     }
 
-    // @Step("Contacts: add center phone number")
     public AddCenterContactsComponent enterPhone(String contactPhone) {
         phone.click();
         phone.clear();
@@ -75,13 +69,11 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
         return this;
     }
 
-    // @Step("Contacts: Press Next step button")
     public AddCenterDescriptionComponent pressNextButton() {
         this.nextStepButton.click();
         return new AddCenterDescriptionComponent(driver);
     }
 
-    // @Step("Contacts: Press Back button")
     public AddCenterMainInfoComponent pressBackButton() {
         this.backButton.click();
         return new AddCenterMainInfoComponent(driver);
