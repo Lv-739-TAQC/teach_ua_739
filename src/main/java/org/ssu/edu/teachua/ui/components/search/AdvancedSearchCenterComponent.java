@@ -9,6 +9,7 @@ import org.ssu.edu.teachua.ui.base.BaseComponent;
 import org.ssu.edu.teachua.ui.components.card.ClubCardComponent;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdvancedSearchCenterComponent extends BaseComponent {
 
@@ -169,7 +170,7 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     	//Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         sleep(3);
 		List<WebElement> listClubCard = waitForElementsToAppear(driver.findElements(By.className("ant-card-body")));
-		return listClubCard.stream().map(wb -> new ClubCardComponent(driver, wb)).toList();
+		return listClubCard.stream().map(wb -> new ClubCardComponent(driver, wb)).collect(Collectors.toList());
 	}
     
     public void clickButtonPreviousPage() {

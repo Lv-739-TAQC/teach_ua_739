@@ -3,6 +3,8 @@ package org.ssu.edu.teachua.ui;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.ssu.edu.teachua.ui.components.card.ClubCardComponent;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchCenterComponent;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchClubComponent;
@@ -24,11 +26,11 @@ public class Tua103 extends TestRunnerUI{
 		
 		adsc.chooseSortTypeAsc();
 		List<String> listNameClubByNameAscSorting = adsc.getListCardsOnPage().stream()
-																	     .map(ClubCardComponent::getClubTitle).toList();
+																	     .map(ClubCardComponent::getClubTitle).collect(Collectors.toList());
 																	     
 		adsc.chooseSortTypeDesc();
         List<String> listNameClubByNameDescSorting = adsc.getListCardsOnPage().stream()
-			     														  .map(ClubCardComponent::getClubTitle).toList(); 
+			     														  .map(ClubCardComponent::getClubTitle).collect(Collectors.toList());
 			     														  
 		List<String> expectListNameClubByNameAscSorting = expectListNameClubOrCenterCard(listNameClubByNameAscSorting, ascSortNameClub);
 		List<String> expectListNameClubByNameDescSorting = expectListNameClubOrCenterCard(listNameClubByNameDescSorting,descSortNameClub);
@@ -48,11 +50,11 @@ public class Tua103 extends TestRunnerUI{
 		
 		adsc.chooseSortTypeAsc();
 		List<Integer> listRatingClubByRatingAscSorting = adsc.getListCardsOnPage().stream()
-																	  .map(ClubCardComponent::getRating).toList();
+																	  .map(ClubCardComponent::getRating).collect(Collectors.toList());
 		
 		adsc.chooseSortTypeDesc();
 		List<Integer> listRatingClubByRatingDescSorting = adsc.getListCardsOnPage().stream()
-				  													   .map(ClubCardComponent::getRating).toList();
+				  													   .map(ClubCardComponent::getRating).collect(Collectors.toList());
 		
 		List<Integer> expectListRatingClubByRatingAscSorting = expectListRatingClubOrCenterCard(listRatingClubByRatingAscSorting,ascSortRatinClub);
 		List<Integer> expectListRatingByRatingDescSorting = expectListRatingClubOrCenterCard(listRatingClubByRatingDescSorting,descSortRatinClub);
@@ -71,11 +73,11 @@ public class Tua103 extends TestRunnerUI{
 		
 		adsc.chooseSortTypeAsc();
 		List<String> listNameCenterByNameAscSorting = adsc.getListCardsOnPage().stream()
-																	     .map(ClubCardComponent::getClubTitle).toList();
+																	     .map(ClubCardComponent::getClubTitle).collect(Collectors.toList());;
 																	     
 		adsc.chooseSortTypeDesc();
         List<String> listNameCenterByNameDescSorting = adsc.getListCardsOnPage().stream()
-			     														  .map(ClubCardComponent::getClubTitle).toList(); 
+			     														  .map(ClubCardComponent::getClubTitle).collect(Collectors.toList());
 		
 		List<String> expectListNameCenterByNameAscSorting = expectListNameClubOrCenterCard(listNameCenterByNameAscSorting,ascSortNameCenter);
 		List<String> expectListNameCenterByNameDescSorting = expectListNameClubOrCenterCard(listNameCenterByNameDescSorting,descSortNameCenter);
