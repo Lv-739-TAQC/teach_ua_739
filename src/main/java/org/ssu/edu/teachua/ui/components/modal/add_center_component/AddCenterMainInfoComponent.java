@@ -23,6 +23,9 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'next-btn')]")
     private WebElement nextStepButton;
 
+    @FindBy(how = How.XPATH, using = ".//div[contains(@class,'explain-error')]")
+    private WebElement centerNameError;
+
     public AddCenterMainInfoComponent(WebDriver driver) {
         super(driver);
     }
@@ -47,6 +50,10 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
     public AddCenterContactsComponent pressNextButton() {
         this.nextStepButton.click();
         return new AddCenterContactsComponent(driver);
+    }
+
+    public String getCenterNameError() {
+        return waitForElementToAppear(centerNameError).getText();
     }
 
 }
