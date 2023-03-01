@@ -9,6 +9,8 @@ import org.ssu.edu.teachua.ui.base.BasePage;
 import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
 
 public class AddChallengePage extends BasePage {
+    @FindBy(how = How.XPATH, using = "//input[@id='picture']")
+    protected WebElement photoInput;
     @FindBy(how = How.XPATH, using = "//input[@id='sortNumber']")
     private WebElement sortNumber;
     @FindBy(how = How.XPATH, using = "//input[@id='name']")
@@ -17,8 +19,6 @@ public class AddChallengePage extends BasePage {
     private WebElement title;
     @FindBy(how = How.XPATH, using = "//div[contains(@class,'ql-editor')]")
     private WebElement description;
-    @FindBy(how = How.XPATH, using = "//input[@id='picture']")
-    protected WebElement photoInput;
     @FindBy(how = How.XPATH, using = "//span[@class='ant-upload'][@role='button']")
     private WebElement uploadPhoto;
     @FindBy(how = How.XPATH, using = "//div[contains(@class, 'ant-upload-list-item-done')]")
