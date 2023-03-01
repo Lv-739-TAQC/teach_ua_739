@@ -8,6 +8,10 @@ import org.ssu.edu.teachua.ui.base.BasePage;
 
 public class ViewChallengePage extends BasePage {
 
+    @FindBy(how = How.XPATH, using = "//span[@class='title']")
+    private WebElement challengeTitle;
+    @FindBy(how = How.XPATH, using = "//div[@class='challenge-description']")
+    private WebElement challengeDescription;
     @FindBy(how = How.XPATH, using = "//div[@class='help-button']//button[contains(@class,'donate-button')]")
     private WebElement donateButton;
     @FindBy(how = How.XPATH, using = "//div[@class='social-info']//span[@aria-label='facebook']")
@@ -57,6 +61,13 @@ public class ViewChallengePage extends BasePage {
     public ViewTaskPage clickOnTask() {
         taskLink.click();
         return new ViewTaskPage(driver);
+    }
+
+    public WebElement getChallengeTitle(){
+        return challengeTitle;
+    }
+    public WebElement getChallengeDescription(){
+        return challengeDescription;
     }
 
 

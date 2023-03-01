@@ -4,15 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.ssu.edu.teachua.ui.base.BasePage;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.modal.FeedbackComponent;
 import org.ssu.edu.teachua.ui.components.modal.EnrollClubComponent;
 
 public class ViewClubPage extends ViewCenterPage {
 
+    @FindBy(how = How.XPATH, using = "//span[@class='club-name']")
+    private WebElement clubName;
     @FindBy(how = How.XPATH, using = "//div[contains(@class,'modal SignUpForClub')]")
     private WebElement enrollClubNode;
     @FindBy(how = How.XPATH, using = "//div[contains(@class,'comment-modal')]")
@@ -21,7 +19,7 @@ public class ViewClubPage extends ViewCenterPage {
     private WebElement previousImage;
     @FindBy(how = How.XPATH, using = "//div[@id='carousel']/span[@aria-label='right']")
     private WebElement nextImage;
-    @FindBy(how = How.XPATH, using = "//a[@href='https://agclub.com.ua/']")
+    @FindBy(how = How.XPATH, using = "//span[@class='contact-name']/a[@href]")
     private WebElement clubURL;
     @FindBy(how = How.XPATH, using = "//button[@type='button' and contains(@class,'comment-button')]")
     private WebElement feedbackButton;
@@ -43,11 +41,6 @@ public class ViewClubPage extends ViewCenterPage {
         return new EnrollClubComponent(driver, enrollClubNode);
     }
 
-    public ViewClubPage downloadFile() {
-        downloadButton.click();
-        return this;
-    }
-
     public ViewClubPage clickOnNextImage() {
         nextImage.click();
         return this;
@@ -57,9 +50,9 @@ public class ViewClubPage extends ViewCenterPage {
         previousImage.click();
         return this;
     }
-
-    public void clickOnMap() {
-        mapButton.click();
+    public ViewClubPage downloadFile() {
+        downloadButton.click();
+        return this;
     }
 
     public FeedbackComponent clickLeaveAFeedback() {
@@ -84,4 +77,9 @@ public class ViewClubPage extends ViewCenterPage {
     public boolean isSubscribeButtonEnabled() {
         return waitForElementToAppear(subscribeButton).isEnabled();
     }
+
+    public WebElement getClubName() {
+        return clubName;
+    }
+
 }

@@ -17,13 +17,11 @@ public class ViewTaskPage extends BasePage {
         super(driver);
     }
 
-    public ViewTaskPage getTaskName() {
-        taskName.click();
-        return this;
+    public WebElement getTaskName() {
+        return taskName;
     }
 
-    public ViewTaskPage getTaskContent() {
-        taskContent.click();
-        return this;
+    public WebElement getTaskContent() {
+        return taskContent;
     }
 }
