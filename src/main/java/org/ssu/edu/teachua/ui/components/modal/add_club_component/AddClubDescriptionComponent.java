@@ -14,10 +14,10 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
     @FindBy(how = How.XPATH, using = ".//input[@id = 'basic_urlBackground']")
     protected WebElement uploadBackgroundPicture;
 
-    @FindBy(how = How.XPATH, using = ".//div[contains(@class,'ant-upload')]//span[@aria-label='plus']")
+    @FindBy(how = How.XPATH, using = "(.//input[@type='file'])[3]")
     protected WebElement uploadGallery;
 
-    @FindBy(how = How.XPATH, using = ".//div[contains(@class, 'ant-input-textarea')]//textarea")
+    @FindBy(how = How.XPATH, using = ".//textarea[@id='basic_description']")
     protected WebElement descriptionField;
 
     @FindBy(how = How.XPATH, using = ".//span[contains(@class, 'success')]")
