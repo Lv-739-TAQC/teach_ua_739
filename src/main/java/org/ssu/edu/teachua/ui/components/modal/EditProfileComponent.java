@@ -8,8 +8,6 @@ import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BaseComponent;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.attributeContains;
-
 
 public class EditProfileComponent extends BaseComponent {
 
@@ -139,9 +137,11 @@ public class EditProfileComponent extends BaseComponent {
     public String getBorderColorForCurrentPasswordField() {
         return borderColorCurrentPasswordField.getCssValue("border-color");
     }
+
     public String getBorderColorForNewPasswordField() {
         return borderColorNewPasswordField.getCssValue("border-color");
     }
+
     public String getBorderColorForConfirmPasswordField() {
         return borderColorConfirmPasswordField.getCssValue("border-color");
     }

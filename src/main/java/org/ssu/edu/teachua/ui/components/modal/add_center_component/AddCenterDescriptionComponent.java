@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
-    @FindBy(how = How.XPATH, using = ".//span[@class='add-club-upload']")
+    @FindBy(how = How.XPATH, using = ".//input[@id='basic_urlLogo']")
     private WebElement centerLogo;
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_urlBackground']")
     private WebElement centerPhoto;
@@ -22,13 +22,13 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
     }
 
     public AddCenterDescriptionComponent addCenterLogo(String centerLogoPath) {
+        sleep(1);
         centerLogo.sendKeys(centerLogoPath);
+        sleep(5);
         return this;
     }
 
     public AddCenterDescriptionComponent addCenterPhoto(String photo) {
-        centerPhoto.click();
-        centerPhoto.clear();
         centerPhoto.sendKeys(photo);
         return this;
     }

@@ -8,10 +8,9 @@ import org.ssu.edu.teachua.ui.components.header.HeaderComponent;
 
 public abstract class BasePage extends Base {
 
+    protected HeaderComponent header;
     @FindBy(how = How.XPATH, using = "//body")
     private WebElement headerNode;
-
-    protected HeaderComponent header;
 
     public BasePage(WebDriver driver) {
         super(driver);

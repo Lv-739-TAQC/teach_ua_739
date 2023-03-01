@@ -1,12 +1,10 @@
 package org.ssu.edu.teachua.ui.components.modal.add_center_component;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import org.ssu.edu.teachua.ui.base.BaseComponent;
 
 public abstract class BaseAddCenterComponent extends BaseComponent {
@@ -23,14 +21,18 @@ public abstract class BaseAddCenterComponent extends BaseComponent {
     protected WebElement addCenterContainer;
     @FindBy(how = How.XPATH, using = ".//div[contains(@class, 'ant-modal addCenter')]")
     protected WebElement root;
-
+    @FindBy(how = How.XPATH, using = "(.//div[@class='side-mobile']//span[contains(@class,'ant-steps-icon') and text()=1]//parent::div")
+    protected WebElement firstStep;
+    @FindBy(how = How.XPATH, using = "(.//div[@class='side-mobile']//span[contains(@class,'ant-steps-icon') and text()=2]//parent::div")
+    protected WebElement secondStep;
+    @FindBy(how = How.XPATH, using = "(.//div[@class='side-mobile']//span[contains(@class,'ant-steps-icon') and text()=3]//parent::div")
+    protected WebElement thirdStep;
+    @FindBy(how = How.XPATH, using = "(.//div[@class='side-mobile']//span[contains(@class,'ant-steps-icon') and text()=4]//parent::div")
+    protected WebElement forthStep;
 
     public BaseAddCenterComponent(WebDriver driver) {
         super(driver);
-        componentRoot = driver.findElement(By.xpath(".//div[contains(@class, 'ant-modal addCenter')]"));
-        PageFactory.initElements(new DefaultElementLocatorFactory(componentRoot), this);
     }
-
 
     public WebElement getMainInfo() {
         return mainInfo;
@@ -48,4 +50,27 @@ public abstract class BaseAddCenterComponent extends BaseComponent {
         return clubs;
     }
 
+    public String getFirstStepColor() {
+        String colorCode = firstStep.getCssValue("background-color");
+        String hexacolor = Color.fromString(colorCode).asHex();
+        return hexacolor;
+    }
+
+    public String getSecondStepColor() {
+        String colorCode = secondStep.getCssValue("background-color");
+        String hexacolor = Color.fromString(colorCode).asHex();
+        return hexacolor;
+    }
+
+    public String getThirdStepColor() {
+        String colorCode = thirdStep.getCssValue("background-color");
+        String hexacolor = Color.fromString(colorCode).asHex();
+        return hexacolor;
+    }
+
+    public String getForthStepColor() {
+        String colorCode = forthStep.getCssValue("background-color");
+        String hexacolor = Color.fromString(colorCode).asHex();
+        return hexacolor;
+    }
 }

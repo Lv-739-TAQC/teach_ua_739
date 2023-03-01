@@ -27,14 +27,14 @@ public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
         driver.findElement(By.xpath(String.format(".//input[@value='%s']", category))).click();
     }
 
+    public String getAge() {
+        return ageField.getAttribute("value");
+    }
+
     public AdvancedSearchClubComponent setAge(int age) {
         waitForElementToBeClickable(ageField).click();
         ageField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         ageField.sendKeys(Integer.toString(age));
         return this;
     }
-
-    public String getAge() {
-       return ageField.getAttribute("value");
-   }
 }
