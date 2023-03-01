@@ -40,9 +40,7 @@ public class AddChallengePage extends BasePage {
         super(driver);
     }
 
-    public WebElement getSortNumber() {
-        return sortNumber;
-    }
+    public WebElement getSortNumber() {return sortNumber;}
 
     public WebElement getName() {
         return name;
@@ -186,21 +184,23 @@ public class AddChallengePage extends BasePage {
         return description.getCssValue("border-color");
     }
 
-    public String setSortNumber() {
-        return sortNumber.getAttribute("value");
-    }
 
     public boolean isEmptyString(String str) {
         return str == null || str.isEmpty();
     }
-    public String setName() {
+
+    public String getValueSortNumber() {
+        return sortNumber.getAttribute("value");
+    }
+
+    public String getValueName() {
         return name.getAttribute("value");
     }
 
-    public String setTitle() {
+    public String getValueTitle() {
         return title.getAttribute("value");
     }
 
-    public String setDescription() {return description.getAttribute("value");}
+    public String getValueDescription() {return description.getAttribute("value");}
 
 }

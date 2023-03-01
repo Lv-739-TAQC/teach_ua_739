@@ -35,10 +35,10 @@ public class TUA157  extends TestRunnerUI {
                 .clickChallenges()
                 .addChallenge();
 
-        softAssert.assertTrue(addChallengePage.isEmptyString(addChallengePage.setSortNumber()));
-        softAssert.assertTrue(addChallengePage.isEmptyString(addChallengePage.setName()));
-        softAssert.assertTrue(addChallengePage.isEmptyString(addChallengePage.setTitle()));
-        softAssert.assertTrue(addChallengePage.isEmptyString(addChallengePage.setDescription()));
+        softAssert.assertTrue(addChallengePage.isEmptyString(addChallengePage.getValueSortNumber()));
+        softAssert.assertTrue(addChallengePage.isEmptyString(addChallengePage.getValueName()));
+        softAssert.assertTrue(addChallengePage.isEmptyString(addChallengePage.getValueTitle()));
+        softAssert.assertTrue(addChallengePage.isEmptyString(addChallengePage.getValueDescription()));
 
         String actualError = addChallengePage.waitForErrorMessageToDisappear()
                 .fillSortNumber(SORT_NUMBER)
