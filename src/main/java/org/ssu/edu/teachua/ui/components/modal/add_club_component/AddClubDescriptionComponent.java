@@ -51,6 +51,7 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
     public AddClubDescriptionComponent enterDescription(String description) {
         waitForElementToBeClickable(descriptionField);
         this.descriptionField.click();
+        this.descriptionField.clear();
         this.descriptionField.sendKeys(description);
         return this;
     }
