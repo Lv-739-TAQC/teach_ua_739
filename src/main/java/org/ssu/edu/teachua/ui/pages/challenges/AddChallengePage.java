@@ -185,4 +185,22 @@ public class AddChallengePage extends BasePage {
     public String getBorderColorForDescriptionField() {
         return description.getCssValue("border-color");
     }
+
+    public String setSortNumber() {
+        return sortNumber.getAttribute("value");
+    }
+
+    public boolean isEmptyString(String str) {
+        return str == null || str.isEmpty();
+    }
+    public String setName() {
+        return name.getAttribute("value");
+    }
+
+    public String setTitle() {
+        return title.getAttribute("value");
+    }
+
+    public String setDescription() {return description.getAttribute("value");}
+
 }
