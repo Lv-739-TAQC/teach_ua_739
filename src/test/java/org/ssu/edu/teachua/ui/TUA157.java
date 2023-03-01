@@ -2,13 +2,11 @@ package org.ssu.edu.teachua.ui;
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
+
 
 
 public class TUA157  extends TestRunnerUI {
@@ -16,7 +14,7 @@ public class TUA157  extends TestRunnerUI {
     private static final String SORT_NUMBER = "";
     private static final String NAME = "Челендж_99";
     private static final String TITLE = "99-й найкращий";
-    private static final String DESCRIPTION = "Який-небудь опис";
+    private static final String DESCRIPTION = "Який-небудь опис челенджу, челенджу челенджу челенджу челенджу";
     private static final String ERROR_MSG = "Поле порядковий номер не має бути пустим";
 
     @Test
