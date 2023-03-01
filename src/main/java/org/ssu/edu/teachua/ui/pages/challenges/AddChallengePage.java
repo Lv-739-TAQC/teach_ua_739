@@ -33,6 +33,8 @@ public class AddChallengePage extends BasePage {
     private WebElement challengesBtn;
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-btn ant-btn-default flooded-button'])[2]")
     private WebElement viewChallengeBtn;
+    @FindBy(how = How.XPATH, using = "//div[@class='ant-message-custom-content ant-message-success']")
+    private WebElement successMessage;
     @FindBy(how = How.XPATH, using = "//*[@class='ant-message']")
     private WebElement errorMessage;
 
@@ -169,19 +171,27 @@ public class AddChallengePage extends BasePage {
         return new ViewChallengePage(driver);
     }
 
+    public String checkSuccessMessage() {
+        return waitForElementToAppear(successMessage).getText();
+    }
+
     public String checkErrorMessage() {
         return waitForElementToAppear(getErrorMessage()).getText();
     }
+
     public AddChallengePage waitForErrorMessageToDisappear() {
         waitForElementToDisappear(errorMessage);
         return this;
     }
+
     public String getBorderColorForNameField() {
         return name.getCssValue("border-color");
     }
+
     public String getBorderColorForTitleField() {
         return title.getCssValue("border-color");
     }
+
     public String getBorderColorForDescriptionField() {
         return description.getCssValue("border-color");
     }

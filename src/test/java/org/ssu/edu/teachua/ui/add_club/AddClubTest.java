@@ -1,4 +1,4 @@
-package org.ssu.edu.teachua.ui.add_club_component;
+package org.ssu.edu.teachua.ui.add_club;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.providers.AddClubComponentProvider;
