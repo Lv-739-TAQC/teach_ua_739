@@ -39,12 +39,12 @@ public class ViewCenterPage extends BasePage {
         mapButton.click();
     }
 
-    public WebElement getCenterName() {
-        return centerName;
+    public String getCenterName() {
+        return centerName.getText();
     }
 
-    public WebElement getDescription() {
-        return description;
+    public String getDescription() {
+        return description.getText();
     }
 
 }

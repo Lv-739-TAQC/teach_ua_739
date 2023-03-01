@@ -10,7 +10,7 @@ public class ViewChallengePage extends BasePage {
 
     @FindBy(how = How.XPATH, using = "//span[@class='title']")
     private WebElement challengeTitle;
-    @FindBy(how = How.XPATH, using = "//div[@class='challenge-description']")
+    @FindBy(how = How.XPATH, using = "//div[@class='challenge-description']/p")
     private WebElement challengeDescription;
     @FindBy(how = How.XPATH, using = "//div[@class='help-button']//button[contains(@class,'donate-button')]")
     private WebElement donateButton;
@@ -63,11 +63,11 @@ public class ViewChallengePage extends BasePage {
         return new ViewTaskPage(driver);
     }
 
-    public WebElement getChallengeTitle(){
-        return challengeTitle;
+    public String getChallengeTitle(){
+        return challengeTitle.getText();
     }
-    public WebElement getChallengeDescription(){
-        return challengeDescription;
+    public String getChallengeDescription(){
+        return challengeDescription.getText();
     }
 
 

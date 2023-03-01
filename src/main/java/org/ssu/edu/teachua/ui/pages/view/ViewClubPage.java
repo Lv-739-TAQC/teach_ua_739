@@ -78,8 +78,8 @@ public class ViewClubPage extends ViewCenterPage {
         return waitForElementToAppear(subscribeButton).isEnabled();
     }
 
-    public WebElement getClubName() {
-        return clubName;
+    public String getClubName() {
+        return clubName.getText();
     }
 
 }
