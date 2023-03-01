@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.Select;
 import org.ssu.edu.teachua.ui.base.BaseComponent;
 import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 
@@ -30,7 +29,7 @@ public class AddLocationComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = ".//*[@type='submit' and contains(@class, 'flooded-button')]")
     private WebElement addLocationToListButton;
 
-    private String xPathSelectOption = "//div[@class='ant-select-item ant-select-item-option' and @title='%s']";
+    private final String xPathSelectOption = "//div[@class='ant-select-item ant-select-item-option' and @title='%s']";
 
     public AddLocationComponent(WebDriver driver, WebElement node) {
         super(driver, node);

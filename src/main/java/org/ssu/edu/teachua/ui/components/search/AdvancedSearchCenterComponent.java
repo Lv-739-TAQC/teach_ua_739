@@ -32,7 +32,7 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = "//span[contains(text(),'за алфавітом')]")
     private WebElement sortByName;
-    
+
     @FindBy(how = How.XPATH, using = "//span[contains(text(),'за рейтингом')]")
     private WebElement sortByRating;
 
@@ -47,19 +47,19 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = "//input[@value='BLOCK']")
     private WebElement showTypeBlock;
-    
+
     @FindBy(how = How.XPATH, using = "//li[@title='Previous Page']")
     private WebElement buttonPreviousPage;
 
     @FindBy(how = How.XPATH, using = "//li[@title='Next Page']")
     private WebElement buttonNextPage;
-    
+
     @FindBy(how = How.XPATH, using = ".//button[@class='ant-btn ant-btn-default mobile-button use-button']")
     private WebElement applyButton;
 
     @FindBy(how = How.XPATH, using = ".//button[@class='ant-btn ant-btn-default mobile-button clear-button']")
     private WebElement clearButton;
-    
+
     @FindBy(how = How.XPATH, using = "//div[text()='Розширений пошук']/parent::div")
     private List<WebElement> advancedSearchModal;
 
@@ -106,8 +106,9 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
         driver.findElement(By.xpath(String.format(XPATH, station))).click();
         return this;
     }
+
     public boolean isAdvancedSearchModalDisplayed() {
-    return advancedSearchModal.size() > 0;
+        return advancedSearchModal.size() > 0;
     }
 
     public boolean isStationParameterActivated() {
@@ -165,21 +166,22 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     public void apply() {
         applyButton.click();
     }
-    
-    public List<ClubCardComponent> getListCardsOnPage(){
-    	//Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
+
+    public List<ClubCardComponent> getListCardsOnPage() {
+        //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         sleep(3);
-		List<WebElement> listClubCard = waitForElementsToAppear(driver.findElements(By.className("ant-card-body")));
-		return listClubCard.stream().map(wb -> new ClubCardComponent(driver, wb)).collect(Collectors.toList());
-	}
-    
+        List<WebElement> listClubCard = waitForElementsToAppear(driver.findElements(By.className("ant-card-body")));
+        return listClubCard.stream().map(wb -> new ClubCardComponent(driver, wb)).collect(Collectors.toList());
+    }
+
     public void clickButtonPreviousPage() {
-    	buttonPreviousPage.click();
+        buttonPreviousPage.click();
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         sleep(3);
     }
+
     public void clickButtonNextPage() {
-    	buttonNextPage.click();
+        buttonNextPage.click();
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         sleep(3);
     }

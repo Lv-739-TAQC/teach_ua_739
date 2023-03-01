@@ -9,12 +9,12 @@ import org.ssu.edu.teachua.ui.components.modal.AddLocationComponent;
 
 public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
 
+    @FindBy(how = How.XPATH, using = "//div[@class='ant-modal modal-add-club']")
+    protected WebElement addLocationContainer;
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_name']")
     private WebElement centerName;
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'add-location-btn')]")
     private WebElement addLocationButton;
-    @FindBy(how = How.XPATH, using = "//div[@class='ant-modal modal-add-club']")
-    protected WebElement addLocationContainer;
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'next-btn')]")
     private WebElement nextStepButton;
 

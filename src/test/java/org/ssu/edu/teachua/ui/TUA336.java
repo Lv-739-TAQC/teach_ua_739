@@ -1,4 +1,5 @@
 package org.ssu.edu.teachua.ui;
+
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
@@ -10,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class TUA336  extends TestRunnerUI {
+public class TUA336 extends TestRunnerUI {
     private static final List<String> NAME = Arrays.asList(
             "писатель эссеист",
             "",
