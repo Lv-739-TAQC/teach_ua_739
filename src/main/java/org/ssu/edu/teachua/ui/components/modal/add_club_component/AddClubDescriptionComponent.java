@@ -8,10 +8,10 @@ import org.ssu.edu.teachua.ui.components.modal.BaseClubComponent;
 
 public class AddClubDescriptionComponent extends BaseClubComponent {
 
-    @FindBy(how = How.XPATH, using = "(.//span[@class='add-club-upload'])[1]")
+    @FindBy(how = How.XPATH, using = ".//input[@id = 'basic_urlLogo']")
     protected WebElement uploadLogo;
 
-    @FindBy(how = How.XPATH, using = "(.//span[@class='add-club-upload'])[2]")
+    @FindBy(how = How.XPATH, using = ".//input[@id = 'basic_urlBackground']")
     protected WebElement uploadBackgroundPicture;
 
     @FindBy(how = How.XPATH, using = ".//div[contains(@class,'ant-upload')]//span[@aria-label='plus']")
