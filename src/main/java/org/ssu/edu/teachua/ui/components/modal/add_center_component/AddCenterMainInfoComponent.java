@@ -47,7 +47,7 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
 
     public AddCenterMainInfoComponent checkLocation(int numberLocation) {
         WebElement checkBoxLocation = driver.findElement(By.xpath(
-                String.format(".//div[@id='basic_locations']//div[@class='checkbox-item'][%d]", numberLocation)));
+                String.format(".//div[@id='basic_locations']//div[@class='checkbox-item'][%d]/label", numberLocation)));
         checkBoxLocation.click();
         sleep(1);
         return this;
