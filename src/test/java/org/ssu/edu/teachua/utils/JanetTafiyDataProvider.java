@@ -4,7 +4,7 @@ import org.testng.annotations.DataProvider;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-Del
+
 public class JanetTafiyDataProvider {
 
     @DataProvider(name = "registrationData")
