@@ -166,6 +166,7 @@ public class EditProfileComponent extends BaseComponent {
     }
 
     public String getAlertMessageConfirmPassword() {
+    	sleep(2);
         return waitForElementToAppear(alertMessageConfirmPassword).getText();
     }
 
