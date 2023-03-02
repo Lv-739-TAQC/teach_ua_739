@@ -8,16 +8,16 @@ import org.ssu.edu.teachua.ui.components.modal.BaseClubComponent;
 
 public class AddClubDescriptionComponent extends BaseClubComponent {
 
-    @FindBy(how = How.XPATH, using = "(.//span[@class='add-club-upload'])[1]")
+    @FindBy(how = How.XPATH, using = ".//input[@id = 'basic_urlLogo']")
     protected WebElement uploadLogo;
 
-    @FindBy(how = How.XPATH, using = "(.//span[@class='add-club-upload'])[2]")
+    @FindBy(how = How.XPATH, using = ".//input[@id = 'basic_urlBackground']")
     protected WebElement uploadBackgroundPicture;
 
-    @FindBy(how = How.XPATH, using = ".//div[contains(@class,'ant-upload')]//span[@aria-label='plus']")
+    @FindBy(how = How.XPATH, using = "(.//input[@type='file'])[3]")
     protected WebElement uploadGallery;
 
-    @FindBy(how = How.XPATH, using = ".//div[contains(@class, 'ant-input-textarea')]//textarea")
+    @FindBy(how = How.XPATH, using = ".//textarea[@id='basic_description']")
     protected WebElement descriptionField;
 
     @FindBy(how = How.XPATH, using = ".//span[contains(@class, 'success')]")
@@ -51,7 +51,9 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
     public AddClubDescriptionComponent enterDescription(String description) {
         waitForElementToBeClickable(descriptionField);
         this.descriptionField.click();
+        this.descriptionField.clear();
         this.descriptionField.sendKeys(description);
+        sleep(2);
         return this;
     }
 

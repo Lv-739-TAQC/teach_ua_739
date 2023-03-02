@@ -3,6 +3,7 @@ package org.ssu.edu.teachua.ui.components.modal;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -31,6 +32,12 @@ public abstract class BaseClubComponent extends BaseComponent {
     private WebElement clubContactsComponent;
     @FindBy(how = How.XPATH, using = "(.//div[contains(@class, 'item-active')]//div[text()[contains(., 'Опис')]])[1]")
     private WebElement clubDescriptionComponent;
+    @FindBy(how = How.XPATH, using = "(.//div[contains(@class,'ant-steps-vertical')]//span)[1]")
+    private WebElement firstStep;
+    @FindBy(how = How.XPATH, using = "(.//div[contains(@class,'ant-steps-vertical')]//span)[2]")
+    private WebElement secondStep;
+    @FindBy(how = How.XPATH, using = "(.//div[contains(@class,'ant-steps-vertical')]//span)[3]")
+    private WebElement thirdStep;
 
 
     public BaseClubComponent(WebDriver driver) {
@@ -40,18 +47,36 @@ public abstract class BaseClubComponent extends BaseComponent {
         PageFactory.initElements(new DefaultElementLocatorFactory(componentRoot), this);
     }
 
-    protected WebElement getClubMainInfoComponent() {
+    public WebElement getClubMainInfoComponent() {
         waitForElementToAppear(clubMainInfoComponent);
         return clubMainInfoComponent;
     }
 
-    protected WebElement getClubContactsComponent() {
+    public WebElement getClubContactsComponent() {
         waitForElementToAppear(clubContactsComponent);
         return clubContactsComponent;
     }
 
-    protected WebElement getClubDescriptionComponent() {
+    public WebElement getClubDescriptionComponent() {
         waitForElementToAppear(clubDescriptionComponent);
         return clubDescriptionComponent;
+    }
+
+    public String getFirstStepColor() {
+        String colorCode = firstStep.getCssValue("background-color");
+        String hexacolor = Color.fromString(colorCode).asHex();
+        return hexacolor;
+    }
+
+    public String getSecondStepColor() {
+        String colorCode = secondStep.getCssValue("background-color");
+        String hexacolor = Color.fromString(colorCode).asHex();
+        return hexacolor;
+    }
+
+    public String getThirdStepColor() {
+        String colorCode = thirdStep.getCssValue("background-color");
+        String hexacolor = Color.fromString(colorCode).asHex();
+        return hexacolor;
     }
 }
