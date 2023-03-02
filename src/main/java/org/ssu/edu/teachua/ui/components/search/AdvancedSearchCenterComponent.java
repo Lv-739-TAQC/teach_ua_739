@@ -197,7 +197,7 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
         sleep(3);
     }
 
-    public boolean isClubRadioButtonActivated() {
+    public boolean isClubRadioButtonSelected() {
         return clubRadio.isSelected();
     }
 

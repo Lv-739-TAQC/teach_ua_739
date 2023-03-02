@@ -15,7 +15,7 @@ public class TUA509 extends TestRunnerUI {
         AdvancedSearchCenterComponent advancedSearchCenterComponent = new HomePage(driver)
                 .clickAdvancedSearchIcon();
 
-        boolean isClubRadioButtonEnabled = advancedSearchCenterComponent.isClubRadioButtonActivated();
+        boolean isClubRadioButtonEnabled = advancedSearchCenterComponent.isClubRadioButtonSelected();
         softAssert.assertTrue(isClubRadioButtonEnabled, "Club radio button should be activated");
 
         boolean isCityDropdownEnabled = advancedSearchCenterComponent.isCityParameterActivated();
