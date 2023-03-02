@@ -4,8 +4,7 @@ import org.testng.annotations.DataProvider;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
-
+Del
 public class JanetTafiyDataProvider {
 
     @DataProvider(name = "registrationData")
@@ -24,12 +23,7 @@ public class JanetTafiyDataProvider {
                 {sortNumber, "heart.png", "Example23_Приклад", "Example:78Приклад", "ExamplePOIUQ*$%91!;?*(0_,/ЇЄПриклад~+=-"}
         };
     }
-    @DataProvider(name = "newsIndexProvider")
-    public static Object[][] newsIndexProvider() {
-        Random rand = new Random();
-        int randomIndex = rand.nextInt(4);
-        return new Object[][] {{randomIndex}};
-    }
+
 
 
 }
