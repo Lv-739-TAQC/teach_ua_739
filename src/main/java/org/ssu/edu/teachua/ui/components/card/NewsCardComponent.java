@@ -14,9 +14,12 @@ public class NewsCardComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = ".//div[@id='newsTitle']")
     private WebElement newsTitle;
+    @FindBy(how = How.XPATH, using = ".//div[@id='newsImage']")
+    private WebElement newsImage;
 
     @FindBy(how = How.XPATH, using = ".//span[@aria-label='arrow-right']")
     private WebElement detailsButton;
+
 
     public NewsCardComponent(WebDriver driver, WebElement node) {
         super(driver, node);
@@ -32,6 +35,18 @@ public class NewsCardComponent extends BaseComponent {
 
     public ViewNewsPage clickDetailsButton() {
         waitForElementToBeClickable(detailsButton).click();
+        return new ViewNewsPage(driver);
+    }
+    public ViewNewsPage clickTitle(){
+        newsTitle.click();
+        return new ViewNewsPage(driver);
+    }
+    public ViewNewsPage clickDate(){
+        newsDate.click();
+        return new ViewNewsPage(driver);
+    }
+    public ViewNewsPage clickImage(){
+        newsImage.click();
         return new ViewNewsPage(driver);
     }
 }
