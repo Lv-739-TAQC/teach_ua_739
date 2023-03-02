@@ -6,6 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BaseComponent;
+import org.ssu.edu.teachua.ui.components.card.ClubCardComponent;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdvancedSearchCenterComponent extends BaseComponent {
 
@@ -26,23 +30,29 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_stationName']")
     private WebElement stationSelector;
 
-    @FindBy(how = How.XPATH, using = ".//span[@class='control-sort-option'][1]")
+    @FindBy(how = How.XPATH, using = "//span[contains(text(),'за алфавітом')]")
     private WebElement sortByName;
 
-    @FindBy(how = How.XPATH, using = ".//span[@class='control-sort-option'][2]")
+    @FindBy(how = How.XPATH, using = "//span[contains(text(),'за рейтингом')]")
     private WebElement sortByRating;
 
-    @FindBy(how = How.XPATH, using = ".//span[@aria-label='arrow-down']")
+    @FindBy(how = How.XPATH, using = "//span[contains(@aria-label, 'arrow-up')]")
     private WebElement sortTypeAsc;
 
-    @FindBy(how = How.XPATH, using = ".//span[@aria-label='arrow-up']")
-    private WebElement sortTypeDes;
+    @FindBy(how = How.XPATH, using = "//span[contains(@aria-label, 'arrow-down')]")
+    private WebElement sortTypeDesc;
 
-    @FindBy(how = How.XPATH, using = ".//input[@value='LIST']")
+    @FindBy(how = How.XPATH, using = "//input[@value='LIST']")
     private WebElement showTypeList;
 
-    @FindBy(how = How.XPATH, using = ".//input[@value='BLOCK']")
+    @FindBy(how = How.XPATH, using = "//input[@value='BLOCK']")
     private WebElement showTypeBlock;
+
+    @FindBy(how = How.XPATH, using = "//li[@title='Previous Page']")
+    private WebElement buttonPreviousPage;
+
+    @FindBy(how = How.XPATH, using = "//li[@title='Next Page']")
+    private WebElement buttonNextPage;
 
     @FindBy(how = How.XPATH, using = ".//button[@class='ant-btn ant-btn-default mobile-button use-button']")
     private WebElement applyButton;
@@ -50,18 +60,25 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = ".//button[@class='ant-btn ant-btn-default mobile-button clear-button']")
     private WebElement clearButton;
 
+    @FindBy(how = How.XPATH, using = "//div[text()='Розширений пошук']/parent::div")
+    private List<WebElement> advancedSearchModal;
+
     public AdvancedSearchCenterComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }
 
     public AdvancedSearchClubComponent chooseClub() {
         clubRadio.click();
-        return new AdvancedSearchClubComponent(driver, clubRadio);
+        //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
+        //sleep(3);
+        return new AdvancedSearchClubComponent(driver, componentRoot);
     }
 
     public AdvancedSearchCenterComponent chooseCenter() {
         centerRadio.click();
-        return new AdvancedSearchCenterComponent(driver, centerRadio);
+        //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
+        //sleep(3);
+        return new AdvancedSearchCenterComponent(driver, componentRoot);
     }
 
     public AdvancedSearchCenterComponent selectCity(String city) {
@@ -70,10 +87,18 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
         return this;
     }
 
+    public boolean isCityParameterActivated() {
+        return waitForElementToAppear(citySelector).isDisplayed();
+    }
+
     public AdvancedSearchCenterComponent selectDistrict(String district) {
         districtSelector.click();
         driver.findElement(By.xpath(String.format(XPATH, district))).click();
         return this;
+    }
+
+    public boolean isDistrictParameterActivated() {
+        return waitForElementToAppear(districtSelector).isDisplayed();
     }
 
     public AdvancedSearchCenterComponent selectStation(String station) {
@@ -82,20 +107,48 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
         return this;
     }
 
+    public boolean isAdvancedSearchModalDisplayed() {
+        return advancedSearchModal.size() > 0;
+    }
+
+    public boolean isStationParameterActivated() {
+        return waitForElementToAppear(stationSelector).isDisplayed();
+    }
+
+    public boolean isOnlineParameterDeactivated() {
+        return driver.findElements(By.xpath(".//div[@id='basic_isOnline']")).size() == 0;
+    }
+
+    public boolean isCategoriesParameterDeactivated() {
+        return driver.findElements(By.xpath(".//div[@id='basic_categoriesName']")).size() == 0;
+    }
+
+    public boolean isChildAgeParameterDeactivated() {
+        return driver.findElements(By.xpath(".//span[@id='basic_age']")).size() == 0;
+    }
+
     public void chooseSortByName() {
         sortByName.click();
+        //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
+        sleep(3);
     }
 
     public void chooseSortByRating() {
         sortByRating.click();
+        //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
+        sleep(3);
     }
 
     public void chooseSortTypeAsc() {
         sortTypeAsc.click();
+        //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
+        sleep(3);
     }
 
-    public void chooseSortTypeDes() {
-        sortTypeDes.click();
+    public void chooseSortTypeDesc() {
+        sortTypeDesc.click();
+        //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
+        sleep(3);
     }
 
     public void chooseShowTypeList() {
@@ -112,5 +165,24 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
 
     public void apply() {
         applyButton.click();
+    }
+
+    public List<ClubCardComponent> getListCardsOnPage() {
+        //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
+        sleep(3);
+        List<WebElement> listClubCard = waitForElementsToAppear(driver.findElements(By.className("ant-card-body")));
+        return listClubCard.stream().map(wb -> new ClubCardComponent(driver, wb)).collect(Collectors.toList());
+    }
+
+    public void clickButtonPreviousPage() {
+        buttonPreviousPage.click();
+        //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
+        sleep(3);
+    }
+
+    public void clickButtonNextPage() {
+        buttonNextPage.click();
+        //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
+        sleep(3);
     }
 }

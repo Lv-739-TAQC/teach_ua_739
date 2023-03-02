@@ -15,6 +15,9 @@ public class ViewNewsPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//div[@id='major-title']")
     private WebElement newsTitle;
 
+    @FindBy(how = How.XPATH, using = "//button[contains(@class, 'donate-button')]")
+    private WebElement donateButton;
+
     @FindBy(how = How.XPATH, using = "//div[@id='date']")
     private WebElement newsDate;
 
@@ -41,6 +44,10 @@ public class ViewNewsPage extends BasePage {
 
     public int getCountAllOtherNews() {
         return getCardsWithOtherNews().size();
+    }
+
+    public boolean isDonateButtonEnabled() {
+        return waitForElementToAppear(donateButton).isEnabled();
     }
 
     public String getNewsTitle() {

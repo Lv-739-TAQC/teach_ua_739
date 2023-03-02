@@ -1,20 +1,21 @@
-package org.ssu.edu.teachua.ui.components.modal.add_center_component;
+package org.ssu.edu.teachua.ui.components.modal.edit_center_component;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterContactsComponent;
 
-public class AddCenterContactsComponent extends BaseAddCenterComponent {
-    @FindBy(how = How.XPATH, using = ".//input[@id='contacts_contactFacebook']")
+public class EditCenterContactsComponent extends AddCenterContactsComponent {
+    @FindBy(how = How.XPATH, using = ".//input[@name='Facebook']")
     private WebElement facebook;
-    @FindBy(how = How.XPATH, using = ".//input[@id='contacts_contactContact']")
+    @FindBy(how = How.XPATH, using = ".//input[@name='Contact']")
     private WebElement site;
     @FindBy(how = How.XPATH, using = ".//input[@id='contacts_contactПошта']")
     private WebElement mail;
-    @FindBy(how = How.XPATH, using = ".//input[@id='contacts_contactSkype']")
+    @FindBy(how = How.XPATH, using = ".//input[@name='Skype']")
     private WebElement skype;
-    @FindBy(how = How.XPATH, using = ".//input[@id='contacts_contactWhatsApp']")
+    @FindBy(how = How.XPATH, using = ".//input[@name='WhatsApp']")
     private WebElement whatsApp;
     @FindBy(how = How.XPATH, using = ".//input[@id='contacts_contactТелефон']")
     private WebElement phone;
@@ -23,60 +24,60 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'prev-btn')]")
     private WebElement backButton;
 
-    public AddCenterContactsComponent(WebDriver driver) {
+    public EditCenterContactsComponent(WebDriver driver) {
         super(driver);
     }
 
-    public AddCenterContactsComponent enterCenterFacebook(String centerFacebook) {
+    public EditCenterContactsComponent enterCenterFacebook(String centerFacebook) {
         facebook.click();
         facebook.clear();
         facebook.sendKeys(centerFacebook);
         return this;
     }
 
-    public AddCenterContactsComponent enterCenterSite(String centerSite) {
+    public EditCenterContactsComponent enterCenterSite(String centerSite) {
         site.click();
         site.clear();
         site.sendKeys(centerSite);
         return this;
     }
 
-    public AddCenterContactsComponent enterCenterMail(String centerMail) {
+    public EditCenterContactsComponent enterCenterMail(String centerMail) {
         mail.click();
         mail.clear();
         mail.sendKeys(centerMail);
         return this;
     }
 
-    public AddCenterContactsComponent enterCenterSkype(String centerSkype) {
+    public EditCenterContactsComponent enterCenterSkype(String centerSkype) {
         skype.click();
         skype.clear();
         skype.sendKeys(centerSkype);
         return this;
     }
 
-    public AddCenterContactsComponent enterCenterWhatsAppNumber(String centerWhatsApp) {
+    public EditCenterContactsComponent enterCenterWhatsAppNumber(String centerWhatsApp) {
         whatsApp.click();
         whatsApp.clear();
         whatsApp.sendKeys(centerWhatsApp);
         return this;
     }
 
-    public AddCenterContactsComponent enterPhone(String contactPhone) {
+    public EditCenterContactsComponent enterPhone(String contactPhone) {
         phone.click();
         phone.clear();
         phone.sendKeys(contactPhone);
         return this;
     }
 
-    public AddCenterDescriptionComponent pressNextButton() {
+    public EditCenterDescriptionComponent pressNextButton() {
         this.nextStepButton.click();
-        return new AddCenterDescriptionComponent(driver);
+        return new EditCenterDescriptionComponent(driver);
     }
 
-    public AddCenterMainInfoComponent pressBackButton() {
+    public EditCenterMainInfoComponent pressBackButton() {
         this.backButton.click();
-        return new AddCenterMainInfoComponent(driver);
+        return new EditCenterMainInfoComponent(driver);
     }
 
 }

@@ -1,14 +1,17 @@
 package org.ssu.edu.teachua.ui.components.modal;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.Select;
 import org.ssu.edu.teachua.ui.base.BaseComponent;
 import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 
 public class AddLocationComponent extends BaseComponent {
+
+    @FindBy(how = How.XPATH, using = "(//button[@class='ant-modal-close'])[3]")
+    private WebElement closeAddLocationWindowButton;
     @FindBy(how = How.XPATH, using = ".//*[@id='name']")
     private WebElement locationName;
     @FindBy(how = How.XPATH, using = ".//input[@id='cityName']")
@@ -26,8 +29,19 @@ public class AddLocationComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = ".//*[@type='submit' and contains(@class, 'flooded-button')]")
     private WebElement addLocationToListButton;
 
+    private final String xPathSelectOption = "//div[@class='ant-select-item ant-select-item-option' and @title='%s']";
+
     public AddLocationComponent(WebDriver driver, WebElement node) {
         super(driver, node);
+    }
+
+    public AddLocationComponent(WebDriver driver) {
+        super(driver);
+    }
+
+    public AddCenterMainInfoComponent pressCloseAddLocationWindow() {
+        closeAddLocationWindowButton.click();
+        return new AddCenterMainInfoComponent(driver);
     }
 
     public AddLocationComponent enterLocationName(String locationName) {
@@ -38,20 +52,23 @@ public class AddLocationComponent extends BaseComponent {
     }
 
     public AddLocationComponent selectLocationCity(String city) {
-        Select selectFromCityList = new Select(locationCity);
-        selectFromCityList.selectByVisibleText(city);
+        locationCity.click();
+        sleep(2);
+        driver.findElement(By.xpath(String.format(xPathSelectOption, city))).click();
         return this;
     }
 
     public AddLocationComponent selectLocationDistrict(String district) {
-        Select selectFromDistrictList = new Select(locationDistrict);
-        selectFromDistrictList.selectByVisibleText(district);
+        locationDistrict.click();
+        sleep(2);
+        driver.findElement(By.xpath(String.format(xPathSelectOption, district))).click();
         return this;
     }
 
     public AddLocationComponent selectLocationSubway(String subwayLocality) {
-        Select selectFromSubwayLocalityList = new Select(locationSubway);
-        selectFromSubwayLocalityList.selectByVisibleText(subwayLocality);
+        locationSubway.click();
+        sleep(2);
+        driver.findElement(By.xpath(String.format(xPathSelectOption, subwayLocality))).click();
         return this;
     }
 

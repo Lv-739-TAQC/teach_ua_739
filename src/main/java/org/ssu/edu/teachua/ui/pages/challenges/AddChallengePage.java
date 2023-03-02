@@ -9,6 +9,8 @@ import org.ssu.edu.teachua.ui.base.BasePage;
 import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
 
 public class AddChallengePage extends BasePage {
+    @FindBy(how = How.XPATH, using = "//input[@id='picture']")
+    protected WebElement photoInput;
     @FindBy(how = How.XPATH, using = "//input[@id='sortNumber']")
     private WebElement sortNumber;
     @FindBy(how = How.XPATH, using = "//input[@id='name']")
@@ -19,7 +21,7 @@ public class AddChallengePage extends BasePage {
     private WebElement description;
     @FindBy(how = How.XPATH, using = "//span[@class='ant-upload'][@role='button']")
     private WebElement uploadPhoto;
-    @FindBy(how = How.XPATH, using = "//*[@class='ant-upload-list-item-info']")
+    @FindBy(how = How.XPATH, using = "//div[contains(@class, 'ant-upload-list-item-done')]")
     private WebElement photoAppeared;
     @FindBy(how = How.XPATH, using = "//*[@class='anticon anticon-eye']")
     private WebElement previewPhoto;
@@ -31,6 +33,8 @@ public class AddChallengePage extends BasePage {
     private WebElement challengesBtn;
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-btn ant-btn-default flooded-button'])[2]")
     private WebElement viewChallengeBtn;
+    @FindBy(how = How.XPATH, using = "//div[@class='ant-message-custom-content ant-message-success']")
+    private WebElement successMessage;
     @FindBy(how = How.XPATH, using = "//*[@class='ant-message']")
     private WebElement errorMessage;
 
@@ -38,9 +42,7 @@ public class AddChallengePage extends BasePage {
         super(driver);
     }
 
-    public WebElement getSortNumber() {
-        return sortNumber;
-    }
+    public WebElement getSortNumber() {return sortNumber;}
 
     public WebElement getName() {
         return name;
@@ -136,8 +138,9 @@ public class AddChallengePage extends BasePage {
 
 
     public AddChallengePage addPhoto(String imagePath) {
-        waitForElementToBeClickable(getUploadPhoto()).sendKeys(imagePath);
+        photoInput.sendKeys(imagePath);
         waitForElementToAppear(getPhotoAppeared());
+        sleep(5);
         return this;
     }
 
@@ -166,7 +169,48 @@ public class AddChallengePage extends BasePage {
         return new ViewChallengePage(driver);
     }
 
+    public String checkSuccessMessage() {
+        return waitForElementToAppear(successMessage).getText();
+    }
+
     public String checkErrorMessage() {
         return waitForElementToAppear(getErrorMessage()).getText();
     }
+
+    public AddChallengePage waitForErrorMessageToDisappear() {
+        waitForElementToDisappear(errorMessage);
+        return this;
+    }
+
+    public String getBorderColorForNameField() {
+        return name.getCssValue("border-color");
+    }
+
+    public String getBorderColorForTitleField() {
+        return title.getCssValue("border-color");
+    }
+
+    public String getBorderColorForDescriptionField() {
+        return description.getCssValue("border-color");
+    }
+
+
+    public boolean isEmptyString(String str) {
+        return str == null || str.isEmpty();
+    }
+
+    public String getValueSortNumber() {
+        return sortNumber.getAttribute("value");
+    }
+
+    public String getValueName() {
+        return name.getAttribute("value");
+    }
+
+    public String getValueTitle() {
+        return title.getAttribute("value");
+    }
+
+    public String getValueDescription() {return description.getAttribute("value");}
+
 }

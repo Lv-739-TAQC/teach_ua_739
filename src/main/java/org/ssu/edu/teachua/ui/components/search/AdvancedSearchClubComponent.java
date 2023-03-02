@@ -1,6 +1,7 @@
 package org.ssu.edu.teachua.ui.components.search;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,7 +27,13 @@ public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
         driver.findElement(By.xpath(String.format(".//input[@value='%s']", category))).click();
     }
 
+    public String getAge() {
+        return ageField.getAttribute("value");
+    }
+
     public AdvancedSearchClubComponent setAge(int age) {
+        waitForElementToBeClickable(ageField).click();
+        ageField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         ageField.sendKeys(Integer.toString(age));
         return this;
     }

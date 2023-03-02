@@ -1,18 +1,17 @@
 package org.ssu.edu.teachua.ui;
 
+import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
 import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
-public class FirstTest extends TestRunnerUI {
+public class TUA252 extends TestRunnerUI {
 
     @Test
-    public void testFirstFunctionality() throws IOException {
-        // login preconditions :
+    public void testTUA252() {
+
         TestValueProvider adminCredentials = new TestValueProvider();
         HomePage homePage = new HomePage(driver);
 
@@ -23,14 +22,15 @@ public class FirstTest extends TestRunnerUI {
                 .enterPassword(adminCredentials.getAdminPassword())
                 .clickLoginButton();
 
-        // example of test execution :
-        String actualResult = homePage.getHeader()
+        homePage.getHeader()
                 .openAdminProfileMenu()
-                .openContentMenu()
-                .openChallengesMenu()
-                .clickChallenges()
-                .getNameOfSecondTableHeaderElement();
+                .openProfilePage()
+                .clickAddButton()
+                .clickAddCenterButton()
+                .pressNextButton();
 
-        Assert.assertEquals(actualResult, "Порядковий номер");
+        String errorActual = new AddCenterMainInfoComponent(driver).getCenterNameError();
+
+        Assert.assertEquals(errorActual, "Некоректна назва центру");
     }
 }

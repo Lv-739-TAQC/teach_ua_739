@@ -6,13 +6,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.modal.BaseClubComponent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddClubMainInfoComponent extends BaseClubComponent {
 
-    @FindBy(how = How.XPATH, using = ".//div/form[@id='basic']//div/span[contains(@class, 'add-club-input')]")
-    private WebElement nameField; // min 5 characters
+    @FindBy(how = How.XPATH, using = ".//input[@id='basic_name']")
+    private WebElement nameField;
 
     @FindBy(how = How.XPATH, using = ".//div/form[@id='basic']//div/label/span[contains(@class, 'ant-checkbox')]")
     private List<WebElement> categoriesCheckBoxes;
@@ -24,7 +23,7 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
     private WebElement childAgeFor;
 
     @FindBy(how = How.XPATH, using = ".//div/form[@id='basic']//div[contains(@class, 'ant-select-in')]")
-    private WebElement belongingToCenter; //click for open dropdown
+    private WebElement belongingToCenter;
 
     @FindBy(how = How.XPATH, using = ".//div[@aria-selected='false' and @class]")
     private List<WebElement> centerList;
@@ -33,54 +32,47 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         super(driver);
     }
 
-    public AddClubMainInfoComponent enterClubName(String nameField) {
+    public AddClubMainInfoComponent enterClubName(String name) {
+        this.waitForElementToBeClickable(nameField);
         this.nameField.click();
-        this.nameField.sendKeys(nameField);
+        this.nameField.sendKeys(name);
         return this;
     }
 
-    public List<AddClubMainInfoComponent> getCategoriesCheckBoxes() {
-        List<AddClubMainInfoComponent> checkBoxes = new ArrayList<>();
-        for (WebElement element : categoriesCheckBoxes) {
-            checkBoxes.add(new AddClubMainInfoComponent(driver));
-        }
-        return checkBoxes;
-    }
-
-    public void setCategoriesCheckBoxes(List<WebElement> categoriesCheckBoxes) {
-        this.categoriesCheckBoxes = categoriesCheckBoxes;
+    public AddClubMainInfoComponent getCategoriesCheckBoxes(int categoriesNumber) {
+        waitForElementsToAppear(this.categoriesCheckBoxes).get(categoriesNumber).click();
+        return this;
     }
 
     public AddClubMainInfoComponent enterChildAgeFrom(String childAge) {
+        waitForElementToBeClickable(childAgeFrom);
         this.childAgeFrom.click();
         this.childAgeFrom.sendKeys(childAge);
         return this;
     }
 
     public AddClubMainInfoComponent enterChildAgeFor(String childAgeTo) {
+        waitForElementToBeClickable(childAgeFor);
         this.childAgeFor.click();
         this.childAgeFor.sendKeys(childAgeTo);
         return this;
     }
 
     public AddClubMainInfoComponent getBelongingToCenter() {
+        waitForElementToBeClickable(belongingToCenter);
         this.belongingToCenter.click();
-        this.belongingToCenter.sendKeys((CharSequence) belongingToCenter);
+        waitForElementsToAppear(centerList);
         return this;
     }
 
-    public List<AddClubMainInfoComponent> getCenterList() {
-        List<AddClubMainInfoComponent> centers = new ArrayList<>();
-        for (WebElement element : centerList) {
-            centers.add(new AddClubMainInfoComponent(driver));
-        }
-        return centers;
+    public AddClubMainInfoComponent getCertainCenter(int centerNumber) {
+        waitForElementsToAppear(centerList).get(centerNumber).click();
+        return this;
     }
 
     public AddClubContactsComponent clickNextStepButton() {
+        waitForElementToBeClickable(nextStepButton);
         nextStepButton.click();
         return new AddClubContactsComponent(driver);
     }
-
 }
-
