@@ -53,6 +53,7 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
         this.descriptionField.click();
         this.descriptionField.clear();
         this.descriptionField.sendKeys(description);
+        sleep(2);
         return this;
     }
 
