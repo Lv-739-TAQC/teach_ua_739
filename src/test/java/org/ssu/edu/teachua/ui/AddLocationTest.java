@@ -2,6 +2,7 @@ package org.ssu.edu.teachua.ui;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class AddLocationTest extends TestRunnerUI {
@@ -9,7 +10,7 @@ public class AddLocationTest extends TestRunnerUI {
     @Test
     public void addLocationTest() {
         HomePage homePage = new HomePage(driver);
-        homePage.getHeader()
+        String actualName = homePage.getHeader()
                 .openGuestProfileMenu()
                 .openLogInForm()
                 .enterEmail(valueProvider.getAdminEmail())
@@ -26,6 +27,8 @@ public class AddLocationTest extends TestRunnerUI {
                 .enterLocationAddress("проспект Бажана, 3А")
                 .enterLocationGC("50.406108, 30.668492")
                 .enterLocationPhone("0679002233")
-                .pressAddLocationToListButton();
+                .pressAddLocationToListButton()
+                .getNameNewLocation();
+        Assert.assertEquals(actualName, "Лівий берег");
     }
 }
