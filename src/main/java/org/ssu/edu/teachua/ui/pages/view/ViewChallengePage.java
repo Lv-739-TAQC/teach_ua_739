@@ -31,9 +31,6 @@ public class ViewChallengePage extends BasePage {
         super(driver);
     }
 
-    public String getChallengeTitle() {
-        return waitForElementToAppear(challengeTitle).getText();
-    }
 
     public void clickToDonate() {
         donateButton.click();
@@ -66,10 +63,11 @@ public class ViewChallengePage extends BasePage {
         return new ViewTaskPage(driver);
     }
 
-    public String getChallengeTitle(){
+    public String getChallengeTitle() {
         return challengeTitle.getText();
     }
-    public String getChallengeDescription(){
+
+    public String getChallengeDescription() {
         return challengeDescription.getText();
     }
 
