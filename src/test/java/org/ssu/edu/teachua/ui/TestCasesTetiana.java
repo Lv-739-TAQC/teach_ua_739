@@ -17,14 +17,14 @@ import java.util.List;
 public class TestCasesTetiana extends TestRunnerUI {
 
     @Test
-    public void testTua146 () throws IOException, ParseException {
+    public void testTua146() throws IOException, ParseException {
         HomePage homePage = new HomePage(driver);
 
         List<Date> newsDates = new ArrayList<>();
 
         List<NewsCardComponent> newsCards = homePage.getHeader()
-               .clickNewsButton()
-               .getCardsWithNews();
+                .clickNewsButton()
+                .getCardsWithNews();
         for (NewsCardComponent newsCard : newsCards) {
             newsDates.add(new SimpleDateFormat("dd.MM.yyyy").parse(newsCard.getNewsDate()));
         }
@@ -36,10 +36,10 @@ public class TestCasesTetiana extends TestRunnerUI {
     }
 
     @Test
-    public void testTua71 () throws IOException {
+    public void testTua71() throws IOException {
         HomePage homePage = new HomePage(driver);
 
-         homePage.getHeader()
+        homePage.getHeader()
                 .clickChallengesButton()
                 .clickChallengeButton(5);
         String expected = driver.getCurrentUrl();
