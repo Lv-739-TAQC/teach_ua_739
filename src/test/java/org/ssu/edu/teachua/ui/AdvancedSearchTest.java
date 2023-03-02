@@ -11,7 +11,7 @@ public class AdvancedSearchTest extends TestRunnerUI {
     @Test
     public void verifyThatAvailableOnlineCategoriesChildAgeParametersAreDeactivatedAfterSelectingCenterRadioButton() {
         SoftAssert softAssert = new SoftAssert();
-        AdvancedSearchCenterComponent advancedSearchCenterComponent =new HomePage(driver)
+        AdvancedSearchCenterComponent advancedSearchCenterComponent = new HomePage(driver)
                 .clickAdvancedSearchIcon()
                 .chooseCenter();
 

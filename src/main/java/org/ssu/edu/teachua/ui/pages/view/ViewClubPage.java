@@ -4,12 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.ssu.edu.teachua.ui.base.BasePage;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
-import org.ssu.edu.teachua.ui.components.modal.FeedbackComponent;
 import org.ssu.edu.teachua.ui.components.modal.EnrollClubComponent;
+import org.ssu.edu.teachua.ui.components.modal.FeedbackComponent;
 
 public class ViewClubPage extends ViewCenterPage {
 
