@@ -14,8 +14,8 @@ import java.time.Duration;
 
 public class TestRunnerUI {
 
-    protected WebDriver driver;
     protected static TestValueProvider valueProvider;
+    protected WebDriver driver;
     protected SoftAssert softAssert = new SoftAssert();
 
     @BeforeSuite

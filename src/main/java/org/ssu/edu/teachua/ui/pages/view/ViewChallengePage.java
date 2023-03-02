@@ -27,9 +27,12 @@ public class ViewChallengePage extends BasePage {
     @FindBy(how = How.XPATH, using = "//div[@class='primitive-card']")
     private WebElement taskLink;
 
-
     public ViewChallengePage(WebDriver driver) {
         super(driver);
+    }
+
+    public String getChallengeTitle() {
+        return waitForElementToAppear(challengeTitle).getText();
     }
 
     public void clickToDonate() {
@@ -69,6 +72,5 @@ public class ViewChallengePage extends BasePage {
     public String getChallengeDescription(){
         return challengeDescription.getText();
     }
-
 
 }

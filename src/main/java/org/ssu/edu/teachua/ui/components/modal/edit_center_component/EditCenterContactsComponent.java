@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterContactsComponent;
-import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterDescriptionComponent;
-import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 
 public class EditCenterContactsComponent extends AddCenterContactsComponent {
     @FindBy(how = How.XPATH, using = ".//input[@name='Facebook']")
