@@ -16,7 +16,7 @@ public class TUA509 extends TestRunnerUI {
                 .clickAdvancedSearchIcon();
 
         boolean isClubRadioButtonEnabled = advancedSearchCenterComponent.isClubRadioButtonSelected();
-        softAssert.assertTrue(isClubRadioButtonEnabled, "Club radio button should be activated");
+        softAssert.assertTrue(isClubRadioButtonEnabled, "Club radio button should be selected");
 
         boolean isCityDropdownEnabled = advancedSearchCenterComponent.isCityParameterActivated();
         softAssert.assertTrue(isCityDropdownEnabled, "City dropdown should be activated");
