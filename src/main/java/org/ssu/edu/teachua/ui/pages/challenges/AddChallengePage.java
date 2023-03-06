@@ -173,6 +173,11 @@ public class AddChallengePage extends BasePage {
         return waitForElementToAppear(successMessage).getText();
     }
 
+    public AddChallengePage waitForSuccessMessageToDisappear() {
+        waitForElementToDisappear(successMessage);
+        return this;
+    }
+
     public String checkErrorMessage() {
         return waitForElementToAppear(getErrorMessage()).getText();
     }
