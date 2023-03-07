@@ -72,22 +72,25 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = ".//input[@role='spinbutton']")
     private WebElement ageField;
 
-    public AdvancedSearchCenterComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
+    @FindBy(how = How.XPATH, using = ".//span[@title='Розширений пошук']")
+    private WebElement advancedSearchIcon;
+
+    public AdvancedSearchCenterComponent(WebDriver driver) {
+        super(driver);
     }
 
     public AdvancedSearchClubComponent chooseClub() {
         clubRadio.click();
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         //sleep(3);
-        return new AdvancedSearchClubComponent(driver, componentRoot);
+        return new AdvancedSearchClubComponent(driver);
     }
 
     public AdvancedSearchCenterComponent chooseCenter() {
         centerRadio.click();
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         //sleep(3);
-        return new AdvancedSearchCenterComponent(driver, componentRoot);
+        return new AdvancedSearchCenterComponent(driver);
     }
 
     public AdvancedSearchCenterComponent selectCity(String city) {
