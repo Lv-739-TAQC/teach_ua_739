@@ -80,6 +80,6 @@ public class TUA335 extends TestRunnerUI {
                 .clickSave()
                 .checkSuccessMessage();
         softAssert.assertEquals(actualValueFourth,SUCCESS_MSG.get(3));
-
+        softAssert.assertAll();
     }
 }
