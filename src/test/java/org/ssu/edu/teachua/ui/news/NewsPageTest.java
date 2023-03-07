@@ -24,7 +24,7 @@ public class NewsPageTest extends LoginRunner {
 
     @Test(dataProvider = "dpTestButtonsActivity")
     public void testButtonsActivity(String location, String expectedClubsTitle) {
-        HomePage homePage = new HomePage(driver);
+//        HomePage homePage = new HomePage(driver);
 
         List<Boolean> actualNewsButtons = new ArrayList<>();
         int newsAmount = homePage.getHeader().clickNewsButton().getCountAllNews();

@@ -20,8 +20,7 @@ public class AddChallengeTest extends LoginRunner {
     public void testAddChallengeValid(String number, String name, String title,
                                       String description, String photoName,
                                       String expectedSuccessMsg, String expectedTitle) {
-        HomePage homePage = new HomePage(driver);
-        AddChallengePage addChallengePage = new AddChallengePage(driver);
+//        HomePage homePage = new HomePage(driver);
 
         String actualSuccessMsg = homePage.getHeader()
                 .openAdminProfileMenu()
@@ -37,6 +36,7 @@ public class AddChallengeTest extends LoginRunner {
                 .clickSave()
                 .checkSuccessMessage();
 
+        AddChallengePage addChallengePage = new AddChallengePage(driver);
         String actualTitle = addChallengePage
                 .clickViewChallenge()
                 .getChallengeTitle();

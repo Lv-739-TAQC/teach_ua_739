@@ -31,7 +31,7 @@ public class AddClubTest extends LoginRunner {
     @Test(dataProvider = "dpTestDescriptionFieldValid")
     public void testDescriptionFieldValid(String nameField, int categoriesNumber, String childAgeFrom,
                                           String childAgeFor, String contactPhone, String description) {
-        HomePage homePage = new HomePage(driver);
+//        HomePage homePage = new HomePage(driver);
 
         boolean isInputSuccess = homePage.getHeader()
                 .openAdminProfileMenu()
@@ -64,7 +64,7 @@ public class AddClubTest extends LoginRunner {
     public void testDescriptionFieldInvalid(String nameField, int categoriesNumber, String childAgeFrom,
                                             String childAgeFor, String contactPhone, String description,
                                             String expectedErrorMessage) {
-        HomePage homePage = new HomePage(driver);
+//        HomePage homePage = new HomePage(driver);
 
         String actualErrorMessage = homePage.getHeader()
                 .openAdminProfileMenu()
