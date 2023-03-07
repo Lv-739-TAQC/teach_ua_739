@@ -2,13 +2,19 @@ package org.ssu.edu.teachua.ui;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.Arrays;
+import java.util.List;
+import java.sql.Timestamp;
 
 public class AddCenterTest extends TestRunnerUI {
     @Test
     public void addCenterTest() {
         HomePage homePage = new HomePage(driver);
-        homePage.getHeader()
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        List<String> actualProfileContent = homePage.getHeader()
                 .openGuestProfileMenu()
                 .openLogInForm()
                 .enterEmail(valueProvider.getAdminEmail())
@@ -17,10 +23,17 @@ public class AddCenterTest extends TestRunnerUI {
                 .getHeader()
                 .openAdminProfileMenu()
                 .openAddCentreForm()
-                .enterCenterName("First language center")
+                .enterCenterName("First language center" + timestamp.getTime())
                 .pressAddLocationButton()
-                .pressCloseAddLocationWindow()
-                .checkLocation(3)
+                .enterLocationName("Лівий берег")
+                .selectLocationCity("Одеса")
+                .selectLocationSubway("Фонтан")
+                .selectLocationDistrict("Приморський")
+                .enterLocationAddress("проспект Бажана, 3А")
+                .enterLocationGC("50.406108, 30.668492")
+                .enterLocationPhone("0679002233")
+                .pressAddLocationToListButton()
+                .checkLocation(1)
                 .pressNextButton()
                 .enterCenterFacebook("https://www.facebook.com/1lngcenter/")
                 .enterCenterSite("https://1lngcenter/")
@@ -34,7 +47,10 @@ public class AddCenterTest extends TestRunnerUI {
                 .addCenterDescription("Кількість курсів, призначених для окремих вікових груп, залежить від суми використовуваних на сьогоднішній день грантів")
                 .pressNextButton()
                 .checkClub(100)
-                .pressFinishButton();
+                .pressFinishButton()
+                .getProfilePageContent();
+
+        Assert.assertEquals(actualProfileContent, Arrays.asList("Особистий кабінет", "Admin Admin", "АДМІНІСТРАТОР", "0689543242", "admin@gmail.com"));
     }
 
 }

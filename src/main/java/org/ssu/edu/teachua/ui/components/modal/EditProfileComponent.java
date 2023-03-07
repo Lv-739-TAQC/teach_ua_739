@@ -87,6 +87,7 @@ public class EditProfileComponent extends BaseComponent {
     }
 
     public String getAlertMessageLastName() {
+    	sleep(2);
         return waitForElementToAppear(alertMessageLastName).getText();
     }
 
@@ -165,6 +166,7 @@ public class EditProfileComponent extends BaseComponent {
     }
 
     public String getAlertMessageConfirmPassword() {
+    	sleep(2);
         return waitForElementToAppear(alertMessageConfirmPassword).getText();
     }
 
@@ -181,5 +183,9 @@ public class EditProfileComponent extends BaseComponent {
     public ProfilePage clickCloseButton() {
         waitForElementToBeClickable(closeButton).click();
         return new ProfilePage(driver);
+    }
+    
+    public WebElement getSaveChangesButton() {
+    	return  saveChangesButton;
     }
 }

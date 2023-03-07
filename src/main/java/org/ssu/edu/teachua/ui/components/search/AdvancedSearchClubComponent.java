@@ -15,8 +15,8 @@ public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
     @FindBy(how = How.XPATH, using = ".//input[@role='spinbutton']")
     private WebElement ageField;
 
-    public AdvancedSearchClubComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
+    public AdvancedSearchClubComponent(WebDriver driver) {
+        super(driver);
     }
 
     public void chooseRemote() {
@@ -31,10 +31,10 @@ public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
         return ageField.getAttribute("value");
     }
 
-    public AdvancedSearchClubComponent setAge(int age) {
+    public AdvancedSearchClubComponent setAge(String age) {
         waitForElementToBeClickable(ageField).click();
         ageField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        ageField.sendKeys(Integer.toString(age));
+        ageField.sendKeys(age);
         return this;
     }
 }

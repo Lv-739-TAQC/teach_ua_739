@@ -71,27 +71,27 @@ public class SignUpComponent extends BaseComponent {
     }
 
 
-    public String enterLastNameFieldValue() {
+    public String getLastNameFieldValue() {
         return lastNameField.getAttribute("value");
     }
 
-    public String enterFirstNameFieldValue() {
+    public String getFirstNameFieldValue() {
         return firstNameField.getAttribute("value");
     }
 
-    public String enterPhoneFieldValue() {
+    public String getPhoneFieldValue() {
         return phoneField.getAttribute("value");
     }
 
-    public String enterEmailFieldValue() {
+    public String getEmailFieldValue() {
         return emailField.getAttribute("value");
     }
 
-    public String enterPasswordFieldValue() {
+    public String getPasswordFieldValue() {
         return passwordField.getAttribute("value");
     }
 
-    public String enterConfirmPasswordFieldValue() {
+    public String getConfirmPasswordFieldValue() {
         return confirmPasswordField.getAttribute("value");
     }
 }

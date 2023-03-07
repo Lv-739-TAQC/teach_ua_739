@@ -15,6 +15,10 @@ public class HomePage extends BasePage {
 
     @FindBy(how = How.XPATH, using = ".//span[@title='Розширений пошук']")
     private WebElement advancedSearchIcon;
+    @FindBy(how = How.XPATH, using = "//input[@type='search']")
+    private WebElement searchField;
+    @FindBy(how = How.XPATH, using = "//aside[contains(@class, 'club-list-sider')]")
+    private WebElement advancedSearchNode;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -26,7 +30,14 @@ public class HomePage extends BasePage {
 
     public AdvancedSearchClubComponent clickAdvancedSearchIcon() {
         waitForElementToAppear(advancedSearchIcon).click();
-        WebElement advancedSearchNode = waitForElementToAppear(driver.findElement(By.xpath("//aside[contains(@class, 'club-list-sider')]")));
-        return new AdvancedSearchClubComponent(driver, advancedSearchNode);
+        return new AdvancedSearchClubComponent(driver);
+    }
+
+    public String getSearchText() {
+        return searchField.getText();
+    }
+    public void fillInSearchField(String symbols){
+        searchField.clear();
+        searchField.sendKeys(symbols);
     }
 }

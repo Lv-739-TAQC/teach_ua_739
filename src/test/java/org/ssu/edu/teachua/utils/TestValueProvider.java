@@ -1,5 +1,7 @@
 package org.ssu.edu.teachua.utils;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -36,4 +38,15 @@ public class TestValueProvider {
         return Paths.get(Paths.get(System.getProperty("user.dir")).toString(),
                 "src", "test", "resources", fileName).toString();
     }
+
+    public String getStringFromFile(String filePath) {
+        try {
+            Path fileName = Path.of(filePath);
+            return Files.readString(fileName);
+        } catch (IOException e) {
+            System.out.println("File not found: " + e);
+        }
+        return filePath;
+    }
+
 }

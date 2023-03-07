@@ -21,6 +21,9 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = ".//input[@type='radio']//following::input[1]")
     private WebElement centerRadio;
 
+    @FindBy(how = How.XPATH, using = ".//span[text()='Доступний онлайн']/parent::label//input")
+    private WebElement remote;
+
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_cityName']")
     private WebElement citySelector;
 
@@ -63,22 +66,31 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = "//div[text()='Розширений пошук']/parent::div")
     private List<WebElement> advancedSearchModal;
 
-    public AdvancedSearchCenterComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
+    @FindBy(how = How.XPATH, using = "//label[text()='Категорії']/ancestor::div[contains(@class,'club-list-row')]//input")
+    private List<WebElement> categoriesCheckboxes;
+
+    @FindBy(how = How.XPATH, using = ".//input[@role='spinbutton']")
+    private WebElement ageField;
+
+    @FindBy(how = How.XPATH, using = ".//span[@title='Розширений пошук']")
+    private WebElement advancedSearchIcon;
+
+    public AdvancedSearchCenterComponent(WebDriver driver) {
+        super(driver);
     }
 
     public AdvancedSearchClubComponent chooseClub() {
         clubRadio.click();
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         //sleep(3);
-        return new AdvancedSearchClubComponent(driver, componentRoot);
+        return new AdvancedSearchClubComponent(driver);
     }
 
     public AdvancedSearchCenterComponent chooseCenter() {
         centerRadio.click();
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         //sleep(3);
-        return new AdvancedSearchCenterComponent(driver, componentRoot);
+        return new AdvancedSearchCenterComponent(driver);
     }
 
     public AdvancedSearchCenterComponent selectCity(String city) {
@@ -88,8 +100,9 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     }
 
     public boolean isCityParameterActivated() {
-        return waitForElementToAppear(citySelector).isDisplayed();
+        return citySelector.isEnabled();
     }
+
 
     public AdvancedSearchCenterComponent selectDistrict(String district) {
         districtSelector.click();
@@ -98,7 +111,8 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     }
 
     public boolean isDistrictParameterActivated() {
-        return waitForElementToAppear(districtSelector).isDisplayed();
+
+        return citySelector.isEnabled();
     }
 
     public AdvancedSearchCenterComponent selectStation(String station) {
@@ -112,7 +126,7 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     }
 
     public boolean isStationParameterActivated() {
-        return waitForElementToAppear(stationSelector).isDisplayed();
+         return clubRadio.isSelected();
     }
 
     public boolean isOnlineParameterDeactivated() {
@@ -184,5 +198,26 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
         buttonNextPage.click();
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         sleep(3);
+    }
+
+    public boolean isClubRadioButtonSelected() {
+        return clubRadio.isSelected();
+    }
+
+    public boolean isOnlineParameterActivated() {
+        return remote.isEnabled();
+    }
+
+    public boolean isCategoriesCheckboxesActivated() {
+        for (WebElement category : categoriesCheckboxes) {
+            if (!category.isEnabled()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isAgeFieldActivated() {
+        return ageField.isEnabled();
     }
 }

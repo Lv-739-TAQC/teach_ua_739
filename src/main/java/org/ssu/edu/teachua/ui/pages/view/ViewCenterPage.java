@@ -8,6 +8,11 @@ import org.ssu.edu.teachua.ui.base.BasePage;
 
 public class ViewCenterPage extends BasePage {
 
+    @FindBy(how = How.XPATH, using = "//div[@class='name-box']/span[@class='center-name']")
+    private WebElement centerName;
+
+    @FindBy(how = How.XPATH, using = "//div[@class='content']")
+    protected WebElement description;
     @FindBy(how = How.XPATH, using = "//button[contains(@class,'apply-button')]")
     protected WebElement enrollButton;
     @FindBy(how = How.XPATH, using = "//button[contains(@class,'details-button')]")
@@ -32,6 +37,14 @@ public class ViewCenterPage extends BasePage {
 
     public void clickOnMap() {
         mapButton.click();
+    }
+
+    public String getCenterName() {
+        return centerName.getText();
+    }
+
+    public String getDescription() {
+        return description.getText();
     }
 
 }

@@ -20,7 +20,7 @@ public class AddCenterClubsComponent extends BaseAddCenterComponent {
 
     public AddCenterClubsComponent checkClub(int numberClub) {
         WebElement checkBoxLocation = driver.findElement(By.xpath(
-                String.format(".//div[@id='clubs']//div[@class='checkbox-item'][%d]", numberClub)));
+                String.format(".//div[@id='clubs']//div[@class='checkbox-item'][%d]/label", numberClub)));
         checkBoxLocation.click();
         sleep(2);
         return this;
