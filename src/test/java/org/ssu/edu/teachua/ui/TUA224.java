@@ -24,7 +24,7 @@ public class TUA224 extends TestRunnerUI {
                 .clickAdvancedSearchIcon();
 
         isAdvancedSearchModalDisplayed = advancedSearchCenterComponent.isAdvancedSearchModalDisplayed();
-        softAssert.assertFalse(isAdvancedSearchModalDisplayed);
+        softAssert.assertFalse(isAdvancedSearchModalDisplayed,"Advanced search modal should not be displayed");
         softAssert.assertAll();
     }
 }
