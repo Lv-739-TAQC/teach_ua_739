@@ -1,5 +1,5 @@
 package org.ssu.edu.teachua.ui;
-import org.ssu.edu.teachua.ui.components.search.AdvancedSearchCenterComponent;
+
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchClubComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
@@ -15,9 +15,9 @@ public class TUA210 extends TestRunnerUI {
     private static final List<String> VALID_AGE = Arrays.asList(
             "2",
             "18");
-    private static final List<String> EXPECTED_AGE = Arrays.asList(
-            "2",
-            "18");
+    private static final String MIN_AGE = "2";
+    private static final String MAX_AGE = "18";
+
 
     @Test
     public void testTUA210() {
@@ -28,22 +28,22 @@ public class TUA210 extends TestRunnerUI {
         String actualAgeFirst = advancedSearchClubComponent
                 .setAge(INVALID_AGE.get(0))
                 .getAge();
-        softAssert.assertEquals(actualAgeFirst, EXPECTED_AGE.get(0), "Age has not been set correctly");
+        softAssert.assertEquals(actualAgeFirst, MIN_AGE, "Age has not been set correctly");
 
         String actualAgeSecond = advancedSearchClubComponent
                 .setAge(VALID_AGE.get(0))
                 .getAge();
-        softAssert.assertEquals(actualAgeSecond, EXPECTED_AGE.get(0), "Age has not been set correctly");
+        softAssert.assertEquals(actualAgeSecond, MIN_AGE, "Age has not been set correctly");
 
         String actualAgeThird = advancedSearchClubComponent
                 .setAge(VALID_AGE.get(1))
                 .getAge();
-        softAssert.assertEquals(actualAgeThird, EXPECTED_AGE.get(1), "Age has not been set correctly");
+        softAssert.assertEquals(actualAgeThird, MAX_AGE, "Age has not been set correctly");
 
         String actualAgeFourth = advancedSearchClubComponent
                 .setAge(INVALID_AGE.get(1))
                 .getAge();
-        softAssert.assertEquals(actualAgeFourth, EXPECTED_AGE.get(1), "Age has not been set correctly");
+        softAssert.assertEquals(actualAgeFourth, MAX_AGE, "Age has not been set correctly");
 
         softAssert.assertAll();
     }
