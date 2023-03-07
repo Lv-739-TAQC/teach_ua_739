@@ -31,10 +31,10 @@ public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
         return ageField.getAttribute("value");
     }
 
-    public AdvancedSearchClubComponent setAge(int age) {
+    public AdvancedSearchClubComponent setAge(String age) {
         waitForElementToBeClickable(ageField).click();
         ageField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        ageField.sendKeys(Integer.toString(age));
+        ageField.sendKeys(age);
         return this;
     }
 }
