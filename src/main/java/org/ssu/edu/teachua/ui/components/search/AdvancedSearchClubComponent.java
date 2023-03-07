@@ -15,8 +15,8 @@ public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
     @FindBy(how = How.XPATH, using = ".//input[@role='spinbutton']")
     private WebElement ageField;
 
-    public AdvancedSearchClubComponent(WebDriver driver, WebElement node) {
-        super(driver, node);
+    public AdvancedSearchClubComponent(WebDriver driver) {
+        super(driver);
     }
 
     public void chooseRemote() {
