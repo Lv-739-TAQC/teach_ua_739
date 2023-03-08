@@ -30,6 +30,10 @@ create in `src/test/resources/` file  `data.properties`
 
 ```
 baseUiUrl=https://example.org.ua
+
 adminEmail=example@test.com
 adminPassword=example
+
+userEmail=user@gmail.com
+userPassword=userPassword
 ```

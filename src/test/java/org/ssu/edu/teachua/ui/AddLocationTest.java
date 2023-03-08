@@ -1,11 +1,11 @@
 package org.ssu.edu.teachua.ui;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class AddLocationTest extends TestRunnerUI {
+public class AddLocationTest extends BaseTestRunnerUI {
 
     @Test
     public void addLocationTest() {

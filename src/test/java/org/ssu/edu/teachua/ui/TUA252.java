@@ -2,12 +2,12 @@ package org.ssu.edu.teachua.ui;
 
 import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TUA252 extends TestRunnerUI {
+public class TUA252 extends BaseTestRunnerUI {
 
     @Test
     public void testTUA252() {

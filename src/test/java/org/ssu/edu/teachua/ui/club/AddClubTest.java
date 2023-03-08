@@ -1,16 +1,18 @@
-package org.ssu.edu.teachua.ui.add_club;
+package org.ssu.edu.teachua.ui.club;
 
+import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.LoginRunner;
+import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class AddClubTest extends LoginRunner {
-
+public class AddClubTest extends LoginWithAdminRunner {
+    private AddClubMainInfoComponent  mainInfoComponent;
     public static final List<String> ERROR_MSG = Arrays.asList(
             "Опис гуртка задовгий",
             "Опис гуртка не може містити російські літери",
@@ -28,14 +30,21 @@ public class AddClubTest extends LoginRunner {
         };
     }
 
+    @BeforeMethod
+    void openAddClubForm(){
+        driver.navigate().refresh();
+         mainInfoComponent = new HomePage(driver)
+                .getHeader()
+                .openAdminProfileMenu()
+                .openAddClubForm();
+    }
+
     @Test(dataProvider = "dpTestDescriptionFieldValid")
     public void testDescriptionFieldValid(String nameField, int categoriesNumber, String childAgeFrom,
                                           String childAgeFor, String contactPhone, String description) {
         HomePage homePage = new HomePage(driver);
 
-        boolean isInputSuccess = homePage.getHeader()
-                .openAdminProfileMenu()
-                .openAddClubForm()
+        boolean isInputSuccess = mainInfoComponent
                 .enterClubName(nameField)
                 .getCategoriesCheckBoxes(categoriesNumber)
                 .enterChildAgeFrom(childAgeFrom)
@@ -66,9 +75,7 @@ public class AddClubTest extends LoginRunner {
                                             String expectedErrorMessage) {
         HomePage homePage = new HomePage(driver);
 
-        String actualErrorMessage = homePage.getHeader()
-                .openAdminProfileMenu()
-                .openAddClubForm()
+        String actualErrorMessage = mainInfoComponent
                 .enterClubName(nameField)
                 .getCategoriesCheckBoxes(categoriesNumber)
                 .enterChildAgeFrom(childAgeFrom)

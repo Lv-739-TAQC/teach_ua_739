@@ -3,7 +3,7 @@ package org.ssu.edu.teachua.ui;
 import org.ssu.edu.teachua.ui.components.modal.EditProfileComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-public class TUA359 extends TestRunnerUI {
+public class TUA359 extends BaseTestRunnerUI {
 
     public final String RED_BORDER_COLOR = "rgb(255, 0, 0)";
     public final List<String> ERROR_MSG = Arrays.asList(

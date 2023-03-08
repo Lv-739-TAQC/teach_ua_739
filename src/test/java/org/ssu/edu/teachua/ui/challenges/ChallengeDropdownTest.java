@@ -1,13 +1,18 @@
 package org.ssu.edu.teachua.ui.challenges;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
+<<<<<<< HEAD
 import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+=======
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
+
+>>>>>>> main
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class ChallengeDropdownTest extends TestRunnerUI {
+public class ChallengeDropdownTest extends BaseTestRunnerUI {
 
     @Test
     public void testTua71() throws IOException {

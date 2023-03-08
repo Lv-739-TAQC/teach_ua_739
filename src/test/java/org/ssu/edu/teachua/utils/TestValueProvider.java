@@ -30,6 +30,15 @@ public class TestValueProvider {
         return properties.getProperty("adminPassword");
     }
 
+
+    public String getUserEmail() {
+        return properties.getProperty("userEmail");
+    }
+
+    public String getUserPassword() {
+        return properties.getProperty("userPassword");
+    }
+
     public String getBaseUiUrl() {
         return properties.getProperty("baseUiUrl");
     }

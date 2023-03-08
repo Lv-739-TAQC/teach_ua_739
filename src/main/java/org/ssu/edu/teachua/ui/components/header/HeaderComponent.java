@@ -40,7 +40,7 @@ public class HeaderComponent extends BaseComponent {
     private WebElement locationButton;
 
     @FindBy(how = How.XPATH, using =
-            "(//ul[contains(@class, 'dropdown-menu-vertical')])[2]//li[contains(@class, 'child')]"
+            "//ul[contains(@class, 'dropdown-menu-vertical')]//li[contains(@class, 'child')]"
     )
     private List<WebElement> locationsList;
 

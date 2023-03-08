@@ -4,13 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubDescriptionComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 
-public class TestCycleAnna extends TestRunnerUI {
+public class TestCycleAnna extends BaseTestRunnerUI {
 
     @Test
     public void addClubDescriptionFieldPositiveTestTUA172() {
@@ -33,7 +33,7 @@ public class TestCycleAnna extends TestRunnerUI {
                 .enterContactPhone("0674443322")
                 .clickNextStepButton();
 
-        descriptionStepAddClub.enterDescription(valueProvider.getStringFromFile(valueProvider.getFilePath("1000symbols.txt")));
+        descriptionStepAddClub.enterDescription(valueProvider.getStringFromFile(valueProvider.getFilePath("text/1000symbols.txt")));
         descriptionHelp = driver.findElements(By.xpath(".//div[@id='basic_description_help']"));
         softAssert.assertEquals(descriptionHelp.size(), 0);
 
@@ -41,7 +41,7 @@ public class TestCycleAnna extends TestRunnerUI {
         descriptionHelp = driver.findElements(By.xpath(".//div[@id='basic_description_help']"));
         softAssert.assertEquals(descriptionHelp.size(), 0);
 
-        descriptionStepAddClub.enterDescription(valueProvider.getStringFromFile(valueProvider.getFilePath("1500symbols.txt")));
+        descriptionStepAddClub.enterDescription(valueProvider.getStringFromFile(valueProvider.getFilePath("text/1500symbols.txt")));
         descriptionHelp = driver.findElements(By.xpath(".//div[@id='basic_description_help']"));
         softAssert.assertEquals(descriptionHelp.size(), 0);
 

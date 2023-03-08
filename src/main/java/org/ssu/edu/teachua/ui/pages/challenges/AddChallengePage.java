@@ -19,8 +19,6 @@ public class AddChallengePage extends BasePage {
     private WebElement title;
     @FindBy(how = How.XPATH, using = "//div[contains(@class,'ql-editor')]")
     private WebElement description;
-    @FindBy(how = How.XPATH, using = "//span[@class='ant-upload'][@role='button']")
-    private WebElement uploadPhoto;
     @FindBy(how = How.XPATH, using = "//div[contains(@class, 'ant-upload-list-item-done')]")
     private WebElement photoAppeared;
     @FindBy(how = How.XPATH, using = "//*[@class='anticon anticon-eye']")
@@ -54,10 +52,6 @@ public class AddChallengePage extends BasePage {
 
     public WebElement getDescription() {
         return description;
-    }
-
-    public WebElement getUploadPhoto() {
-        return uploadPhoto;
     }
 
     public WebElement getPhotoAppeared() {
@@ -140,7 +134,6 @@ public class AddChallengePage extends BasePage {
     public AddChallengePage addPhoto(String imagePath) {
         photoInput.sendKeys(imagePath);
         waitForElementToAppear(getPhotoAppeared());
-        sleep(5);
         return this;
     }
 
@@ -166,6 +159,7 @@ public class AddChallengePage extends BasePage {
 
     public ViewChallengePage clickViewChallenge() {
         waitForElementToBeClickable(getViewChallengeBtn()).click();
+        sleep(1);
         return new ViewChallengePage(driver);
     }
 

@@ -1,7 +1,7 @@
 package org.ssu.edu.teachua.ui;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.sql.Timestamp;
 
-public class AddCenterTest extends TestRunnerUI {
+public class AddCenterTest extends BaseTestRunnerUI {
     @Test
     public void addCenterTest() {
         HomePage homePage = new HomePage(driver);
@@ -42,8 +42,8 @@ public class AddCenterTest extends TestRunnerUI {
                 .enterCenterWhatsAppNumber("+380630336789")
                 .enterPhone("0503334455")
                 .pressNextButton()
-                .addCenterLogo(valueProvider.getFilePath("centerLogo.jpg"))
-                .addCenterPhoto(valueProvider.getFilePath("centerPhoto.jpg"))
+                .addCenterLogo(valueProvider.getFilePath("photos/centerLogo.jpg"))
+                .addCenterPhoto(valueProvider.getFilePath("photos/centerPhoto.jpg"))
                 .addCenterDescription("Кількість курсів, призначених для окремих вікових груп, залежить від суми використовуваних на сьогоднішній день грантів")
                 .pressNextButton()
                 .checkClub(100)

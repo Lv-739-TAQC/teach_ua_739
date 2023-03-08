@@ -2,7 +2,7 @@ package org.ssu.edu.teachua.ui;
 
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-public class TUA231 extends TestRunnerUI {
+public class TUA231 extends BaseTestRunnerUI {
 
     public static final String RED_BORDER_COLOR = "rgb(255, 0, 0)";
     public static final String VALID_SORT_NUMBER = "546789";
@@ -50,7 +50,7 @@ public class TUA231 extends TestRunnerUI {
                 .fillSortNumber(VALID_SORT_NUMBER)
                 .fillTitle(VALID_TITLE)
                 .fillDescription(VALID_DESCRIPTION)
-                .addPhoto(valueProvider.getFilePath("image.png"));
+                .addPhoto(valueProvider.getFilePath("photos/image.png"));
 
         String actualErrorFirst = addChallengePage.fillName(INVALID_NAME.get(0))
                 .clickSave()

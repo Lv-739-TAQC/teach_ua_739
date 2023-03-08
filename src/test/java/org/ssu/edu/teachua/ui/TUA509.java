@@ -2,12 +2,12 @@ package org.ssu.edu.teachua.ui;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchCenterComponent;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 
-public class TUA509 extends TestRunnerUI {
+public class TUA509 extends BaseTestRunnerUI {
 
     @Test
     public void testTUA509() {

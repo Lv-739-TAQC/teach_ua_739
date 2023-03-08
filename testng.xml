@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" configfailurepolicy="continue" verbose="1" >
+    <test name="Add club" >
+        <packages>
+            <package name="org.ssu.edu.teachua.ui.club" />
+        </packages>
+    </test>
+
+    <test name="Add challenge" >
+        <packages>
+            <package name="org.ssu.edu.teachua.ui.challenges"/>
+        </packages>
+    </test>
+    <test name="Add news" >
+        <packages>
+            <package name="org.ssu.edu.teachua.ui.news"/>
+        </packages>
+    </test>
+</suite>
