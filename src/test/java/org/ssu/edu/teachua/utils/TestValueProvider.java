@@ -45,7 +45,7 @@ public class TestValueProvider {
 
     public String getFilePath(String fileName) {
         return Paths.get(Paths.get(System.getProperty("user.dir")).toString(),
-                "src", "test", "resources", "photos", fileName).toString();
+                "src", "test", "resources", fileName).toString();
     }
 
     public String getStringFromFile(String filePath) {
