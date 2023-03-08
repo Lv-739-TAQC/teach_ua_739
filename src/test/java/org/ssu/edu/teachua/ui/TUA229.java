@@ -26,7 +26,7 @@ public class TUA229 extends BaseTestRunnerUI {
                 .openChallengesMenu()
                 .clickChallenges()
                 .addChallenge()
-                .addPhoto(valueProvider.getFilePath("photos/image.png"));
+                .addPhoto(valueProvider.getFilePath("image.png"));
 
         Assert.assertTrue(addChallengePage.getPhotoAppeared().isDisplayed());
     }
