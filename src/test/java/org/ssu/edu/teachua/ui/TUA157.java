@@ -45,7 +45,7 @@ public class TUA157  extends BaseTestRunnerUI {
                 .fillName(NAME)
                 .fillTitle(TITLE)
                 .fillDescription(DESCRIPTION)
-                .addPhoto(valueProvider.getFilePath("image.png"))
+                .addPhoto(valueProvider.getFilePath("photos/image.png"))
                 .clickSave()
                 .checkErrorMessage();
 

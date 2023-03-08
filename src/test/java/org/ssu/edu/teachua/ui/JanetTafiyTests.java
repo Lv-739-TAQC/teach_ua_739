@@ -7,7 +7,7 @@ import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.news.NewsPage;
 import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
 import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
-import org.ssu.edu.teachua.utils.JanetTafiyDataProvider;
+import org.ssu.edu.teachua.utils.providers.JanetTafiyDataProvider;
 import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.testng.Assert;
 import org.testng.annotations.Test;

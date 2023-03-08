@@ -4,7 +4,7 @@
 <suite name="Suite1" configfailurepolicy="continue" verbose="1" >
     <test name="Add club" >
         <packages>
-            <package name="org.ssu.edu.teachua.ui.add_club" />
+            <package name="org.ssu.edu.teachua.ui.club" />
         </packages>
     </test>
 

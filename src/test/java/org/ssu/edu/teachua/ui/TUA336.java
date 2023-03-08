@@ -47,7 +47,7 @@ public class TUA336 extends BaseTestRunnerUI {
                 .fillSortNumber(String.valueOf(System.currentTimeMillis()))
                 .fillTitle(TITLE)
                 .fillDescription(DESCRIPTION)
-                .addPhoto(valueProvider.getFilePath("image.png"));
+                .addPhoto(valueProvider.getFilePath("photos/image.png"));
 
         String actualErrorMsgFirst = addChallengePage.fillName(NAME.get(0))
                 .clickSave()

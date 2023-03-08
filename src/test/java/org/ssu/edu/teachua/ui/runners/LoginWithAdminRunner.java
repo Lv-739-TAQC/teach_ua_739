@@ -5,7 +5,6 @@ import org.testng.annotations.BeforeClass;
 
 public class LoginWithAdminRunner extends BaseTestRunnerUI {
 
-
     @BeforeClass(description = "Precondition method : login into Admin account")
     public void loginPrecondition() {
         HomePage homePage = new HomePage(driver);
@@ -18,6 +17,4 @@ public class LoginWithAdminRunner extends BaseTestRunnerUI {
                 .clickLoginButton()
                 .getLoginSuccessMsg();
     }
-
-
 }

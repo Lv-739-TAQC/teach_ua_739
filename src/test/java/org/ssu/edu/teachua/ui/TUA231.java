@@ -50,7 +50,7 @@ public class TUA231 extends BaseTestRunnerUI {
                 .fillSortNumber(VALID_SORT_NUMBER)
                 .fillTitle(VALID_TITLE)
                 .fillDescription(VALID_DESCRIPTION)
-                .addPhoto(valueProvider.getFilePath("image.png"));
+                .addPhoto(valueProvider.getFilePath("photos/image.png"));
 
         String actualErrorFirst = addChallengePage.fillName(INVALID_NAME.get(0))
                 .clickSave()
