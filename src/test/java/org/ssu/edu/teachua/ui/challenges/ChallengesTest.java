@@ -1,4 +1,4 @@
-package org.ssu.edu.teachua.ui;
+package org.ssu.edu.teachua.ui.challenges;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;

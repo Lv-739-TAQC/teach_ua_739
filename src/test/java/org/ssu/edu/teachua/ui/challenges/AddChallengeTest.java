@@ -1,6 +1,7 @@
 package org.ssu.edu.teachua.ui.challenges;
 
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
+import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -19,7 +20,7 @@ public class AddChallengeTest extends LoginWithAdminRunner {
     public void testAddChallengeValid(String number, String name, String title,
                                       String description, String photoName,
                                       String expectedSuccessMsg, String expectedTitle) {
-//        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(driver);
 
         String actualSuccessMsg = homePage.getHeader()
                 .openAdminProfileMenu()

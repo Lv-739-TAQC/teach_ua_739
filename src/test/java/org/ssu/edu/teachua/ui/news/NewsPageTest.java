@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.news;
 
+import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -23,7 +24,7 @@ public class NewsPageTest extends LoginWithAdminRunner {
 
     @Test(dataProvider = "dpTestButtonsActivity")
     public void testButtonsActivity(String location, String expectedClubsTitle) {
-//        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(driver);
 
         List<Boolean> actualNewsButtons = new ArrayList<>();
         int newsAmount = homePage.getHeader().clickNewsButton().getCountAllNews();
