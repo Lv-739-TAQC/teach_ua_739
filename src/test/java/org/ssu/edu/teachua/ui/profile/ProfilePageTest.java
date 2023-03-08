@@ -6,7 +6,6 @@ import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 public class ProfilePageTest extends LoginWithAdminRunner {
 
