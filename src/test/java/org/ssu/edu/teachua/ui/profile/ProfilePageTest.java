@@ -25,14 +25,10 @@ public class ProfilePageTest extends LoginWithAdminRunner {
     }
 
     @Test
-    public void verifyErrorMessagesForChangePassword() {
+    public void verifyErrorMessagesForChangePasswordTest() {
 
-        SoftAssert softAssert = new SoftAssert();
-
-        ProfilePage profilePage = new ProfilePage(driver);
-        profilePage.clickEditProfileButton();
-
-        EditProfileComponent editProfile = new EditProfileComponent(driver, profilePage.getEditProfileNode());
+        EditProfileComponent editProfile = new ProfilePage(driver)
+                .clickEditProfileButton();
 
         String actualErrorFirst = editProfile.clickChangePassword()
                 .clickSaveAfterEnteringInvalidData()
