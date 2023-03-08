@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class AddChallengeTest extends LoginWithAdminRunner {
+public class AddChallengePageTest extends LoginWithAdminRunner {
     private AddChallengePage addChallengePage;
     @DataProvider(name = "dpTestAddChallengeValid")
     public Object[][] dpTestAddChallengeValid() {
