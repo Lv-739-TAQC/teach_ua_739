@@ -8,17 +8,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class ProfilePageTest extends LoginWithAdminRunner {
 
     public final String RED_BORDER_COLOR = "rgb(255, 0, 0)";
-    public final List<String> ERROR_MSG_PASSWORD = Arrays.asList(
-            "Будь ласка, підтвердіть новий пароль",
-            "Будь ласка, введіть новий пароль",
-            "Будь ласка, введіть діючий пароль"
-    );
+    public final String ERROR_MSG_CONFIRM_PASSWORD = "Будь ласка, підтвердіть новий пароль";
+    public final String ERROR_MSG_NEW_PASSWORD = "Будь ласка, введіть новий пароль";
+    public final String ERROR_MSG_CURRENT_PASSWORD = "Будь ласка, введіть діючий пароль";
 
     @BeforeMethod(description = "Precondition method: open Profile Page")
     public void openProfilePagePrecondition() {
@@ -42,19 +37,19 @@ public class ProfilePageTest extends LoginWithAdminRunner {
         String actualErrorFirst = editProfile.clickChangePassword()
                 .clickSaveAfterEnteringInvalidData()
                 .getAlertMessageConfirmPassword();
-        softAssert.assertEquals(actualErrorFirst, ERROR_MSG_PASSWORD.get(0));
+        softAssert.assertEquals(actualErrorFirst, ERROR_MSG_CONFIRM_PASSWORD);
 
         String actualBorderColorFirst = editProfile.getBorderColorForConfirmPasswordField();
         softAssert.assertEquals(actualBorderColorFirst, RED_BORDER_COLOR);
 
         String actualErrorSecond = editProfile.getAlertMessageNewPassword();
-        softAssert.assertEquals(actualErrorSecond, ERROR_MSG_PASSWORD.get(1));
+        softAssert.assertEquals(actualErrorSecond, ERROR_MSG_NEW_PASSWORD);
 
         String actualBorderColorSecond = editProfile.getBorderColorForNewPasswordField();
         softAssert.assertEquals(actualBorderColorSecond, RED_BORDER_COLOR);
 
         String actualErrorThird = editProfile.getAlertMessageCurrentPassword();
-        softAssert.assertEquals(actualErrorThird, ERROR_MSG_PASSWORD.get(2));
+        softAssert.assertEquals(actualErrorThird, ERROR_MSG_CURRENT_PASSWORD);
 
         String actualBorderColorThird = editProfile.getBorderColorForCurrentPasswordField();
         softAssert.assertEquals(actualBorderColorThird, RED_BORDER_COLOR);
@@ -64,4 +59,5 @@ public class ProfilePageTest extends LoginWithAdminRunner {
     }
 
 }
+
 
