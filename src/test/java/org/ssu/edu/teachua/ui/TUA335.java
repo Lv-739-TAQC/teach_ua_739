@@ -47,7 +47,7 @@ public class TUA335 extends BaseTestRunnerUI {
                 .fillSortNumber(String.valueOf(System.currentTimeMillis()))
                 .fillTitle(TITLE)
                 .fillDescription(DESCRIPTION)
-                .addPhoto(valueProvider.getFilePath("image.png"));
+                .addPhoto(valueProvider.getFilePath("photos/image.png"));
 
         String actualValueFirst = addChallengePage.fillName(NAME.get(0))
                 .clickSave()

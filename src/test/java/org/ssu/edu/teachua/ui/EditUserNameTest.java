@@ -2,7 +2,7 @@ package org.ssu.edu.teachua.ui;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
-import org.ssu.edu.teachua.utils.DataProviderTua328;
+import org.ssu.edu.teachua.utils.providers.DataProviderTua328;
 import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.testng.Assert;
 import org.testng.annotations.Test;

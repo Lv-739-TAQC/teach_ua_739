@@ -1,4 +1,4 @@
-package org.ssu.edu.teachua.ui.add_club;
+package org.ssu.edu.teachua.ui.club;
 
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;

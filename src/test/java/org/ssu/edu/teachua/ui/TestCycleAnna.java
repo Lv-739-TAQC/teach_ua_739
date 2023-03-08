@@ -33,7 +33,7 @@ public class TestCycleAnna extends BaseTestRunnerUI {
                 .enterContactPhone("0674443322")
                 .clickNextStepButton();
 
-        descriptionStepAddClub.enterDescription(valueProvider.getStringFromFile(valueProvider.getFilePath("1000symbols.txt")));
+        descriptionStepAddClub.enterDescription(valueProvider.getStringFromFile(valueProvider.getFilePath("text/1000symbols.txt")));
         descriptionHelp = driver.findElements(By.xpath(".//div[@id='basic_description_help']"));
         softAssert.assertEquals(descriptionHelp.size(), 0);
 
@@ -41,7 +41,7 @@ public class TestCycleAnna extends BaseTestRunnerUI {
         descriptionHelp = driver.findElements(By.xpath(".//div[@id='basic_description_help']"));
         softAssert.assertEquals(descriptionHelp.size(), 0);
 
-        descriptionStepAddClub.enterDescription(valueProvider.getStringFromFile(valueProvider.getFilePath("1500symbols.txt")));
+        descriptionStepAddClub.enterDescription(valueProvider.getStringFromFile(valueProvider.getFilePath("text/1500symbols.txt")));
         descriptionHelp = driver.findElements(By.xpath(".//div[@id='basic_description_help']"));
         softAssert.assertEquals(descriptionHelp.size(), 0);
 

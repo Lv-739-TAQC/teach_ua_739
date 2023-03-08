@@ -27,7 +27,6 @@ public class BaseTestRunnerUI {
         WebDriverManager.chromedriver().setup();
     }
 
-
     @BeforeClass(description = "Init ChromeDriver.")
     protected void initDriver() {
         driver = new ChromeDriver();

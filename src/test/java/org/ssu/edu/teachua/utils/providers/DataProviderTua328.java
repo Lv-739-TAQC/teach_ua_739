@@ -1,4 +1,4 @@
-package org.ssu.edu.teachua.utils;
+package org.ssu.edu.teachua.utils.providers;
 
 import org.testng.annotations.DataProvider;
 
