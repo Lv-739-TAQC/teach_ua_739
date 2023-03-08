@@ -2,7 +2,7 @@ package org.ssu.edu.teachua.ui.news;
 
 import org.ssu.edu.teachua.ui.components.card.NewsCardComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-public class NewsOrderTest extends TestRunnerUI {
+public class NewsOrderTest extends BaseTestRunnerUI {
 
     @Test
     public void testTua146() throws IOException, ParseException {

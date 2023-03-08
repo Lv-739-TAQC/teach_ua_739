@@ -5,14 +5,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.ssu.edu.teachua.utils.TestValueProvider;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 
-public class TestRunnerUI {
+public class BaseTestRunnerUI {
 
     protected static TestValueProvider valueProvider;
     protected WebDriver driver;
@@ -23,11 +24,12 @@ public class TestRunnerUI {
         if (valueProvider == null) {
             valueProvider = new TestValueProvider();
         }
+        WebDriverManager.chromedriver().setup();
     }
 
-    @BeforeMethod
-    public void initDriver() {
-        WebDriverManager.chromedriver().setup();
+
+    @BeforeClass(description = "Init ChromeDriver.")
+    protected void initDriver() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -36,7 +38,14 @@ public class TestRunnerUI {
         driver.findElement(By.id("proceed-link")).click();
     }
 
-    @AfterMethod
+    @AfterClass
+    public void closeDriver() {
+        if (driver != null) {
+            driver.close();
+        }
+    }
+
+    @AfterSuite
     public void quitDriver() {
         if (driver != null) {
             driver.quit();

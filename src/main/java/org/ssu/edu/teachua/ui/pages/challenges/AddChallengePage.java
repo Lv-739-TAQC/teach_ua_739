@@ -159,6 +159,7 @@ public class AddChallengePage extends BasePage {
 
     public ViewChallengePage clickViewChallenge() {
         waitForElementToBeClickable(getViewChallengeBtn()).click();
+        sleep(1);
         return new ViewChallengePage(driver);
     }
 

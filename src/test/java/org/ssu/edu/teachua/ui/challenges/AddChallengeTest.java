@@ -2,11 +2,11 @@ package org.ssu.edu.teachua.ui.challenges;
 
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.LoginRunner;
+import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class AddChallengeTest extends LoginRunner {
+public class AddChallengeTest extends LoginWithAdminRunner {
 
     @DataProvider(name = "dpTestAddChallengeValid")
     public Object[][] dpTestAddChallengeValid() {
@@ -21,7 +21,6 @@ public class AddChallengeTest extends LoginRunner {
                                       String description, String photoName,
                                       String expectedSuccessMsg, String expectedTitle) {
         HomePage homePage = new HomePage(driver);
-        AddChallengePage addChallengePage = new AddChallengePage(driver);
 
         String actualSuccessMsg = homePage.getHeader()
                 .openAdminProfileMenu()
@@ -37,6 +36,7 @@ public class AddChallengeTest extends LoginRunner {
                 .clickSave()
                 .checkSuccessMessage();
 
+        AddChallengePage addChallengePage = new AddChallengePage(driver);
         String actualTitle = addChallengePage
                 .clickViewChallenge()
                 .getChallengeTitle();

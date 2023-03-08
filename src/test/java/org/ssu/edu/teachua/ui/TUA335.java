@@ -2,7 +2,7 @@ package org.ssu.edu.teachua.ui;
 
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-public class TUA335 extends TestRunnerUI {
+public class TUA335 extends BaseTestRunnerUI {
     private static final List<String> NAME = Arrays.asList(
             "Українськамоваєнаймилозвучніша",
             "Ukrainian",

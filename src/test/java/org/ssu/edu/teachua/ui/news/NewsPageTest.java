@@ -1,7 +1,7 @@
 package org.ssu.edu.teachua.ui.news;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.LoginRunner;
+import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class NewsPageTest extends LoginRunner {
+public class NewsPageTest extends LoginWithAdminRunner {
 
     @DataProvider(name = "dpTestButtonsActivity")
     public Object[][] dpTestButtonsActivity() {

@@ -1,7 +1,7 @@
 package org.ssu.edu.teachua.ui;
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -9,7 +9,7 @@ import java.io.IOException;
 
 
 
-public class TUA157  extends TestRunnerUI {
+public class TUA157  extends BaseTestRunnerUI {
 
     private static final String SORT_NUMBER = "";
     private static final String NAME = "Челендж_99";

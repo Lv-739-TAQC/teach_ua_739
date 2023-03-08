@@ -6,13 +6,13 @@ import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.news.NewsPage;
 import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.ssu.edu.teachua.utils.JanetTafiyDataProvider;
 import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class JanetTafiyTests extends TestRunnerUI {
+public class JanetTafiyTests extends BaseTestRunnerUI {
     private static final int NEWS_INDEX = 1;
 
     @Test(dataProvider = "registrationData", dataProviderClass = JanetTafiyDataProvider.class)
