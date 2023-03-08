@@ -17,15 +17,15 @@ public abstract class BaseClubComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'add-club-content-prev')]")
     protected WebElement previousPageButton;
     @FindBy(how = How.XPATH, using = ".//span[@class='ant-input-suffix']//span[@aria-label='check-circle']")
-    protected WebElement checkCircle;
+    private WebElement checkCircle;
     @FindBy(how = How.XPATH, using = ".//span[@class='ant-input-textarea-suffix']//span[@aria-label='check-circle']")
-    protected WebElement textareaCheckCircle;
+    private WebElement areaCheckCircle;
     @FindBy(how = How.XPATH, using = ".//span[@class='ant-input-suffix']//span[@aria-label='close-circle']")
-    protected WebElement closeCircle;
+    private WebElement closeCircle;
     @FindBy(how = How.XPATH, using = ".//span[@class='ant-input-textarea-suffix']//span[@aria-label='close-circle']")
-    protected WebElement textareaCloseCircle;
+    private WebElement areaCloseCircle;
     @FindBy(how = How.XPATH, using = ".//div[@class='ant-form-item-explain-error']")
-    protected WebElement fieldErrorMsg;
+    private WebElement fieldErrorMsg;
     @FindBy(how = How.XPATH, using = "(.//div[contains(@class, 'item-active')]//div[text()[contains(., 'Основна інформація')]])[1]")
     private WebElement clubMainInfoComponent;
     @FindBy(how = How.XPATH, using = "(.//div[contains(@class, 'item-active')]//div[text()[contains(., 'Контакти')]])[1])")
@@ -78,5 +78,30 @@ public abstract class BaseClubComponent extends BaseComponent {
         String colorCode = thirdStep.getCssValue("background-color");
         String hexacolor = Color.fromString(colorCode).asHex();
         return hexacolor;
+    }
+
+    public WebElement getCheckCircle() {
+        waitForElementToAppear(checkCircle);
+        return checkCircle;
+    }
+
+    public WebElement getCloseCircle() {
+        waitForElementToAppear(closeCircle);
+        return closeCircle;
+    }
+
+    public WebElement getAreaCheckCircle() {
+        waitForElementToAppear(areaCheckCircle);
+        return areaCheckCircle;
+    }
+
+    public WebElement getAreaCloseCircle() {
+        waitForElementToAppear(areaCloseCircle);
+        return areaCloseCircle;
+    }
+
+    public WebElement getFieldErrorMsg() {
+        waitForElementToAppear(fieldErrorMsg);
+        return fieldErrorMsg;
     }
 }

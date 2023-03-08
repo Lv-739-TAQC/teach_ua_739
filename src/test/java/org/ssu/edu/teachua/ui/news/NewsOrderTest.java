@@ -1,4 +1,4 @@
-package org.ssu.edu.teachua.ui;
+package org.ssu.edu.teachua.ui.news;
 
 import org.ssu.edu.teachua.ui.components.card.NewsCardComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-public class TestCasesTetiana extends TestRunnerUI {
+public class NewsOrderTest extends TestRunnerUI {
 
     @Test
     public void testTua146() throws IOException, ParseException {
@@ -33,21 +33,5 @@ public class TestCasesTetiana extends TestRunnerUI {
         Collections.sort(descNewsDates, Collections.reverseOrder());
 
         Assert.assertEquals(newsDates, descNewsDates);
-    }
-
-    @Test
-    public void testTua71() throws IOException {
-        HomePage homePage = new HomePage(driver);
-
-        homePage.getHeader()
-                .clickChallengesButton()
-                .clickChallengeButton(5);
-        String expected = driver.getCurrentUrl();
-
-        String testChallengePage = homePage.getHeader()
-                .clickChallengesButton()
-                .getChallengeUrl(5);
-
-        Assert.assertEquals(testChallengePage, expected);
     }
 }
