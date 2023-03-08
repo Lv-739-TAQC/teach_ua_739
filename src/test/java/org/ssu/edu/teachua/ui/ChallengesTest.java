@@ -1,11 +1,11 @@
 package org.ssu.edu.teachua.ui;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ChallengesTest extends TestRunnerUI {
+public class ChallengesTest extends BaseTestRunnerUI {
 
     private static final String NAME = "Ukraine";
     private static final String TITLE = "Title";

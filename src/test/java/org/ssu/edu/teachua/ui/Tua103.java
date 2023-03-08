@@ -4,7 +4,7 @@ import org.ssu.edu.teachua.ui.components.card.ClubCardComponent;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchCenterComponent;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchClubComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -13,7 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Tua103 extends TestRunnerUI {
+public class Tua103 extends BaseTestRunnerUI {
 
     @Test
     public void testSortingClubByName() throws Exception {

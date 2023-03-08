@@ -1,7 +1,7 @@
 package org.ssu.edu.teachua.ui.add_club;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.LoginRunner;
+import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class AddClubTest extends LoginRunner {
+public class AddClubTest extends LoginWithAdminRunner {
 
     public static final List<String> ERROR_MSG = Arrays.asList(
             "Опис гуртка задовгий",
@@ -31,7 +31,7 @@ public class AddClubTest extends LoginRunner {
     @Test(dataProvider = "dpTestDescriptionFieldValid")
     public void testDescriptionFieldValid(String nameField, int categoriesNumber, String childAgeFrom,
                                           String childAgeFor, String contactPhone, String description) {
-//        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(driver);
 
         boolean isInputSuccess = homePage.getHeader()
                 .openAdminProfileMenu()
@@ -64,7 +64,7 @@ public class AddClubTest extends LoginRunner {
     public void testDescriptionFieldInvalid(String nameField, int categoriesNumber, String childAgeFrom,
                                             String childAgeFor, String contactPhone, String description,
                                             String expectedErrorMessage) {
-//        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(driver);
 
         String actualErrorMessage = homePage.getHeader()
                 .openAdminProfileMenu()

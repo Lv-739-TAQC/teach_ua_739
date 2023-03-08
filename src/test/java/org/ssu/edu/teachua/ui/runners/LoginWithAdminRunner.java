@@ -2,12 +2,11 @@ package org.ssu.edu.teachua.ui.runners;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 
-public class LoginRunner extends TestRunnerUI {
-    protected HomePage homePage;
+public class LoginWithAdminRunner extends BaseTestRunnerUI {
 
-    @BeforeClass(description = "Precondition method : login into your account")
+
+    @BeforeClass(description = "Precondition method : login into Admin account")
     public void loginPrecondition() {
         HomePage homePage = new HomePage(driver);
 
@@ -20,9 +19,5 @@ public class LoginRunner extends TestRunnerUI {
                 .getLoginSuccessMsg();
     }
 
-    @BeforeMethod
-    public void goToHomePage() {
-        driver.get(valueProvider.getBaseUiUrl());
-        homePage = new HomePage(driver);
-    }
+
 }

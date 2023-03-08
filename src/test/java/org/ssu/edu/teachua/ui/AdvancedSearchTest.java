@@ -2,11 +2,11 @@ package org.ssu.edu.teachua.ui;
 
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchCenterComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class AdvancedSearchTest extends TestRunnerUI {
+public class AdvancedSearchTest extends BaseTestRunnerUI {
 
     @Test
     public void verifyThatAvailableOnlineCategoriesChildAgeParametersAreDeactivatedAfterSelectingCenterRadioButton() {
@@ -20,4 +20,6 @@ public class AdvancedSearchTest extends TestRunnerUI {
         softAssert.assertTrue(advancedSearchCenterComponent.isChildAgeParameterDeactivated(), "Child age parameter is activated");
         softAssert.assertAll();
     }
+
+
 }

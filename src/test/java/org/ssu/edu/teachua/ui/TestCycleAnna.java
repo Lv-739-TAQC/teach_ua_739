@@ -4,13 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubDescriptionComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 
-public class TestCycleAnna extends TestRunnerUI {
+public class TestCycleAnna extends BaseTestRunnerUI {
 
     @Test
     public void addClubDescriptionFieldPositiveTestTUA172() {

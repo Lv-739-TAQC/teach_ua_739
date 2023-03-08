@@ -2,13 +2,13 @@ package org.ssu.edu.teachua.ui;
 
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchClubComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import java.util.Arrays;
 import java.util.List;
 
-public class TUA210 extends TestRunnerUI {
+public class TUA210 extends BaseTestRunnerUI {
     private static final List<String> INVALID_AGE = Arrays.asList(
             "1",
             "19");

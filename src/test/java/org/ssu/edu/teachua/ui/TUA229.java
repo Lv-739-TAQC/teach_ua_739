@@ -2,13 +2,13 @@ package org.ssu.edu.teachua.ui;
 
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class TUA229 extends TestRunnerUI {
+public class TUA229 extends BaseTestRunnerUI {
 
     @Test
     public void testTUA229() throws IOException {

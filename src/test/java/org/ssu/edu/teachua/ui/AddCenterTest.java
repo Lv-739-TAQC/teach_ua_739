@@ -1,7 +1,7 @@
 package org.ssu.edu.teachua.ui;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.sql.Timestamp;
 
-public class AddCenterTest extends TestRunnerUI {
+public class AddCenterTest extends BaseTestRunnerUI {
     @Test
     public void addCenterTest() {
         HomePage homePage = new HomePage(driver);

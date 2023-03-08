@@ -1,16 +1,12 @@
 package org.ssu.edu.teachua.ui;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.modal.EditProfileComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.TestRunnerUI;
-import org.testng.Assert;
+import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class TUA343 extends TestRunnerUI{
+public class TUA343 extends BaseTestRunnerUI {
 	
 	@DataProvider(name = "dpTestVerifieDataLastName")
     private Object[][] dpTestVerifieDataLastName() {
