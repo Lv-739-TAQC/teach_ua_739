@@ -3,6 +3,7 @@ package org.ssu.edu.teachua.utils.providers;
 import org.testng.annotations.DataProvider;
 
 public class DataProviderTua328 {
+
     @DataProvider(name = "dpTua328")
     public static Object[][] dpTua328() {
         return new Object[][]{

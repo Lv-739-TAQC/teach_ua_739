@@ -2,50 +2,54 @@ package org.ssu.edu.teachua.ui.centre;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.providers.DataProviderCentre;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.List;
 
 public class CentreComponentTest extends LoginWithAdminRunner {
 
-    @Test
-    public void testAddCenter() {
+    @Test(dataProvider = "dpTestAddCenter", dataProviderClass = DataProviderCentre.class)
+    public void testAddCenter(String centerName, String locationName, String city, String subway, String district,
+                              String address, String locationGC, String locationPhone, int locationIdx, String facebookUrl,
+                              String siteUrl, String emailUrl, String skypeName, String whatsAppNumber, String simplePhone,
+                              String photoLogoPath, String centerPhotoPath, String description, int clubIdx,
+                              List<String> expectedProfileContent) {
         HomePage homePage = new HomePage(driver);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        List<String> actualProfileContent = homePage.getHeader()
+        List<String> actualProfileContent = homePage
+                .getHeader()
                 .openAdminProfileMenu()
                 .openAddCentreForm()
-                .enterCenterName("First language center" + timestamp.getTime())
+                .enterCenterName(centerName + timestamp.getTime())
                 .pressAddLocationButton()
-                .enterLocationName("Лівий берег")
-                .selectLocationCity("Одеса")
-                .selectLocationSubway("Фонтан")
-                .selectLocationDistrict("Приморський")
-                .enterLocationAddress("проспект Бажана, 3А")
-                .enterLocationGC("50.406108, 30.668492")
-                .enterLocationPhone("0679002233")
+                .enterLocationName(locationName)
+                .selectLocationCity(city)
+                .selectLocationSubway(subway)
+                .selectLocationDistrict(district)
+                .enterLocationAddress(address)
+                .enterLocationGC(locationGC)
+                .enterLocationPhone(locationPhone)
                 .pressAddLocationToListButton()
-                .checkLocation(1)
+                .checkLocation(locationIdx)
                 .pressNextButton()
-                .enterCenterFacebook("https://www.facebook.com/1lngcenter/")
-                .enterCenterSite("https://1lngcenter/")
-                .enterCenterMail("center@gmail.com")
-                .enterCenterSkype("1lngcenter")
-                .enterCenterWhatsAppNumber("+380630336789")
-                .enterPhone("0503334455")
+                .enterCenterFacebook(facebookUrl)
+                .enterCenterSite(siteUrl)
+                .enterCenterMail(emailUrl)
+                .enterCenterSkype(skypeName)
+                .enterCenterWhatsAppNumber(whatsAppNumber)
+                .enterPhone(simplePhone)
                 .pressNextButton()
-                .addCenterLogo(valueProvider.getFilePath("photos/centerLogo.jpg"))
-                .addCenterPhoto(valueProvider.getFilePath("photos/centerPhoto.jpg"))
-                .addCenterDescription("Кількість курсів, призначених для окремих вікових груп, залежить від суми використовуваних на сьогоднішній день грантів")
+                .addCenterLogo(valueProvider.getFilePath(photoLogoPath))
+                .addCenterPhoto(valueProvider.getFilePath(centerPhotoPath))
+                .addCenterDescription(description)
                 .pressNextButton()
-                .checkClub(100)
+                .checkClub(clubIdx)
                 .pressFinishButton()
                 .getProfilePageContent();
 
-        Assert.assertEquals(actualProfileContent, Arrays.asList("Особистий кабінет", "Admin Admin", "АДМІНІСТРАТОР", "0689543242", "admin@gmail.com"));
+        Assert.assertEquals(actualProfileContent, expectedProfileContent);
     }
-
 }
