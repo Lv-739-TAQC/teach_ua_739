@@ -113,7 +113,7 @@ public class AddChallengePageTest extends LoginWithAdminRunner {
     }
 
     @Test(dataProvider = "dpTestEmptySortNumber", dataProviderClass = DataProviderChallenge.class)
-    public void errorMessagesForChallengeSortNumberFieldTest(String sortNumber, String name, String title,
+    public void testErrorMessagesForChallengeSortNumberField(String sortNumber, String name, String title,
                                                              String description, String photoPath,
                                                              String expectedErrorMsg) {
 
@@ -138,7 +138,7 @@ public class AddChallengePageTest extends LoginWithAdminRunner {
     }
 
     @Test (dataProvider = "dpTestInvalidValueNameField", dataProviderClass = DataProviderChallenge.class)
-    public void errorMessagesForChallengeNameFieldTest(String title, String description,
+    public void testErrorMessagesForChallengeNameField(String title, String description,
                                                        String photoPath,List<String> invalidNames,
                                                        List<String> expectedErrorMsg) {
 
@@ -170,7 +170,7 @@ public class AddChallengePageTest extends LoginWithAdminRunner {
     }
 
     @Test(dataProvider = "dpTestValidValueNameField", dataProviderClass = DataProviderChallenge.class)
-    public void createChallengeWithValidNameFieldTest(String title, String description,
+    public void testCreatingChallengeWithValidNameField(String title, String description,
                                                                   String photoPath, List<String> validName,
                                                                   List<String> expectedSuccessMsg) {
 
