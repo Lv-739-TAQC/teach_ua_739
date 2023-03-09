@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.edit_club_component;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,7 +36,7 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
     public EditClubMainInfoComponent enterNewClubName(String editName) {
         waitForElementToBeClickable(editNameField);
         this.editNameField.click();
-        this.editNameField.clear();
+        this.editNameField.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         this.editNameField.sendKeys(editName);
         return this;
     }
@@ -48,7 +49,7 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
     public EditClubMainInfoComponent enterEditChildAgeFrom(String editChildAge) {
         waitForElementToBeClickable(editChildAgeFrom);
         this.editChildAgeFrom.click();
-        this.editChildAgeFrom.clear();
+        this.editChildAgeFrom.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         this.editChildAgeFrom.sendKeys(editChildAge);
         return this;
     }
@@ -56,7 +57,7 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
     public EditClubMainInfoComponent enterEditChildAgeFor(String editChildAgeTo) {
         waitForElementToBeClickable(editChildAgeFor);
         this.editChildAgeFor.click();
-        this.editChildAgeFor.clear();
+        this.editChildAgeFor.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         this.editChildAgeFor.sendKeys(editChildAgeTo);
         return this;
     }

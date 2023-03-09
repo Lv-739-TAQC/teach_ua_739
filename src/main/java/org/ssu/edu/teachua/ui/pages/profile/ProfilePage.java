@@ -8,6 +8,7 @@ import org.ssu.edu.teachua.ui.base.BasePage;
 import org.ssu.edu.teachua.ui.components.modal.EditProfileComponent;
 import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
+import org.ssu.edu.teachua.ui.components.modal.edit_center_component.EditCenterMainInfoComponent;
 import org.ssu.edu.teachua.ui.components.modal.edit_club_component.EditClubMainInfoComponent;
 
 import java.util.Arrays;
@@ -78,6 +79,9 @@ public class ProfilePage extends BasePage {
     @FindBy(how = How.XPATH, using = ".//div[@class='center-edit-button']")
     private List<WebElement> centerDots;
 
+    @FindBy(how = How.XPATH, using = ".//li[contains(@data-menu-id, 'tmp_key-0')]")
+    private WebElement editCenterButton;
+
     public ProfilePage(WebDriver driver) {
         super(driver);
     }
@@ -138,6 +142,11 @@ public class ProfilePage extends BasePage {
     public ProfilePage clickCenterDots(int centerIndex) {
         waitForElementsToAppear(centerDots).get(centerIndex).click();
         return this;
+    }
+
+    public EditCenterMainInfoComponent getEditCenterButton() {
+        waitForElementToBeClickable(editCenterButton).click();
+        return new EditCenterMainInfoComponent(driver);
     }
 
     public WebElement getEditProfileNode() {
