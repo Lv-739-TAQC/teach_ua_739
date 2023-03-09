@@ -4,55 +4,48 @@ import org.ssu.edu.teachua.ui.components.modal.EditProfileComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.providers.DataProviderProfilePage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ProfilePageTest extends LoginWithAdminRunner {
-
-    public final String RED_BORDER_COLOR = "rgb(255, 0, 0)";
-    public final String ERROR_MSG_CONFIRM_PASSWORD = "Будь ласка, підтвердіть новий пароль";
-    public final String ERROR_MSG_NEW_PASSWORD = "Будь ласка, введіть новий пароль";
-    public final String ERROR_MSG_CURRENT_PASSWORD = "Будь ласка, введіть діючий пароль";
+    private ProfilePage profilePage;
 
     @BeforeMethod(description = "Precondition method: open Profile Page")
-    public void openProfilePagePrecondition() {
-        HomePage homePage = new HomePage(driver);
-
-        homePage.getHeader()
+    void openProfilePagePrecondition() {
+        driver.navigate().refresh();
+        profilePage = new HomePage(driver)
+                .getHeader()
                 .openAdminProfileMenu()
                 .openProfilePage();
     }
 
-    @Test
-    public void verifyErrorMessagesForChangePasswordTest() {
+    @Test(dataProvider = "dpTestChangePassword", dataProviderClass = DataProviderProfilePage.class)
+    public void verifyErrorMessagesForChangePasswordTest(String redBorderColor, String errorMsgConfirmNewPassword, String errorMsgNewPassword, String errorMsgCurrentPassword) {
 
-        EditProfileComponent editProfile = new ProfilePage(driver)
-                .clickEditProfileButton();
+        EditProfileComponent editProfile = profilePage.clickEditProfileButton()
+                .clickChangePassword()
+                .clickSaveAfterEnteringInvalidData();
 
-        String actualErrorFirst = editProfile.clickChangePassword()
-                .clickSaveAfterEnteringInvalidData()
-                .getAlertMessageConfirmPassword();
-        softAssert.assertEquals(actualErrorFirst, ERROR_MSG_CONFIRM_PASSWORD);
+        String actualErrorMsgFirst = editProfile.getAlertMessageConfirmPassword();
+        softAssert.assertEquals(actualErrorMsgFirst, errorMsgConfirmNewPassword);
 
         String actualBorderColorFirst = editProfile.getBorderColorForConfirmPasswordField();
-        softAssert.assertEquals(actualBorderColorFirst, RED_BORDER_COLOR);
+        softAssert.assertEquals(actualBorderColorFirst, redBorderColor);
 
-        String actualErrorSecond = editProfile.getAlertMessageNewPassword();
-        softAssert.assertEquals(actualErrorSecond, ERROR_MSG_NEW_PASSWORD);
+        String actualErrorMsgSecond = editProfile.getAlertMessageNewPassword();
+        softAssert.assertEquals(actualErrorMsgSecond, errorMsgNewPassword);
 
         String actualBorderColorSecond = editProfile.getBorderColorForNewPasswordField();
-        softAssert.assertEquals(actualBorderColorSecond, RED_BORDER_COLOR);
+        softAssert.assertEquals(actualBorderColorSecond, redBorderColor);
 
-        String actualErrorThird = editProfile.getAlertMessageCurrentPassword();
-        softAssert.assertEquals(actualErrorThird, ERROR_MSG_CURRENT_PASSWORD);
+        String actualErrorMsgThird = editProfile.getAlertMessageCurrentPassword();
+        softAssert.assertEquals(actualErrorMsgThird, errorMsgCurrentPassword);
 
         String actualBorderColorThird = editProfile.getBorderColorForCurrentPasswordField();
-        softAssert.assertEquals(actualBorderColorThird, RED_BORDER_COLOR);
+        softAssert.assertEquals(actualBorderColorThird, redBorderColor);
 
         softAssert.assertAll();
 
     }
-
 }
-
-

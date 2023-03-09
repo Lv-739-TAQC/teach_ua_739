@@ -3,9 +3,9 @@ package org.ssu.edu.teachua.ui.challenges;
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
+import org.testng.annotations.BeforeMethod;
 import org.ssu.edu.teachua.utils.providers.DataProviderChallenge;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -14,6 +14,7 @@ import java.util.List;
 
 public class AddChallengePageTest extends LoginWithAdminRunner {
     private AddChallengePage addChallengePage;
+
     @DataProvider(name = "dpTestAddChallengeValid")
     public Object[][] dpTestAddChallengeValid() {
         return new Object[][]{
