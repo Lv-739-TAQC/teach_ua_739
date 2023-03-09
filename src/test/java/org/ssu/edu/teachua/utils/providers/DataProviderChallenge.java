@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class DataProviderChallenge {
     @DataProvider(name = "dpTestErrorMessageChallengeNameField")
-    public Object[][] dpTestErrorMessageChallengeNameField() {
+    public static Object[][] dpTestErrorMessageChallengeNameField() {
         return new Object[][]{
                 {"546789",
                         "testFeb2023",
@@ -23,7 +23,7 @@ public class DataProviderChallenge {
     }
 
     @DataProvider(name = "dpTestCompressAndUploadPhoto")
-    public Object[][] dpTestCompressAndUploadPhoto() {
+    public static Object[][] dpTestCompressAndUploadPhoto() {
         return new Object[][]{
                 {"photos/image.png"}
         };

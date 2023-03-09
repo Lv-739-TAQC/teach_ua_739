@@ -3,6 +3,7 @@ package org.ssu.edu.teachua.ui.challenges;
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
+import org.testng.annotations.BeforeMethod;
 import org.ssu.edu.teachua.utils.providers.DataProviderChallenge;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -10,7 +11,8 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class AddChallengeTest extends LoginWithAdminRunner {
+public class AddChallengePageTest extends LoginWithAdminRunner {
+    private AddChallengePage addChallengePage;
 
     @DataProvider(name = "dpTestAddChallengeValid")
     public Object[][] dpTestAddChallengeValid() {
@@ -20,18 +22,24 @@ public class AddChallengeTest extends LoginWithAdminRunner {
         };
     }
 
-    @Test(dataProvider = "dpTestAddChallengeValid")
-    public void testAddChallengeValid(String number, String name, String title,
-                                      String description, String photoName,
-                                      String expectedSuccessMsg, String expectedTitle) {
-        HomePage homePage = new HomePage(driver);
-
-        String actualSuccessMsg = homePage.getHeader()
+    @BeforeMethod
+    void openAddChallengePage() {
+        driver.navigate().refresh();
+        addChallengePage = new HomePage(driver)
+                .getHeader()
                 .openAdminProfileMenu()
                 .openContentMenu()
                 .openChallengesMenu()
                 .clickChallenges()
-                .addChallenge()
+                .addChallenge();
+    }
+
+    @Test(dataProvider = "dpTestAddChallengeValid")
+    public void testAddChallengeValid(String number, String name, String title,
+                                      String description, String photoName,
+                                      String expectedSuccessMsg, String expectedTitle) {
+
+        String actualSuccessMsg = addChallengePage
                 .fillSortNumber(number)
                 .fillName(name)
                 .fillTitle(title)
@@ -102,4 +110,5 @@ public class AddChallengeTest extends LoginWithAdminRunner {
 
         softAssert.assertAll();
     }
+
 }
