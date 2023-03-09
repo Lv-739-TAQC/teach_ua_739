@@ -1,16 +1,10 @@
 package org.ssu.edu.teachua.ui.centre;
 
-<<<<<<< HEAD
 import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-=======
-import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
-import org.testng.Assert;
->>>>>>> main
 import org.testng.annotations.Test;
 
 import java.sql.Timestamp;
