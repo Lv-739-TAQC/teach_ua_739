@@ -9,7 +9,7 @@ import org.testng.asserts.SoftAssert;
 public class AdvancedSearchTest extends BaseTestRunnerUI {
 
     @Test
-    public void verifyThatAvailableOnlineCategoriesChildAgeParametersAreDeactivatedAfterSelectingCenterRadioButton() {
+    public void verifyThatAvailableOnlineCategoriesChildAgeParametersAreDeactivated() {
         SoftAssert softAssert = new SoftAssert();
         AdvancedSearchCenterComponent advancedSearchCenterComponent = new HomePage(driver)
                 .clickAdvancedSearchIcon()

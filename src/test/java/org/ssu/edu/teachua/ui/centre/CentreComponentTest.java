@@ -1,10 +1,16 @@
 package org.ssu.edu.teachua.ui.centre;
 
+<<<<<<< HEAD
 import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+=======
+import org.ssu.edu.teachua.ui.pages.home.HomePage;
+import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
+import org.testng.Assert;
+>>>>>>> main
 import org.testng.annotations.Test;
 
 import java.sql.Timestamp;
@@ -25,10 +31,12 @@ public class CentreComponentTest extends LoginWithAdminRunner {
     }
 
     @Test
-    public void addCenterTest() {
+    public void testAddCenter() {
         HomePage homePage = new HomePage(driver);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        List<String> actualProfileContent = addCenterMainInfoComponent
+        List<String> actualProfileContent = homePage.getHeader()
+                .openAdminProfileMenu()
+                .openAddCentreForm()
                 .enterCenterName("First language center" + timestamp.getTime())
                 .pressAddLocationButton()
                 .enterLocationName("Лівий берег")
@@ -58,6 +66,4 @@ public class CentreComponentTest extends LoginWithAdminRunner {
 
         Assert.assertEquals(actualProfileContent, Arrays.asList("Особистий кабінет", "Admin Admin", "АДМІНІСТРАТОР", "0689543242", "admin@gmail.com"));
     }
-
-
 }
