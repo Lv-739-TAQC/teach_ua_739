@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.edit_club_component;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,6 +24,9 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
 
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'cancel-button')]")
     private WebElement cancelDeleteLocationButton;
+
+    @FindBy(how = How.XPATH, using = ".//input[@id='basic_Телефон']")
+    protected WebElement editContactPhoneField;
 
     public EditClubContactsComponent(WebDriver driver) {
         super(driver);
@@ -62,7 +66,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
     public EditClubContactsComponent enterEditContactFacebook(String editContactFacebook) {
         waitForElementToBeClickable(contactFacebookField);
         this.contactFacebookField.click();
-        this.contactFacebookField.clear();
+        this.contactFacebookField.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         this.contactFacebookField.sendKeys(editContactFacebook);
         return this;
     }
@@ -70,7 +74,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
     public EditClubContactsComponent enterEditContactContact(String editContactContact) {
         waitForElementToBeClickable(contactContactField);
         this.contactContactField.click();
-        this.contactContactField.clear();
+        this.contactContactField.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         this.contactContactField.sendKeys(editContactContact);
         return this;
     }
@@ -78,7 +82,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
     public EditClubContactsComponent enterEditContactEmail(String editContactEmail) {
         waitForElementToBeClickable(contactEmailField);
         this.contactEmailField.click();
-        this.contactEmailField.clear();
+        this.contactEmailField.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         this.contactEmailField.sendKeys(editContactEmail);
         return this;
     }
@@ -86,7 +90,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
     public EditClubContactsComponent enterEditContactSkype(String editContactSkype) {
         waitForElementToBeClickable(contactSkypeField);
         this.contactSkypeField.click();
-        this.contactSkypeField.clear();
+        this.contactSkypeField.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         this.contactSkypeField.sendKeys(editContactSkype);
         return this;
     }
@@ -94,16 +98,16 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
     public EditClubContactsComponent enterEditContactWhatsApp(String editContactWhatsApp) {
         waitForElementToBeClickable(contactWhatsAppField);
         this.contactWhatsAppField.click();
-        this.contactWhatsAppField.clear();
+        this.contactWhatsAppField.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         this.contactWhatsAppField.sendKeys(editContactWhatsApp);
         return this;
     }
 
     public EditClubContactsComponent enterEditContactPhone(String editContactPhone) {
-        waitForElementToBeClickable(contactPhoneField);
-        this.contactPhoneField.click();
-        this.contactPhoneField.clear();
-        this.contactPhoneField.sendKeys(editContactPhone);
+        waitForElementToBeClickable(editContactPhoneField);
+        editContactPhoneField.click();
+        editContactPhoneField.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
+        editContactPhoneField.sendKeys(editContactPhone);
         return this;
     }
 

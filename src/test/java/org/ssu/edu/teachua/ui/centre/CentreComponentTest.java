@@ -1,8 +1,10 @@
 package org.ssu.edu.teachua.ui.centre;
 
+import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.sql.Timestamp;
@@ -10,6 +12,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CentreComponentTest extends LoginWithAdminRunner {
+
+    private AddCenterMainInfoComponent addCenterMainInfoComponent;
+
+    @BeforeMethod
+    void openAddCenterForm() {
+        driver.navigate().refresh();
+        addCenterMainInfoComponent = new HomePage(driver)
+                .getHeader()
+                .openAdminProfileMenu()
+                .openAddCentreForm();
+    }
 
     @Test
     public void testAddCenter() {
@@ -47,5 +60,4 @@ public class CentreComponentTest extends LoginWithAdminRunner {
 
         Assert.assertEquals(actualProfileContent, Arrays.asList("Особистий кабінет", "Admin Admin", "АДМІНІСТРАТОР", "0689543242", "admin@gmail.com"));
     }
-
 }
