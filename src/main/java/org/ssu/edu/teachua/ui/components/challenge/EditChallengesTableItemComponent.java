@@ -46,7 +46,7 @@ public class EditChallengesTableItemComponent extends BaseComponent {
         return this;
     }
 
-    @Step("Type {sortNumber} into challenge sort number field")
+    @Step("Type '{sortNumber}' into challenge sort number field")
     public EditChallengesTableItemComponent fillChallengeSortNumber(String sortNumber) {
         waitForElementToBeClickable(editSortNumber).sendKeys(sortNumber);
         return this;
@@ -60,7 +60,7 @@ public class EditChallengesTableItemComponent extends BaseComponent {
         return this;
     }
 
-    @Step("Type {name} into challenge name field")
+    @Step("Type '{name}' into challenge name field")
     public EditChallengesTableItemComponent fillChallengeName(String name) {
         waitForElementToBeClickable(editName).sendKeys(name);
         return this;
@@ -74,7 +74,7 @@ public class EditChallengesTableItemComponent extends BaseComponent {
         return this;
     }
 
-    @Step("Type {title} into challenge title field")
+    @Step("Type '{title}' into challenge title field")
     public EditChallengesTableItemComponent fillChallengeTitle(String title) {
         waitForElementToBeClickable(editTitle).sendKeys(title);
         return this;

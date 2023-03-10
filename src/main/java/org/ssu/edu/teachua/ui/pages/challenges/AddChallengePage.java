@@ -85,7 +85,7 @@ public class AddChallengePage extends BasePage {
         return errorMessage;
     }
 
-    @Step("Type {sortNumber} into challenge sort number field")
+    @Step("Type '{sortNumber}' into challenge sort number field")
     public AddChallengePage fillSortNumber(String sortNumber) {
         waitForElementToBeClickable(getSortNumber()).sendKeys(sortNumber);
         return this;
@@ -99,7 +99,7 @@ public class AddChallengePage extends BasePage {
         return this;
     }
 
-    @Step("Type {name} into challenge name field")
+    @Step("Type '{name}' into challenge name field")
     public AddChallengePage fillName(String name) {
         waitForElementToBeClickable(getName()).sendKeys(name);
         return this;
@@ -113,7 +113,7 @@ public class AddChallengePage extends BasePage {
         return this;
     }
 
-    @Step("Type {title} into challenge title field")
+    @Step("Type '{title}' into challenge title field")
     public AddChallengePage fillTitle(String title) {
         waitForElementToBeClickable(getTitle()).sendKeys(title);
         return this;
@@ -127,7 +127,7 @@ public class AddChallengePage extends BasePage {
         return this;
     }
 
-    @Step("Type {description} into challenge description field")
+    @Step("Type '{description}' into challenge description field")
     public AddChallengePage fillDescription(String description) {
         waitForElementToBeClickable(getDescription()).sendKeys(description);
         return this;

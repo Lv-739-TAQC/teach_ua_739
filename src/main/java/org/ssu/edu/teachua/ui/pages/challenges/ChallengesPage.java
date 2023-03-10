@@ -53,7 +53,7 @@ public class ChallengesPage extends BasePage {
         return new AddChallengePage(driver);
     }
 
-    @Step("Type {textToSearch} into search field")
+    @Step("Type '{textToSearch}' into search field")
     public ChallengesPage fillSearchField(String textToSearch) {
         waitForElementToBeClickable(searchField).sendKeys(textToSearch);
         return this;
@@ -117,7 +117,7 @@ public class ChallengesPage extends BasePage {
         return getChallengesTableItems().size();
     }
 
-    @Step("Select challenge by index: {challengeIndex}")
+    @Step("Select challenge by index: '{challengeIndex}'")
     public ViewChallengesTableItemComponent selectCertainChallenge(int challengeIndex) {
         return getChallengesTableItems().get(challengeIndex);
     }
