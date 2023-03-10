@@ -7,6 +7,15 @@ import java.util.Arrays;
 import java.util.Date;
 
 public class DataProviderChallenge {
+
+    @DataProvider(name = "dpTestAddChallengeValid")
+    public static Object[][] dpTestAddChallengeValid() {
+        return new Object[][]{
+                {"115", "name-1", "title-1", ("description-1").repeat(20),
+                        "photos/image.png", "Челендж 'name-1' успішно доданий!"}
+        };
+    }
+
     @DataProvider(name = "dpTestErrorMessageChallengeNameField")
     public static Object[][] dpTestErrorMessageChallengeNameField() {
         return new Object[][]{

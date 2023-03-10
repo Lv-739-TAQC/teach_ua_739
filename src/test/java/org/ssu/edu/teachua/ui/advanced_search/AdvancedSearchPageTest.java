@@ -12,8 +12,8 @@ import java.util.List;
 
 public class AdvancedSearchPageTest extends BaseTestRunnerUI {
 
-    @Test (dataProvider = "dpAgeFieldTest", dataProviderClass = DataProviderAdvancedSearch.class)
-    public void testAgeField(List<String> age, List<String> expectedAge) {
+    @Test(dataProvider = "dpAgeFieldTest", dataProviderClass = DataProviderAdvancedSearch.class)
+    public void AgeFieldTest(List<String> age, List<String> expectedAge) {
         SoftAssert softAssert = new SoftAssert();
         AdvancedSearchClubComponent advancedSearchClubComponent = new HomePage(driver)
                 .clickAdvancedSearchIcon();
@@ -36,33 +36,31 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
         String actualAgeFourth = advancedSearchClubComponent
                 .setAge(age.get(3))
                 .getAge();
-        softAssert.assertEquals(actualAgeFourth,  expectedAge.get(1), "Age has not been set correctly");
+        softAssert.assertEquals(actualAgeFourth, expectedAge.get(1), "Age has not been set correctly");
 
         softAssert.assertAll();
     }
 
     @Test
-    public void testAdvancedSearchComponentIsDisplayedAndHidden() {
+    public void advancedSearchComponentIsDisplayedAndHiddenTest() {
         SoftAssert softAssert = new SoftAssert();
         HomePage homePage = new HomePage(driver);
 
-        homePage
-                .clickAdvancedSearchIcon();
+        homePage.clickAdvancedSearchIcon();
 
         AdvancedSearchCenterComponent advancedSearchCenterComponent = new AdvancedSearchCenterComponent(driver);
         boolean isAdvancedSearchModalDisplayed = advancedSearchCenterComponent.isAdvancedSearchModalDisplayed();
         softAssert.assertTrue(isAdvancedSearchModalDisplayed, "Advanced search modal should be displayed");
 
-        homePage
-                .clickAdvancedSearchIcon();
+        homePage.clickAdvancedSearchIcon();
 
         isAdvancedSearchModalDisplayed = advancedSearchCenterComponent.isAdvancedSearchModalDisplayed();
-        softAssert.assertFalse(isAdvancedSearchModalDisplayed,"Advanced search modal should not be displayed");
+        softAssert.assertFalse(isAdvancedSearchModalDisplayed, "Advanced search modal should not be displayed");
         softAssert.assertAll();
     }
 
     @Test
-    public void testAllParametersAreActivated() {
+    public void allParametersActivatedTest() {
         SoftAssert softAssert = new SoftAssert();
 
         AdvancedSearchCenterComponent advancedSearchCenterComponent = new HomePage(driver)
@@ -91,5 +89,4 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
 
         softAssert.assertAll();
     }
-
 }

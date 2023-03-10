@@ -214,6 +214,7 @@ public class AddChallengePageTest extends LoginWithAdminRunner {
         softAssert.assertEquals(actualValueFourth,expectedSuccessMsg.get(3));
         softAssert.assertAll();
     }
+
     @Test(dataProvider = "challengeData", dataProviderClass = DataProviderChallenge.class)
     public void testChallengeCreation(String sortNumber, String photoPath, String name, String title, String description) {
         Assert.assertTrue(addChallengePage.getSortNumber().getText().isEmpty());
