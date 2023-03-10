@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.pages.challenges;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,57 +41,69 @@ public class ChallengesPage extends BasePage {
         super(driver);
     }
 
+    @Step("Open tasks page")
     public TasksPage openTasks() {
         waitForElementToBeClickable(tasksBtn).click();
         return new TasksPage(driver);
     }
 
+    @Step("Add challenge")
     public AddChallengePage addChallenge() {
         waitForElementToBeClickable(addChallengeBtn).click();
         return new AddChallengePage(driver);
     }
 
+    @Step("Type {textToSearch} into search field")
     public ChallengesPage fillSearchField(String textToSearch) {
         waitForElementToBeClickable(searchField).sendKeys(textToSearch);
         return this;
     }
 
+    @Step("Click search button")
     public ChallengesPage clickSearchButton() {
         waitForElementToBeClickable(searchBtn).click();
         return new ChallengesPage(driver);
     }
 
+    @Step("Open previous page")
     public ChallengesPage openPreviousPage() {
         waitForElementToBeClickable(previousPage).click();
         return new ChallengesPage(driver);
     }
 
+    @Step("Open next page")
     public ChallengesPage openNextPage() {
         waitForElementToBeClickable(nextPage).click();
         return new ChallengesPage(driver);
     }
 
+    @Step("Step over next five pages")
     public ChallengesPage stepOverNextFivePages() {
         waitForElementToBeClickable(stepOverNextFivePages).click();
         return new ChallengesPage(driver);
     }
 
+    @Step("Get name of first table header element")
     public String getNameOfFirstTableHeaderElement() {
         return waitForElementToAppear(nameOfFirstTableHeaderElement).getText();
     }
 
+    @Step("Get name of second table header element")
     public String getNameOfSecondTableHeaderElement() {
         return waitForElementToAppear(nameOfSecondTableHeaderElement).getText();
     }
 
+    @Step("Get name of third table header element")
     public String getNameOfThirdTableHeaderElement() {
         return waitForElementToAppear(nameOfThirdTableHeaderElement).getText();
     }
 
+    @Step("Get name of fourth table header element")
     public String getNameOfFourthTableHeaderElement() {
         return waitForElementToAppear(nameOfFourthTableHeaderElement).getText();
     }
 
+    @Step("Get all challenges")
     private List<ViewChallengesTableItemComponent> getChallengesTableItems() {
         List<ViewChallengesTableItemComponent> challengesComponents = new ArrayList<>();
         for (WebElement challengeNode : waitForElementsToAppear(driver.findElements(By.xpath("//*[contains(@class, 'level-0 editable-row')]")))) {
@@ -99,10 +112,12 @@ public class ChallengesPage extends BasePage {
         return challengesComponents;
     }
 
+    @Step("Count challenges")
     public int getCountAllChallenges() {
         return getChallengesTableItems().size();
     }
 
+    @Step("Select challenge by index: {challengeIndex}")
     public ViewChallengesTableItemComponent selectCertainChallenge(int challengeIndex) {
         return getChallengesTableItems().get(challengeIndex);
     }

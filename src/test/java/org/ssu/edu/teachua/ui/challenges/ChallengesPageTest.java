@@ -52,12 +52,14 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
         Assert.assertEquals(actualSuccessMsg, expectedSuccessMsg);
     }
 
+    @Issue("TUA-229")
     @Test(dataProvider = "dpTestCompressAndUploadPhoto", dataProviderClass = DataProviderChallenge.class)
     public void testIfPhotoCompressedAndUploaded(String photoPath) {
         addChallengePage.addPhoto(valueProvider.getFilePath(photoPath));
         Assert.assertTrue(addChallengePage.getPhotoAppeared().isDisplayed());
     }
 
+    @Issue("TUA-231")
     @Test(dataProvider = "dpTestErrorMessageChallengeNameField", dataProviderClass = DataProviderChallenge.class)
     public void testErrorMessagesForChallengeNameField(String sortNumber, String title, String description,
                                                        String photoPath, List<String> invalidNames,
