@@ -30,6 +30,10 @@ public class SignUpComponent extends BaseComponent {
         super(driver, node);
     }
 
+    public SignUpComponent(WebDriver driver) {
+        super(driver);
+    }
+
     public SignUpComponent enterLastName(String lastName) {
         lastNameField.sendKeys(lastName);
         return this;

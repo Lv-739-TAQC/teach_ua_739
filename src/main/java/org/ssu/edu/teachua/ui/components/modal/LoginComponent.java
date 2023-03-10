@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,16 +26,18 @@ public class LoginComponent extends BaseComponent {
         super(driver, node);
     }
 
+    @Step("set to input email: {email} ")
     public LoginComponent enterEmail(String email) {
         emailField.sendKeys(email);
         return this;
     }
-
+    @Step("set to input password: {password} ")
     public LoginComponent enterPassword(String password) {
         passwordField.sendKeys(password);
         return this;
     }
 
+    @Step("click login")
     public HomePage clickLoginButton() {
         logInButton.click();
         return new HomePage(driver);

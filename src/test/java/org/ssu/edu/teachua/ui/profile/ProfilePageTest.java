@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ProfilePageTest extends LoginWithAdminRunner {
+
     private ProfilePage profilePage;
 
     @BeforeMethod(description = "Precondition method: open Profile Page")
@@ -21,8 +22,8 @@ public class ProfilePageTest extends LoginWithAdminRunner {
     }
 
     @Test(dataProvider = "dpTestChangePassword", dataProviderClass = DataProviderProfilePage.class)
-    public void verifyErrorMessagesForChangePasswordTest(String redBorderColor, String errorMsgConfirmNewPassword, String errorMsgNewPassword, String errorMsgCurrentPassword) {
-
+    public void testErrorMessagesForChangePassword(String redBorderColor, String errorMsgConfirmNewPassword,
+                                                         String errorMsgNewPassword, String errorMsgCurrentPassword) {
         EditProfileComponent editProfile = profilePage.clickEditProfileButton()
                 .clickChangePassword()
                 .clickSaveAfterEnteringInvalidData();
@@ -46,6 +47,5 @@ public class ProfilePageTest extends LoginWithAdminRunner {
         softAssert.assertEquals(actualBorderColorThird, redBorderColor);
 
         softAssert.assertAll();
-
     }
 }

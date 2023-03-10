@@ -1,105 +1,58 @@
 package org.ssu.edu.teachua.ui.club;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubDescriptionComponent;
+import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.providers.DataProviderClub;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
 public class ClubComponentTest extends LoginWithAdminRunner {
-    @Test
-    public void testDescriptionFieldPositive1() {
-        HomePage homePage = new HomePage(driver);
-        List<WebElement> descriptionHelp;
-        AddClubDescriptionComponent descriptionStepAddClub = homePage.getHeader()
+
+    private AddClubMainInfoComponent mainInfoComponent;
+
+    @BeforeMethod
+    void openAddClubForm() {
+        driver.navigate().refresh();
+        mainInfoComponent = new HomePage(driver)
+                .getHeader()
                 .openAdminProfileMenu()
-                .openAddClubForm()
-                .enterClubName("Speaking club")
-                .getCategoriesCheckBoxes(2)
-                .enterChildAgeFrom("6")
-                .enterChildAgeFor("16")
-                .clickNextStepButton()
-                .enterContactPhone("0674443322")
-                .clickNextStepButton();
-
-        descriptionStepAddClub.enterDescription(valueProvider.getStringFromFile(valueProvider.getFilePath("text/1000symbols.txt")));
-        descriptionHelp = driver.findElements(By.xpath(".//div[@id='basic_description_help']"));
-        softAssert.assertEquals(descriptionHelp.size(), 0);
-
-        descriptionStepAddClub.enterDescription("Lorem ipsum dolor sit amet, consectetur adipis");
-        descriptionHelp = driver.findElements(By.xpath(".//div[@id='basic_description_help']"));
-        softAssert.assertEquals(descriptionHelp.size(), 0);
-
-        descriptionStepAddClub.enterDescription(valueProvider.getStringFromFile(valueProvider.getFilePath("text/1500symbols.txt")));
-        descriptionHelp = driver.findElements(By.xpath(".//div[@id='basic_description_help']"));
-        softAssert.assertEquals(descriptionHelp.size(), 0);
-
-        softAssert.assertAll();
-
+                .openAddClubForm();
     }
 
-    @Test
-    public void testDescriptionFieldPositive2() {
-        HomePage homePage = new HomePage(driver);
-        List<WebElement> descriptionHelp;
-        AddClubDescriptionComponent descriptionStepAddClub = homePage.getHeader()
-                .openAdminProfileMenu()
-                .openAddClubForm()
-                .enterClubName("Speaking club")
-                .getCategoriesCheckBoxes(2)
-                .enterChildAgeFrom("6")
-                .enterChildAgeFor("16")
+    @Test(dataProvider = "dpTestDescriptionFieldValid", dataProviderClass = DataProviderClub.class)
+    public void testDescriptionFieldValid(String nameField, int categoriesNumber, String childAgeFrom,
+                                          String childAgeFor, String contactPhone, String description) {
+        boolean isInputSuccess = mainInfoComponent
+                .enterClubName(nameField)
+                .getCategoriesCheckBoxes(categoriesNumber)
+                .enterChildAgeFrom(childAgeFrom)
+                .enterChildAgeFor(childAgeFor)
                 .clickNextStepButton()
-                .enterContactPhone("0674443322")
-                .clickNextStepButton();
+                .enterContactPhone(contactPhone)
+                .clickNextStepButton()
+                .enterDescription(description)
+                .getDescriptionSuccess();
 
-        descriptionStepAddClub.enterDescription("Гурток Speaking club спрямований на розвиток мовленнєвих навичок для дітей віком від 6 і до 16 років");
-        descriptionHelp = driver.findElements(By.xpath(".//div[@id='basic_description_help']"));
-        softAssert.assertEquals(descriptionHelp.size(), 0);
-
-        descriptionStepAddClub.enterDescription("1234567890123456789012345678901234567890");
-        descriptionHelp = driver.findElements(By.xpath(".//div[@id='basic_description_help']"));
-        softAssert.assertEquals(descriptionHelp.size(), 0);
-
-        descriptionStepAddClub.enterDescription("!#$%&'()*+,-./:;<=>?@[]^_`{}~!#$%&'()*+,-./:;<=>?@[]^_`{}~");
-        descriptionHelp = driver.findElements(By.xpath(".//div[@id='basic_description_help']"));
-        softAssert.assertEquals(descriptionHelp.size(), 0);
-
-        softAssert.assertAll();
-
+        Assert.assertTrue(isInputSuccess);
     }
 
-    @Test
-    public void testDescriptionFieldNegative() {
-        HomePage homePage = new HomePage(driver);
-        WebElement descriptionHelp;
-        AddClubDescriptionComponent descriptionStepAddClub = homePage.getHeader()
-                .openAdminProfileMenu()
-                .openAddClubForm()
-                .enterClubName("Speaking club")
-                .getCategoriesCheckBoxes(2)
-                .enterChildAgeFrom("6")
-                .enterChildAgeFor("16")
+    @Test(dataProvider = "dpTestDescriptionFieldInvalid", dataProviderClass = DataProviderClub.class)
+    public void testDescriptionFieldInvalid(String nameField, int categoriesNumber, String childAgeFrom,
+                                             String childAgeFor, String contactPhone, String description,
+                                             String expectedErrorMessage) {
+        String actualErrorMessage = mainInfoComponent
+                .enterClubName(nameField)
+                .getCategoriesCheckBoxes(categoriesNumber)
+                .enterChildAgeFrom(childAgeFrom)
+                .enterChildAgeFor(childAgeFor)
                 .clickNextStepButton()
-                .enterContactPhone("0674443322")
-                .clickNextStepButton();
+                .enterContactPhone(contactPhone)
+                .clickNextStepButton()
+                .enterDescription(description)
+                .getDescriptionErrorMessage();
 
-        descriptionStepAddClub.enterDescription("Lorem ipsum dolor si");
-        descriptionHelp = driver.findElement(By.xpath(".//div[@id='basic_description_help']//div[2]"));
-        softAssert.assertEquals(descriptionHelp.getText(), "Опис гуртка може містити від 40 до 1500 символів.");
-
-        descriptionStepAddClub.enterDescription("1");
-        descriptionHelp = driver.findElement(By.xpath(".//div[@id='basic_description_help']//div[2]"));
-        softAssert.assertEquals(descriptionHelp.getText(), "Опис гуртка може містити від 40 до 1500 символів.");
-
-        descriptionStepAddClub.enterDescription("Lorem ipsum dolor sit amet, consectetur");
-        descriptionHelp = driver.findElement(By.xpath(".//div[@id='basic_description_help']//div[2]"));
-        softAssert.assertEquals(descriptionHelp.getText(), "Опис гуртка може містити від 40 до 1500 символів.");
-
-        softAssert.assertAll();
-
+        Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
     }
 }

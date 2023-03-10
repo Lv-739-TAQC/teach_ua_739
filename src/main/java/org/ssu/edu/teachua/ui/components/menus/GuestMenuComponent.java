@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.menus;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,6 +32,7 @@ public class GuestMenuComponent extends BaseComponent {
         return new SignUpComponent(driver, registerModalForm);
     }
 
+    @Step("Click login button")
     public LoginComponent openLogInForm() {
         waitForElementToBeClickable(login).click();
         return new LoginComponent(driver, loginModalForm);

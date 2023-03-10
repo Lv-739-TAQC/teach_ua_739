@@ -21,10 +21,10 @@ public class ViewChallengesTableItemComponent extends BaseComponent {
     private WebElement editBtn;
     @FindBy(how = How.XPATH, using = ".//*[text()='Видалити']")
     private WebElement deleteBtn;
-    @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'popConfirm-ok')]")
-    private WebElement confirmDeletingBtn;
-    @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'popConfirm-cancel')]")
-    private WebElement cancelDeletingBtn;
+    @FindBy(how = How.XPATH, using = "//button[contains(@class, 'popConfirm-ok')]")
+    private WebElement confirmDeletingBtnNode;
+    @FindBy(how = How.XPATH, using = "//button[contains(@class, 'popConfirm-cancel')]")
+    private WebElement cancelDeletingBtnNode;
 
     public ViewChallengesTableItemComponent(WebDriver driver, WebElement node) {
         super(driver, node);
@@ -61,12 +61,12 @@ public class ViewChallengesTableItemComponent extends BaseComponent {
     }
 
     public ChallengesPage clickConfirmDeletingButton() {
-        waitForElementToAppear(confirmDeletingBtn).click();
+        waitForElementToAppear(confirmDeletingBtnNode).click();
         return new ChallengesPage(driver);
     }
 
     public ChallengesPage clickCancelDeletingButton() {
-        waitForElementToBeClickable(cancelDeletingBtn).click();
+        waitForElementToBeClickable(cancelDeletingBtnNode).click();
         return new ChallengesPage(driver);
     }
 
