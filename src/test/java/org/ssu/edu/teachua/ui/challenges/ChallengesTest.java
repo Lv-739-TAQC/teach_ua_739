@@ -9,12 +9,13 @@ public class ChallengesTest extends LoginWithAdminRunner {
 
     private static final String NAME = "Ukraine";
     private static final String TITLE = "Title";
-    private static final String DESCRIPTION = "В эпоху Возрождения разделяется понятие искусства (искусной деятельности)" +
-            " и персонализированной художественной деятельности с индивидуальными образами";
+    private static final String DESCRIPTION =
+            "В эпоху Возрождения разделяется понятие искусства (искусной деятельности) " +
+            "и персонализированной художественной деятельности с индивидуальными образами";
     private static final String PHOTO_PATH = "path_to_photo";
 
     @Test
-    public void verifyThatAdminCannotCreateChallengeWithInvalidDataInDescriptionFieldOnDescriptionTab() throws InterruptedException {
+    public void verifyThatAdminCannotCreateChallengeWithInvalidDataInDescriptionFieldOnDescriptionTab() {
         String errorMessage = new HomePage(driver)
                 .getHeader()
                 .openGuestProfileMenu()
