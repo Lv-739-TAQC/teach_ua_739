@@ -1,7 +1,9 @@
 package org.ssu.edu.teachua.ui.news;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
+import org.ssu.edu.teachua.ui.pages.news.NewsPage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -10,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NewsPageTest extends LoginWithAdminRunner {
+    private static final int NEWS_INDEX = 1;
 
     @DataProvider(name = "dpTestButtonsActivity")
     public Object[][] dpTestButtonsActivity() {
@@ -62,4 +65,45 @@ public class NewsPageTest extends LoginWithAdminRunner {
 
         softAssert.assertAll();
     }
+
+    @Test
+    public void testClickOnNewsArticle() {
+        HomePage homePage = new HomePage(driver);
+        homePage.getHeader().clickNewsButton();
+
+        NewsPage news = new NewsPage(driver);
+
+        String expectedNewsTitle = news.chooseCertainNews(NEWS_INDEX)
+                .getNewsTitle();
+        String actualNewsTitle = news.chooseCertainNews(NEWS_INDEX)
+                .clickDate()
+                .getNewsTitle();
+        Assert.assertEquals(actualNewsTitle, expectedNewsTitle);
+
+        homePage.getHeader().clickNewsButton();
+        String expectedNewsTitle1 = news.chooseCertainNews(NEWS_INDEX)
+                .getNewsTitle();
+        String actualNewsTitle1 = news.chooseCertainNews(NEWS_INDEX)
+                .clickImage()
+                .getNewsTitle();
+        Assert.assertEquals(actualNewsTitle1, expectedNewsTitle1);
+
+        homePage.getHeader().clickNewsButton();
+        String expectedNewsTitle2 = news.chooseCertainNews(NEWS_INDEX)
+                .getNewsTitle();
+        String actualNewsTitle2 = news.chooseCertainNews(NEWS_INDEX)
+                .clickTitle()
+                .getNewsTitle();
+        Assert.assertEquals(actualNewsTitle2, expectedNewsTitle2);
+
+        homePage.getHeader().clickNewsButton();
+        String expectedNewsTitle3 = news.chooseCertainNews(NEWS_INDEX)
+                .getNewsTitle();
+        String actualNewsTitle3 = news.chooseCertainNews(NEWS_INDEX)
+                .clickDetailsButton()
+                .getNewsTitle();
+        Assert.assertEquals(actualNewsTitle3, expectedNewsTitle3);
+    }
+
+
 }
