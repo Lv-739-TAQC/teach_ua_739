@@ -1,6 +1,7 @@
 package org.ssu.edu.teachua.ui.challenges;
 
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
+import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderChallenge;
@@ -101,6 +102,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
         softAssert.assertAll();
     }
 
+    @Issue("tua0000")
     @Test
     public void challengeDropdownTest() {
         HomePage homePage = new HomePage(driver);
