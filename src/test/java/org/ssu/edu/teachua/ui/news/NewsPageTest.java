@@ -1,13 +1,16 @@
 package org.ssu.edu.teachua.ui.news;
 
+import org.ssu.edu.teachua.ui.components.card.NewsCardComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderNews;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class NewsPageTest extends LoginWithAdminRunner {
 
@@ -50,5 +53,24 @@ public class NewsPageTest extends LoginWithAdminRunner {
         softAssert.assertEquals(actualClubsTitle, expectedClubsTitle);
 
         softAssert.assertAll();
+    }
+
+    @Test
+    public void newsOrderTest() throws IOException, ParseException {
+        HomePage homePage = new HomePage(driver);
+
+        List<Date> newsDates = new ArrayList<>();
+
+        List<NewsCardComponent> newsCards = homePage.getHeader()
+                .clickNewsButton()
+                .getCardsWithNews();
+        for (NewsCardComponent newsCard : newsCards) {
+            newsDates.add(new SimpleDateFormat("dd.MM.yyyy").parse(newsCard.getNewsDate()));
+        }
+        List<Date> descNewsDates = new ArrayList<>(newsDates);
+
+        Collections.sort(descNewsDates, Collections.reverseOrder());
+
+        Assert.assertEquals(newsDates, descNewsDates);
     }
 }

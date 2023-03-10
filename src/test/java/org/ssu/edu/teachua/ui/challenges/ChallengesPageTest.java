@@ -100,4 +100,20 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
 
         softAssert.assertAll();
     }
+
+    @Test
+    public void challengeDropdownTest() {
+        HomePage homePage = new HomePage(driver);
+
+        homePage.getHeader()
+                .clickChallengesButton()
+                .clickChallengeButton(5);
+        String expected = driver.getCurrentUrl();
+
+        String testChallengePage = homePage.getHeader()
+                .clickChallengesButton()
+                .getChallengeUrl(5);
+
+        Assert.assertEquals(testChallengePage, expected);
+    }
 }

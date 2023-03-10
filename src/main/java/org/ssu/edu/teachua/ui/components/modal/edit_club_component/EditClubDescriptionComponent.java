@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.edit_club_component;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,14 +37,15 @@ public class EditClubDescriptionComponent extends AddClubDescriptionComponent {
     public EditClubDescriptionComponent editEnterDescription(String description) {
         waitForElementToBeClickable(editDescriptionField);
         this.editDescriptionField.click();
-        this.editDescriptionField.clear();
+        this.editDescriptionField.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         this.editDescriptionField.sendKeys(description);
         return this;
     }
 
-    public void clickEditEndButton() {
+    public EditClubDescriptionComponent clickEditEndButton() {
         waitForElementToBeClickable(nextStepButton);
         nextStepButton.click();
+        return null;
     }
 
     public EditClubContactsComponent clickEditPreviousPageButton() {
