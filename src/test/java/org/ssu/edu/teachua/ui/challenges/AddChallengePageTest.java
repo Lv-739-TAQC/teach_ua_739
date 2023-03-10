@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+
 public class AddChallengePageTest extends LoginWithAdminRunner {
     private AddChallengePage addChallengePage;
 
@@ -108,6 +109,108 @@ public class AddChallengePageTest extends LoginWithAdminRunner {
                 .getBorderColorForNameField();
         softAssert.assertEquals(actualBorderColor, redBorderColor);
 
+        softAssert.assertAll();
+    }
+
+    @Test(dataProvider = "dpTestEmptySortNumber", dataProviderClass = DataProviderChallenge.class)
+    public void testErrorMessagesForChallengeSortNumberField(String sortNumber, String name, String title,
+                                                             String description, String photoPath,
+                                                             String expectedErrorMsg) {
+
+        softAssert.assertTrue(addChallengePage.isEmptyString(addChallengePage.getValueSortNumber()));
+        softAssert.assertTrue(addChallengePage.isEmptyString(addChallengePage.getValueName()));
+        softAssert.assertTrue(addChallengePage.isEmptyString(addChallengePage.getValueTitle()));
+        softAssert.assertTrue(addChallengePage.isEmptyString(addChallengePage.getValueDescription()));
+
+        String actualError = addChallengePage
+                .waitForErrorMessageToDisappear()
+                .fillSortNumber(sortNumber)
+                .fillName(name)
+                .fillTitle(title)
+                .fillDescription(description)
+                .addPhoto(valueProvider.getFilePath(photoPath))
+                .clickSave()
+                .checkErrorMessage();
+
+        softAssert.assertEquals(actualError, expectedErrorMsg);
+
+        softAssert.assertAll();
+    }
+
+    @Test (dataProvider = "dpTestInvalidValueNameField", dataProviderClass = DataProviderChallenge.class)
+    public void testErrorMessagesForChallengeNameField(String title, String description,
+                                                       String photoPath,List<String> invalidNames,
+                                                       List<String> expectedErrorMsg) {
+
+        addChallengePage
+                .fillSortNumber(String.valueOf(System.currentTimeMillis()))
+                .fillTitle(title)
+                .fillDescription(description)
+                .addPhoto(valueProvider.getFilePath(photoPath));
+
+        String actualErrorMsgFirst = addChallengePage.fillName(invalidNames.get(0))
+                .clickSave()
+                .checkErrorMessage();
+        softAssert.assertEquals(actualErrorMsgFirst, expectedErrorMsg.get(0));
+
+        String actualErrorMsgSecond = addChallengePage.waitForErrorMessageToDisappear()
+                .clearName()
+                .fillName(invalidNames.get(1))
+                .clickSave()
+                .checkErrorMessage();
+        softAssert.assertEquals(actualErrorMsgSecond, expectedErrorMsg.get(1));
+
+        String actualErrorMsgThird = addChallengePage.waitForErrorMessageToDisappear()
+                .clearName()
+                .fillName(invalidNames.get(2))
+                .clickSave()
+                .checkErrorMessage();
+        softAssert.assertEquals(actualErrorMsgThird, expectedErrorMsg.get(2));
+        softAssert.assertAll();
+    }
+
+    @Test(dataProvider = "dpTestValidValueNameField", dataProviderClass = DataProviderChallenge.class)
+    public void testCreatingChallengeWithValidNameField(String title, String description,
+                                                                  String photoPath, List<String> validName,
+                                                                  List<String> expectedSuccessMsg) {
+
+        addChallengePage
+                .fillSortNumber(String.valueOf(System.currentTimeMillis()))
+                .fillTitle(title)
+                .fillDescription(description)
+                .addPhoto(valueProvider.getFilePath(photoPath));
+
+        String actualValueFirst = addChallengePage.fillName(validName.get(0))
+                .clickSave()
+                .checkSuccessMessage();
+        softAssert.assertEquals(actualValueFirst,expectedSuccessMsg.get(0));
+
+        String actualValueSecond = addChallengePage.waitForSuccessMessageToDisappear()
+                .clearName()
+                .clearSortNumber()
+                .fillSortNumber(String.valueOf(System.currentTimeMillis()))
+                .fillName(validName.get(1))
+                .clickSave()
+                .checkSuccessMessage();
+        softAssert.assertEquals(actualValueSecond,expectedSuccessMsg.get(1));
+
+        String actualValueThird = addChallengePage.waitForSuccessMessageToDisappear()
+                .clearName()
+                .clearSortNumber()
+                .fillSortNumber(String.valueOf(System.currentTimeMillis()))
+                .fillName(validName.get(2))
+                .clickSave()
+                .checkSuccessMessage();
+        softAssert.assertEquals(actualValueThird,expectedSuccessMsg.get(2));
+
+        String actualValueFourth = addChallengePage.waitForSuccessMessageToDisappear()
+                .clearName()
+                .clearSortNumber()
+                .fillSortNumber(String.valueOf(System.currentTimeMillis()))
+                .fillName(validName.get(3))
+                .clickSave()
+                .checkSuccessMessage();
+        softAssert.assertEquals(actualValueFourth,expectedSuccessMsg.get(3));
         softAssert.assertAll();
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 public class AdvancedSearchPageTest extends BaseTestRunnerUI {
 
     @Test (dataProvider = "dpAgeFieldTest", dataProviderClass = DataProviderAdvancedSearch.class)
-    public void AgeFieldTest(List<String> age, List<String> expectedAge) {
+    public void testAgeField(List<String> age, List<String> expectedAge) {
         SoftAssert softAssert = new SoftAssert();
         AdvancedSearchClubComponent advancedSearchClubComponent = new HomePage(driver)
                 .clickAdvancedSearchIcon();
@@ -42,7 +42,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     }
 
     @Test
-    public void advancedSearchComponentIsDisplayedAndHiddenTest() {
+    public void testAdvancedSearchComponentIsDisplayedAndHidden() {
         SoftAssert softAssert = new SoftAssert();
         HomePage homePage = new HomePage(driver);
 
@@ -62,7 +62,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     }
 
     @Test
-    public void allParametersActivatedTest() {
+    public void testAllParametersAreActivated() {
         SoftAssert softAssert = new SoftAssert();
 
         AdvancedSearchCenterComponent advancedSearchCenterComponent = new HomePage(driver)
