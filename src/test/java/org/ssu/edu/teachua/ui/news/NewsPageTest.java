@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class NewsPageTest extends LoginWithAdminRunner {
+
     private static final int NEWS_INDEX = 1;
 
     @Test(dataProvider = "dpTestButtonsActivity", dataProviderClass = DataProviderNews.class)
@@ -114,6 +115,4 @@ public class NewsPageTest extends LoginWithAdminRunner {
                 .getNewsTitle();
         Assert.assertEquals(actualNewsTitle3, expectedNewsTitle3);
     }
-
-
 }
