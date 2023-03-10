@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.edit_center_component;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,42 +31,42 @@ public class EditCenterContactsComponent extends AddCenterContactsComponent {
 
     public EditCenterContactsComponent enterCenterFacebook(String centerFacebook) {
         facebook.click();
-        facebook.clear();
+        facebook.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         facebook.sendKeys(centerFacebook);
         return this;
     }
 
     public EditCenterContactsComponent enterCenterSite(String centerSite) {
         site.click();
-        site.clear();
+        site.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         site.sendKeys(centerSite);
         return this;
     }
 
     public EditCenterContactsComponent enterCenterMail(String centerMail) {
         mail.click();
-        mail.clear();
+        mail.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         mail.sendKeys(centerMail);
         return this;
     }
 
     public EditCenterContactsComponent enterCenterSkype(String centerSkype) {
         skype.click();
-        skype.clear();
+        skype.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         skype.sendKeys(centerSkype);
         return this;
     }
 
     public EditCenterContactsComponent enterCenterWhatsAppNumber(String centerWhatsApp) {
         whatsApp.click();
-        whatsApp.clear();
+        whatsApp.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         whatsApp.sendKeys(centerWhatsApp);
         return this;
     }
 
     public EditCenterContactsComponent enterPhone(String contactPhone) {
         phone.click();
-        phone.clear();
+        phone.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         phone.sendKeys(contactPhone);
         return this;
     }

@@ -12,6 +12,10 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
     private WebElement centerPhoto;
     @FindBy(how = How.XPATH, using = ".//textarea[@id='basic_description']")
     private WebElement centerDescription;
+    @FindBy(how = How.XPATH, using = ".//span[contains(@class, 'success')]")
+    protected WebElement descriptionFieldSuccess;
+    @FindBy(how = How.XPATH, using = ".//div[@id='basic_description_help']")
+    protected WebElement descriptionErrorMsg;
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'next-btn')]")
     private WebElement nextStepButton;
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'prev-btn')]")
@@ -22,9 +26,7 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
     }
 
     public AddCenterDescriptionComponent addCenterLogo(String centerLogoPath) {
-        sleep(1);
         centerLogo.sendKeys(centerLogoPath);
-        sleep(5);
         return this;
     }
 
@@ -38,6 +40,14 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
         centerDescription.clear();
         centerDescription.sendKeys(description);
         return this;
+    }
+
+    public boolean getDescriptionSuccess() {
+        return waitForElementToAppear(descriptionFieldSuccess).isDisplayed();
+    }
+
+    public String getDescriptionErrorMessage() {
+        return waitForElementToAppear(descriptionErrorMsg).getText();
     }
 
     public AddCenterClubsComponent pressNextButton() {
