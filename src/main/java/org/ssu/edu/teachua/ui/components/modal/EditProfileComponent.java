@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -79,6 +80,7 @@ public class EditProfileComponent extends BaseComponent {
         return waitForElementToAppear(editProfileTitle).getText();
     }
 
+    @Step("Fill your new last name in the field 'Прізвище'")
     public EditProfileComponent enterNewLastName(String lastName) {
         waitForElementToBeClickable(editLastNameField).click();
         editLastNameField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -91,6 +93,7 @@ public class EditProfileComponent extends BaseComponent {
         return waitForElementToAppear(alertMessageLastName).getText();
     }
 
+    @Step("Fill your new first name in the field 'Ім'я'")
     public EditProfileComponent enterNewFirstName(String firstName) {
         waitForElementToBeClickable(editFirstNameField).click();
         editFirstNameField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -102,6 +105,7 @@ public class EditProfileComponent extends BaseComponent {
         return waitForElementToAppear(alertMessageFirstName).getText();
     }
 
+    @Step("Fill your new phone in the field 'Телефон'")
     public EditProfileComponent enterNewPhone(String phone) {
         waitForElementToBeClickable(editPhoneField).click();
         editPhoneField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -113,17 +117,20 @@ public class EditProfileComponent extends BaseComponent {
         return waitForElementToAppear(alertMessagePhone).getText();
     }
 
+    @Step("Click on the 'Завантажити фото' button and upload a photo")
     public EditProfileComponent uploadNewPhoto(String photoPath) {
         uploadPhotoField.sendKeys(photoPath);
         waitForElementToAppear(uploadedPhotoAppeared);
         return this;
     }
 
+    @Step("Choose the 'Змінити пароль' section")
     public EditProfileComponent clickChangePassword() {
         waitForElementToBeClickable(changePasswordSection).click();
         return this;
     }
 
+    @Step("Fill your current password in the field 'Введіть діючий пароль'")
     public EditProfileComponent enterCurrentPassword(String currentPassword) {
         waitForElementToBeClickable(editCurrentPasswordField).click();
         editCurrentPasswordField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -147,6 +154,7 @@ public class EditProfileComponent extends BaseComponent {
         return borderColorConfirmPasswordField.getCssValue("border-color");
     }
 
+    @Step("Fill your new password in the field 'Введіть новий пароль'")
     public EditProfileComponent enterNewPassword(String password) {
         waitForElementToBeClickable(newPasswordField).click();
         newPasswordField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -158,6 +166,7 @@ public class EditProfileComponent extends BaseComponent {
         return waitForElementToAppear(alertMessageNewPassword).getText();
     }
 
+    @Step("Confirm your new password in the field 'Підтвердіть новий пароль'")
     public EditProfileComponent confirmNewPassword(String password) {
         waitForElementToBeClickable(confirmPasswordField).click();
         confirmPasswordField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -170,16 +179,13 @@ public class EditProfileComponent extends BaseComponent {
         return waitForElementToAppear(alertMessageConfirmPassword).getText();
     }
 
-    public ProfilePage clickSaveChangesButton() {
-        waitForElementToBeClickable(saveChangesButton).click();
-        return new ProfilePage(driver);
-    }
-
+    @Step("Click on the 'Зберегти зміни' button")
     public EditProfileComponent clickSaveAfterEnteringInvalidData() {
         waitForElementToBeClickable(saveChangesButton).click();
         return this;
     }
 
+    @Step("Close the 'Редагувати профіль' window")
     public ProfilePage clickCloseButton() {
         waitForElementToBeClickable(closeButton).click();
         return new ProfilePage(driver);

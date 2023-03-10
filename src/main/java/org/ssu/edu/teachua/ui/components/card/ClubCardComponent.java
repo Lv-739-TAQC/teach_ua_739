@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.card;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,6 +29,7 @@ public class ClubCardComponent extends BaseComponent {
         return clubTitle.getText();
     }
 
+    @Step("Click the details button")
     public ViewClubPage clickDetailsButton() {
         detailsButton.click();
         return new ViewClubPage(driver);
@@ -42,5 +44,4 @@ public class ClubCardComponent extends BaseComponent {
         }
         return count;
     }
-
 }

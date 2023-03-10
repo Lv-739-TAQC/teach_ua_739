@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.pages.view;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,6 +43,7 @@ public class ViewNewsPage extends BasePage {
         return otherNewsComponents;
     }
 
+    @Step("Get all other news from page")
     public int getCountAllOtherNews() {
         return getCardsWithOtherNews().size();
     }
@@ -66,6 +68,7 @@ public class ViewNewsPage extends BasePage {
         return otherNewsTitle.getText();
     }
 
+    @Step("Choose specific other news")
     public NewsCardComponent chooseCertainOtherNews(int componentNumber) {
         return getCardsWithOtherNews().get(componentNumber);
     }

@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.pages.profile;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -93,57 +94,68 @@ public class ProfilePage extends BasePage {
         return pageContent.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
+    @Step("Click on the 'Редагувати профіль' button")
     public EditProfileComponent clickEditProfileButton() {
         waitForElementToBeClickable(editProfileButton).click();
         return new EditProfileComponent(driver, editProfileNode);
     }
 
+    @Step("Click on the '+Додати' button")
     public ProfilePage clickAddButton() {
         waitForElementToBeClickable(addButton).click();
         return this;
     }
 
+    @Step("Click on the 'Додати гурток' button")
     public AddClubMainInfoComponent clickAddClubButton() {
         waitForElementToBeClickable(addClubButton).click();
         return new AddClubMainInfoComponent(driver);
     }
 
+    @Step("Click on the 'Додати центр' button")
     public AddCenterMainInfoComponent clickAddCenterButton() {
         waitForElementToBeClickable(addCenterButton).click();
         return new AddCenterMainInfoComponent(driver);
     }
 
+    @Step("Click on the three dots of specific club")
     public ProfilePage clickClubDots(int clubIndex) {
         waitForElementsToAppear(clubDots).get(clubIndex).click();
         return this;
     }
 
+    @Step("Click on the 'Редагувати гурток' button")
     public EditClubMainInfoComponent clickEditClubButton() {
         waitForElementToBeClickable(editClubButton).click();
         return new EditClubMainInfoComponent(driver);
     }
 
+    @Step("Click on the 'Видалити гурток' button")
     public ProfilePage clickDeleteClubButton() {
         waitForElementToBeClickable(deleteClubButton).click();
         return this;
     }
 
+    @Step("Click on the 'Мої гуртки/центри' button")
     public ProfilePage openDropdownClubCenter() {
         waitForElementToBeClickable(chooseClubCenter).click();
         waitForElementToAppear(dropdownClubCenter);
         return this;
     }
 
+    @Step("Choose the 'центри' section")
     public ProfilePage chooseCenters() {
         waitForElementToBeClickable(centerDropdownElement).click();
         return this;
     }
 
+    @Step("Click on the three dots of specific centre")
     public ProfilePage clickCenterDots(int centerIndex) {
         waitForElementsToAppear(centerDots).get(centerIndex).click();
         return this;
     }
 
+    @Step("Click on the 'Редагувати Центр' button")
     public EditCenterMainInfoComponent getEditCenterButton() {
         waitForElementToBeClickable(editCenterButton).click();
         return new EditCenterMainInfoComponent(driver);
