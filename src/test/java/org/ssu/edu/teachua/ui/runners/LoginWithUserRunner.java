@@ -15,6 +15,6 @@ public class LoginWithUserRunner extends BaseTestRunnerUI {
                 .enterEmail(valueProvider.getUserEmail())
                 .enterPassword(valueProvider.getUserPassword())
                 .clickLoginButton()
-                .getLoginSuccessMsg();
+                .loginIsSuccess();
     }
 }
