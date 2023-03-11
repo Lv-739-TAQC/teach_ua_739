@@ -41,7 +41,7 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
     }
 
     public AddLocationComponent pressAddLocationButton() {
-        addLocationButton.click();
+        waitForElementToBeClickable(addLocationButton).click();
         return new AddLocationComponent(driver, addLocationContainer);
     }
 
