@@ -49,7 +49,6 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
         WebElement checkBoxLocation = driver.findElement(By.xpath(
                 String.format(".//div[@id='basic_locations']//div[@class='checkbox-item'][%d]/label", numberLocation)));
         checkBoxLocation.click();
-        sleep(1);
         return this;
     }
 
@@ -65,7 +64,7 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
     public String getNameNewLocation() {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", locationList);
         int lengthList = waitForElementsToAppear(locationsName).size();
-        return waitForElementsToAppear(locationsName).get(lengthList-1).getText();
+        return waitForElementsToAppear(locationsName).get(lengthList - 1).getText();
     }
 
 }

@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.edit_center_component;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +15,12 @@ public class EditCenterDescriptionComponent extends AddCenterDescriptionComponen
     private WebElement centerPhoto;
     @FindBy(how = How.XPATH, using = ".//textarea[@id='basic_description']")
     private WebElement centerDescription;
+
+    @FindBy(how = How.XPATH, using = ".//span[contains(@class, 'success')]")
+    protected WebElement descriptionFieldSuccess;
+
+    @FindBy(how = How.XPATH, using = ".//div[@id='basic_description_help']")
+    protected WebElement descriptionErrorMsg;
     @FindBy(how = How.XPATH, using = ".//button[@class='finish-btn']")
     private WebElement finishButton;
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'prev-btn')]")
@@ -29,15 +36,21 @@ public class EditCenterDescriptionComponent extends AddCenterDescriptionComponen
     }
 
     public EditCenterDescriptionComponent editCenterPhoto(String photo) {
-        centerPhoto.click();
-        centerPhoto.clear();
         centerPhoto.sendKeys(photo);
         return this;
     }
 
+    public boolean getDescriptionSuccess() {
+        return waitForElementToAppear(descriptionFieldSuccess).isDisplayed();
+    }
+
+    public String getDescriptionErrorMessage() {
+        return waitForElementToAppear(descriptionErrorMsg).getText();
+    }
+
     public EditCenterDescriptionComponent editCenterDescription(String description) {
         centerDescription.click();
-        centerDescription.clear();
+        centerDescription.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         centerDescription.sendKeys(description);
         return this;
     }

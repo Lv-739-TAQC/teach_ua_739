@@ -53,21 +53,18 @@ public class AddLocationComponent extends BaseComponent {
 
     public AddLocationComponent selectLocationCity(String city) {
         locationCity.click();
-        sleep(2);
         driver.findElement(By.xpath(String.format(xPathSelectOption, city))).click();
         return this;
     }
 
     public AddLocationComponent selectLocationDistrict(String district) {
         locationDistrict.click();
-        sleep(2);
         driver.findElement(By.xpath(String.format(xPathSelectOption, district))).click();
         return this;
     }
 
     public AddLocationComponent selectLocationSubway(String subwayLocality) {
         locationSubway.click();
-        sleep(2);
         driver.findElement(By.xpath(String.format(xPathSelectOption, subwayLocality))).click();
         return this;
     }
