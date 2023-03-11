@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.challenge;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,11 +32,13 @@ public class EditChallengesTableItemComponent extends BaseComponent {
         super(driver, node);
     }
 
+    @Step("Click to challenge id")
     public EditChallengePage clickChallengeId() {
         waitForElementToBeClickable(challengeId).click();
         return new EditChallengePage(driver);
     }
 
+    @Step("Clear challenge sort number field")
     public EditChallengesTableItemComponent clearChallengeSortNumber() {
         waitForElementToBeClickable(editSortNumber).sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
@@ -43,11 +46,13 @@ public class EditChallengesTableItemComponent extends BaseComponent {
         return this;
     }
 
+    @Step("Type '{sortNumber}' into challenge sort number field")
     public EditChallengesTableItemComponent fillChallengeSortNumber(String sortNumber) {
         waitForElementToBeClickable(editSortNumber).sendKeys(sortNumber);
         return this;
     }
 
+    @Step("Clear challenge name field")
     public EditChallengesTableItemComponent clearChallengeName() {
         waitForElementToBeClickable(editName).sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
@@ -55,11 +60,13 @@ public class EditChallengesTableItemComponent extends BaseComponent {
         return this;
     }
 
+    @Step("Type '{name}' into challenge name field")
     public EditChallengesTableItemComponent fillChallengeName(String name) {
         waitForElementToBeClickable(editName).sendKeys(name);
         return this;
     }
 
+    @Step("Clear challenge title field")
     public EditChallengesTableItemComponent clearChallengeTitle() {
         waitForElementToBeClickable(editTitle).sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
@@ -67,26 +74,31 @@ public class EditChallengesTableItemComponent extends BaseComponent {
         return this;
     }
 
+    @Step("Type '{title}' into challenge title field")
     public EditChallengesTableItemComponent fillChallengeTitle(String title) {
         waitForElementToBeClickable(editTitle).sendKeys(title);
         return this;
     }
 
+    @Step("Save challenge")
     public EditChallengesTableItemComponent clickSaveButton() {
         waitForElementToBeClickable(saveChangesBtn).click();
         return this;
     }
 
+    @Step("Confirm saving of challenge")
     public ChallengesPage clickConfirmSavingButton() {
         waitForElementToBeClickable(confirmSavingChangesBtn).click();
         return new ChallengesPage(driver);
     }
 
+    @Step("Cancel saving of challenge")
     public EditChallengesTableItemComponent clickCancelSavingButton() {
         waitForElementToBeClickable(cancelSavingChangesBtn).click();
         return this;
     }
 
+    @Step("Cancel editing of challenge")
     public ChallengesPage clickCancelEditingButton() {
         waitForElementToBeClickable(cancelEditingBtn).click();
         return new ChallengesPage(driver);

@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.challenge;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,58 +31,70 @@ public class ViewChallengesTableItemComponent extends BaseComponent {
         super(driver, node);
     }
 
+    @Step("Click to challenge id")
     public EditChallengePage clickChallengeId() {
         waitForElementToBeClickable(challengeId).click();
         return new EditChallengePage(driver);
     }
 
+    @Step("Click to challenge sort number")
     public EditChallengePage clickChallengeSortNumber() {
         waitForElementToBeClickable(challengeSortNumber).click();
         return new EditChallengePage(driver);
     }
 
+    @Step("Click to challenge name")
     public EditChallengePage clickChallengeName() {
         waitForElementToBeClickable(challengeName).click();
         return new EditChallengePage(driver);
     }
 
+    @Step("Click to challenge title")
     public EditChallengePage clickChallengeTitle() {
         waitForElementToBeClickable(challengeTitle).click();
         return new EditChallengePage(driver);
     }
 
+    @Step("Edit challenge")
     public ViewChallengesTableItemComponent clickEditButton() {
         waitForElementToBeClickable(editBtn).click();
         return this;
     }
 
+    @Step("Delete challenge")
     public ViewChallengesTableItemComponent clickDeleteButton() {
         waitForElementToBeClickable(deleteBtn).click();
         return this;
     }
 
+    @Step("Confirm deleting of challenge")
     public ChallengesPage clickConfirmDeletingButton() {
         waitForElementToAppear(confirmDeletingBtnNode).click();
         return new ChallengesPage(driver);
     }
 
+    @Step("Cancel deleting of challenge")
     public ChallengesPage clickCancelDeletingButton() {
         waitForElementToBeClickable(cancelDeletingBtnNode).click();
         return new ChallengesPage(driver);
     }
 
+    @Step("Get challenge id")
     public String getIdValue() {
         return waitForElementToBeClickable(challengeId).getText();
     }
 
+    @Step("Get challenge sort number")
     public String getSortNumberValue() {
         return waitForElementToAppear(challengeSortNumber).getText();
     }
 
+    @Step("Get challenge name")
     public String getNameValue() {
         return waitForElementToAppear(challengeName).getText();
     }
 
+    @Step("Get challenge title")
     public String getTitleValue() {
         return waitForElementToAppear(challengeTitle).getText();
     }
