@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.challenges;
 
+import io.qameta.allure.Description;
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
@@ -53,6 +54,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-229")
+    @Description("Verify that a 'Керівник' can add a photo with invalid parameters\n into the ‘Баннер’ file picker")
     @Test(dataProvider = "dpTestCompressAndUploadPhoto", dataProviderClass = DataProviderChallenge.class)
     public void testIfPhotoCompressedAndUploaded(String photoPath) {
         addChallengePage.addPhoto(valueProvider.getFilePath(photoPath));
@@ -60,6 +62,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-231")
+    @Description("Verify the error messages of ‘Назва Челенджу’ field\n on ‘Основна інформація’ tab of 'Додати челендж' pop-up")
     @Test(dataProvider = "dpTestErrorMessageChallengeNameField", dataProviderClass = DataProviderChallenge.class)
     public void testErrorMessagesForChallengeNameField(String sortNumber, String title, String description,
                                                        String photoPath, List<String> invalidNames,

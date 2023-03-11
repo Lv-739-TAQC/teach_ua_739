@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.profile;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.components.modal.EditProfileComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
@@ -23,6 +24,7 @@ public class ProfilePageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-359")
+    @Description("Verify that error messages are shown\n while leaving empty any field in the 'Змінити пароль' pop-up")
     @Test(dataProvider = "dpTestChangePassword", dataProviderClass = DataProviderProfilePage.class)
     public void testErrorMessagesForChangePassword(String redBorderColor, String errorMsgConfirmNewPassword,
                                                    String errorMsgNewPassword, String errorMsgCurrentPassword) {
