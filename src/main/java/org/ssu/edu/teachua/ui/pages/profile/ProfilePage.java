@@ -100,7 +100,7 @@ public class ProfilePage extends BasePage {
         return new EditProfileComponent(driver, editProfileNode);
     }
 
-    @Step("Click on the '+Додати' button")
+    @Step("Click on the 'Додати' button")
     public ProfilePage clickAddButton() {
         waitForElementToBeClickable(addButton).click();
         return this;
