@@ -14,6 +14,9 @@ public class ClubCardComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = ".//div[@class='name']")
     private WebElement clubTitle;
+    
+    @FindBy(how = How.XPATH, using = ".//div[@class='center-name']")
+    private WebElement centerTitle;
 
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'details-button')]")
     private WebElement detailsButton;
@@ -27,6 +30,10 @@ public class ClubCardComponent extends BaseComponent {
 
     public String getClubTitle() {
         return clubTitle.getText();
+    }
+    
+    public String getCenterTitle() {
+        return centerTitle.getText();
     }
 
     @Step("Click the details button")
