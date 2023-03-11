@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.challenges;
 
+import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
 import org.testng.Assert;
@@ -14,7 +15,8 @@ public class ChallengesTest extends LoginWithAdminRunner {
             "и персонализированной художественной деятельности с индивидуальными образами";
     private static final String PHOTO_PATH = "path_to_photo";
 
-    @Test
+    @Issue(value = "TUA-338")
+    @Test(description = "[Challenge] Verify that 'Admin' cannot create challenge with invalid data in 'Опис' field on 'Опис' tab")
     public void verifyThatAdminCannotCreateChallengeWithInvalidDataInDescriptionFieldOnDescriptionTab() {
         String errorMessage = new HomePage(driver)
                 .getHeader()
