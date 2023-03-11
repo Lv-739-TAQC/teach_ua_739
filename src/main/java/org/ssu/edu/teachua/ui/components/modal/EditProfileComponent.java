@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -61,10 +62,13 @@ public class EditProfileComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'submit-button')]")
     private WebElement saveChangesButton;
+
     @FindBy(how = How.XPATH, using = "(//span[contains(@class, 'status-error ant-input-affix-wrapper-has-feedback')])[1]")
     private WebElement borderColorCurrentPasswordField;
+
     @FindBy(how = How.XPATH, using = "(//span[contains(@class, 'status-error ant-input-affix-wrapper-has-feedback')])[2]")
     private WebElement borderColorNewPasswordField;
+
     @FindBy(how = How.XPATH, using = "(//span[contains(@class, 'status-error ant-input-affix-wrapper-has-feedback')])[3]")
     private WebElement borderColorConfirmPasswordField;
 
@@ -79,6 +83,7 @@ public class EditProfileComponent extends BaseComponent {
         return waitForElementToAppear(editProfileTitle).getText();
     }
 
+    @Step("Fill your new last name in the field 'Прізвище' : {lastName}")
     public EditProfileComponent enterNewLastName(String lastName) {
         waitForElementToBeClickable(editLastNameField).click();
         editLastNameField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -87,10 +92,11 @@ public class EditProfileComponent extends BaseComponent {
     }
 
     public String getAlertMessageLastName() {
-    	sleep(2);
+        sleep(2);
         return waitForElementToAppear(alertMessageLastName).getText();
     }
 
+    @Step("Fill your new first name in the field 'Ім'я' : {firstName}")
     public EditProfileComponent enterNewFirstName(String firstName) {
         waitForElementToBeClickable(editFirstNameField).click();
         editFirstNameField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -102,6 +108,7 @@ public class EditProfileComponent extends BaseComponent {
         return waitForElementToAppear(alertMessageFirstName).getText();
     }
 
+    @Step("Fill your new phone in the field 'Телефон' : {phone}")
     public EditProfileComponent enterNewPhone(String phone) {
         waitForElementToBeClickable(editPhoneField).click();
         editPhoneField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -113,17 +120,20 @@ public class EditProfileComponent extends BaseComponent {
         return waitForElementToAppear(alertMessagePhone).getText();
     }
 
+    @Step("Click on the 'Завантажити фото' button and upload a photo : {photoPath}")
     public EditProfileComponent uploadNewPhoto(String photoPath) {
         uploadPhotoField.sendKeys(photoPath);
         waitForElementToAppear(uploadedPhotoAppeared);
         return this;
     }
 
+    @Step("Choose the 'Змінити пароль' section")
     public EditProfileComponent clickChangePassword() {
         waitForElementToBeClickable(changePasswordSection).click();
         return this;
     }
 
+    @Step("Fill your current password in the field 'Введіть діючий пароль' : {currentPassword}")
     public EditProfileComponent enterCurrentPassword(String currentPassword) {
         waitForElementToBeClickable(editCurrentPasswordField).click();
         editCurrentPasswordField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -147,6 +157,7 @@ public class EditProfileComponent extends BaseComponent {
         return borderColorConfirmPasswordField.getCssValue("border-color");
     }
 
+    @Step("Fill your new password in the field 'Введіть новий пароль' : {password}")
     public EditProfileComponent enterNewPassword(String password) {
         waitForElementToBeClickable(newPasswordField).click();
         newPasswordField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -158,6 +169,7 @@ public class EditProfileComponent extends BaseComponent {
         return waitForElementToAppear(alertMessageNewPassword).getText();
     }
 
+    @Step("Confirm your new password in the field 'Підтвердіть новий пароль' : {password}")
     public EditProfileComponent confirmNewPassword(String password) {
         waitForElementToBeClickable(confirmPasswordField).click();
         confirmPasswordField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
@@ -166,26 +178,23 @@ public class EditProfileComponent extends BaseComponent {
     }
 
     public String getAlertMessageConfirmPassword() {
-    	sleep(2);
+        sleep(2);
         return waitForElementToAppear(alertMessageConfirmPassword).getText();
     }
 
-    public ProfilePage clickSaveChangesButton() {
-        waitForElementToBeClickable(saveChangesButton).click();
-        return new ProfilePage(driver);
-    }
-
+    @Step("Click on the 'Зберегти зміни' button")
     public EditProfileComponent clickSaveAfterEnteringInvalidData() {
         waitForElementToBeClickable(saveChangesButton).click();
         return this;
     }
 
+    @Step("Close the 'Редагувати профіль' window")
     public ProfilePage clickCloseButton() {
         waitForElementToBeClickable(closeButton).click();
         return new ProfilePage(driver);
     }
-    
+
     public WebElement getSaveChangesButton() {
-    	return  saveChangesButton;
+        return saveChangesButton;
     }
 }

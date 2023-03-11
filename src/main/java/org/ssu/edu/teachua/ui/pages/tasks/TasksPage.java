@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.pages.tasks;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,11 +20,13 @@ public class TasksPage extends BasePage {
         super(driver);
     }
 
+    @Step("Open challenges page")
     public ChallengesPage openChallengesPage() {
         waitForElementToAppear(challengesBtn).click();
         return new ChallengesPage(driver);
     }
 
+    @Step("Open add task page")
     public AddTaskPage openAddTaskPage() {
         waitForElementToAppear(addTaskBtn).click();
         return new AddTaskPage(driver);
