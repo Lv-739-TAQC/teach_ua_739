@@ -1,6 +1,5 @@
 package org.ssu.edu.teachua.ui.pages.home;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,7 +23,7 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    public String getLoginSuccessMsg() {
+    public String loginIsSuccess() {
         return waitForElementToAppear(loginSuccessMsg).getText();
     }
 
@@ -36,7 +35,8 @@ public class HomePage extends BasePage {
     public String getSearchText() {
         return searchField.getText();
     }
-    public void fillInSearchField(String symbols){
+
+    public void fillInSearchField(String symbols) {
         searchField.clear();
         searchField.sendKeys(symbols);
     }

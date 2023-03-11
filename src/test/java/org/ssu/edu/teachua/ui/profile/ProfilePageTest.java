@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.profile;
 
+import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.components.modal.EditProfileComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
@@ -12,7 +13,7 @@ public class ProfilePageTest extends LoginWithAdminRunner {
 
     private ProfilePage profilePage;
 
-    @BeforeMethod(description = "Precondition method: open Profile Page")
+    @BeforeMethod(description = "Precondition: open Profile Page")
     void openProfilePagePrecondition() {
         driver.navigate().refresh();
         profilePage = new HomePage(driver)
@@ -21,9 +22,10 @@ public class ProfilePageTest extends LoginWithAdminRunner {
                 .openProfilePage();
     }
 
+    @Issue("TUA-359")
     @Test(dataProvider = "dpTestChangePassword", dataProviderClass = DataProviderProfilePage.class)
     public void testErrorMessagesForChangePassword(String redBorderColor, String errorMsgConfirmNewPassword,
-                                                         String errorMsgNewPassword, String errorMsgCurrentPassword) {
+                                                   String errorMsgNewPassword, String errorMsgCurrentPassword) {
         EditProfileComponent editProfile = profilePage.clickEditProfileButton()
                 .clickChangePassword()
                 .clickSaveAfterEnteringInvalidData();
