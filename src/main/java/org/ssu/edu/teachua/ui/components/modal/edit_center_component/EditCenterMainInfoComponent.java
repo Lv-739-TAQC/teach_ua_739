@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.edit_center_component;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,28 +29,33 @@ public class EditCenterMainInfoComponent extends AddCenterMainInfoComponent {
         super(driver);
     }
 
-    public EditCenterMainInfoComponent enterCenterName(String centerName) {
+    @Step("Press edit center name")
+    public EditCenterMainInfoComponent editCenterName(String centerName) {
         this.centerName.click();
         this.centerName.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         this.centerName.sendKeys(centerName);
         return this;
     }
 
+    @Step("Click 'Додати локацію' button")
     public AddLocationComponent pressAddLocationButton() {
         addLocationButton.click();
         return new AddLocationComponent(driver, addLocationContainer);
     }
 
+    @Step("Press edit location button")
     public AddLocationComponent pressEditLocation() {
         editLocation.click();
         return new AddLocationComponent(driver, addLocationContainer);
     }
 
+    @Step("Press delete location button")
     public DeleteLocationComponent pressDeleteLocation() {
         deleteLocation.click();
         return new DeleteLocationComponent(driver, deleteLocationPopUp);
     }
 
+    @Step("Press 'Наступний крок' button")
     public AddCenterContactsComponent pressNextButton() {
         this.nextStepButton.click();
         return new AddCenterContactsComponent(driver);

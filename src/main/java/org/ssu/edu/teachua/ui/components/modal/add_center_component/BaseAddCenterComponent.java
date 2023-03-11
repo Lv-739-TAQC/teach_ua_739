@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.add_center_component;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
@@ -50,24 +51,28 @@ public abstract class BaseAddCenterComponent extends BaseComponent {
         return clubs;
     }
 
+    @Step("Get the color of the first step - 'Основна інформація'")
     public String getFirstStepColor() {
         String colorCode = firstStep.getCssValue("background-color");
         String hexacolor = Color.fromString(colorCode).asHex();
         return hexacolor;
     }
 
+    @Step("Get the color of the second step - 'Контакти'")
     public String getSecondStepColor() {
         String colorCode = secondStep.getCssValue("background-color");
         String hexacolor = Color.fromString(colorCode).asHex();
         return hexacolor;
     }
 
+    @Step("Get the color of the third step - 'Опис'")
     public String getThirdStepColor() {
         String colorCode = thirdStep.getCssValue("background-color");
         String hexacolor = Color.fromString(colorCode).asHex();
         return hexacolor;
     }
 
+    @Step("Get the color of the forth step - 'Гуртки'")
     public String getForthStepColor() {
         String colorCode = forthStep.getCssValue("background-color");
         String hexacolor = Color.fromString(colorCode).asHex();

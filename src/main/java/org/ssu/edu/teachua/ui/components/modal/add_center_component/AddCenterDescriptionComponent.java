@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.add_center_component;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,16 +26,19 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
         super(driver);
     }
 
+    @Step("Add a logo")
     public AddCenterDescriptionComponent addCenterLogo(String centerLogoPath) {
         centerLogo.sendKeys(centerLogoPath);
         return this;
     }
 
+    @Step("Add a photo")
     public AddCenterDescriptionComponent addCenterPhoto(String photo) {
         centerPhoto.sendKeys(photo);
         return this;
     }
 
+    @Step("Fill in 'Опис' field")
     public AddCenterDescriptionComponent addCenterDescription(String description) {
         centerDescription.click();
         centerDescription.clear();
@@ -42,19 +46,23 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
         return this;
     }
 
+    @Step("Validate description field for no error appearance")
     public boolean getDescriptionSuccess() {
         return waitForElementToAppear(descriptionFieldSuccess).isDisplayed();
     }
 
+    @Step("Validate description field for error appearance")
     public String getDescriptionErrorMessage() {
         return waitForElementToAppear(descriptionErrorMsg).getText();
     }
 
+    @Step("Press 'Наступний крок' button")
     public AddCenterClubsComponent pressNextButton() {
         this.nextStepButton.click();
         return new AddCenterClubsComponent(driver);
     }
 
+    @Step("Press 'Назад' button")
     public AddCenterContactsComponent pressBackButton() {
         this.backButton.click();
         return new AddCenterContactsComponent(driver);

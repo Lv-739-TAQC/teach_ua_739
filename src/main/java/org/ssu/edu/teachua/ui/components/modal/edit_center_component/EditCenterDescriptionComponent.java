@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.edit_center_component;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,24 +31,29 @@ public class EditCenterDescriptionComponent extends AddCenterDescriptionComponen
         super(driver);
     }
 
+    @Step("Add a logo")
     public EditCenterDescriptionComponent editCenterLogo(String centerLogoPath) {
         centerLogo.sendKeys(centerLogoPath);
         return this;
     }
 
+    @Step("Add a photo")
     public EditCenterDescriptionComponent editCenterPhoto(String photo) {
         centerPhoto.sendKeys(photo);
         return this;
     }
 
+    @Step("Validate description field for no error appearance")
     public boolean getDescriptionSuccess() {
         return waitForElementToAppear(descriptionFieldSuccess).isDisplayed();
     }
 
+    @Step("Validate description field for error appearance")
     public String getDescriptionErrorMessage() {
         return waitForElementToAppear(descriptionErrorMsg).getText();
     }
 
+    @Step("Edit 'Опис' field")
     public EditCenterDescriptionComponent editCenterDescription(String description) {
         centerDescription.click();
         centerDescription.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
@@ -55,11 +61,13 @@ public class EditCenterDescriptionComponent extends AddCenterDescriptionComponen
         return this;
     }
 
+    @Step("Press 'Завершити' button")
     public ProfilePage pressFinishButton() {
         finishButton.click();
         return new ProfilePage(driver);
     }
 
+    @Step("Press 'Назад' button")
     public EditCenterContactsComponent pressBackButton() {
         this.backButton.click();
         return new EditCenterContactsComponent(driver);

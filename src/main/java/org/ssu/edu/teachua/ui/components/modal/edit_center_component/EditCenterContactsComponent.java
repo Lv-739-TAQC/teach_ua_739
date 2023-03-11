@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.edit_center_component;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,6 +30,7 @@ public class EditCenterContactsComponent extends AddCenterContactsComponent {
         super(driver);
     }
 
+    @Step("Edit center Facebook")
     public EditCenterContactsComponent enterCenterFacebook(String centerFacebook) {
         facebook.click();
         facebook.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
@@ -36,6 +38,7 @@ public class EditCenterContactsComponent extends AddCenterContactsComponent {
         return this;
     }
 
+    @Step("Edit center site")
     public EditCenterContactsComponent enterCenterSite(String centerSite) {
         site.click();
         site.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
@@ -43,6 +46,7 @@ public class EditCenterContactsComponent extends AddCenterContactsComponent {
         return this;
     }
 
+    @Step("Edit center e-mail")
     public EditCenterContactsComponent enterCenterMail(String centerMail) {
         mail.click();
         mail.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
@@ -50,6 +54,7 @@ public class EditCenterContactsComponent extends AddCenterContactsComponent {
         return this;
     }
 
+    @Step("Edit center Skype")
     public EditCenterContactsComponent enterCenterSkype(String centerSkype) {
         skype.click();
         skype.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
@@ -57,6 +62,7 @@ public class EditCenterContactsComponent extends AddCenterContactsComponent {
         return this;
     }
 
+    @Step("Edit center What'sApp")
     public EditCenterContactsComponent enterCenterWhatsAppNumber(String centerWhatsApp) {
         whatsApp.click();
         whatsApp.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
@@ -64,6 +70,7 @@ public class EditCenterContactsComponent extends AddCenterContactsComponent {
         return this;
     }
 
+    @Step("Edit center phone")
     public EditCenterContactsComponent enterPhone(String contactPhone) {
         phone.click();
         phone.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
@@ -71,11 +78,13 @@ public class EditCenterContactsComponent extends AddCenterContactsComponent {
         return this;
     }
 
+    @Step("Press 'Наступний крок' button")
     public EditCenterDescriptionComponent pressNextButton() {
         this.nextStepButton.click();
         return new EditCenterDescriptionComponent(driver);
     }
 
+    @Step("Press 'Назад' button")
     public EditCenterMainInfoComponent pressBackButton() {
         this.backButton.click();
         return new EditCenterMainInfoComponent(driver);

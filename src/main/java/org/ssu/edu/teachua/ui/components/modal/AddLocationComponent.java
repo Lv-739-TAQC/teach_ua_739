@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,11 +40,13 @@ public class AddLocationComponent extends BaseComponent {
         super(driver);
     }
 
+    @Step("Close 'Додати локацію' window")
     public AddCenterMainInfoComponent pressCloseAddLocationWindow() {
         closeAddLocationWindowButton.click();
         return new AddCenterMainInfoComponent(driver);
     }
 
+    @Step("Enter location name")
     public AddLocationComponent enterLocationName(String locationName) {
         this.locationName.click();
         this.locationName.clear();
@@ -51,24 +54,28 @@ public class AddLocationComponent extends BaseComponent {
         return this;
     }
 
+    @Step("Select a city from a drop-down list")
     public AddLocationComponent selectLocationCity(String city) {
         locationCity.click();
         driver.findElement(By.xpath(String.format(xPathSelectOption, city))).click();
         return this;
     }
 
+    @Step("Select a district from a drop-down list")
     public AddLocationComponent selectLocationDistrict(String district) {
         locationDistrict.click();
         driver.findElement(By.xpath(String.format(xPathSelectOption, district))).click();
         return this;
     }
 
+    @Step("Select a subway station/locality from a drop-down list")
     public AddLocationComponent selectLocationSubway(String subwayLocality) {
         locationSubway.click();
         driver.findElement(By.xpath(String.format(xPathSelectOption, subwayLocality))).click();
         return this;
     }
 
+    @Step("Enter location address")
     public AddLocationComponent enterLocationAddress(String locationAddress) {
         this.locationAddress.click();
         this.locationAddress.clear();
@@ -76,6 +83,7 @@ public class AddLocationComponent extends BaseComponent {
         return this;
     }
 
+    @Step("Enter location latitude and longitude")
     public AddLocationComponent enterLocationGC(String locationGC) {
         this.locationGC.click();
         this.locationGC.clear();
@@ -83,6 +91,7 @@ public class AddLocationComponent extends BaseComponent {
         return this;
     }
 
+    @Step("Enter location phone")
     public AddLocationComponent enterLocationPhone(String locationPhone) {
         this.locationPhone.click();
         this.locationPhone.clear();
@@ -90,6 +99,7 @@ public class AddLocationComponent extends BaseComponent {
         return this;
     }
 
+    @Step("Press 'Додати' button")
     public AddCenterMainInfoComponent pressAddLocationToListButton() {
         this.addLocationToListButton.click();
         return new AddCenterMainInfoComponent(driver);
