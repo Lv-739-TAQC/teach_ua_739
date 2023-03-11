@@ -50,4 +50,31 @@ public class ProfilePageTest extends LoginWithAdminRunner {
 
         softAssert.assertAll();
     }
+    
+    @Issue("TUA-343")
+    @Test(dataProvider = "dpTestVerifieDataLastName", dataProviderClass = DataProviderProfilePage.class)
+    public void testErrorMessagesForChangeLastName (String enteringData, String expectedMessages) {
+    	
+		EditProfileComponent editProfileComponent = profilePage.clickEditProfileButton();
+		
+		String actionMessages =  editProfileComponent.enterNewLastName(enteringData).getAlertMessageLastName();
+								
+		softAssert.assertEquals(actionMessages,expectedMessages);
+		softAssert.assertTrue(editProfileComponent.getSaveChangesButton().isDisplayed());
+		softAssert.assertAll();
+    }
+    
+    @Issue("TUA-359")
+    @Test(dataProvider = "dpTestVerifieDataPhoneNumber", dataProviderClass = DataProviderProfilePage.class)
+    public void testErrorMessagesForChangePhoneNumber (String enteringData, String expectedMessages) {
+    	
+		EditProfileComponent editProfileComponent = profilePage.clickEditProfileButton();
+		
+		String actionMessages = editProfileComponent.enterNewPhone(enteringData).getAlertMessagePhone();
+		
+		softAssert.assertEquals(actionMessages, expectedMessages);
+		softAssert.assertTrue(editProfileComponent.getSaveChangesButton().isDisplayed());
+		softAssert.assertAll();
+		
+	}
 }
