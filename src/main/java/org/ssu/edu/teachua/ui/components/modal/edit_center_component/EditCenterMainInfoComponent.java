@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.edit_center_component;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,7 +30,7 @@ public class EditCenterMainInfoComponent extends AddCenterMainInfoComponent {
 
     public EditCenterMainInfoComponent enterCenterName(String centerName) {
         this.centerName.click();
-        this.centerName.clear();
+        this.centerName.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
         this.centerName.sendKeys(centerName);
         return this;
     }
