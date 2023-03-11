@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.pages.tasks;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +18,7 @@ public class EditTaskPage extends AddTaskPage {
         super(driver);
     }
 
+    @Step("Select date with '{day}' day, '{month}' month and '{year}' year into task start date field")
     @Override
     public AddTaskPage selectStartDate(int day, int month, int year) {
         waitForElementToAppear(startDateInput).click();
@@ -25,6 +27,7 @@ public class EditTaskPage extends AddTaskPage {
         return this;
     }
 
+    @Step("Type '{name}' into task name field")
     @Override
     public AddTaskPage typeName(String name) {
         waitForElementToAppear(nameInput).click();
@@ -32,18 +35,21 @@ public class EditTaskPage extends AddTaskPage {
         return super.typeName(name);
     }
 
+    @Step("Type '{title}' into task title field")
     @Override
     public AddTaskPage typeTitle(String title) {
         waitForElementToAppear(titleInput).clear();
         return super.typeTitle(title);
     }
 
+    @Step("Type '{description}' into task description field")
     @Override
-    public AddTaskPage typeDescription(String title) {
+    public AddTaskPage typeDescription(String description) {
         waitForElementToAppear(descriptionInput).clear();
-        return super.typeDescription(title);
+        return super.typeDescription(description);
     }
 
+    @Step("Select '{challenge}' into task from challenge dropdown")
     @Override
     public AddTaskPage selectChallenge(String challenge) {
         actions.moveToElement(waitForElementToAppear(challengeDropdown)).click().perform();

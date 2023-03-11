@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.pages.tasks;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,6 +38,7 @@ public class AddTaskPage extends BasePage {
         super(driver);
     }
 
+    @Step("Select date with '{day}' day, '{month}' month and '{year}' year into task start date field")
     public AddTaskPage selectStartDate(int day, int month, int year) {
         waitForElementToAppear(startDateInput).click();
         WebElement selectDateNode = driver.findElement(By.xpath("//div[contains(@class, 'ant-picker-dropdown')]"));
@@ -44,32 +46,38 @@ public class AddTaskPage extends BasePage {
         return this;
     }
 
+    @Step("Upload photo from '{photoPath}' into task photo field")
     public AddTaskPage uploadPhoto(String photoPath) {
         waitForElementToAppear(photoInput).sendKeys(photoPath);
         return this;
     }
 
+    @Step("Type '{name}' into task name field")
     public AddTaskPage typeName(String name) {
         waitForElementToAppear(nameInput).sendKeys(name);
         return this;
     }
 
+    @Step("Type '{title}' into task title field")
     public AddTaskPage typeTitle(String title) {
         waitForElementToAppear(titleInput).sendKeys(title);
         return this;
     }
 
-    public AddTaskPage typeDescription(String title) {
-        waitForElementToAppear(descriptionInput).sendKeys(title);
+    @Step("Type '{description}' into task description field")
+    public AddTaskPage typeDescription(String description) {
+        waitForElementToAppear(descriptionInput).sendKeys(description);
         return this;
     }
 
+    @Step("Select '{challenge}' into task from challenge dropdown")
     public AddTaskPage selectChallenge(String challenge) {
         waitForElementToAppear(challengeDropdown).click();
         waitForElementToAppear(driver.findElement(By.xpath(String.format(CHALLENGE_NAME_XPATH, challenge)))).click();
         return this;
     }
 
+    @Step("Click save button")
     public void clickSaveButton() {
         waitForElementToAppear(saveBtn).click();
     }

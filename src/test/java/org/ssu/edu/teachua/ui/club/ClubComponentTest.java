@@ -2,6 +2,8 @@ package org.ssu.edu.teachua.ui.club;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
@@ -45,6 +47,12 @@ public class ClubComponentTest extends LoginWithAdminRunner {
         Assert.assertTrue(isInputSuccess);
     }
 
+    @Issue("TUA-176")
+    @Issue("TUA-177")
+    @Issue("TUA-178")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("All of these test cases verify if specific error message is" +
+                 "\ndisplayed after entering invalid data in the 'Опис' field.")
     @Test(dataProvider = "dpTestDescriptionFieldInvalid", dataProviderClass = DataProviderClub.class)
     public void testDescriptionFieldInvalid(String nameField, int categoriesNumber, String childAgeFrom,
                                             String childAgeFor, String contactPhone, String description,

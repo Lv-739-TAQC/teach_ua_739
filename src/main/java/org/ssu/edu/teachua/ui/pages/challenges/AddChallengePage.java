@@ -141,7 +141,7 @@ public class AddChallengePage extends BasePage {
         return this;
     }
 
-    @Step("Upload photo")
+    @Step("Upload photo from '{imagePath}'")
     public AddChallengePage addPhoto(String imagePath) {
         photoInput.sendKeys(imagePath);
         waitForElementToAppear(getPhotoAppeared());

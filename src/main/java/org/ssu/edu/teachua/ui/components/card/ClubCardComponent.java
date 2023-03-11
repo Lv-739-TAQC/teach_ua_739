@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.card;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,9 @@ public class ClubCardComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = ".//div[@class='name']")
     private WebElement clubTitle;
+    
+    @FindBy(how = How.XPATH, using = ".//div[@class='center-name']")
+    private WebElement centerTitle;
 
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'details-button')]")
     private WebElement detailsButton;
@@ -27,7 +31,12 @@ public class ClubCardComponent extends BaseComponent {
     public String getClubTitle() {
         return clubTitle.getText();
     }
+    
+    public String getCenterTitle() {
+        return centerTitle.getText();
+    }
 
+    @Step("Click the details button")
     public ViewClubPage clickDetailsButton() {
         detailsButton.click();
         return new ViewClubPage(driver);
@@ -42,5 +51,4 @@ public class ClubCardComponent extends BaseComponent {
         }
         return count;
     }
-
 }

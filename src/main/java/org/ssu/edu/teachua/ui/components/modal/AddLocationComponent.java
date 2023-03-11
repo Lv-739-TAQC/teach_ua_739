@@ -9,26 +9,42 @@ import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BaseComponent;
 import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class AddLocationComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = "(//button[@class='ant-modal-close'])[3]")
     private WebElement closeAddLocationWindowButton;
+
     @FindBy(how = How.XPATH, using = ".//*[@id='name']")
     private WebElement locationName;
+
     @FindBy(how = How.XPATH, using = ".//input[@id='cityName']")
     private WebElement locationCity;
+
     @FindBy(how = How.XPATH, using = ".//input[@id='districtName']")
     private WebElement locationDistrict;
+
     @FindBy(how = How.XPATH, using = ".//input[@id='stationName']")
     private WebElement locationSubway;
+
     @FindBy(how = How.XPATH, using = ".//*[@id='address']")
     private WebElement locationAddress;
+
     @FindBy(how = How.XPATH, using = ".//*[@id='coordinates']")
     private WebElement locationGC;
+
     @FindBy(how = How.XPATH, using = ".//*[@id='phone']")
     private WebElement locationPhone;
-    @FindBy(how = How.XPATH, using = ".//*[@type='submit' and contains(@class, 'flooded-button')]")
+
+    @FindBy(how = How.XPATH, using = ".//div[contains(@class, 'add-location-button')]//button")
     private WebElement addLocationToListButton;
+
+    @FindBy(how = How.XPATH, using =
+            ".//div[contains(@class, 'add-club-locations')]//div[contains(@class, 'explain-error')]"
+    )
+    private List<WebElement> warningConditionAllFields;
 
     private final String xPathSelectOption = "//div[@class='ant-select-item ant-select-item-option' and @title='%s']";
 
@@ -42,13 +58,13 @@ public class AddLocationComponent extends BaseComponent {
 
     @Step("Close 'Додати локацію' window")
     public AddCenterMainInfoComponent pressCloseAddLocationWindow() {
-        closeAddLocationWindowButton.click();
+        waitForElementToBeClickable(closeAddLocationWindowButton).click();
         return new AddCenterMainInfoComponent(driver);
     }
 
     @Step("Enter location name")
     public AddLocationComponent enterLocationName(String locationName) {
-        this.locationName.click();
+        waitForElementToBeClickable(this.locationName).click();
         this.locationName.clear();
         this.locationName.sendKeys(locationName);
         return this;
@@ -77,7 +93,7 @@ public class AddLocationComponent extends BaseComponent {
 
     @Step("Enter location address")
     public AddLocationComponent enterLocationAddress(String locationAddress) {
-        this.locationAddress.click();
+        waitForElementToBeClickable(this.locationAddress).click();
         this.locationAddress.clear();
         this.locationAddress.sendKeys(locationAddress);
         return this;
@@ -85,7 +101,7 @@ public class AddLocationComponent extends BaseComponent {
 
     @Step("Enter location latitude and longitude")
     public AddLocationComponent enterLocationGC(String locationGC) {
-        this.locationGC.click();
+        waitForElementToBeClickable(this.locationGC).click();
         this.locationGC.clear();
         this.locationGC.sendKeys(locationGC);
         return this;
@@ -93,7 +109,7 @@ public class AddLocationComponent extends BaseComponent {
 
     @Step("Enter location phone")
     public AddLocationComponent enterLocationPhone(String locationPhone) {
-        this.locationPhone.click();
+        waitForElementToBeClickable(this.locationPhone).click();
         this.locationPhone.clear();
         this.locationPhone.sendKeys(locationPhone);
         return this;
@@ -101,8 +117,18 @@ public class AddLocationComponent extends BaseComponent {
 
     @Step("Press 'Додати' button")
     public AddCenterMainInfoComponent pressAddLocationToListButton() {
-        this.addLocationToListButton.click();
+        waitForElementToBeClickable(this.addLocationToListButton).click();
         return new AddCenterMainInfoComponent(driver);
     }
 
+    public AddLocationComponent pressAddLocationInvalidInput() {
+        waitForElementToBeClickable(this.addLocationToListButton).click();
+        return this;
+    }
+
+    public List<String> getWarningConditionAllFields() {
+        return waitForElementsToAppear(warningConditionAllFields)
+                .stream().map(WebElement::getText)
+                .collect(Collectors.toList());
+    }
 }
