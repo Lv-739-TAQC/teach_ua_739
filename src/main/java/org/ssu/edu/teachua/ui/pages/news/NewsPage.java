@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.pages.news;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -45,10 +46,12 @@ public class NewsPage extends BasePage {
         return clubComponents;
     }
 
+    @Step("Get all clubs from page")
     public int getCountAllNews() {
         return getCardsWithNews().size();
     }
 
+    @Step("Get all news from page")
     public int getCountAllClubs() {
         return getCardsWithClubs().size();
     }
@@ -61,10 +64,12 @@ public class NewsPage extends BasePage {
         return waitForElementToAppear(clubsTitle).getText();
     }
 
+    @Step("Move to certain news")
     public NewsCardComponent chooseCertainNews(int componentNumber) {
         return getCardsWithNews().get(componentNumber);
     }
 
+    @Step("Move to certain club")
     public ClubCardComponent chooseCertainClub(int componentNumber) {
         return getCardsWithClubs().get(componentNumber);
     }

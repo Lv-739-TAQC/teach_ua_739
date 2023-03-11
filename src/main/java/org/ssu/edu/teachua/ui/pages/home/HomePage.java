@@ -11,7 +11,6 @@ public class HomePage extends BasePage {
 
     @FindBy(how = How.XPATH, using = "//div[contains(@class, 'ant-message-success')]")
     private WebElement loginSuccessMsg;
-
     @FindBy(how = How.XPATH, using = ".//span[@title='Розширений пошук']")
     private WebElement advancedSearchIcon;
     @FindBy(how = How.XPATH, using = "//input[@type='search']")
