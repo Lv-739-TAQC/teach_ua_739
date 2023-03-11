@@ -1,5 +1,8 @@
 package org.ssu.edu.teachua.ui.challenges;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
@@ -28,6 +31,10 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
                 .addChallenge();
     }
 
+    @Issue("TUA-151")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("We need to check whether the challenge is created" +
+                 "\nif all parameters are filled with valid values.")
     @Test(dataProvider = "dpTestAddChallengeValid", dataProviderClass = DataProviderChallenge.class)
     public void testAddChallengeValid(String number, String name, String title, String description,
                                       String photoName, String expectedSuccessMsg) {
