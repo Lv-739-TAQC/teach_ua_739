@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 
 public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
 
@@ -30,11 +31,20 @@ public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
     public String getAge() {
         return ageField.getAttribute("value");
     }
+    public WebElement ageField() {
+        return ageField;
+    }
 
     public AdvancedSearchClubComponent setAge(String age) {
         waitForElementToBeClickable(ageField).click();
         ageField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         ageField.sendKeys(age);
+        return this;
+    }
+    public AdvancedSearchClubComponent clearAge() {
+        waitForElementToBeClickable(ageField()).sendKeys(
+                Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
+        );
         return this;
     }
 }

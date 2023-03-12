@@ -131,6 +131,8 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
         Assert.assertEquals(testChallengePage, expected);
     }
 
+    @Issue("TUA-157")
+    @Description ("[Challenge] Verify that a challenge can't be created if mandatory parameters are empty")
     @Test(dataProvider = "dpTestEmptySortNumber", dataProviderClass = DataProviderChallenge.class)
     public void testErrorMessagesForChallengeSortNumberField(String sortNumber, String name, String title,
                                                              String description, String photoPath,
@@ -156,8 +158,10 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
         softAssert.assertAll();
     }
 
+    @Issue("TUA-336")
+    @Description ("[Challenge] Verify that admin cannot create challenge with invalid data in 'Назва' field")
     @Test(dataProvider = "dpTestInvalidValueNameField", dataProviderClass = DataProviderChallenge.class)
-    public void testErrorMessagesForChallengeSortNumberField(String title, String description,
+    public void testErrorMessagesForChallengeInvalidValueNameField(String title, String description,
                                                              String photoPath, List<String> invalidNames,
                                                              List<String> expectedErrorMsg) {
 
@@ -188,6 +192,8 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
         softAssert.assertAll();
     }
 
+    @Issue("TUA-335")
+    @Description ("[Challenge] Verify that 'admin' is able to create a challenge with the valid data")
     @Test(dataProvider = "dpTestValidValueNameField", dataProviderClass = DataProviderChallenge.class)
     public void testCreatingChallengeWithValidNameField(String title, String description,
                                                         String photoPath, List<String> validName,
