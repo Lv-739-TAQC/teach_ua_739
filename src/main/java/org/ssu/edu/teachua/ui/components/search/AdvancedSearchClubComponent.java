@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 
 public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
 
