@@ -1,7 +1,10 @@
 package org.ssu.edu.teachua.ui.centre;
 
+import io.qameta.allure.Issue;
+import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.ssu.edu.teachua.utils.providers.DataProviderCentre;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -51,5 +54,21 @@ public class CentreComponentTest extends LoginWithAdminRunner {
                 .getProfilePageContent();
 
         Assert.assertEquals(actualProfileContent, expectedProfileContent);
+    }
+
+    @Issue("TUA-252") @Test
+    public void testEmptyNameField() {
+
+        HomePage homePage = new HomePage(driver);
+        homePage.getHeader()
+                .openAdminProfileMenu()
+                .openProfilePage()
+                .clickAddButton()
+                .clickAddCenterButton()
+                .pressNextButton();
+
+        String errorActual = new AddCenterMainInfoComponent(driver).getCenterNameError();
+
+        Assert.assertEquals(errorActual, "Некоректна назва центру");
     }
 }
