@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.edit_club_component;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,12 +33,14 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
         super(driver);
     }
 
+    @Step("Open Edit Location pop-up")
     public AddLocationComponent clickEditLocationButton() {
         waitForElementToBeClickable(editLocationButton);
         this.editLocationButton.click();
         return new AddLocationComponent(driver);
     }
 
+    @Step("Delete current location")
     public EditClubContactsComponent clickDeleteLocationButton() {
         waitForElementToBeClickable(deleteLocationButton);
         this.deleteLocationButton.click();
@@ -45,24 +48,28 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
         return (EditClubContactsComponent) deleteLocationMessage;
     }
 
+    @Step("Confirm deletion the location")
     public EditClubContactsComponent clickOkDeleteLocationButton() {
         waitForElementToBeClickable(okDeleteLocationButton);
         this.okDeleteLocationButton.click();
         return this;
     }
 
+    @Step("Cancel deletion the location")
     public EditClubContactsComponent clickCancelDeleteLocationButton() {
         waitForElementToBeClickable(cancelDeleteLocationButton);
         this.cancelDeleteLocationButton.click();
         return this;
     }
 
+    @Step("Edit the club 'online' status")
     public EditClubContactsComponent clickEditOnlineSwitchButton() {
         waitForElementToBeClickable(onlineSwitchButton);
         this.onlineSwitchButton.click();
         return this;
     }
 
+    @Step("Edit Facebook contact")
     public EditClubContactsComponent enterEditContactFacebook(String editContactFacebook) {
         waitForElementToBeClickable(contactFacebookField);
         this.contactFacebookField.click();
@@ -71,6 +78,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
         return this;
     }
 
+    @Step("Edit club contact")
     public EditClubContactsComponent enterEditContactContact(String editContactContact) {
         waitForElementToBeClickable(contactContactField);
         this.contactContactField.click();
@@ -79,6 +87,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
         return this;
     }
 
+    @Step("Edit email contact")
     public EditClubContactsComponent enterEditContactEmail(String editContactEmail) {
         waitForElementToBeClickable(contactEmailField);
         this.contactEmailField.click();
@@ -87,6 +96,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
         return this;
     }
 
+    @Step("Edit Skype contact")
     public EditClubContactsComponent enterEditContactSkype(String editContactSkype) {
         waitForElementToBeClickable(contactSkypeField);
         this.contactSkypeField.click();
@@ -95,6 +105,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
         return this;
     }
 
+    @Step("Edit WhatsApp contact")
     public EditClubContactsComponent enterEditContactWhatsApp(String editContactWhatsApp) {
         waitForElementToBeClickable(contactWhatsAppField);
         this.contactWhatsAppField.click();
@@ -103,6 +114,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
         return this;
     }
 
+    @Step("Edit phone number")
     public EditClubContactsComponent enterEditContactPhone(String editContactPhone) {
         waitForElementToBeClickable(editContactPhoneField);
         editContactPhoneField.click();
@@ -111,12 +123,14 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
         return this;
     }
 
+    @Step("Click on the 'Next' button")
     public EditClubDescriptionComponent clickEditNextStepButton() {
         waitForElementToBeClickable(nextStepButton);
         nextStepButton.click();
         return new EditClubDescriptionComponent(driver);
     }
 
+    @Step("Click on the 'Back' button")
     public EditClubDescriptionComponent clickEditPreviousPageButton() {
         waitForElementToBeClickable(previousPageButton);
         previousPageButton.click();

@@ -114,7 +114,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
         softAssert.assertAll();
     }
 
-    @Issue("tua0000")
+    @Issue("TUA-71")
     @Test
     public void challengeDropdownTest() {
         HomePage homePage = new HomePage(driver);

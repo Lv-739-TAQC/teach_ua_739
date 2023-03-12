@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.edit_club_component;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,6 +34,7 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
         super(driver);
     }
 
+    @Step("Edit Club name")
     public EditClubMainInfoComponent enterNewClubName(String editName) {
         waitForElementToBeClickable(editNameField);
         this.editNameField.click();
@@ -41,11 +43,13 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
         return this;
     }
 
+    @Step("Edit club categories")
     public EditClubMainInfoComponent editCategoriesCheckBoxes(int editCategory) {
         waitForElementsToAppear(editCategoriesCheckBoxes).get(editCategory).click();
         return this;
     }
 
+    @Step("Edit child min age")
     public EditClubMainInfoComponent enterEditChildAgeFrom(String editChildAge) {
         waitForElementToBeClickable(editChildAgeFrom);
         this.editChildAgeFrom.click();
@@ -54,6 +58,7 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
         return this;
     }
 
+    @Step("Edit child max age")
     public EditClubMainInfoComponent enterEditChildAgeFor(String editChildAgeTo) {
         waitForElementToBeClickable(editChildAgeFor);
         this.editChildAgeFor.click();
@@ -62,6 +67,7 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
         return this;
     }
 
+    @Step("Edit center the club belong to")
     public EditClubMainInfoComponent getEditBelongingToCenter() {
         waitForElementToBeClickable(editBelongingToCenter);
         this.editBelongingToCenter.click();
@@ -69,11 +75,13 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
         return this;
     }
 
+    @Step("Edit center the club belong to")
     public EditClubMainInfoComponent editGetCenter(int editCenter) {
         waitForElementsToAppear(editCenterList).get(editCenter).click();
         return this;
     }
 
+    @Step("Click on the 'Next' button")
     public EditClubContactsComponent clickEditNextStepButton() {
         waitForElementToBeClickable(nextStepButton);
         nextStepButton.click();

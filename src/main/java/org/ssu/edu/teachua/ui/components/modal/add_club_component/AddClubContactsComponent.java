@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.add_club_component;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,18 +38,21 @@ public class AddClubContactsComponent extends BaseClubComponent {
         super(driver);
     }
 
+    @Step("Open Add Location pop-up")
     public AddLocationComponent clickAddLocationButton() {
         waitForElementToBeClickable(addLocationButton);
         this.addLocationButton.click();
         return new AddLocationComponent(driver);
     }
 
+    @Step("Make club online")
     public AddClubContactsComponent clickOnlineSwitchButton() {
         waitForElementToBeClickable(onlineSwitchButton);
         this.onlineSwitchButton.click();
         return this;
     }
 
+    @Step("Enter Facebook contact")
     public AddClubContactsComponent enterContactFacebook(String contactFacebook) {
         waitForElementToBeClickable(contactFacebookField);
         this.contactFacebookField.click();
@@ -57,6 +61,7 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    @Step("Enter club contact")
     public AddClubContactsComponent enterContactContact(String contactContact) {
         waitForElementToBeClickable(contactContactField);
         this.contactContactField.click();
@@ -65,6 +70,7 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    @Step("Enter email contact")
     public AddClubContactsComponent enterContactEmail(String contactEmail) {
         waitForElementToBeClickable(contactEmailField);
         this.contactEmailField.click();
@@ -73,6 +79,7 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    @Step("Enter Skype contact")
     public AddClubContactsComponent enterContactSkype(String contactSkype) {
         waitForElementToBeClickable(contactSkypeField);
         this.contactSkypeField.click();
@@ -81,6 +88,7 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    @Step("Enter WhatsApp contact")
     public AddClubContactsComponent enterContactWhatsApp(String contactWhatsApp) {
         waitForElementToBeClickable(contactWhatsAppField);
         this.contactWhatsAppField.click();
@@ -89,6 +97,7 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    @Step("Enter phone number")
     public AddClubContactsComponent enterContactPhone(String contactPhone) {
         waitForElementToBeClickable(contactPhoneField);
         this.contactPhoneField.click();
@@ -97,12 +106,14 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    @Step("Click on the 'Next' button")
     public AddClubDescriptionComponent clickNextStepButton() {
         waitForElementToBeClickable(nextStepButton);
         nextStepButton.click();
         return new AddClubDescriptionComponent(driver);
     }
 
+    @Step("Click on the 'Back' button")
     public AddClubMainInfoComponent clickPreviousPageButton() {
         waitForElementToBeClickable(previousPageButton);
         previousPageButton.click();
