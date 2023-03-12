@@ -26,18 +26,18 @@ public class LoginComponent extends BaseComponent {
         super(driver, node);
     }
 
-    @Step("set to input email: {email} ")
+    @Step("Set to input email: {email} ")
     public LoginComponent enterEmail(String email) {
         emailField.sendKeys(email);
         return this;
     }
-    @Step("set to input password: {password} ")
+    @Step("Set to input password: {password} ")
     public LoginComponent enterPassword(String password) {
         passwordField.sendKeys(password);
         return this;
     }
 
-    @Step("click login")
+    @Step("Click Log in")
     public HomePage clickLoginButton() {
         logInButton.click();
         return new HomePage(driver);

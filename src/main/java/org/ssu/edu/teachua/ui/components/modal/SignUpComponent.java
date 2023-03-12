@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,6 +35,7 @@ public class SignUpComponent extends BaseComponent {
         super(driver);
     }
 
+    @Step("Set to input last name: {lastName} ")
     public SignUpComponent enterLastName(String lastName) {
         lastNameField.sendKeys(lastName);
         return this;
@@ -96,6 +98,7 @@ public class SignUpComponent extends BaseComponent {
     }
 
     public String getConfirmPasswordFieldValue() {
+
         return confirmPasswordField.getAttribute("value");
     }
 }
