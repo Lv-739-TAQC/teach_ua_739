@@ -52,7 +52,7 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
-    @Step("Enter Facebook contact")
+    @Step("Enter Facebook contact {contactFacebook}")
     public AddClubContactsComponent enterContactFacebook(String contactFacebook) {
         waitForElementToBeClickable(contactFacebookField);
         this.contactFacebookField.click();
@@ -61,7 +61,7 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
-    @Step("Enter club contact")
+    @Step("Enter club contact {contactContact}")
     public AddClubContactsComponent enterContactContact(String contactContact) {
         waitForElementToBeClickable(contactContactField);
         this.contactContactField.click();
@@ -70,7 +70,7 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
-    @Step("Enter email contact")
+    @Step("Enter email contact {contactEmail}")
     public AddClubContactsComponent enterContactEmail(String contactEmail) {
         waitForElementToBeClickable(contactEmailField);
         this.contactEmailField.click();
@@ -79,7 +79,7 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
-    @Step("Enter Skype contact")
+    @Step("Enter Skype contact{contactSkype}")
     public AddClubContactsComponent enterContactSkype(String contactSkype) {
         waitForElementToBeClickable(contactSkypeField);
         this.contactSkypeField.click();
@@ -88,7 +88,7 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
-    @Step("Enter WhatsApp contact")
+    @Step("Enter WhatsApp contact {contactWhatsApp}")
     public AddClubContactsComponent enterContactWhatsApp(String contactWhatsApp) {
         waitForElementToBeClickable(contactWhatsAppField);
         this.contactWhatsAppField.click();
@@ -97,7 +97,7 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
-    @Step("Enter phone number")
+    @Step("Enter phone number {contactPhone}")
     public AddClubContactsComponent enterContactPhone(String contactPhone) {
         waitForElementToBeClickable(contactPhoneField);
         this.contactPhoneField.click();

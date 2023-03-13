@@ -115,6 +115,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-71")
+    @Description("Verify that user can open ”Челендж” page from any other pages of the site.")
     @Test
     public void challengeDropdownTest() {
         HomePage homePage = new HomePage(driver);

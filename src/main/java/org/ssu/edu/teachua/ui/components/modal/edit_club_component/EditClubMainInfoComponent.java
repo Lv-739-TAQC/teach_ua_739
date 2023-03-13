@@ -34,7 +34,7 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
         super(driver);
     }
 
-    @Step("Edit Club name")
+    @Step("Edit Club name {editName}")
     public EditClubMainInfoComponent enterNewClubName(String editName) {
         waitForElementToBeClickable(editNameField);
         this.editNameField.click();
@@ -43,13 +43,13 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
         return this;
     }
 
-    @Step("Edit club categories")
+    @Step("Edit club categories {editCategory}")
     public EditClubMainInfoComponent editCategoriesCheckBoxes(int editCategory) {
         waitForElementsToAppear(editCategoriesCheckBoxes).get(editCategory).click();
         return this;
     }
 
-    @Step("Edit child min age")
+    @Step("Edit child min age {editChildAge}")
     public EditClubMainInfoComponent enterEditChildAgeFrom(String editChildAge) {
         waitForElementToBeClickable(editChildAgeFrom);
         this.editChildAgeFrom.click();
@@ -58,7 +58,7 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
         return this;
     }
 
-    @Step("Edit child max age")
+    @Step("Edit child max age {editChildAgeTo}")
     public EditClubMainInfoComponent enterEditChildAgeFor(String editChildAgeTo) {
         waitForElementToBeClickable(editChildAgeFor);
         this.editChildAgeFor.click();
@@ -75,7 +75,7 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
         return this;
     }
 
-    @Step("Edit center the club belong to")
+    @Step("Edit center {editCenter} the club belong to")
     public EditClubMainInfoComponent editGetCenter(int editCenter) {
         waitForElementsToAppear(editCenterList).get(editCenter).click();
         return this;

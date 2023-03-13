@@ -33,7 +33,7 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         super(driver);
     }
 
-    @Step("Enter club name into 'name' field")
+    @Step("Enter club name {name} into 'name' field")
     public AddClubMainInfoComponent enterClubName(String name) {
         this.waitForElementToBeClickable(nameField);
         this.nameField.click();
@@ -41,13 +41,13 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         return this;
     }
 
-    @Step("Choose club categories")
+    @Step("Choose club categories {categoriesNumber}")
     public AddClubMainInfoComponent getCategoriesCheckBoxes(int categoriesNumber) {
         waitForElementsToAppear(this.categoriesCheckBoxes).get(categoriesNumber).click();
         return this;
     }
 
-    @Step("Enter child min age")
+    @Step("Enter child min age {childAge}")
     public AddClubMainInfoComponent enterChildAgeFrom(String childAge) {
         waitForElementToBeClickable(childAgeFrom);
         this.childAgeFrom.click();
@@ -55,7 +55,7 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         return this;
     }
 
-    @Step("Enter child max age")
+    @Step("Enter child max age{childAgeTo}")
     public AddClubMainInfoComponent enterChildAgeFor(String childAgeTo) {
         waitForElementToBeClickable(childAgeFor);
         this.childAgeFor.click();
@@ -70,7 +70,7 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         return this;
     }
 
-    @Step("Choose center the club belong to")
+    @Step("Choose center {centerNumber} the club belong to")
     public AddClubMainInfoComponent getCertainCenter(int centerNumber) {
         waitForElementsToAppear(centerList).get(centerNumber).click();
         return this;

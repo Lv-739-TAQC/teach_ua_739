@@ -17,28 +17,28 @@ public class EditClubDescriptionComponent extends AddClubDescriptionComponent {
         super(driver);
     }
 
-    @Step("Edit logo")
+    @Step("Edit logo {logoPath}")
     public EditClubDescriptionComponent editUploadNewLogo(String logoPath) {
         waitForElementToAppear(uploadLogo);
         this.uploadLogo.sendKeys(logoPath);
         return this;
     }
 
-    @Step("Edit background picture")
+    @Step("Edit background picture {picturePath}")
     public EditClubDescriptionComponent editUploadNewBackgroundPicture(String picturePath) {
         waitForElementToAppear(uploadBackgroundPicture);
         this.uploadBackgroundPicture.sendKeys(picturePath);
         return this;
     }
 
-    @Step("Edit gallery")
+    @Step("Edit gallery {galleryPath}")
     public EditClubDescriptionComponent editUploadNewGallery(String galleryPath) {
         waitForElementToAppear(uploadGallery);
         this.uploadGallery.sendKeys(galleryPath);
         return this;
     }
 
-    @Step("Edit club description")
+    @Step("Edit club description {description}")
     public EditClubDescriptionComponent editEnterDescription(String description) {
         waitForElementToBeClickable(editDescriptionField);
         this.editDescriptionField.click();

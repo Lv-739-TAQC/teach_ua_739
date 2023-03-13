@@ -69,7 +69,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
         return this;
     }
 
-    @Step("Edit Facebook contact")
+    @Step("Edit Facebook contact {editContactFacebook}")
     public EditClubContactsComponent enterEditContactFacebook(String editContactFacebook) {
         waitForElementToBeClickable(contactFacebookField);
         this.contactFacebookField.click();
@@ -78,7 +78,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
         return this;
     }
 
-    @Step("Edit club contact")
+    @Step("Edit club contact {editContactContact}")
     public EditClubContactsComponent enterEditContactContact(String editContactContact) {
         waitForElementToBeClickable(contactContactField);
         this.contactContactField.click();
@@ -87,7 +87,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
         return this;
     }
 
-    @Step("Edit email contact")
+    @Step("Edit email contact {editContactEmail}")
     public EditClubContactsComponent enterEditContactEmail(String editContactEmail) {
         waitForElementToBeClickable(contactEmailField);
         this.contactEmailField.click();
@@ -96,7 +96,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
         return this;
     }
 
-    @Step("Edit Skype contact")
+    @Step("Edit Skype contact {editContactSkype}")
     public EditClubContactsComponent enterEditContactSkype(String editContactSkype) {
         waitForElementToBeClickable(contactSkypeField);
         this.contactSkypeField.click();
@@ -105,7 +105,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
         return this;
     }
 
-    @Step("Edit WhatsApp contact")
+    @Step("Edit WhatsApp contact {editContactWhatsApp}")
     public EditClubContactsComponent enterEditContactWhatsApp(String editContactWhatsApp) {
         waitForElementToBeClickable(contactWhatsAppField);
         this.contactWhatsAppField.click();
@@ -114,7 +114,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
         return this;
     }
 
-    @Step("Edit phone number")
+    @Step("Edit phone number {editContactPhone}")
     public EditClubContactsComponent enterEditContactPhone(String editContactPhone) {
         waitForElementToBeClickable(editContactPhoneField);
         editContactPhoneField.click();

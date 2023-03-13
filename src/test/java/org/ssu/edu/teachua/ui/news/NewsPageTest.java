@@ -63,6 +63,7 @@ public class NewsPageTest extends LoginWithAdminRunner {
         softAssert.assertAll();
     }
     @Issue("TUA-146")
+    @Description("Verify that news blocks are in descending order")
     @Test
     public void newsOrderTest() throws IOException, ParseException {
         HomePage homePage = new HomePage(driver);

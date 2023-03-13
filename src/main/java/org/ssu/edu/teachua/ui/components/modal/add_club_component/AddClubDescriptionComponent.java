@@ -31,28 +31,28 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
         super(driver);
     }
 
-    @Step("Upload new logo")
+    @Step("Upload new logo {logoPath}")
     public AddClubDescriptionComponent uploadNewLogo(String logoPath) {
         waitForElementToAppear(uploadLogo);
         this.uploadLogo.sendKeys(logoPath);
         return this;
     }
 
-    @Step("Upload new background picture")
+    @Step("Upload new background picture {picturePath}")
     public AddClubDescriptionComponent uploadNewBackgroundPicture(String picturePath) {
         waitForElementToAppear(uploadBackgroundPicture);
         this.uploadBackgroundPicture.sendKeys(picturePath);
         return this;
     }
 
-    @Step("Upload new gallery")
+    @Step("Upload new gallery {galleryPath}")
     public AddClubDescriptionComponent uploadNewGallery(String galleryPath) {
         waitForElementToAppear(uploadGallery);
         this.uploadGallery.sendKeys(galleryPath);
         return this;
     }
 
-    @Step("Enter description to club")
+    @Step("Enter description {description} to club")
     public AddClubDescriptionComponent enterDescription(String description) {
         waitForElementToBeClickable(descriptionField);
         this.descriptionField.click();
