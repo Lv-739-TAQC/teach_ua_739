@@ -26,7 +26,8 @@ public class GuestMenuComponent extends BaseComponent {
     public GuestMenuComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }
-
+    
+    @Step("Click sign up button. Open the registration form.")
     public SignUpComponent openRegistrationForm() {
         waitForElementToBeClickable(registration).click();
         return new SignUpComponent(driver, registerModalForm);
