@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.edit_center_component;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,11 +19,13 @@ public class DeleteLocationComponent extends AddLocationComponent {
         super(driver, node);
     }
 
+    @Step("Confirm location deletion")
     public EditCenterMainInfoComponent confirmDeleteLocation() {
         confirmDeleteLocation.click();
         return new EditCenterMainInfoComponent(driver);
     }
 
+    @Step("Cancel location deletion")
     public EditCenterMainInfoComponent cancelDeleteLocation() {
         cancelDeleteLocation.click();
         return new EditCenterMainInfoComponent(driver);

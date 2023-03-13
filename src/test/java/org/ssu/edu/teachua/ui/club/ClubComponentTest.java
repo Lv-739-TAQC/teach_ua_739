@@ -25,6 +25,11 @@ public class ClubComponentTest extends LoginWithAdminRunner {
                 .openAddClubForm();
     }
 
+    @Issue("TUA-172")
+    @Issue("TUA-173")
+    @Issue("TUA-177")
+    @Description("All these test-cases cover positive scenario when introducing changes" +
+                "\n to the 'Опис' field results in no error message shown")
     @Test(dataProvider = "dpTestDescriptionFieldValid", dataProviderClass = DataProviderClub.class)
     public void testDescriptionFieldValid(String nameField, int categoriesNumber, String childAgeFrom,
                                           String childAgeFor, String contactPhone, String description) {
