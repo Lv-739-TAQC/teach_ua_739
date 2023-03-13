@@ -2,6 +2,7 @@ package org.ssu.edu.teachua.ui.centre;
 
 import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
+import io.qameta.allure.Description;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
 import org.ssu.edu.teachua.utils.TestValueProvider;
@@ -14,6 +15,7 @@ import java.util.List;
 
 public class CentreComponentTest extends LoginWithAdminRunner {
 
+    @Description("This test verifies successful center creation with all fields filled in")
     @Test(dataProvider = "dpTestAddCenter", dataProviderClass = DataProviderCentre.class)
     public void testAddCenter(String centerName, String locationName, String city, String subway, String district,
                               String address, String locationGC, String locationPhone, int locationIdx, String facebookUrl,

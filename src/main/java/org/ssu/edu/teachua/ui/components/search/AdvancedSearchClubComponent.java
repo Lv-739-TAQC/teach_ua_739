@@ -20,6 +20,10 @@ public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
         super(driver);
     }
 
+    public WebElement ageField() {
+        return ageField;
+    }
+
     @Step("Click remote button")
     public void chooseRemote() {
         remote.click();
@@ -39,6 +43,13 @@ public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
         waitForElementToBeClickable(ageField).click();
         ageField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         ageField.sendKeys(age);
+        return this;
+    }
+    @Step("Clear age field")
+    public AdvancedSearchClubComponent clearAge() {
+        waitForElementToBeClickable(ageField()).sendKeys(
+                Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
+        );
         return this;
     }
 }

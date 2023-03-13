@@ -11,13 +11,13 @@ import org.ssu.edu.teachua.utils.providers.DataProviderLocation;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.util.Arrays;
 import java.util.List;
 
+
 public class LocationComponentTest extends LoginWithAdminRunner {
 
-    private AddLocationComponent addLocationComponent;
+private AddLocationComponent addLocationComponent;
 
     @BeforeMethod
     void openAddLocationForm() {
@@ -29,6 +29,7 @@ public class LocationComponentTest extends LoginWithAdminRunner {
                 .pressAddLocationButton();
     }
 
+    @Description("This test verifies successful location creation with all fields filled in")
     @Test(dataProvider = "dpTestAddLocationAllFields", dataProviderClass = DataProviderLocation.class)
     public void testAddLocationAllFieldsValid(String locationName, String city, String subway, String district,
                                               String address, String locationGC, String locationPhone, String expectedName) {

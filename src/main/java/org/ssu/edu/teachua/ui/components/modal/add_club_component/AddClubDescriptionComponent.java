@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.add_club_component;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,24 +31,28 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
         super(driver);
     }
 
+    @Step("Upload new logo {logoPath}")
     public AddClubDescriptionComponent uploadNewLogo(String logoPath) {
         waitForElementToAppear(uploadLogo);
         this.uploadLogo.sendKeys(logoPath);
         return this;
     }
 
+    @Step("Upload new background picture {picturePath}")
     public AddClubDescriptionComponent uploadNewBackgroundPicture(String picturePath) {
         waitForElementToAppear(uploadBackgroundPicture);
         this.uploadBackgroundPicture.sendKeys(picturePath);
         return this;
     }
 
+    @Step("Upload new gallery {galleryPath}")
     public AddClubDescriptionComponent uploadNewGallery(String galleryPath) {
         waitForElementToAppear(uploadGallery);
         this.uploadGallery.sendKeys(galleryPath);
         return this;
     }
 
+    @Step("Enter description {description} to club")
     public AddClubDescriptionComponent enterDescription(String description) {
         waitForElementToBeClickable(descriptionField);
         this.descriptionField.click();
@@ -57,19 +62,23 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
         return this;
     }
 
+    @Step("Check the description success")
     public boolean getDescriptionSuccess() {
         return waitForElementToAppear(descriptionFieldSuccess).isDisplayed();
     }
 
+    @Step("Check the error message is appear")
     public String getDescriptionErrorMessage() {
         return waitForElementToAppear(descriptionErrorMsg).getText();
     }
 
+    @Step("Click on the 'End' button")
     public void clickEndButton() {
         waitForElementToBeClickable(nextStepButton);
         nextStepButton.click();
     }
 
+    @Step("Click on the 'Back' button")
     public AddClubContactsComponent clickPreviousPageButton() {
         waitForElementToBeClickable(previousPageButton);
         previousPageButton.click();

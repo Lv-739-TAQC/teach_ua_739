@@ -1,9 +1,6 @@
 package org.ssu.edu.teachua.ui.news;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Issue;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.*;
 import org.ssu.edu.teachua.ui.components.card.NewsCardComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.news.NewsPage;
@@ -65,7 +62,8 @@ public class NewsPageTest extends LoginWithAdminRunner {
 
         softAssert.assertAll();
     }
-
+    @Issue("TUA-146")
+    @Description("Verify that news blocks are in descending order")
     @Test
     public void newsOrderTest() throws IOException, ParseException {
         HomePage homePage = new HomePage(driver);
