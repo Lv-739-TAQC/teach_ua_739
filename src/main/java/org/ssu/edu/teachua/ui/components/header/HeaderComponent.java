@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.header;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -70,6 +71,7 @@ public class HeaderComponent extends BaseComponent {
         return new ClubsPage(driver);
     }
 
+    @Step("click Challenges in header")
     public HeaderComponent clickChallengesButton() {
         waitForElementToBeClickable(challengesButton).click();
         return this;
@@ -123,6 +125,7 @@ public class HeaderComponent extends BaseComponent {
         return new UserMenuComponent(driver, profileMenuNode);
     }
 
+    @Step("Open menu.")
     public GuestMenuComponent openGuestProfileMenu() {
         waitForElementToBeClickable(userIconNotLogin).click();
         return new GuestMenuComponent(driver, profileMenuNode);

@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.pages.challenges;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,11 +18,13 @@ public class EditChallengePage extends AddChallengePage {
         super(driver);
     }
 
+    @Step("Change challenge status")
     public EditChallengePage changeStatus() {
         waitForElementToBeClickable(changeStatus).click();
         return this;
     }
 
+    @Step("Change challenge date")
     public EditChallengePage clickChangeDate() {
         waitForElementToBeClickable(changeDateBtn).click();
         return new EditChallengePage(driver);

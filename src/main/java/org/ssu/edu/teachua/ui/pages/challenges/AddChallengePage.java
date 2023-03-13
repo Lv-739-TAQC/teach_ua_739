@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.pages.challenges;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,7 +41,9 @@ public class AddChallengePage extends BasePage {
         super(driver);
     }
 
-    public WebElement getSortNumber() {return sortNumber;}
+    public WebElement getSortNumber() {
+        return sortNumber;
+    }
 
     public WebElement getName() {
         return name;
@@ -82,11 +85,13 @@ public class AddChallengePage extends BasePage {
         return errorMessage;
     }
 
+    @Step("Type '{sortNumber}' into challenge sort number field")
     public AddChallengePage fillSortNumber(String sortNumber) {
         waitForElementToBeClickable(getSortNumber()).sendKeys(sortNumber);
         return this;
     }
 
+    @Step("Clear challenge sort number field")
     public AddChallengePage clearSortNumber() {
         waitForElementToBeClickable(getSortNumber()).sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
@@ -94,11 +99,13 @@ public class AddChallengePage extends BasePage {
         return this;
     }
 
+    @Step("Type '{name}' into challenge name field")
     public AddChallengePage fillName(String name) {
         waitForElementToBeClickable(getName()).sendKeys(name);
         return this;
     }
 
+    @Step("Clear challenge name field")
     public AddChallengePage clearName() {
         waitForElementToBeClickable(getName()).sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
@@ -106,11 +113,13 @@ public class AddChallengePage extends BasePage {
         return this;
     }
 
+    @Step("Type '{title}' into challenge title field")
     public AddChallengePage fillTitle(String title) {
         waitForElementToBeClickable(getTitle()).sendKeys(title);
         return this;
     }
 
+    @Step("Clear challenge title field")
     public AddChallengePage clearTitle() {
         waitForElementToAppear(getTitle()).sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
@@ -118,11 +127,13 @@ public class AddChallengePage extends BasePage {
         return this;
     }
 
+    @Step("Type '{description}' into challenge description field")
     public AddChallengePage fillDescription(String description) {
         waitForElementToBeClickable(getDescription()).sendKeys(description);
         return this;
     }
 
+    @Step("Clear challenge description field")
     public AddChallengePage clearDescription() {
         waitForElementToAppear(getTitle()).sendKeys(
                 Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
@@ -130,86 +141,104 @@ public class AddChallengePage extends BasePage {
         return this;
     }
 
-
+    @Step("Upload photo from '{imagePath}'")
     public AddChallengePage addPhoto(String imagePath) {
         photoInput.sendKeys(imagePath);
         waitForElementToAppear(getPhotoAppeared());
         return this;
     }
 
+    @Step("View photo")
     public AddChallengePage clickPreviewPhoto() {
         waitForElementToBeClickable(getPhotoPreview()).click();
         return this;
     }
 
+    @Step("Delete photo")
     public AddChallengePage clickDeletePhoto() {
         waitForElementToBeClickable(getDeletePhoto()).click();
         return this;
     }
 
+    @Step("Save challenge")
     public AddChallengePage clickSave() {
         waitForElementToBeClickable(getSaveButton()).click();
         return this;
     }
 
+    @Step("Open challenges page")
     public ChallengesPage goToChallenges() {
         waitForElementToBeClickable(getGoToChallengesBtn()).click();
         return new ChallengesPage(driver);
     }
 
+    @Step("View created challenge")
     public ViewChallengePage clickViewChallenge() {
         waitForElementToBeClickable(getViewChallengeBtn()).click();
         sleep(1);
         return new ViewChallengePage(driver);
     }
 
+    @Step("Get success message")
     public String checkSuccessMessage() {
         return waitForElementToAppear(successMessage).getText();
     }
 
+    @Step("Wait for success message to disappear")
     public AddChallengePage waitForSuccessMessageToDisappear() {
         waitForElementToDisappear(successMessage);
         return this;
     }
 
+    @Step("Get error message")
     public String checkErrorMessage() {
         return waitForElementToAppear(getErrorMessage()).getText();
     }
 
+    @Step("Wait for error message to disappear")
     public AddChallengePage waitForErrorMessageToDisappear() {
         waitForElementToDisappear(errorMessage);
         return this;
     }
 
+    @Step("Get border color for challenge name field")
     public String getBorderColorForNameField() {
         return name.getCssValue("border-color");
     }
 
+    @Step("Get border color for challenge title field")
     public String getBorderColorForTitleField() {
         return title.getCssValue("border-color");
     }
 
+    @Step("Get border color for challenge description field")
     public String getBorderColorForDescriptionField() {
         return description.getCssValue("border-color");
     }
 
-
+    @Step("Check if field is empty")
     public boolean isEmptyString(String str) {
         return str == null || str.isEmpty();
     }
 
+    @Step("Get challenge sort number")
     public String getValueSortNumber() {
         return sortNumber.getAttribute("value");
     }
 
+    @Step("Get challenge name")
     public String getValueName() {
         return name.getAttribute("value");
     }
 
+    @Step("Get challenge title")
     public String getValueTitle() {
         return title.getAttribute("value");
     }
 
-    public String getValueDescription() {return description.getAttribute("value");}
+    @Step("Get challenge description")
+    public String getValueDescription() {
+        return description.getAttribute("value");
+    }
 
 }

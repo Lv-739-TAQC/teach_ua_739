@@ -41,7 +41,7 @@ public class DataProviderChallenge {
     }
 
     @DataProvider(name = "dpTestEmptySortNumber")
-    public  Object[][] dpTestEmptySortNumber() {
+    public static Object[][] dpTestEmptySortNumber() {
         return new Object[][]{
                 {"",
                         "Челендж_99",
@@ -54,7 +54,7 @@ public class DataProviderChallenge {
     }
 
     @DataProvider(name = "dpTestInvalidValueNameField")
-    public Object[][] dpTestInvalidValueNameField() {
+    public static Object[][] dpTestInvalidValueNameField() {
         return new Object[][]{
                 {"Заголовок Челенджу",
                         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. " +
@@ -62,14 +62,14 @@ public class DataProviderChallenge {
                         "photos/image.png",
                         Arrays.asList("писатель эссеист", "", "Історично сформовані є особливості"),
                         Arrays.asList("Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи",
-                        "Поле ‘Назва Челенджу’ не може бути порожнім",
-                        "Назва Челенджу задовга")
+                                "Поле ‘Назва Челенджу’ не може бути порожнім",
+                                "Назва Челенджу задовга")
                 }
         };
     }
 
     @DataProvider(name = "dpTestValidValueNameField")
-    public Object[][] dpTestValidValueNameField() {
+    public static Object[][] dpTestValidValueNameField() {
         return new Object[][]{
                 {"Заголовок Челенджу",
                         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. " +
@@ -83,7 +83,6 @@ public class DataProviderChallenge {
                 }
         };
     }
-
 
     @DataProvider(name = "challengeData")
     public static Object[][] getChallengeData() {

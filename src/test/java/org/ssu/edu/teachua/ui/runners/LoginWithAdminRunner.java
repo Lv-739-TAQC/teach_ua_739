@@ -15,6 +15,6 @@ public class LoginWithAdminRunner extends BaseTestRunnerUI {
                 .enterEmail(valueProvider.getAdminEmail())
                 .enterPassword(valueProvider.getAdminPassword())
                 .clickLoginButton()
-                .getLoginSuccessMsg();
+                .loginIsSuccess();
     }
 }

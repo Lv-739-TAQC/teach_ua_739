@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.add_center_component;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,19 +19,21 @@ public class AddCenterClubsComponent extends BaseAddCenterComponent {
         super(driver);
     }
 
+    @Step("Tick a club {clubNumber}")
     public AddCenterClubsComponent checkClub(int numberClub) {
         WebElement checkBoxLocation = driver.findElement(By.xpath(
                 String.format(".//div[@id='clubs']//div[@class='checkbox-item'][%d]/label", numberClub)));
         checkBoxLocation.click();
-        sleep(2);
         return this;
     }
 
+    @Step("Press 'Завершити' button")
     public ProfilePage pressFinishButton() {
         finishButton.click();
         return new ProfilePage(driver);
     }
 
+    @Step("Press 'Назад' button")
     public AddCenterDescriptionComponent pressBackButton() {
         this.backButton.click();
         return new AddCenterDescriptionComponent(driver);

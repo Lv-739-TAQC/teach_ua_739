@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.search;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -19,6 +20,10 @@ public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
         super(driver);
     }
 
+    public WebElement ageField() {
+        return ageField;
+    }
+
     public void chooseRemote() {
         remote.click();
     }
@@ -35,6 +40,13 @@ public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
         waitForElementToBeClickable(ageField).click();
         ageField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         ageField.sendKeys(age);
+        return this;
+    }
+    @Step("Clear age field")
+    public AdvancedSearchClubComponent clearAge() {
+        waitForElementToBeClickable(ageField()).sendKeys(
+                Keys.chord(Keys.CONTROL, "a", Keys.DELETE)
+        );
         return this;
     }
 }

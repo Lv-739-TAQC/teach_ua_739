@@ -10,7 +10,6 @@ public class ViewCenterPage extends BasePage {
 
     @FindBy(how = How.XPATH, using = "//div[@class='name-box']/span[@class='center-name']")
     private WebElement centerName;
-
     @FindBy(how = How.XPATH, using = "//div[@class='content']")
     protected WebElement description;
     @FindBy(how = How.XPATH, using = "//button[contains(@class,'apply-button')]")
@@ -19,7 +18,6 @@ public class ViewCenterPage extends BasePage {
     protected WebElement downloadButton;
     @FindBy(how = How.XPATH, using = "//a[contains(@href,'https://maps.google.com/maps')]")
     protected WebElement mapButton;
-
 
     public ViewCenterPage(WebDriver driver) {
         super(driver);

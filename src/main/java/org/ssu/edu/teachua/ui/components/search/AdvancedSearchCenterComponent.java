@@ -39,10 +39,10 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = "//span[contains(text(),'за рейтингом')]")
     private WebElement sortByRating;
 
-    @FindBy(how = How.XPATH, using = "//span[contains(@aria-label, 'arrow-up')]")
+    @FindBy(how = How.XPATH, using = "//span[contains(@aria-label, 'arrow-down')]")
     private WebElement sortTypeAsc;
 
-    @FindBy(how = How.XPATH, using = "//span[contains(@aria-label, 'arrow-down')]")
+    @FindBy(how = How.XPATH, using = "//span[contains(@aria-label, 'arrow-up')]")
     private WebElement sortTypeDesc;
 
     @FindBy(how = How.XPATH, using = "//input[@value='LIST']")
@@ -82,14 +82,14 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     public AdvancedSearchClubComponent chooseClub() {
         clubRadio.click();
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
-        //sleep(3);
+        sleep(3);
         return new AdvancedSearchClubComponent(driver);
     }
 
     public AdvancedSearchCenterComponent chooseCenter() {
         centerRadio.click();
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
-        //sleep(3);
+        sleep(3);
         return new AdvancedSearchCenterComponent(driver);
     }
 
@@ -183,7 +183,7 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
 
     public List<ClubCardComponent> getListCardsOnPage() {
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
-        sleep(3);
+        sleep(5);
         List<WebElement> listClubCard = waitForElementsToAppear(driver.findElements(By.className("ant-card-body")));
         return listClubCard.stream().map(wb -> new ClubCardComponent(driver, wb)).collect(Collectors.toList());
     }

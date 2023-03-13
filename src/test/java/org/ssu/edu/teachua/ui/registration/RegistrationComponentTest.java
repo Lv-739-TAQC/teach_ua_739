@@ -20,7 +20,8 @@ public class RegistrationComponentTest extends BaseTestRunnerUI {
     }
 
     @Test(dataProvider = "registrationData", dataProviderClass = DataProviderRegistration.class)
-    public void testRegistrationForm(String lastName, String firstName, String phone, String email, String password, String confirmPassword) {
+    public void testRegistrationForm(String lastName, String firstName, String phone,
+                                     String email, String password, String confirmPassword) {
         SignUpComponent signUp = new SignUpComponent(driver);
         signUp.enterLastName(lastName)
                 .enterFirstName(firstName)
@@ -38,6 +39,4 @@ public class RegistrationComponentTest extends BaseTestRunnerUI {
         Assert.assertEquals(signUp.getPasswordFieldValue(), password);
         Assert.assertEquals(signUp.getConfirmPasswordFieldValue(), confirmPassword);
     }
-
-
 }
