@@ -31,7 +31,7 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
     public AddCenterMainInfoComponent(WebDriver driver) {
         super(driver);
     }
-    @Step("Enter center name")
+    @Step("Enter center name {centerName}")
     public AddCenterMainInfoComponent enterCenterName(String centerName) {
         this.centerName.click();
         this.centerName.clear();
@@ -45,7 +45,7 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
         return new AddLocationComponent(driver, addLocationContainer);
     }
 
-    @Step("Tick a location")
+    @Step("Tick a location {locationNumber}")
     public AddCenterMainInfoComponent checkLocation(int numberLocation) {
         WebElement checkBoxLocation = driver.findElement(By.xpath(
                 String.format(".//div[@id='basic_locations']//div[@class='checkbox-item'][%d]/label", numberLocation)));

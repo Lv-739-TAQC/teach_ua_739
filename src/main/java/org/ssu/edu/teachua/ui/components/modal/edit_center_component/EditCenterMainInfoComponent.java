@@ -29,7 +29,7 @@ public class EditCenterMainInfoComponent extends AddCenterMainInfoComponent {
         super(driver);
     }
 
-    @Step("Press edit center name")
+    @Step("Press edit center name {centerName}")
     public EditCenterMainInfoComponent editCenterName(String centerName) {
         this.centerName.click();
         this.centerName.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));

@@ -26,19 +26,19 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
         super(driver);
     }
 
-    @Step("Add a logo")
+    @Step("Add a logo {logo}")
     public AddCenterDescriptionComponent addCenterLogo(String centerLogoPath) {
         centerLogo.sendKeys(centerLogoPath);
         return this;
     }
 
-    @Step("Add a photo")
+    @Step("Add a photo {photo}")
     public AddCenterDescriptionComponent addCenterPhoto(String photo) {
         centerPhoto.sendKeys(photo);
         return this;
     }
 
-    @Step("Fill in 'Опис' field")
+    @Step("Fill in 'Опис' {description} field")
     public AddCenterDescriptionComponent addCenterDescription(String description) {
         centerDescription.click();
         centerDescription.clear();

@@ -62,7 +62,7 @@ public class AddLocationComponent extends BaseComponent {
         return new AddCenterMainInfoComponent(driver);
     }
 
-    @Step("Enter location name")
+    @Step("Enter location name {locationName}")
     public AddLocationComponent enterLocationName(String locationName) {
         waitForElementToBeClickable(this.locationName).click();
         this.locationName.clear();
@@ -70,28 +70,28 @@ public class AddLocationComponent extends BaseComponent {
         return this;
     }
 
-    @Step("Select a city from a drop-down list")
+    @Step("Select a city {city} from a drop-down list")
     public AddLocationComponent selectLocationCity(String city) {
         locationCity.click();
         driver.findElement(By.xpath(String.format(xPathSelectOption, city))).click();
         return this;
     }
 
-    @Step("Select a district from a drop-down list")
+    @Step("Select a district {district} from a drop-down list")
     public AddLocationComponent selectLocationDistrict(String district) {
         locationDistrict.click();
         driver.findElement(By.xpath(String.format(xPathSelectOption, district))).click();
         return this;
     }
 
-    @Step("Select a subway station/locality from a drop-down list")
+    @Step("Select a subway/locality {subwayLocality} from a drop-down list")
     public AddLocationComponent selectLocationSubway(String subwayLocality) {
         locationSubway.click();
         driver.findElement(By.xpath(String.format(xPathSelectOption, subwayLocality))).click();
         return this;
     }
 
-    @Step("Enter location address")
+    @Step("Enter location address {locationAddress}")
     public AddLocationComponent enterLocationAddress(String locationAddress) {
         waitForElementToBeClickable(this.locationAddress).click();
         this.locationAddress.clear();
@@ -99,7 +99,7 @@ public class AddLocationComponent extends BaseComponent {
         return this;
     }
 
-    @Step("Enter location latitude and longitude")
+    @Step("Enter location latitude and longitude {locationLatitudeLongitude}")
     public AddLocationComponent enterLocationGC(String locationGC) {
         waitForElementToBeClickable(this.locationGC).click();
         this.locationGC.clear();
@@ -107,7 +107,7 @@ public class AddLocationComponent extends BaseComponent {
         return this;
     }
 
-    @Step("Enter location phone")
+    @Step("Enter location phone {locationPhone}")
     public AddLocationComponent enterLocationPhone(String locationPhone) {
         waitForElementToBeClickable(this.locationPhone).click();
         this.locationPhone.clear();

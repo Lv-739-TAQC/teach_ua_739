@@ -31,13 +31,13 @@ public class EditCenterDescriptionComponent extends AddCenterDescriptionComponen
         super(driver);
     }
 
-    @Step("Add a logo")
+    @Step("Add a logo {logo}")
     public EditCenterDescriptionComponent editCenterLogo(String centerLogoPath) {
         centerLogo.sendKeys(centerLogoPath);
         return this;
     }
 
-    @Step("Add a photo")
+    @Step("Add a photo {photo}")
     public EditCenterDescriptionComponent editCenterPhoto(String photo) {
         centerPhoto.sendKeys(photo);
         return this;
@@ -53,7 +53,7 @@ public class EditCenterDescriptionComponent extends AddCenterDescriptionComponen
         return waitForElementToAppear(descriptionErrorMsg).getText();
     }
 
-    @Step("Edit 'Опис' field")
+    @Step("Edit 'Опис' {description} field")
     public EditCenterDescriptionComponent editCenterDescription(String description) {
         centerDescription.click();
         centerDescription.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));

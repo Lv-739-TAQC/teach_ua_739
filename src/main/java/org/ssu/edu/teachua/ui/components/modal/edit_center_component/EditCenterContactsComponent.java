@@ -30,7 +30,7 @@ public class EditCenterContactsComponent extends AddCenterContactsComponent {
         super(driver);
     }
 
-    @Step("Edit center Facebook")
+    @Step("Edit center Facebook {centerFacebook}")
     public EditCenterContactsComponent enterCenterFacebook(String centerFacebook) {
         facebook.click();
         facebook.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
@@ -38,7 +38,7 @@ public class EditCenterContactsComponent extends AddCenterContactsComponent {
         return this;
     }
 
-    @Step("Edit center site")
+    @Step("Edit center site {centerSite}")
     public EditCenterContactsComponent enterCenterSite(String centerSite) {
         site.click();
         site.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
@@ -46,7 +46,7 @@ public class EditCenterContactsComponent extends AddCenterContactsComponent {
         return this;
     }
 
-    @Step("Edit center e-mail")
+    @Step("Edit center e-mail {centerEmail}")
     public EditCenterContactsComponent enterCenterMail(String centerMail) {
         mail.click();
         mail.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
@@ -54,7 +54,7 @@ public class EditCenterContactsComponent extends AddCenterContactsComponent {
         return this;
     }
 
-    @Step("Edit center Skype")
+    @Step("Edit center Skype {centerSkype}")
     public EditCenterContactsComponent enterCenterSkype(String centerSkype) {
         skype.click();
         skype.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
@@ -62,7 +62,7 @@ public class EditCenterContactsComponent extends AddCenterContactsComponent {
         return this;
     }
 
-    @Step("Edit center What'sApp")
+    @Step("Edit center What'sApp {centerWhatsUp}")
     public EditCenterContactsComponent enterCenterWhatsAppNumber(String centerWhatsApp) {
         whatsApp.click();
         whatsApp.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));
@@ -70,7 +70,7 @@ public class EditCenterContactsComponent extends AddCenterContactsComponent {
         return this;
     }
 
-    @Step("Edit center phone")
+    @Step("Edit center phone {centerPhone}")
     public EditCenterContactsComponent enterPhone(String contactPhone) {
         phone.click();
         phone.sendKeys(Keys.chord(Keys.CONTROL + "a" + Keys.DELETE));

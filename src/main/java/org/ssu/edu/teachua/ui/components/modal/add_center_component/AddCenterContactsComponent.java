@@ -28,7 +28,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
         super(driver);
     }
 
-    @Step("Enter center Facebook")
+    @Step("Enter center Facebook {centerFacebook}")
     public AddCenterContactsComponent enterCenterFacebook(String centerFacebook) {
         facebook.click();
         facebook.clear();
@@ -36,7 +36,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
         return this;
     }
 
-    @Step("Enter center site")
+    @Step("Enter center site {centerSite}")
     public AddCenterContactsComponent enterCenterSite(String centerSite) {
         site.click();
         site.clear();
@@ -44,7 +44,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
         return this;
     }
 
-    @Step("Enter center e-mail")
+    @Step("Enter center e-mail {centerEmail}")
     public AddCenterContactsComponent enterCenterMail(String centerMail) {
         mail.click();
         mail.clear();
@@ -52,7 +52,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
         return this;
     }
 
-    @Step("Enter center Skype")
+    @Step("Enter center Skype {centerSkype}")
     public AddCenterContactsComponent enterCenterSkype(String centerSkype) {
         skype.click();
         skype.clear();
@@ -60,7 +60,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
         return this;
     }
 
-    @Step("Enter center What's App")
+    @Step("Enter center What's App {centerWhatsApp}")
     public AddCenterContactsComponent enterCenterWhatsAppNumber(String centerWhatsApp) {
         whatsApp.click();
         whatsApp.clear();
@@ -68,7 +68,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
         return this;
     }
 
-    @Step("Enter center phone number")
+    @Step("Enter center phone number {centerPhone}")
     public AddCenterContactsComponent enterPhone(String contactPhone) {
         phone.click();
         phone.clear();
