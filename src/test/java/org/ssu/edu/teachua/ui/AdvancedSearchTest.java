@@ -3,7 +3,7 @@ package org.ssu.edu.teachua.ui;
 import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchCenterComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
+import org.ssu.edu.teachua.utils.runners.BaseTestRunnerUI;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
