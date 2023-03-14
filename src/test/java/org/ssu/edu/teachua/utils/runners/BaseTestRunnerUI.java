@@ -1,4 +1,4 @@
-package org.ssu.edu.teachua.ui.runners;
+package org.ssu.edu.teachua.utils.runners;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -24,7 +24,7 @@ public class BaseTestRunnerUI {
     protected SoftAssert softAssert = new SoftAssert();
     Browsers browsers = new Browsers();
 
-    private void checkErrorPage(String browser) throws InterruptedException {
+    private void checkErrorPage(String browser) {
         try {
             driver.findElement(By.id(browser.equals("firefox") ? "advancedButton" : "details-button")).click();
             driver.findElement(By.id(browser.equals("firefox") ? "exceptionDialogButton" : "proceed-link")).click();
@@ -55,7 +55,7 @@ public class BaseTestRunnerUI {
     @AfterClass
     public void closeDriver() {
         if (driver != null) {
-            driver.close();
+            driver.quit();
         }
     }
 }
