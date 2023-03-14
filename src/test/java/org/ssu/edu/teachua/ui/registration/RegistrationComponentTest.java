@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.registration;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
 import io.qameta.allure.Step;
 import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
@@ -22,7 +23,7 @@ public class RegistrationComponentTest extends BaseTestRunnerUI {
     }
 
     @Issue("TUA-454")
-    @Step("Verifies that the last entered data on the registration pop-up are remembered")
+    @Description("Verifies that the last entered data on the registration pop-up are remembered")
     @Test(dataProvider = "registrationData", dataProviderClass = DataProviderRegistration.class)
     public void testRegistrationForm(String lastName, String firstName, String phone,
                                      String email, String password, String confirmPassword) {
