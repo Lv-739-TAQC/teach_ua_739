@@ -1,5 +1,4 @@
 package org.ssu.edu.teachua.ui.centre;
-
 import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 import io.qameta.allure.Description;
