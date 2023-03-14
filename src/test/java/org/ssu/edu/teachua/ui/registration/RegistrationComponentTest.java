@@ -2,7 +2,6 @@ package org.ssu.edu.teachua.ui.registration;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
-import io.qameta.allure.Step;
 import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 
 import org.ssu.edu.teachua.ui.components.modal.SignUpComponent;
