@@ -2,7 +2,7 @@ package org.ssu.edu.teachua.ui.club;
 
 import org.ssu.edu.teachua.ui.components.modal.edit_club_component.EditClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.testng.annotations.BeforeMethod;
 
 public class EditClubComponentTest extends LoginWithAdminRunner {

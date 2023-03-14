@@ -7,7 +7,7 @@ import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
-import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderChallenge;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
