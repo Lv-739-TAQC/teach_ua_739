@@ -83,6 +83,9 @@ public class NewsPageTest extends LoginWithAdminRunner {
         Assert.assertEquals(newsDates, descNewsDates);
     }
 
+    @Issue("TUA-33")
+    @Description("Verifies that elements of a news article, such as date, image, title and details button are clickable " +
+            "and redirect to appropriate news article")
     @Test
     public void testClickOnNewsArticle() {
         HomePage homePage = new HomePage(driver);

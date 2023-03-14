@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.pages.view;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,10 +18,12 @@ public class ViewTaskPage extends BasePage {
         super(driver);
     }
 
+    @Step("Get task name")
     public String getTaskName() {
         return taskName.getText();
     }
 
+    @Step("Get task content")
     public String getTaskContent() {
         return taskContent.getText();
     }

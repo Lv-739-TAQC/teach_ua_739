@@ -240,6 +240,8 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
         softAssert.assertAll();
     }
 
+    @Issue("TUA-527")
+    @Description("Verifies that fields on a challenge page are empty and user can create a challenge with valid data")
     @Test(dataProvider = "challengeData", dataProviderClass = DataProviderChallenge.class)
     public void testChallengeCreation(String sortNumber, String photoPath, String name,
                                       String title, String description) {
