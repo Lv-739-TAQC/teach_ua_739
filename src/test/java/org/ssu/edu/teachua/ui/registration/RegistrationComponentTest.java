@@ -1,6 +1,6 @@
 package org.ssu.edu.teachua.ui.registration;
 
-import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
+import org.ssu.edu.teachua.utils.runners.BaseTestRunnerUI;
 
 import org.ssu.edu.teachua.ui.components.modal.SignUpComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;

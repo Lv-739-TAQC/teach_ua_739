@@ -5,15 +5,12 @@ import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.components.modal.EditProfileComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
-import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
-import org.ssu.edu.teachua.utils.TestValueProvider;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderProfilePage;
 import org.ssu.edu.teachua.utils.providers.DataProviderTua328;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
 
 public class ProfilePageTest extends LoginWithAdminRunner {
 
