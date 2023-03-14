@@ -24,10 +24,12 @@ public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
         return ageField;
     }
 
+    @Step("Click remote button")
     public void chooseRemote() {
         remote.click();
     }
 
+    @Step("Click category {category} ")
     public void chooseCategory(String category) {
         driver.findElement(By.xpath(String.format(".//input[@value='%s']", category))).click();
     }
@@ -36,6 +38,7 @@ public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
         return ageField.getAttribute("value");
     }
 
+    @Step("Type {age} into age field")
     public AdvancedSearchClubComponent setAge(String age) {
         waitForElementToBeClickable(ageField).click();
         ageField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
