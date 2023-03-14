@@ -1,4 +1,4 @@
-package org.ssu.edu.teachua.ui.runners;
+package org.ssu.edu.teachua.utils.runners;
 
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.testng.annotations.BeforeClass;

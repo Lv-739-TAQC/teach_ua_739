@@ -2,7 +2,7 @@ package org.ssu.edu.teachua.ui.challenges;
 
 import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
