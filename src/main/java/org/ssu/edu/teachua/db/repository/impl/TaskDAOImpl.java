@@ -1,19 +1,20 @@
 package org.ssu.edu.teachua.db.repository.impl;
 
-import org.ssu.edu.teachua.db.entities.Role;
+import org.ssu.edu.teachua.db.entities.Task;
 
 import java.util.Map;
 import java.util.TreeMap;
 
-public class RoleDAOImpl extends AbstractDAOImpl<Role> {
+public class TaskDAOImpl extends AbstractDAOImpl<Task> {
 
     private static final Map<String, AbstractDAOImpl> entitiesDaoImpl;
 
     static {
         entitiesDaoImpl = new TreeMap<>();
+        entitiesDaoImpl.put("challenges", new RoleDAOImpl());
     }
 
-    public RoleDAOImpl() {
-        super(Role.class, entitiesDaoImpl);
+    public TaskDAOImpl() {
+        super(Task.class, entitiesDaoImpl);
     }
 }

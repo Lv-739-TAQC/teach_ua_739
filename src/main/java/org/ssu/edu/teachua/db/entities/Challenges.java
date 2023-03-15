@@ -16,7 +16,7 @@ public class Challenges extends Entity {
     private String description;
 
     @Column(name = "is_active")
-    private boolean isActive;
+    private Boolean isActive;
 
     @Column(name = "name")
     private String name;
@@ -34,41 +34,7 @@ public class Challenges extends Entity {
     private String title;
 
     @Column(name = "user_id")
-    private Integer userId;
-
-
-    public String getDescription() {
-        return description;
-    }
-
-    public boolean getIsActive() {
-        return isActive;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPicture() {
-        return picture;
-    }
-
-    public String getRegistrationLink() {
-        return registrationLink;
-    }
-
-    public BigInteger getSortNumber() {
-        return sortNumber;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
+    private BigInteger userId;
 
     @ManyToOne(foreignTable = "users", foreignColumnDB = "user_id")
     private User user;

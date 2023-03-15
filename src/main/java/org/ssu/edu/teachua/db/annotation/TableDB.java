@@ -8,5 +8,5 @@ import java.lang.annotation.Target;
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target(value = ElementType.TYPE)
 public @interface TableDB {
-    public String name();
+    String name();
 }
