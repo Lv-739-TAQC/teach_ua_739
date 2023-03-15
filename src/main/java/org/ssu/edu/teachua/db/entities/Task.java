@@ -6,7 +6,8 @@ import org.ssu.edu.teachua.db.annotation.TableDB;
 
 import lombok.Data;
 
-import java.text.DateFormat;
+import java.math.BigInteger;
+import java.sql.Date;
 
 @TableDB(name = "tasks")
 @Data
@@ -22,10 +23,10 @@ public class Task extends Entity {
     private String picturePath;
 
     @Column(name = "start_date")
-    private DateFormat startDate;
+    private Date startDate;
 
     @Column(name = "challenge_id")
-    private Integer challengeId;
+    private BigInteger challengeId;
 
     @Column(name = "header_text")
     private String headerText;

@@ -1,8 +1,6 @@
 package org.ssu.edu.teachua.db.service;
 
-import org.ssu.edu.teachua.db.entities.Challenges;
-import org.ssu.edu.teachua.db.entities.Role;
-import org.ssu.edu.teachua.db.entities.User;
+import org.ssu.edu.teachua.db.entities.*;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
 
@@ -30,5 +28,19 @@ public class MainTestConnection {
         System.out.println("\nGetting all possible challenges by name : " +
                 (new ChallengesService()).getChallengesByName("Ukrainian").size()
         );
+
+        System.out.println("\nGet task by id : ");
+        Task task = (new TaskService()).getTaskById(700);
+        System.out.println(task.getId() + " | " + task.getName());
+
+        System.out.println("\nGet tasks by name : ");
+        for (Task eachTask : (new TaskService()).getTasksByName("string")) {
+            System.out.println(eachTask.getId() + " | " + eachTask.getName());
+        }
+
+        System.out.println("\nGet centers by name : ");
+        for (Center eachCenter : (new CenterService()).getCentersByName("Java center")) {
+            System.out.println(eachCenter.getUserId() + " | " + eachCenter.getName());
+        }
     }
 }
