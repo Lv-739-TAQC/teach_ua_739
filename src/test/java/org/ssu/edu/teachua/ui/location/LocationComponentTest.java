@@ -6,7 +6,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.ssu.edu.teachua.ui.components.modal.AddLocationComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderLocation;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;

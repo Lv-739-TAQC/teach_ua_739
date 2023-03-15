@@ -1,8 +1,5 @@
 # Team: Lv-739.TAQC
-_ _ _ 
-### Project implementation in Java:
-[Click here](https://github.com/Lv-739-TAQC/teach_ua_739)
-_ _ _ 
+_ _ _
 ### Description:
 [***Teach Ukrainian***](https://speak-ukrainian.org.ua/dev/) website test automation project provides UI, API and DB testing with Selenium and WebDriver Manager using Page Object Model design pattern.
 _ _ _ 

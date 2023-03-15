@@ -1,19 +1,19 @@
-package org.ssu.edu.teachua.ui.runners;
+package org.ssu.edu.teachua.utils.runners;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.ssu.edu.teachua.utils.TestNgListeners;
 import org.ssu.edu.teachua.utils.TestValueProvider;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
+import org.testng.ITestContext;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 
+@Listeners(TestNgListeners.class)
 public class BaseTestRunnerUI {
 
     protected static TestValueProvider valueProvider;
@@ -29,10 +29,12 @@ public class BaseTestRunnerUI {
     }
 
     @BeforeClass(description = "Init ChromeDriver.")
-    protected void initDriver() {
+    protected void initDriver(ITestContext context) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+//        options.addArguments("--headless");
         driver = new ChromeDriver(options);
+        context.setAttribute("myDriver", driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(valueProvider.getBaseUiUrl());

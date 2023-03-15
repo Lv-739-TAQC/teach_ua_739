@@ -6,9 +6,8 @@ import org.ssu.edu.teachua.ui.components.card.ClubCardComponent;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchCenterComponent;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchClubComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
+import org.ssu.edu.teachua.utils.runners.BaseTestRunnerUI;
 import org.ssu.edu.teachua.utils.providers.DataProviderAdvancedSearch;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 

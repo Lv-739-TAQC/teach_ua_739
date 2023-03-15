@@ -1,11 +1,9 @@
 package org.ssu.edu.teachua.ui.centre;
-
 import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 import io.qameta.allure.Description;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
-import org.ssu.edu.teachua.utils.TestValueProvider;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderCentre;
 import org.testng.Assert;
 import org.testng.annotations.Test;

@@ -4,7 +4,7 @@ import io.qameta.allure.*;
 import org.ssu.edu.teachua.ui.components.card.NewsCardComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.news.NewsPage;
-import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderNews;
 import org.testng.Assert;
 import org.testng.annotations.Test;
