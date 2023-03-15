@@ -4,19 +4,18 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.ssu.edu.teachua.db.annotation.Column;
+import org.ssu.edu.teachua.db.annotation.ManyToMany;
 import org.ssu.edu.teachua.db.annotation.ManyToOne;
 import org.ssu.edu.teachua.db.annotation.TableDB;
 
 import java.math.BigInteger;
+import java.util.Set;
 
 @TableDB(name = "clubs")
 @Data
 @Setter
 @Getter
-public class Clubs extends Entity {
-
-    @Column(name = "id")
-    private BigInteger Id;
+public class Club extends Entity {
 
     @Column(name = "age_from")
     private Integer ageFrom;
@@ -71,5 +70,9 @@ public class Clubs extends Entity {
 
     @ManyToOne(foreignTable = "users", foreignColumnDB = "user_id")
     private User user;
+
+    @ManyToMany(foreignTable ="categories", tableForManyToMany = "club_category",
+            mainColumnDB = "club_id", foreignColumnDB = "category_id")
+    private Set<Category> category;
 
 }

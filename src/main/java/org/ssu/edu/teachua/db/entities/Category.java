@@ -4,18 +4,16 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.ssu.edu.teachua.db.annotation.Column;
+import org.ssu.edu.teachua.db.annotation.ManyToMany;
 import org.ssu.edu.teachua.db.annotation.TableDB;
 
-import java.math.BigInteger;
+import java.util.Set;
 
 @TableDB(name = "categories")
 @Data
 @Setter
 @Getter
-public class Categories extends Entity {
-
-    @Column(name = "id")
-    public BigInteger id;
+public class Category extends Entity {
 
     @Column(name = "background_color")
     public String backgroundColor;
@@ -38,5 +36,8 @@ public class Categories extends Entity {
     @Column(name = "url_logo")
     public String urlLogo;
 
+    @ManyToMany(foreignTable ="clubs", tableForManyToMany = "club_category",
+            mainColumnDB = "category_id", foreignColumnDB = "club_id")
+    private Set<Club> club;
 }
 
