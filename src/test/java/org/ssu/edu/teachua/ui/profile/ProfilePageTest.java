@@ -5,8 +5,10 @@ import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.components.modal.EditProfileComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
-import org.ssu.edu.teachua.ui.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderProfilePage;
+import org.ssu.edu.teachua.utils.providers.DataProviderTua328;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -79,4 +81,31 @@ public class ProfilePageTest extends LoginWithAdminRunner {
 		softAssert.assertAll();
 		
 	}
+
+    @Issue("TUA-328")
+    @Test(dataProvider = "dpTua328", dataProviderClass = DataProviderTua328.class)
+    public void inputWrongNameTest(String insert, String expected) {
+
+        String actualResult = profilePage.getHeader()
+                .openAdminProfileMenu()
+                .openProfilePage()
+                .clickEditProfileButton()
+                .enterNewFirstName(insert).getAlertMessageFirstName();
+
+        Assert.assertEquals(actualResult, expected);
+    }
+
+    @Issue("TUA-328")
+    @Test
+    public void deleteNameTest() {
+
+        String actualResult = profilePage.getHeader()
+                .openAdminProfileMenu()
+                .openProfilePage()
+                .clickEditProfileButton()
+                .enterNewFirstName("normalName")
+                .enterNewFirstName("").getAlertMessageFirstName();
+
+        Assert.assertEquals(actualResult, "Будь ласка введіть Ваше ім'я");
+    }
 }

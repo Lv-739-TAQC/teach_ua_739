@@ -1,12 +1,13 @@
 package org.ssu.edu.teachua.ui.advanced_search;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.components.card.ClubCardComponent;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchCenterComponent;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchClubComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
+import org.ssu.edu.teachua.utils.runners.BaseTestRunnerUI;
 import org.ssu.edu.teachua.utils.providers.DataProviderAdvancedSearch;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -17,6 +18,8 @@ import java.util.stream.Collectors;
 
 public class AdvancedSearchPageTest extends BaseTestRunnerUI {
 
+    @Issue("TUA-210")
+    @Description ("Verify that input field 'Вік дитини' accepts only positive integers from 2 to 18")
     @Test(dataProvider = "dpAgeFieldTest", dataProviderClass = DataProviderAdvancedSearch.class)
     public void AgeFieldTest(List<String> age, List<String> expectedAge) {
         SoftAssert softAssert = new SoftAssert();
@@ -24,21 +27,25 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
                 .clickAdvancedSearchIcon();
 
         String actualAgeFirst = advancedSearchClubComponent
+                .clearAge()
                 .setAge(age.get(0))
                 .getAge();
         softAssert.assertEquals(actualAgeFirst, expectedAge.get(0), "Age has not been set correctly");
 
         String actualAgeSecond = advancedSearchClubComponent
+                .clearAge()
                 .setAge(age.get(1))
                 .getAge();
         softAssert.assertEquals(actualAgeSecond, expectedAge.get(0), "Age has not been set correctly");
 
         String actualAgeThird = advancedSearchClubComponent
+                .clearAge()
                 .setAge(age.get(2))
                 .getAge();
         softAssert.assertEquals(actualAgeThird, expectedAge.get(1), "Age has not been set correctly");
 
         String actualAgeFourth = advancedSearchClubComponent
+                .clearAge()
                 .setAge(age.get(3))
                 .getAge();
         softAssert.assertEquals(actualAgeFourth, expectedAge.get(1), "Age has not been set correctly");
@@ -46,6 +53,8 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
         softAssert.assertAll();
     }
 
+    @Issue("TUA-224")
+    @Description ("[Header] Verify “Advanced search” button opens “Розширений пошук” section")
     @Test
     public void advancedSearchComponentIsDisplayedAndHiddenTest() {
         SoftAssert softAssert = new SoftAssert();
@@ -64,6 +73,8 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
         softAssert.assertAll();
     }
 
+    @Issue("TUA-509")
+    @Description ("[Розширений пошук] Verify that all parameters are activated with the selected 'Гурток' radio button")
     @Test
     public void allParametersActivatedTest() {
         SoftAssert softAssert = new SoftAssert();

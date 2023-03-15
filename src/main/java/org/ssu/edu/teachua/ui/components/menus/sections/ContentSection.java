@@ -8,6 +8,8 @@ import org.ssu.edu.teachua.ui.base.BaseComponent;
 import org.ssu.edu.teachua.ui.pages.challenges.ChallengesPage;
 import org.ssu.edu.teachua.ui.pages.tasks.TasksPage;
 
+import io.qameta.allure.Step;
+
 public class ContentSection extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = ".//div[contains(@aria-controls, 'challenges-submenu-popup')]")
@@ -27,16 +29,18 @@ public class ContentSection extends BaseComponent {
         super(driver, node);
     }
 
+    @Step("Click challenge button. Open menu`s challenge section.")	
     public ContentSection openChallengesMenu() {
         waitForElementToBeClickable(challengesMenu).click();
         return this;
     }
-
+    
+    @Step("Click task button. Open the main task page.")	
     public TasksPage clickTasks() {
         waitForElementToBeClickable(tasksSectionNode).click();
         return new TasksPage(driver);
     }
-
+    @Step("Click challenge button. Open the main challenge page.")	
     public ChallengesPage clickChallenges() {
         waitForElementToBeClickable(challengesSectionNode).click();
         return new ChallengesPage(driver);

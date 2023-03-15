@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal.edit_club_component;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,24 +17,28 @@ public class EditClubDescriptionComponent extends AddClubDescriptionComponent {
         super(driver);
     }
 
+    @Step("Edit logo {logoPath}")
     public EditClubDescriptionComponent editUploadNewLogo(String logoPath) {
         waitForElementToAppear(uploadLogo);
         this.uploadLogo.sendKeys(logoPath);
         return this;
     }
 
+    @Step("Edit background picture {picturePath}")
     public EditClubDescriptionComponent editUploadNewBackgroundPicture(String picturePath) {
         waitForElementToAppear(uploadBackgroundPicture);
         this.uploadBackgroundPicture.sendKeys(picturePath);
         return this;
     }
 
+    @Step("Edit gallery {galleryPath}")
     public EditClubDescriptionComponent editUploadNewGallery(String galleryPath) {
         waitForElementToAppear(uploadGallery);
         this.uploadGallery.sendKeys(galleryPath);
         return this;
     }
 
+    @Step("Edit club description {description}")
     public EditClubDescriptionComponent editEnterDescription(String description) {
         waitForElementToBeClickable(editDescriptionField);
         this.editDescriptionField.click();
@@ -42,12 +47,14 @@ public class EditClubDescriptionComponent extends AddClubDescriptionComponent {
         return this;
     }
 
+    @Step("Click on the 'End' button")
     public EditClubDescriptionComponent clickEditEndButton() {
         waitForElementToBeClickable(nextStepButton);
         nextStepButton.click();
         return null;
     }
 
+    @Step("Click on the 'Back' button")
     public EditClubContactsComponent clickEditPreviousPageButton() {
         previousPageButton.click();
         return new EditClubContactsComponent(driver);

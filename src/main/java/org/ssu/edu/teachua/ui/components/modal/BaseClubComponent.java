@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.components.modal;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -47,59 +48,70 @@ public abstract class BaseClubComponent extends BaseComponent {
         PageFactory.initElements(new DefaultElementLocatorFactory(componentRoot), this);
     }
 
+    @Step("Check the Main Info page is active")
     public WebElement getClubMainInfoComponent() {
         waitForElementToAppear(clubMainInfoComponent);
         return clubMainInfoComponent;
     }
 
+    @Step("Check the Contacts page is active")
     public WebElement getClubContactsComponent() {
         waitForElementToAppear(clubContactsComponent);
         return clubContactsComponent;
     }
 
+    @Step("Check the Description page is active")
     public WebElement getClubDescriptionComponent() {
         waitForElementToAppear(clubDescriptionComponent);
         return clubDescriptionComponent;
     }
 
+    @Step("Check the 'First step' circle is orange")
     public String getFirstStepColor() {
         String colorCode = firstStep.getCssValue("background-color");
         String hexacolor = Color.fromString(colorCode).asHex();
         return hexacolor;
     }
 
+    @Step("Check the 'Second step' circle is orange")
     public String getSecondStepColor() {
         String colorCode = secondStep.getCssValue("background-color");
         String hexacolor = Color.fromString(colorCode).asHex();
         return hexacolor;
     }
 
+    @Step("Check the 'Third step' circle is orange")
     public String getThirdStepColor() {
         String colorCode = thirdStep.getCssValue("background-color");
         String hexacolor = Color.fromString(colorCode).asHex();
         return hexacolor;
     }
 
+    @Step("Check the check-circle is appear")
     public WebElement getCheckCircle() {
         waitForElementToAppear(checkCircle);
         return checkCircle;
     }
 
+    @Step("Check the close-circle is appear")
     public WebElement getCloseCircle() {
         waitForElementToAppear(closeCircle);
         return closeCircle;
     }
 
+    @Step("Check the area check-circle is appear")
     public WebElement getAreaCheckCircle() {
         waitForElementToAppear(areaCheckCircle);
         return areaCheckCircle;
     }
 
+    @Step("Check the area close-circle is appear")
     public WebElement getAreaCloseCircle() {
         waitForElementToAppear(areaCloseCircle);
         return areaCloseCircle;
     }
 
+    @Step("Check the error message is appear")
     public WebElement getFieldErrorMsg() {
         waitForElementToAppear(fieldErrorMsg);
         return fieldErrorMsg;

@@ -63,4 +63,5 @@ build/
 .DS_Store
 #protected data for project
 src/test/resources/data.properties
+local_testng.xml
 
