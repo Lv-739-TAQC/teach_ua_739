@@ -139,7 +139,8 @@ public class HeaderComponent extends BaseComponent {
         waitForElementToBeClickable(userIconNotLogin).click();
         return new GuestMenuComponent(driver, profileMenuNode);
     }
-
+    
+    @Step("Get #'{id}' challenge Url")
     public String getChallengeUrl(int id) {
         WebElement challenge = getChallenges().get(id);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", challenge);
