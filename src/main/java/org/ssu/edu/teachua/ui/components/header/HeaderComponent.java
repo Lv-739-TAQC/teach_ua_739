@@ -79,7 +79,7 @@ public class HeaderComponent extends BaseComponent {
         return this;
     }
     
-    @Step("Click needed challenge in drop-down menu. Open challenge page.")
+    @Step("Click #'{id}' challenge in drop-down menu. Open challenge page.")
     public ViewChallengePage clickChallengeButton(int id) {
         WebElement challenge = getChallenges().get(id);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", challenge);
@@ -117,7 +117,7 @@ public class HeaderComponent extends BaseComponent {
                 .collect(Collectors.toList());
     }
     
-    @Step("Click needed location in drop-down menu.")
+    @Step("Click '{location}' in drop-down menu.")
     public HeaderComponent chooseLocation(String location) {
         locationsList.get(parseList().indexOf(location)).click();
         return this;
