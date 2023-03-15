@@ -2,11 +2,11 @@ package org.ssu.edu.teachua.ui.registration;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
-import org.ssu.edu.teachua.ui.runners.BaseTestRunnerUI;
 
 import org.ssu.edu.teachua.ui.components.modal.SignUpComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.utils.providers.DataProviderRegistration;
+import org.ssu.edu.teachua.utils.runners.BaseTestRunnerUI;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
