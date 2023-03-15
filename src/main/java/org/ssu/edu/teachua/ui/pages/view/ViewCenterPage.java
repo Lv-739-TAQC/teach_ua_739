@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.pages.view;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,24 +24,29 @@ public class ViewCenterPage extends BasePage {
         super(driver);
     }
 
+    @Step("Click to enroll the center")
     public ViewCenterPage clickEnrollCenter() {
         enrollButton.click();
         return this;
     }
 
+    @Step("Click to download a file with information about the center")
     public ViewCenterPage downloadFile() {
         downloadButton.click();
         return this;
     }
 
+    @Step("Click to redirect on map")
     public void clickOnMap() {
         mapButton.click();
     }
 
+   @Step("Get name of the center")
     public String getCenterName() {
         return centerName.getText();
     }
 
+   @Step("Get description of the center")
     public String getDescription() {
         return description.getText();
     }
