@@ -69,7 +69,7 @@ public class Club extends Entity {
     private BigInteger feedbackCount;
 
     @ManyToOne(foreignTable = "users", foreignColumnDB = "user_id")
-    private User user;
+    private User userOwner;
 
     @ManyToMany(foreignTable ="categories", tableForManyToMany = "club_category",
             mainColumnDB = "club_id", foreignColumnDB = "category_id")
