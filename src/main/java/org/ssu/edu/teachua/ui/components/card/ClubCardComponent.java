@@ -28,6 +28,7 @@ public class ClubCardComponent extends BaseComponent {
         super(driver, node);
     }
 
+    @Step("Get club title")
     public String getClubTitle() {
         return clubTitle.getText();
     }
