@@ -57,5 +57,11 @@ public class MainTestConnection {
         for (Center eachCenter : (new CenterService()).getCentersByName("Java center")) {
             System.out.println(eachCenter.getUserId() + " | " + eachCenter.getName());
         }
+
+        // Locations :
+        System.out.println("\nGet locations by name : ");
+        for (Location eachLocation : (new LocationService()).getLocationByName("First")) {
+            System.out.println(eachLocation.getId() + " | " + eachLocation.getName());
+        }
     }
 }
