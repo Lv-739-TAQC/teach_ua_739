@@ -11,7 +11,7 @@ public class CategoryDAOImpl extends AbstractDAOImpl<Category> {
 
     static {
         entitiesDaoImpl = new TreeMap<>();
-        entitiesDaoImpl.put("clubs", new ClubsCategoryDAOImpl());
+        entitiesDaoImpl.put("clubs", new ClubDAOImpl());
     }
 
     public CategoryDAOImpl() {
