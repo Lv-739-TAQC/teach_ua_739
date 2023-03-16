@@ -18,7 +18,7 @@ public class ClubsPage extends BasePage {
         clubs = initClubsCard();
     }
 
-    private List<ClubCardComponent> initClubsCard() {
+    public List<ClubCardComponent> initClubsCard() {
         List<WebElement> elements = driver.findElements(
                 By.xpath("//div[@class='ant-card ant-card-bordered card']")
         );
@@ -28,4 +28,11 @@ public class ClubsPage extends BasePage {
         }
         return cards;
     }
+
+    public WebElement getClubsNode() {
+        return (WebElement) driver.findElements(
+                By.xpath(".//div[@class='ant-card ant-card-bordered card']")
+        );
+    }
+
 }

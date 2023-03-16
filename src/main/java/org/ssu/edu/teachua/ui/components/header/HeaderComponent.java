@@ -104,6 +104,10 @@ public class HeaderComponent extends BaseComponent {
         return this;
     }
 
+    public String getLocation() {
+        return waitForElementToAppear(locationButton).getText();
+    }
+
     public List<String> parseList() {
         return waitForElementsToAppear(locationsList).stream()
                 .map(WebElement::getText)
