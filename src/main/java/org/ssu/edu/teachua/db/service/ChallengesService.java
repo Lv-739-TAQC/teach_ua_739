@@ -8,17 +8,21 @@ import org.ssu.edu.teachua.db.repository.impl.ChallengesDAOImpl;
 
 import java.util.List;
 
-public class ChallengesService {
+public class ChallengesService extends BaseService {
 
     static final String SQL_FIND_CHALLENGE_BY_NAME = "SELECT * FROM challenges WHERE name = ?;";
 
-    public static Challenges getChallengeById(Integer id) throws DBException, EntityException {
-        return new ChallengesDAOImpl().findElementById(DBManager.getInstance().getConnection(), id, true);
+    public ChallengesService(String url, String username, String password) throws DBException {
+        super(url, username, password);
     }
 
-    public static List<Challenges> getChallengesByName(String name) throws DBException, EntityException {
+    public  Challenges getChallengeById(Integer id) throws DBException, EntityException {
+        return new ChallengesDAOImpl().findElementById(con, id, true);
+    }
+
+    public  List<Challenges> getChallengesByName(String name) throws DBException, EntityException {
         return new ChallengesDAOImpl().findElementsBySQlRequest(
-                DBManager.getInstance().getConnection(), SQL_FIND_CHALLENGE_BY_NAME, true, name
+                con, SQL_FIND_CHALLENGE_BY_NAME, true, name
         );
     }
 }
