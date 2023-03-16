@@ -11,6 +11,9 @@ import java.util.List;
 public class ClubService {
 
     static final String SQL_FIND_CLUB_BY_NAME = "SELECT * FROM clubs WHERE name = ?;";
+    public static Club getClubsById(Integer id) throws DBException, EntityException {
+        return new ClubDAOImpl().findElementById(DBManager.getInstance().getConnection(), id, true);
+    }
 
     public static List<Club> getClubsByName(String name) throws DBException, EntityException {
         return new ClubDAOImpl().findElementsBySQlRequest(

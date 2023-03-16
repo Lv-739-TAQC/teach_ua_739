@@ -5,17 +5,15 @@ import org.ssu.edu.teachua.db.entities.Club;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class ClubDAOImpl extends AbstractDAOImpl<Club> {
-
+public class ClubsCategoryDAOImpl extends AbstractDAOImpl<Club> {
     private static final Map<String, AbstractDAOImpl> entitiesDaoImpl;
 
     static {
         entitiesDaoImpl = new TreeMap<>();
-        entitiesDaoImpl.put("users", new UserDAOImpl());
         entitiesDaoImpl.put("categories", new CategoryDAOImpl());
     }
 
-    public ClubDAOImpl() {
+    public ClubsCategoryDAOImpl() {
         super(Club.class, entitiesDaoImpl);
     }
 }

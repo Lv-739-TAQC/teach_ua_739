@@ -22,7 +22,7 @@ public class Club extends Entity {
     @Column(name = "center_external_id")
     private BigInteger centerExternalId;
 
-    @Column(name = "clubs_external_id")
+    @Column(name = "club_external_id")
     private BigInteger clubsExternalId;
 
     @Column(name = "contacts")
