@@ -49,17 +49,15 @@ public abstract class AbstractDAOImpl<E extends Entity> implements AbstractDAO<E
             }
             rs = ps.executeQuery();
             while (!rs.isClosed() && rs.next()) {
-                allElements.add(readNextElement(rs, versionOfSearch));
+                allElements.add(readNextElement(con, rs, versionOfSearch));
             }
             rs.close();
             ps.close();
-            cn.close();
         } catch (SQLException e) {
             throw new DBException(String.format("Exception while getting data from table %s method findElementsBySQlRequest",nameDB),e);
         } finally {
             close(rs);
             close(ps);
-            close(cn);
         }
         return allElements;
     }
@@ -73,17 +71,15 @@ public abstract class AbstractDAOImpl<E extends Entity> implements AbstractDAO<E
             ps.setObject(1, id);
             rs = ps.executeQuery();
             if (!rs.isClosed() &&  rs.next()) {
-                element = readNextElement(rs,versionOfSearch);
+                element = readNextElement(con, rs,versionOfSearch);
             }
             rs.close();
             ps.close();
-            cn.close();
         } catch (SQLException e) {
             throw new DBException(String.format("Exception while getting data from table %s method findElementById",nameDB),e);
         } finally {
             close(rs);
             close(ps);
-            close(cn);
         }
         return element;
     }
@@ -96,17 +92,15 @@ public abstract class AbstractDAOImpl<E extends Entity> implements AbstractDAO<E
             st = cn.createStatement();
             rs = st.executeQuery(SQL_FIND_ALL_ELEMENTS);
             while (!rs.isClosed() && rs.next()) {
-                allElemetns.add(readNextElement(rs, versionOfSearch));
+                allElemetns.add(readNextElement(con, rs, versionOfSearch));
             }
             rs.close();
             st.close();
-            cn.close();
         } catch (SQLException e) {
             throw new DBException(String.format("Exception while getting data from table %s method findAll",nameDB),e);
         } finally {
             close(rs);
             close(st);
-            close(cn);
         }
         return allElemetns;
     }
@@ -123,13 +117,11 @@ public abstract class AbstractDAOImpl<E extends Entity> implements AbstractDAO<E
             }
             rs.close();
             st.close();
-            cn.close();
         } catch (SQLException e) {
             throw new DBException(String.format("Exception while count data from table %s method countAllElement",nameDB),e);
         } finally {
             close(rs);
             close(ps);
-            close(cn);
         }
         return count;
     }
@@ -149,18 +141,16 @@ public abstract class AbstractDAOImpl<E extends Entity> implements AbstractDAO<E
             }
             rs.close();
             ps.close();
-            cn.close();
         } catch (SQLException e) {
             throw new DBException(String.format("Exception while count data from table %s method countAllElement with parametrs",nameDB),e);
         } finally {
             close(rs);
             close(ps);
-            close(cn);
         }
         return count;
     }
 
-    private E readNextElement(ResultSet resultSet, boolean versionOfSearch) throws DBException,EntityException{
+    private E readNextElement(Connection con, ResultSet resultSet, boolean versionOfSearch) throws DBException,EntityException{
         E element = null;
         try {
             Constructor<E> cons = entityClass.getConstructor();
@@ -181,7 +171,7 @@ public abstract class AbstractDAOImpl<E extends Entity> implements AbstractDAO<E
 
                     AbstractDAOImpl foreignEntityDAOImpl = entitiesDaoImpl.get(field.getAnnotation(ManyToOne.class).foreignTable());
 
-                    Object foreignElement = foreignEntityDAOImpl.findElementById(DBManager.getInstance().getConnection(), foriegnID,false);
+                    Object foreignElement = foreignEntityDAOImpl.findElementById(con, foriegnID,false);
 
                     field.setAccessible(true);
                     field.set(element, foreignElement);
@@ -193,7 +183,7 @@ public abstract class AbstractDAOImpl<E extends Entity> implements AbstractDAO<E
 
                     AbstractDAOImpl foreignEntityDAOImpl = entitiesDaoImpl.get(field.getAnnotation(OneToMany.class).foreignTable());
 
-                    Set<Object> setForeignElements = foreignEntityDAOImpl.FindAllForOneToMany(elementId, foreignColumnDB,false);
+                    Set<Object> setForeignElements = foreignEntityDAOImpl.FindAllForOneToMany(con, elementId, foreignColumnDB,false);
 
                     field.setAccessible(true);
                     field.set(element, setForeignElements);
@@ -208,10 +198,10 @@ public abstract class AbstractDAOImpl<E extends Entity> implements AbstractDAO<E
 
                     AbstractDAOImpl foreignEntityDAOImpl = entitiesDaoImpl.get(field.getAnnotation(ManyToMany.class).foreignTable());
 
-                    Set<Integer> idForeignElements = FindAllForManyToMany(elementId,tableForManyToMany,mainColumnDB,foreignColumnDB);
+                    Set<Integer> idForeignElements = FindAllForManyToMany(con, elementId,tableForManyToMany,mainColumnDB,foreignColumnDB);
                     Set<Object> setForeignElements = new HashSet<>();
                     for(Integer idForeignElement : idForeignElements){
-                        setForeignElements.add(foreignEntityDAOImpl.findElementById(DBManager.getInstance().getConnection(), idForeignElement,false));
+                        setForeignElements.add(foreignEntityDAOImpl.findElementById(con, idForeignElement,false));
                     }
 
                     field.setAccessible(true);
@@ -230,42 +220,40 @@ public abstract class AbstractDAOImpl<E extends Entity> implements AbstractDAO<E
         return element;
     }
 
-    private Set<E> FindAllForOneToMany(Integer elementId, String foreignColumnDB, boolean versionOfSearch) throws DBException, EntityException{
+    private Set<E> FindAllForOneToMany(Connection con, Integer elementId, String foreignColumnDB, boolean versionOfSearch) throws DBException, EntityException{
         Set<E> setForeignElements = new HashSet<>();
         final String FIND_ALL_BY_FOREIGN_ID = String.format("select * from %s where %s = ?;",nameDB,foreignColumnDB);
         Connection innerCn = null;
         PreparedStatement innerPs = null;
         ResultSet resSet = null;
         try {
-            innerCn = DBManager.getInstance().getConnection();
+            innerCn = con;
             innerPs = innerCn.prepareStatement(FIND_ALL_BY_FOREIGN_ID);
             innerPs.setInt(1,elementId);
             resSet = innerPs.executeQuery();
             while (!resSet.isClosed() && resSet.next()) {
-                setForeignElements.add(readNextElement(resSet,versionOfSearch));
+                setForeignElements.add(readNextElement(con, resSet,versionOfSearch));
             }
             resSet.close();
             innerPs.close();
-            innerCn.close();
         } catch (SQLException e) {
             throw new DBException(String.format("Exception while getting data from table %s method FindAllForOneToMany",nameDB),e);
         } finally {
             close(resSet);
             close(innerPs);
-            close(innerCn);
         }
 
         return setForeignElements;
     }
 
-    private Set<Integer> FindAllForManyToMany(Integer elementId, String tableForManyToMany, String mainColumnDB, String foreignColumnDB) throws DBException{
+    private Set<Integer> FindAllForManyToMany(Connection con, Integer elementId, String tableForManyToMany, String mainColumnDB, String foreignColumnDB) throws DBException{
         Set<Integer> idForeignElements = new HashSet<>();
         final String FIND_ALL_IN_MToM_BY_FOREIGN_ID = String.format("select %s from %s where %s = ?;",foreignColumnDB,tableForManyToMany,mainColumnDB);
         Connection innerCn = null;
         PreparedStatement innerPs = null;
         ResultSet resSet = null;
         try {
-            innerCn = DBManager.getInstance().getConnection();
+            innerCn = con;
             innerPs = innerCn.prepareStatement(FIND_ALL_IN_MToM_BY_FOREIGN_ID);
             innerPs.setInt(1,elementId);
             resSet = innerPs.executeQuery();
@@ -274,26 +262,15 @@ public abstract class AbstractDAOImpl<E extends Entity> implements AbstractDAO<E
             }
             resSet.close();
             innerPs.close();
-            innerCn.close();
        } catch (SQLException e) {
             throw new DBException(String.format("Exception while getting data from table %s method FindAllForManyToMany",nameDB),e);
        } finally {
             close(resSet);
             close(innerPs);
-            close(innerCn);
         }
         return idForeignElements;
     }
 
-    private void close(Connection con) throws DBException{
-        if (con != null){
-            try {
-                con.close();
-            } catch (SQLException e) {
-                throw new DBException(String.format("Exception while close connection with table %s",nameDB),e);
-            }
-        }
-    }
     private void close(PreparedStatement ps) throws DBException{
         if (ps != null){
             try {

@@ -8,17 +8,21 @@ import org.ssu.edu.teachua.db.repository.impl.CenterDAOImpl;
 
 import java.util.List;
 
-public class CenterService {
+public class CenterService extends BaseService {
 
     static final String SQL_FIND_CENTER_BY_NAME = "SELECT * FROM centers WHERE name = ?;";
 
-    public static Center getCenterById(Integer id) throws DBException, EntityException {
-        return new CenterDAOImpl().findElementById(DBManager.getInstance().getConnection(), id, true);
+    public CenterService(String url, String username, String password) throws DBException {
+        super(url, username, password);
     }
 
-    public static List<Center> getCentersByName(String name) throws DBException, EntityException {
+    public  Center getCenterById(Integer id) throws DBException, EntityException {
+        return new CenterDAOImpl().findElementById(con, id, true);
+    }
+
+    public  List<Center> getCentersByName(String name) throws DBException, EntityException {
         return new CenterDAOImpl().findElementsBySQlRequest(
-                DBManager.getInstance().getConnection(), SQL_FIND_CENTER_BY_NAME, true, name
+                con, SQL_FIND_CENTER_BY_NAME, true, name
         );
     }
 }
