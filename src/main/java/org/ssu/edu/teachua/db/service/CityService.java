@@ -16,8 +16,8 @@ public class CityService extends BaseService {
         super(url, username, password);
     }
 
-    public List<City> getCities() throws DBException, EntityException {
-        return new CityDAOImpl().findAll(con, true);
+    public City getCities(Integer id) throws DBException, EntityException {
+        return new CityDAOImpl().findElementById(con, id, true);
     }
 
     public List<City> getCitiesByName(String name) throws DBException, EntityException {
