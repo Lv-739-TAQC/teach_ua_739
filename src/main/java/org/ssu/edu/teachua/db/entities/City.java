@@ -15,16 +15,4 @@ public class City extends Entity {
     @Column(name = "name")
     private String name;
 
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public String getName() {
-        return name;
-    }
-
 }
