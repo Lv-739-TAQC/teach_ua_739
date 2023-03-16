@@ -8,15 +8,15 @@ import org.ssu.edu.teachua.db.repository.impl.CityDAOImpl;
 
 import java.util.List;
 
-public class CityService {
+public class CityService extends BaseService {
 
     static final String SQL_FIND_CITY_BY_NAME = "SELECT * FROM cities WHERE name = ?;";
 
-    public static List<City> getCities() throws DBException, EntityException {
+    public List<City> getCities() throws DBException, EntityException {
         return new CityDAOImpl().findAll(DBManager.getInstance().getConnection(), false);
     }
 
-    public static List<City> getCitiesByName(String name) throws DBException, EntityException {
+    public List<City> getCitiesByName(String name) throws DBException, EntityException {
         return new CityDAOImpl().findElementsBySQlRequest(
                 DBManager.getInstance().getConnection(), SQL_FIND_CITY_BY_NAME, true, name
         );
