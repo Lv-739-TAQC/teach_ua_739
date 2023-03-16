@@ -1,8 +1,6 @@
 package org.ssu.edu.teachua.db.entities;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.ssu.edu.teachua.db.annotation.Column;
 import org.ssu.edu.teachua.db.annotation.ManyToMany;
 import org.ssu.edu.teachua.db.annotation.ManyToOne;
@@ -13,8 +11,6 @@ import java.util.Set;
 
 @TableDB(name = "clubs")
 @Data
-@Setter
-@Getter
 public class Club extends Entity {
 
     @Column(name = "age_from")

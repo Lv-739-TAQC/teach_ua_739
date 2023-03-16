@@ -1,8 +1,7 @@
 package org.ssu.edu.teachua.db.entities;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 import org.ssu.edu.teachua.db.annotation.Column;
 import org.ssu.edu.teachua.db.annotation.ManyToMany;
 import org.ssu.edu.teachua.db.annotation.TableDB;
@@ -11,8 +10,6 @@ import java.util.Set;
 
 @TableDB(name = "categories")
 @Data
-@Setter
-@Getter
 public class Category extends Entity {
 
     @Column(name = "background_color")
