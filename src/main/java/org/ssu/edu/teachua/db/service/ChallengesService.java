@@ -15,6 +15,7 @@ public class ChallengesService {
     public static Challenges getChallengeById(Integer id) throws DBException, EntityException {
         return new ChallengesDAOImpl().findElementById(DBManager.getInstance().getConnection(), id, true);
     }
+
     public static List<Challenges> getChallengesByName(String name) throws DBException, EntityException {
         return new ChallengesDAOImpl().findElementsBySQlRequest(
                 DBManager.getInstance().getConnection(), SQL_FIND_CHALLENGE_BY_NAME, true, name

@@ -11,6 +11,7 @@ public class MainTestConnection {
          * Testing methods correctness (SQL-quires)
          * */
 
+        // Users and Roles :
         System.out.println("\nGetting all roles : ");
         for (Role role : (new RoleService()).getRolls()) {
             System.out.println(role.getId() + " | " + role.getName());
@@ -21,6 +22,7 @@ public class MainTestConnection {
             System.out.println(user.getEmail() + " | " + user.getRole().getName());
         }
 
+        // Challenges :
         System.out.println("\nGet challenge by id : ");
         Challenges challenges = (new ChallengesService()).getChallengeById(623);
         System.out.println(challenges.getId() + " | " + challenges.getName());
@@ -29,6 +31,7 @@ public class MainTestConnection {
                 (new ChallengesService()).getChallengesByName("Ukrainian").size()
         );
 
+        // Tasks :
         System.out.println("\nGet task by id : ");
         Task task = (new TaskService()).getTaskById(700);
         System.out.println(task.getId() + " | " + task.getName());
@@ -37,6 +40,11 @@ public class MainTestConnection {
         for (Task eachTask : (new TaskService()).getTasksByName("string")) {
             System.out.println(eachTask.getId() + " | " + eachTask.getName());
         }
+
+        // Centers :
+        System.out.println("\nGet center by id : ");
+        Center center = (new CenterService()).getCenterById(29);
+        System.out.println(center.getId() + " | " + center.getName());
 
         System.out.println("\nGet centers by name : ");
         for (Center eachCenter : (new CenterService()).getCentersByName("Java center")) {
