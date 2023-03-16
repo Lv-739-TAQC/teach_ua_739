@@ -12,13 +12,17 @@ public class CityService extends BaseService {
 
     static final String SQL_FIND_CITY_BY_NAME = "SELECT * FROM cities WHERE name = ?;";
 
+    public CityService(String url, String username, String password) throws DBException {
+        super(url, username, password);
+    }
+
     public List<City> getCities() throws DBException, EntityException {
-        return new CityDAOImpl().findAll(DBManager.getInstance().getConnection(), false);
+        return new CityDAOImpl().findAll(con, true);
     }
 
     public List<City> getCitiesByName(String name) throws DBException, EntityException {
         return new CityDAOImpl().findElementsBySQlRequest(
-                DBManager.getInstance().getConnection(), SQL_FIND_CITY_BY_NAME, true, name
+                con, SQL_FIND_CITY_BY_NAME, true, name
         );
     }
 }
