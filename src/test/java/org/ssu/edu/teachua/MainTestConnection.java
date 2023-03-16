@@ -63,7 +63,7 @@ public class MainTestConnection {
 
         // Locations :
         System.out.println("\nGet locations by name : ");
-        for (Location eachLocation : (new LocationService()).getLocationByName("First")) {
+        for (Location eachLocation : (new LocationService(url, username, password)).getLocationByName("First")) {
             System.out.println(eachLocation.getId() + " | " + eachLocation.getName());
         }
     }
