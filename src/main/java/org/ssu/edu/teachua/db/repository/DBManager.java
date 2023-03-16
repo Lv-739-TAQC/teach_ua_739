@@ -27,7 +27,7 @@ public class DBManager {
 		return dbManager;
 	}
 
-	public static Connection getConnection() throws DBException {
+	public Connection getConnection() throws DBException {
 		Connection cn = null;
 		try {
 			cn = dataSource.getConnection();
