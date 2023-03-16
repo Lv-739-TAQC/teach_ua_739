@@ -8,17 +8,21 @@ import org.ssu.edu.teachua.db.repository.impl.TaskDAOImpl;
 
 import java.util.List;
 
-public class TaskService {
+public class TaskService extends BaseService {
 
     static final String SQL_FIND_TASK_BY_NAME = "SELECT * FROM tasks WHERE name = ?;";
 
-    public static Task getTaskById(Integer id) throws DBException, EntityException {
-        return new TaskDAOImpl().findElementById(DBManager.getInstance().getConnection(), id, true);
+    public TaskService(String url, String username, String password) throws DBException {
+        super(url, username, password);
     }
 
-    public static List<Task> getTasksByName(String name) throws DBException, EntityException {
+    public  Task getTaskById(Integer id) throws DBException, EntityException {
+        return new TaskDAOImpl().findElementById(con, id, true);
+    }
+
+    public  List<Task> getTasksByName(String name) throws DBException, EntityException {
         return new TaskDAOImpl().findElementsBySQlRequest(
-                DBManager.getInstance().getConnection(), SQL_FIND_TASK_BY_NAME, true, name
+                con, SQL_FIND_TASK_BY_NAME, true, name
         );
     }
 }

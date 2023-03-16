@@ -8,16 +8,19 @@ import org.ssu.edu.teachua.db.repository.impl.ClubDAOImpl;
 
 import java.util.List;
 
-public class ClubService {
+public class ClubService extends BaseService {
 
     static final String SQL_FIND_CLUB_BY_NAME = "SELECT * FROM clubs WHERE name = ?;";
-    public static Club getClubsById(Integer id) throws DBException, EntityException {
-        return new ClubDAOImpl().findElementById(DBManager.getInstance().getConnection(), id, true);
+
+    public ClubService(String url, String username, String password) throws DBException {
+        super(url, username, password);
     }
 
-    public static List<Club> getClubsByName(String name) throws DBException, EntityException {
-        return new ClubDAOImpl().findElementsBySQlRequest(
-                DBManager.getInstance().getConnection(), SQL_FIND_CLUB_BY_NAME, true, name
-        );
+    public Club getClubsById(Integer id) throws DBException, EntityException {
+        return new ClubDAOImpl().findElementById(con, id, true);
+    }
+
+    public List<Club> getClubsByName(String name) throws DBException, EntityException {
+        return new ClubDAOImpl().findElementsBySQlRequest(con, SQL_FIND_CLUB_BY_NAME, true, name);
     }
 }
