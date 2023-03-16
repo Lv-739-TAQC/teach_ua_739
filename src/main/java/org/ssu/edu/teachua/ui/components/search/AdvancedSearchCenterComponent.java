@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BaseComponent;
@@ -27,6 +28,9 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_cityName']")
     private WebElement citySelector;
+
+    @FindBy(how = How.XPATH, using = ".//*[@class='ant-select-clear']")
+    private WebElement clearCity;
 
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_districtName']")
     private WebElement districtSelector;
@@ -103,6 +107,13 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
         return this;
     }
 
+    @Step("Clear city selector in advanced search panel")
+    public AdvancedSearchCenterComponent clearCity() {
+        actions.moveToElement(citySelector).build().perform();
+        waitForElementToAppear(clearCity).click();
+        return new AdvancedSearchClubComponent(driver);
+    }
+
     @Step("Check that city parameter is activated")
     public boolean isCityParameterActivated() {
         return citySelector.isEnabled();
@@ -132,7 +143,7 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     }
 
     public boolean isStationParameterActivated() {
-         return clubRadio.isSelected();
+        return clubRadio.isSelected();
     }
 
     @Step("Check that remote parameter is deactivated")
@@ -158,24 +169,28 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     }
 
     @Step("Choose sort by rating")
-    public void chooseSortByRating() {
+    public AdvancedSearchCenterComponent chooseSortByRating() {
         sortByRating.click();
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         sleep(3);
+        return new AdvancedSearchCenterComponent(driver);
     }
 
     @Step("Choose ascending sort type")
-    public void chooseSortTypeAsc() {
+    public AdvancedSearchCenterComponent chooseSortTypeAsc() {
         sortTypeAsc.click();
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         sleep(3);
+        return new AdvancedSearchCenterComponent(driver);
     }
 
     @Step("Choose descending sort type")
-    public void chooseSortTypeDesc() {
+    public AdvancedSearchCenterComponent chooseSortTypeDesc() {
         sortTypeDesc.click();
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         sleep(3);
+        return new AdvancedSearchCenterComponent(driver);
+
     }
 
     @Step("Choose list show type")

@@ -12,7 +12,9 @@ import org.ssu.edu.teachua.utils.providers.DataProviderAdvancedSearch;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -204,26 +206,39 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     @Description("[Розширений пошук] Verify that the clubs can be sorted by rating")
     @Test
     public void testIfClubsSortedByRating() {
-
-        Comparator<Integer> ascSortRatinClub = (c1, c2) -> c1.compareTo(c2);
-        Comparator<Integer> descSortRatinClub = (c1, c2) -> c2.compareTo(c1);
+        //List zhanna = new ArrayList(Arrays.asList("1", "2", "3", "4", "5", "6"));
+        String[][] zhanna1 = new String[][]{{"1"}, {"2"}, {"3"}, {"4"}, {"5"}, {"6"}};
 
         AdvancedSearchClubComponent advancedSearchClub = new HomePage(driver).clickAdvancedSearchIcon();
 
-        advancedSearchClub.clearCity()
-                .chooseSortByRating();
-        List<Integer> listOfClubsSortedByRating = advancedSearchClub.getListCardsOnPage().stream()
-                .map(ClubCardComponent::getRating).collect(Collectors.toList());
+        advancedSearchClub
+                .chooseSortByRating()
+                .chooseSortTypeAsc()
+                .clearCity()
+        ;
 
-        advancedSearchClub.chooseSortTypeDesc();
-        List<Integer> listOfClubsSortedByRatingDesc = advancedSearchClub.getListCardsOnPage().stream()
-                .map(ClubCardComponent::getRating).collect(Collectors.toList());
-        List<Integer> expectedListOfClubsSortedByRating = expectListRatingClubOrCenterCard(listOfClubsSortedByRating, ascSortRatinClub);
-        List<Integer> expectedListOfClubsSortedByRatingDesc = expectListRatingClubOrCenterCard(listOfClubsSortedByRatingDesc, descSortRatinClub);
+        List<ClubCardComponent> listOfClubsSortedByRatingAsc = advancedSearchClub.getListCardsOnPage();
 
-        softAssert.assertEquals(listOfClubsSortedByRating, "123");
-        softAssert.assertEquals(listOfClubsSortedByRatingDesc, "123");
+        int i = 0;
+        int k = 0;
+        String[][] actualSortAsc = new String[listOfClubsSortedByRatingAsc.size()][2];
+        for (ClubCardComponent card : listOfClubsSortedByRatingAsc) {
+            //softAssert.assertEquals(card.getClubTitle(), zhanna.get(i));
+            //softAssert.assertEquals(card.getRating(), zhanna.get(i));
+            actualSortAsc[i][k] = card.getClubTitle();
+            actualSortAsc[i][k + 1] = String.valueOf(card.getRating());
+            i++;
+        }
+        softAssert.assertEquals(Arrays.deepToString(actualSortAsc), Arrays.deepToString(zhanna1));
 
+        //  advancedSearchClub.chooseSortTypeDesc();
+//        List<Integer> listOfClubsSortedByRatingDesc = advancedSearchClub.getListCardsOnPage().stream()
+//                .map(ClubCardComponent::getRating).collect(Collectors.toList());
+        // List<Integer> expectedListOfClubsSortedByRating = expectListRatingClubOrCenterCard(listOfClubsSortedByRating, ascSortRatinClub);
+        // List<Integer> expectedListOfClubsSortedByRatingDesc = expectListRatingClubOrCenterCard(listOfClubsSortedByRatingDesc, descSortRatinClub);
+
+//        softAssert.assertEquals(listOfClubsSortedByRatingDesc, "123");
+//
         softAssert.assertAll();
     }
 
