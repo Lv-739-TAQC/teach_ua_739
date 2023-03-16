@@ -10,7 +10,11 @@ public class LocationDAOImpl extends AbstractDAOImpl<Location> {
 
     static {
         entitiesDaoImpl = new TreeMap<>();
-        entitiesDaoImpl.put("locations", new LocationDAOImpl());
+        entitiesDaoImpl.put("stations", new StationDAOImpl());
+        entitiesDaoImpl.put("clubs", new ClubDAOImpl());
+        entitiesDaoImpl.put("centers", new CenterDAOImpl());
+        entitiesDaoImpl.put("cities", new CityDAOImpl());
+        entitiesDaoImpl.put("districts", new DistrictDAOImpl());
     }
 
     public LocationDAOImpl() {

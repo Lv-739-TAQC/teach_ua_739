@@ -15,10 +15,10 @@ public class Location extends Entity {
     private String address;
 
     @Column(name = "latitude")
-    private double latitude;
+    private Double latitude;
 
     @Column(name = "longitude")
-    private double longitude;
+    private Double longitude;
 
     @Column(name = "name")
     private String name;
@@ -28,6 +28,9 @@ public class Location extends Entity {
 
     @Column(name = "city_id")
     private BigInteger cityID;
+
+    @Column(name = "club_id")
+    private BigInteger clubID;
 
     @Column(name = "district_id")
     private BigInteger districtID;
