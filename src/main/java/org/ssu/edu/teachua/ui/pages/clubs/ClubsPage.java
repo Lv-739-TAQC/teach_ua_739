@@ -28,11 +28,4 @@ public class ClubsPage extends BasePage {
         }
         return cards;
     }
-
-    public WebElement getClubsNode() {
-        return (WebElement) driver.findElements(
-                By.xpath(".//div[@class='ant-card ant-card-bordered card']")
-        );
-    }
-
 }
