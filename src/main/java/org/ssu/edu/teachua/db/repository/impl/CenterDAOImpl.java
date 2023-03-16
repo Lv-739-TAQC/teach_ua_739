@@ -1,20 +1,20 @@
 package org.ssu.edu.teachua.db.repository.impl;
 
+import org.ssu.edu.teachua.db.entities.Center;
+
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.ssu.edu.teachua.db.entities.User;
-
-public class UserDAOImpl extends AbstractDAOImpl<User> {
+public class CenterDAOImpl extends AbstractDAOImpl<Center> {
 
     private static final Map<String, AbstractDAOImpl> entitiesDaoImpl;
 
     static {
         entitiesDaoImpl = new TreeMap<>();
-        entitiesDaoImpl.put("roles", new RoleDAOImpl());
+        entitiesDaoImpl.put("users", new UserDAOImpl());
     }
 
-    public UserDAOImpl() {
-        super(User.class, entitiesDaoImpl);
+    public CenterDAOImpl() {
+        super(Center.class, entitiesDaoImpl);
     }
 }

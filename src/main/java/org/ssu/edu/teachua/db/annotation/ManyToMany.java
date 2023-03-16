@@ -8,9 +8,9 @@ import java.lang.annotation.Target;
 @Retention(value= RetentionPolicy.RUNTIME)
 @Target(value = ElementType.FIELD)
 public @interface ManyToMany {
-    public String foreignTable();
-    public String tableForManyToMany();
-    public String mainColumnDB();
-    public String foreignColumnDB();
+    String foreignTable();
+    String tableForManyToMany();
+    String mainColumnDB();
+    String foreignColumnDB();
 
 }
