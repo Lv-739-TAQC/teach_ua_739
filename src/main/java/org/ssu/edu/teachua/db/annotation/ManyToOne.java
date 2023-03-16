@@ -8,6 +8,6 @@ import java.lang.annotation.Target;
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target(value = ElementType.FIELD)
 public @interface ManyToOne  {
-    public String foreignTable();
-    public String foreignColumnDB();
+    String foreignTable();
+    String foreignColumnDB();
 }
