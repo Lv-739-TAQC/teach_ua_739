@@ -5,7 +5,7 @@ import org.ssu.edu.teachua.db.entities.City;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class CitiesDAOImpl extends AbstractDAOImpl<City> {
+public class CityDAOImpl extends AbstractDAOImpl<City> {
 
     private static final Map<String, AbstractDAOImpl> entitiesDaoImpl;
 
@@ -13,7 +13,7 @@ public class CitiesDAOImpl extends AbstractDAOImpl<City> {
         entitiesDaoImpl = new TreeMap<>();
     }
 
-    public CitiesDAOImpl() {
+    public CityDAOImpl() {
         super(City.class, entitiesDaoImpl);
     }
 }
