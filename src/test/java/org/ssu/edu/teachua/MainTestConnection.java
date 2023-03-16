@@ -1,5 +1,11 @@
 package org.ssu.edu.teachua;
 
+import java.sql.SQLException;
+import java.util.List;
+
+import org.ssu.edu.teachua.db.entities.Location;
+import org.ssu.edu.teachua.db.entities.Role;
+import org.ssu.edu.teachua.db.entities.User;
 import org.ssu.edu.teachua.db.entities.*;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
@@ -7,6 +13,7 @@ import org.ssu.edu.teachua.db.service.*;
 import org.ssu.edu.teachua.utils.TestValueProvider;
 
 public class MainTestConnection {
+
     public static void main(String[] args) throws DBException, EntityException {
         TestValueProvider valueProvider = new TestValueProvider();
         String url = valueProvider.getDbUrl();
@@ -52,6 +59,12 @@ public class MainTestConnection {
         System.out.println("\nGet centers by name : ");
         for (Center eachCenter : (new CenterService(url, username, password)).getCentersByName("Java center")) {
             System.out.println(eachCenter.getUserId() + " | " + eachCenter.getName());
+        }
+
+        // Locations :
+        System.out.println("\nGet locations by name : ");
+        for (Location eachLocation : (new LocationService(url, username, password)).getLocationByName("First")) {
+            System.out.println(eachLocation.getId() + " | " + eachLocation.getName());
         }
     }
 }

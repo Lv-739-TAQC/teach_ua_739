@@ -17,12 +17,12 @@ public class CityService extends BaseService {
     }
 
     public City getCitiesById(Integer id) throws DBException, EntityException {
-        return new CityDAOImpl().findElementById(con, id, true);
+        return new CityDAOImpl().findElementById(connection, id, true);
     }
 
     public List<City> getCitiesByName(String name) throws DBException, EntityException {
         return new CityDAOImpl().findElementsBySQlRequest(
-                con, SQL_FIND_CITY_BY_NAME, true, name
+                connection, SQL_FIND_CITY_BY_NAME, true, name
         );
     }
 }

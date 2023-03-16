@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.db.repository.impl;
 
+
 import org.ssu.edu.teachua.db.entities.Center;
 
 import java.util.Map;
@@ -17,4 +18,5 @@ public class CenterDAOImpl extends AbstractDAOImpl<Center> {
     public CenterDAOImpl() {
         super(Center.class, entitiesDaoImpl);
     }
+
 }

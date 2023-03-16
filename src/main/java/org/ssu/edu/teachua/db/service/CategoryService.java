@@ -16,12 +16,12 @@ public class CategoryService extends BaseService {
     }
 
     public Category getCategoryById(Integer id) throws DBException, EntityException {
-        return new CategoryDAOImpl().findElementById(con, id, true);
+        return new CategoryDAOImpl().findElementById(connection, id, true);
     }
 
     public List<Category> getCategoryByName(String name) throws DBException, EntityException {
         return new CategoryDAOImpl().findElementsBySQlRequest(
-                con, SQL_FIND_CATEGORY_BY_NAME, true, name
+                connection, SQL_FIND_CATEGORY_BY_NAME, true, name
         );
     }
 }

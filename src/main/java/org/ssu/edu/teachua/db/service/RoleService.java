@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.ssu.edu.teachua.db.entities.Role;
 import org.ssu.edu.teachua.db.repository.DBException;
-import org.ssu.edu.teachua.db.repository.DBManager;
 import org.ssu.edu.teachua.db.repository.EntityException;
 import org.ssu.edu.teachua.db.repository.impl.RoleDAOImpl;
 
@@ -14,6 +13,6 @@ public class RoleService extends BaseService {
     }
 
     public  List<Role> getRolls() throws DBException, EntityException {
-        return new RoleDAOImpl().findAll(con,false);
+        return new RoleDAOImpl().findAll(connection,false);
     }
 }
