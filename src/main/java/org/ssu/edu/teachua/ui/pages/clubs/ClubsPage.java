@@ -1,10 +1,13 @@
 package org.ssu.edu.teachua.ui.pages.clubs;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.ssu.edu.teachua.ui.base.BasePage;
 import org.ssu.edu.teachua.ui.components.card.ClubCardComponent;
+import org.ssu.edu.teachua.ui.components.challenge.ViewChallengesTableItemComponent;
+import org.ssu.edu.teachua.ui.pages.view.ViewClubPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,7 @@ public class ClubsPage extends BasePage {
         clubs = initClubsCard();
     }
 
-    public List<ClubCardComponent> initClubsCard() {
+    private List<ClubCardComponent> initClubsCard() {
         List<WebElement> elements = driver.findElements(
                 By.xpath("//div[@class='ant-card ant-card-bordered card']")
         );
@@ -27,5 +30,10 @@ public class ClubsPage extends BasePage {
             cards.add(new ClubCardComponent(driver, element));
         }
         return cards;
+    }
+
+    @Step("Select club by index: '{clubIndex}'")
+    public ClubCardComponent selectCertainClub(int clubIndex) {
+        return initClubsCard().get(clubIndex);
     }
 }

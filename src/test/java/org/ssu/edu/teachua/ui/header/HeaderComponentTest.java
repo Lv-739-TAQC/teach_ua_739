@@ -22,11 +22,12 @@ public class HeaderComponentTest extends BaseTestRunnerUI {
         HomePage homePage = new HomePage(driver);
         String currentLocation = homePage.getHeader()
                 .getLocation();
-        String clubName1 = "Музична студія DAGI"; //later copy from DB 1st query
-        homePage.fillInSearchField(clubName1);
-        ClubCardComponent clubCard = new ClubsPage(driver).initClubsCard().get(0);
+        String clubNameDB1 = "Музична студія DAGI"; //later copy from DB 1st query
+        homePage.fillInSearchField(clubNameDB1);
+        //ClubCardComponent clubCard = new ClubsPage(driver).initClubsCard().get(0);
+        ClubCardComponent clubCard = new ClubsPage(driver).selectCertainClub(0);
         String clubTitle = clubCard.getClubTitle();
-        String clubName2 = "Музична студія DAGI"; //later copy from DB 2nd query
+        String clubNameDB2 = "Музична студія DAGI"; //later copy from DB 2nd query
         //clubsPage.getClubsNode();
         //ClubCardComponent clubCard= new ClubCardComponent(driver, clubsPage.getClubsNode());
 
@@ -34,7 +35,7 @@ public class HeaderComponentTest extends BaseTestRunnerUI {
 //        ClubsPage clubsPage= new ClubsPage(driver);
 //        ViewClubPage viewClub= new ViewClubPage(driver);
 //        String clubTitle = viewClub.clickOnMoreDetails().getClubName();
-        Assert.assertEquals(clubTitle, clubName2);
+        Assert.assertEquals(clubTitle, clubNameDB2);
     }
 }
 

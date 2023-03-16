@@ -103,7 +103,7 @@ public class HeaderComponent extends BaseComponent {
         waitForElementToBeClickable(locationButton).click();
         return this;
     }
-
+    @Step("Get location from header")
     public String getLocation() {
         return waitForElementToAppear(locationButton).getText();
     }
