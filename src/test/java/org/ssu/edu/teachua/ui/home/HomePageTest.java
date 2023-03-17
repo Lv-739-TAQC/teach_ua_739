@@ -6,7 +6,6 @@ import org.ssu.edu.teachua.db.entities.Club;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
 import org.ssu.edu.teachua.db.service.ClubService;
-import org.ssu.edu.teachua.ui.components.card.ClubCardComponent;
 import org.ssu.edu.teachua.ui.pages.clubs.ClubsPage;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.utils.runners.BaseTestRunnerUI;
@@ -28,13 +27,11 @@ public class HomePageTest extends BaseTestRunnerUI {
         clubService = new ClubService(valueProvider.getDbUrl(), valueProvider.getDbUserName(), valueProvider.getUDbUserPassword());
 
         String location = homePage.getHeader().getLocation();
-
         List<Club> clubs = clubService.getNameOfClubByCity(location);
         String clubToSearch = clubs.get(random.nextInt(clubs.size() - 1)).getName();
         homePage.fillInSearchField(clubToSearch);
 
         String actualClubName = new ClubsPage(driver).selectCertainClub(0).getClubTitle();
-
         String expectedClubNameFromDb = clubService.getNameOfClubByPrefix(actualClubName).get(0).getName();
 
         Assert.assertEquals(actualClubName, expectedClubNameFromDb);
