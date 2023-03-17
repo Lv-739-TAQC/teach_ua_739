@@ -3,6 +3,7 @@ package org.ssu.edu.teachua.utils.runners;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.ssu.edu.teachua.utils.EntityService;
 import org.ssu.edu.teachua.utils.TestNgListeners;
 import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.testng.ITestContext;
@@ -14,10 +15,12 @@ import java.time.Duration;
 @Listeners(TestNgListeners.class)
 public class BaseTestRunnerUI {
 
-    protected static TestValueProvider valueProvider;
     protected WebDriver driver;
+
+    protected TestValueProvider valueProvider;
     protected SoftAssert softAssert = new SoftAssert();
-    Browsers browsers = new Browsers();
+    protected Browsers browsers = new Browsers();
+    protected EntityService entityService = new EntityService();
 
     private void checkErrorPage(String browser) {
         try {
