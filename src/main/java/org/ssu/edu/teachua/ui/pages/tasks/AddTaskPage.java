@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BasePage;
 import org.ssu.edu.teachua.ui.components.date_picker.SelectDateComponent;
+import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
 
 public class AddTaskPage extends BasePage {
 
@@ -33,6 +34,12 @@ public class AddTaskPage extends BasePage {
 
     @FindBy(how = How.XPATH, using = "//span[text()='Зберегти']//parent::button")
     protected WebElement saveBtn;
+
+    @FindBy(how = How.XPATH, using = "//div[@class='ant-message-custom-content ant-message-success']")
+    private WebElement successMessage;
+
+    @FindBy(how = How.XPATH, using = "//*[@class='ant-message']")
+    private WebElement errorMessage;
 
     public AddTaskPage(WebDriver driver) {
         super(driver);
@@ -77,8 +84,24 @@ public class AddTaskPage extends BasePage {
         return this;
     }
 
-    @Step("Click save button")
-    public void clickSaveButton() {
+    @Step("Click save button and return ViewTaskPage")
+    public ViewChallengePage clickSuccessSaveButton() {
         waitForElementToAppear(saveBtn).click();
+        return new ViewChallengePage(driver);
+    }
+    @Step("Click save button and return AddTaskPage")
+    public AddTaskPage clickFailSaveButton() {
+        waitForElementToAppear(saveBtn).click();
+        return this;
+    }
+
+    @Step("Get success message")
+    public String checkSuccessMessage() {
+        return waitForElementToAppear(successMessage).getText();
+    }
+
+    @Step("Get error message")
+    public String checkErrorMessage() {
+        return waitForElementToAppear(errorMessage).getText();
     }
 }
