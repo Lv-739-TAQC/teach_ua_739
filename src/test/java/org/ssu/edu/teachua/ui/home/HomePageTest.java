@@ -27,18 +27,16 @@ public class HomePageTest extends BaseTestRunnerUI {
         HomePage homePage = new HomePage(driver);
         clubService = new ClubService(valueProvider.getDbUrl(), valueProvider.getDbUserName(), valueProvider.getUDbUserPassword());
 
-        String location = homePage.getHeader()
-                .getLocation();
+        String location = homePage.getHeader().getLocation();
 
         List<Club> clubs = clubService.getNameOfClubByCity(location);
         String clubToSearch = clubs.get(random.nextInt(clubs.size() - 1)).getName();
         homePage.fillInSearchField(clubToSearch);
 
-        ClubCardComponent clubCard = new ClubsPage(driver).selectCertainClub(0);
-        String clubName = clubCard.getClubTitle();
+        String actualClubName = new ClubsPage(driver).selectCertainClub(0).getClubTitle();
 
-        String clubFromDb = clubService.getNameOfClubByPrefix(clubName).get(0).getName();
+        String expectedClubNameFromDb = clubService.getNameOfClubByPrefix(actualClubName).get(0).getName();
 
-        Assert.assertEquals(clubName, clubFromDb);
+        Assert.assertEquals(actualClubName, expectedClubNameFromDb);
     }
 }
