@@ -27,12 +27,12 @@ public class HomePageTest extends BaseTestRunnerUI {
         clubService = new ClubService(valueProvider.getDbUrl(), valueProvider.getDbUserName(), valueProvider.getUDbUserPassword());
 
         String location = homePage.getHeader().getLocation();
-        List<Club> clubs = clubService.getNameOfClubByCity(location);
+        List<Club> clubs = clubService.getClubsByCity(location);
         String clubToSearch = clubs.get(random.nextInt(clubs.size() - 1)).getName();
         homePage.fillInSearchField(clubToSearch);
 
         String actualClubName = new ClubsPage(driver).selectCertainClub(0).getClubTitle();
-        String expectedClubNameFromDb = clubService.getNameOfClubByPrefix(actualClubName).get(0).getName();
+        String expectedClubNameFromDb = clubService.getClubsByPrefix(actualClubName).get(0).getName();
 
         Assert.assertEquals(actualClubName, expectedClubNameFromDb);
     }
