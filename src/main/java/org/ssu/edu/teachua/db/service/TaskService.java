@@ -15,11 +15,11 @@ public class TaskService extends BaseService {
         super(url, username, password);
     }
 
-    public  Task getTaskById(Integer id) throws DBException, EntityException {
+    public Task getTaskById(Integer id) throws DBException, EntityException {
         return new TaskDAOImpl().findElementById(connection, id, true);
     }
 
-    public  List<Task> getTasksByName(String name) throws DBException, EntityException {
+    public List<Task> getTasksByName(String name) throws DBException, EntityException {
         return new TaskDAOImpl().findElementsBySQlRequest(
                 connection, SQL_FIND_TASK_BY_NAME, true, name
         );

@@ -17,13 +17,13 @@ public class UserService extends BaseService {
         super(url, username, password);
     }
 
-    public  List<User> getUsersByEmailAndPassword(String email, String password) throws DBException, EntityException {
+    public List<User> getUsersByEmailAndPassword(String email, String password) throws DBException, EntityException {
         return new UserDAOImpl().findElementsBySQlRequest(
                 connection, SQL_FIND_USER_BY_EMAIL_AND_PASSWORD, false, email, password
         );
     }
 
-    public  List<User> getUsersByEmail(String email) throws DBException, EntityException {
+    public List<User> getUsersByEmail(String email) throws DBException, EntityException {
         return new UserDAOImpl().findElementsBySQlRequest(
                 connection, SQL_FIND_USER_BY_EMAIL, true, email
         );

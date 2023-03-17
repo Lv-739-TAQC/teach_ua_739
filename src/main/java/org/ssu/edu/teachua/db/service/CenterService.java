@@ -15,11 +15,11 @@ public class CenterService extends BaseService {
         super(url, username, password);
     }
 
-    public  Center getCenterById(Integer id) throws DBException, EntityException {
+    public Center getCenterById(Integer id) throws DBException, EntityException {
         return new CenterDAOImpl().findElementById(connection, id, true);
     }
 
-    public  List<Center> getCentersByName(String name) throws DBException, EntityException {
+    public List<Center> getCentersByName(String name) throws DBException, EntityException {
         return new CenterDAOImpl().findElementsBySQlRequest(
                 connection, SQL_FIND_CENTER_BY_NAME, true, name
         );
