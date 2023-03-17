@@ -4,7 +4,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BaseComponent;
@@ -143,7 +142,7 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     }
 
     public boolean isStationParameterActivated() {
-        return clubRadio.isSelected();
+         return clubRadio.isSelected();
     }
 
     @Step("Check that remote parameter is deactivated")
@@ -190,7 +189,6 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         sleep(3);
         return new AdvancedSearchCenterComponent(driver);
-
     }
 
     @Step("Choose list show type")

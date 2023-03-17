@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.FindBy;
+import org.ssu.edu.teachua.utils.TestNgListeners;
 import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.ssu.edu.teachua.utils.runners.Browsers;
 import org.testng.ITestContext;
@@ -17,6 +18,8 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
+
+@Listeners(TestNgListeners.class)
 public class BaseTestRunnerUI {
 
     protected static TestValueProvider valueProvider;
@@ -45,6 +48,7 @@ public class BaseTestRunnerUI {
     @BeforeClass(description = "Init ChromeDriver.")
     protected void initDriver(String browser, ITestContext context) throws InterruptedException {
         driver = browsers.setUpBrowser(browser);
+        context.setAttribute("driver", driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(valueProvider.getBaseUiUrl());
