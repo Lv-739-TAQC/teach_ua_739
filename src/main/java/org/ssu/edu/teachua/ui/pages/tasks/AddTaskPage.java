@@ -9,6 +9,10 @@ import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BasePage;
 import org.ssu.edu.teachua.ui.components.date_picker.SelectDateComponent;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class AddTaskPage extends BasePage {
 
     protected static final String CHALLENGE_NAME_XPATH = "//div[@class='ant-select-item-option-content' and text()='%s']";
@@ -81,4 +85,18 @@ public class AddTaskPage extends BasePage {
     public void clickSaveButton() {
         waitForElementToAppear(saveBtn).click();
     }
+
+
+    public boolean areWebElementsEmpty() {
+        List<WebElement> taskPageFieldsList = new ArrayList<WebElement>(Arrays.asList(
+                startDateInput, photoInput, nameInput, titleInput, descriptionInput, challengeDropdown
+        ));
+        boolean isFilled = false;
+        for (WebElement taskPageField : taskPageFieldsList) {
+            if (taskPageField.getAttribute("value") == null)
+                isFilled = true;
+        }
+        return isFilled;
+    }
+
 }
