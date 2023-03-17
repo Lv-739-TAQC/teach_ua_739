@@ -1,8 +1,5 @@
 package org.ssu.edu.teachua;
 
-import java.sql.SQLException;
-import java.util.List;
-
 import org.ssu.edu.teachua.db.entities.Location;
 import org.ssu.edu.teachua.db.entities.Role;
 import org.ssu.edu.teachua.db.entities.User;
@@ -15,13 +12,16 @@ import org.ssu.edu.teachua.utils.TestValueProvider;
 public class MainTestConnection {
 
     public static void main(String[] args) throws DBException, EntityException {
-        TestValueProvider valueProvider = new TestValueProvider();
-        String url = valueProvider.getDbUrl();
-        String username = valueProvider.getDbUserName();
-        String password = valueProvider.getUDbUserPassword();
+
         /*
          * Testing methods correctness (SQL-quires)
          * */
+
+        TestValueProvider valueProvider = new TestValueProvider();
+
+        String url = valueProvider.getDbUrl();
+        String username = valueProvider.getDbUserName();
+        String password = valueProvider.getUDbUserPassword();
 
         // Users and Roles :
         System.out.println("\nGetting all roles : ");
@@ -39,7 +39,9 @@ public class MainTestConnection {
         Challenges challenges = (new ChallengesService(url, username, password)).getChallengeById(623);
         System.out.println(challenges.getId() + " | " + challenges.getName());
 
-        System.out.println("\nGetting all possible challenges by name : " + (new ChallengesService(url, username, password)).getChallengesByName("Ukrainian").size());
+        System.out.println("\nGetting all possible challenges by name : " +
+                (new ChallengesService(url, username, password)).getChallengesByName("Ukrainian").size()
+        );
 
         // Tasks :
         System.out.println("\nGet task by id : ");

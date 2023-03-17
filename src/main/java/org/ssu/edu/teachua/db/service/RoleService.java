@@ -12,7 +12,7 @@ public class RoleService extends BaseService {
         super(url, username, password);
     }
 
-    public  List<Role> getRolls() throws DBException, EntityException {
-        return new RoleDAOImpl().findAll(connection,false);
+    public List<Role> getRolls() throws DBException, EntityException {
+        return new RoleDAOImpl().findAll(connection, false);
     }
 }

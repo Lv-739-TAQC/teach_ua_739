@@ -1,6 +1,5 @@
 package org.ssu.edu.teachua.db.repository.impl;
 
-import org.ssu.edu.teachua.db.entities.Location;
 import org.ssu.edu.teachua.db.entities.Station;
 
 import java.util.Map;

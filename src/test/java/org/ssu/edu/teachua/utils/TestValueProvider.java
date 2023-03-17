@@ -38,12 +38,15 @@ public class TestValueProvider {
     public String getUserPassword() {
         return properties.getProperty("userPassword");
     }
+
     public String getDbUrl() {
         return properties.getProperty("dbUrl");
     }
+
     public String getDbUserName() {
         return properties.getProperty("dbUserName");
     }
+
     public String getUDbUserPassword() {
         return properties.getProperty("dbUserPassword");
     }

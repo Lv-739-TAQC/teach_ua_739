@@ -3,21 +3,13 @@ package org.ssu.edu.teachua.utils.runners;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.FindBy;
 import org.ssu.edu.teachua.utils.TestNgListeners;
 import org.ssu.edu.teachua.utils.TestValueProvider;
-import org.ssu.edu.teachua.utils.runners.Browsers;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.List;
-
 
 @Listeners(TestNgListeners.class)
 public class BaseTestRunnerUI {
@@ -46,7 +38,7 @@ public class BaseTestRunnerUI {
 
     @Parameters("browser")
     @BeforeClass(description = "Init ChromeDriver.")
-    protected void initDriver(String browser, ITestContext context) throws InterruptedException {
+    protected void initDriver(String browser, ITestContext context) {
         driver = browsers.setUpBrowser(browser);
         context.setAttribute("driver", driver);
         driver.manage().window().maximize();
