@@ -6,14 +6,35 @@ import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
 import org.ssu.edu.teachua.db.service.TaskService;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
+import org.ssu.edu.teachua.ui.pages.tasks.AddTaskPage;
 import org.ssu.edu.teachua.utils.StringGenerator;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Calendar;
 import java.util.List;
 
 public class TasksPageTest extends LoginWithAdminRunner {
+    private AddTaskPage addTaskPage;
+
+    @BeforeMethod
+    void openAddTaskPage() {
+        driver.navigate().refresh();
+        addTaskPage = new HomePage(driver)
+                .getHeader()
+                .openAdminProfileMenu()
+                .openContentMenu()
+                .openChallengesMenu()
+                .clickTasks()
+                .openAddTaskPage();
+    }
+
+    @Test
+    public void testDescriptionFieldInvalid() {
+        System.out.println("Result is: " + addTaskPage.areWebElementsEmpty());
+    }
+
 
     private static final String NAME = StringGenerator.generateRandomString(20);
     private static final String TITLE = StringGenerator.generateRandomString(50);
@@ -27,13 +48,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
     @Test(description = "[Завдання] Verify that admin can't create a task without choosing any challenge in dropdown list on the 'Челендж' field")
     public void verifyThatAdminCantCreateTaskWithoutChoosingAnyChallengeInDropdownList() {
         Calendar now = Calendar.getInstance();
-        String errorMessage = new HomePage(driver)
-                .getHeader()
-                .openAdminProfileMenu()
-                .openContentMenu()
-                .openChallengesMenu()
-                .clickTasks()
-                .openAddTaskPage()
+        String errorMessage = addTaskPage
                 .selectStartDate(now.get(Calendar.DATE), now.get(Calendar.MONTH), now.get(Calendar.YEAR) + 1)
                 .uploadPhoto(PHOTO_PATH)
                 .typeName(NAME)

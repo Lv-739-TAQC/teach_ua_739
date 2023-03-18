@@ -15,11 +15,11 @@ public class ChallengesService extends BaseService {
         super(url, username, password);
     }
 
-    public  Challenges getChallengeById(Integer id) throws DBException, EntityException {
+    public Challenges getChallengeById(Integer id) throws DBException, EntityException {
         return new ChallengesDAOImpl().findElementById(connection, id, true);
     }
 
-    public  List<Challenges> getChallengesByName(String name) throws DBException, EntityException {
+    public List<Challenges> getChallengesByName(String name) throws DBException, EntityException {
         return new ChallengesDAOImpl().findElementsBySQlRequest(
                 connection, SQL_FIND_CHALLENGE_BY_NAME, true, name
         );

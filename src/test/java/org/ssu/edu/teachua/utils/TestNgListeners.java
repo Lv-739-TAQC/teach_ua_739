@@ -18,7 +18,6 @@ public class TestNgListeners implements ITestListener {
         }
     }
 
-
     @Attachment(value = "Page screenshot", type = "image/png")
     public byte[] saveScreenshot(WebDriver driver) {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);

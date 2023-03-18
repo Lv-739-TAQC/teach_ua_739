@@ -10,6 +10,7 @@ import java.math.BigInteger;
 @TableDB(name = "stations")
 @Data
 public class Station extends Entity {
+
     @Column(name = "name")
     private String name;
 
@@ -24,5 +25,4 @@ public class Station extends Entity {
 
     @ManyToOne(foreignTable = "districts", foreignColumnDB = "district_id")
     private District district;
-
 }
