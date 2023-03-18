@@ -10,6 +10,7 @@ import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
+import java.util.Random;
 
 @Listeners(TestNgListeners.class)
 public class BaseTestRunnerUI {
@@ -17,6 +18,7 @@ public class BaseTestRunnerUI {
     protected static TestValueProvider valueProvider;
     protected WebDriver driver;
     protected SoftAssert softAssert = new SoftAssert();
+    protected Random random = new Random();
     Browsers browsers = new Browsers();
 
     private void checkErrorPage(String browser) {
