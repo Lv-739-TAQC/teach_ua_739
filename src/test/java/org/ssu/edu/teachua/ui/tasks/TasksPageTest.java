@@ -10,6 +10,7 @@ import org.ssu.edu.teachua.utils.providers.DataProviderTask;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class TasksPageTest extends LoginWithAdminRunner {
 
@@ -39,7 +40,8 @@ public class TasksPageTest extends LoginWithAdminRunner {
     @Test(dataProvider = "dpTestAddTaskInvalid", dataProviderClass = DataProviderTask.class)
     public void testAddTaskInvalid(int day, int month, int year, String photoPath, String name,
                                    String title, String description, String challenge, String expectedErrorMsg) {
-        softAssert.assertTrue(addTaskPage.areWebElementsEmpty());
+        SoftAssert dpSoftAssert = new SoftAssert();
+        dpSoftAssert.assertTrue(addTaskPage.areWebElementsEmpty());
 
         String actualErrorMsg = addTaskPage
                 .selectStartDate(day, month, year)
@@ -51,8 +53,8 @@ public class TasksPageTest extends LoginWithAdminRunner {
                 .clickSaveButton()
                 .getErrorMsg();
 
-        softAssert.assertEquals(actualErrorMsg, expectedErrorMsg);
-        softAssert.assertEquals(entityService.getTaskService().getTasksByName(name).size(), 0);
-        softAssert.assertAll();
+        dpSoftAssert.assertEquals(actualErrorMsg, expectedErrorMsg);
+        dpSoftAssert.assertEquals(entityService.getTaskService().getTasksByName(name).size(), 0);
+        dpSoftAssert.assertAll();
     }
 }
