@@ -1,6 +1,7 @@
 package org.ssu.edu.teachua.utils;
 
 import org.ssu.edu.teachua.db.repository.DBException;
+import org.ssu.edu.teachua.db.service.CenterService;
 import org.ssu.edu.teachua.db.service.TaskService;
 
 public class EntityService {
@@ -18,5 +19,15 @@ public class EntityService {
             System.out.println(e.getMessage());
         }
         return taskService;
+    }
+
+    public CenterService getCenterService() {
+        CenterService centerService = null;
+        try {
+            centerService = new CenterService(dbUrl, dbName, dbPassword);
+        } catch (DBException e) {
+            System.out.println(e.getMessage());
+        }
+        return centerService;
     }
 }
