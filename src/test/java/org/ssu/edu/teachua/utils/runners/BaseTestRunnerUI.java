@@ -11,6 +11,7 @@ import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
+import java.util.Random;
 
 @Listeners(TestNgListeners.class)
 public class BaseTestRunnerUI {
@@ -20,6 +21,7 @@ public class BaseTestRunnerUI {
     protected TestValueProvider valueProvider;
     protected SoftAssert softAssert = new SoftAssert();
     protected Browsers browsers = new Browsers();
+    protected Random random = new Random();
     protected EntityService entityService = new EntityService();
 
     private void checkErrorPage(String browser) {
