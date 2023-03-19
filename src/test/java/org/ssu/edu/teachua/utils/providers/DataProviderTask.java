@@ -13,8 +13,8 @@ public class DataProviderTask {
             "Поле 'Заголовок' може містити мінімум 40 максимум 3000 символів"
     );
 
-    @DataProvider(name = "dpTestAddTaskInvalid")
-    public static Object[][] dpTestAddTaskInvalid() {
+    @DataProvider(name = "dpTestAddTaskInvalidTitle")
+    public static Object[][] dpTestAddTaskInvalidTitle() {
         return new Object[][]{
                 {24, 12, 2025, "photos/image.png", "task-name", "",
                         ("task-description").repeat(5), "Ukrainian", ERROR_MSG.get(0)},
