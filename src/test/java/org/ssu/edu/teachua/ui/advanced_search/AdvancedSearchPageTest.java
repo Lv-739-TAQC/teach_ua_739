@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class AdvancedSearchPageTest extends BaseTestRunnerUI {
 
     @Issue("TUA-210")
-    @Description ("Verify that input field 'Вік дитини' accepts only positive integers from 2 to 18")
+    @Description("Verify that input field 'Вік дитини' accepts only positive integers from 2 to 18")
     @Test(dataProvider = "dpAgeFieldTest", dataProviderClass = DataProviderAdvancedSearch.class)
     public void AgeFieldTest(List<String> age, List<String> expectedAge) {
         SoftAssert softAssert = new SoftAssert();
@@ -59,7 +59,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     }
 
     @Issue("TUA-224")
-    @Description ("[Header] Verify “Advanced search” button opens “Розширений пошук” section")
+    @Description("[Header] Verify “Advanced search” button opens “Розширений пошук” section")
     @Test
     public void advancedSearchComponentIsDisplayedAndHiddenTest() {
         SoftAssert softAssert = new SoftAssert();
@@ -79,7 +79,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     }
 
     @Issue("TUA-509")
-    @Description ("[Розширений пошук] Verify that all parameters are activated with the selected 'Гурток' radio button")
+    @Description("[Розширений пошук] Verify that all parameters are activated with the selected 'Гурток' radio button")
     @Test
     public void allParametersActivatedTest() {
         SoftAssert softAssert = new SoftAssert();
@@ -110,43 +110,43 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
 
         softAssert.assertAll();
     }
-    
+
     @Test
     public void testSortingClubByName() throws Exception {
         Comparator<String> ascSortNameClub = (c1, c2) -> c1.compareToIgnoreCase(c2);
         Comparator<String> descSortNameClub = (c1, c2) -> c2.compareToIgnoreCase(c1);
 
         SoftAssert softAssert = new SoftAssert();
-        
+
         AdvancedSearchClubComponent adsc = new HomePage(driver).clickAdvancedSearchIcon();
-        
+
         adsc.chooseSortByName();
         adsc.chooseSortTypeAsc();
         List<String> listNameClubByNameAscSorting = adsc.getListCardsOnPage().stream()
                 .map(ClubCardComponent::getClubTitle).collect(Collectors.toList());
-        
+
         adsc.chooseSortTypeDesc();
         List<String> listNameClubByNameDescSorting = adsc.getListCardsOnPage().stream()
                 .map(ClubCardComponent::getClubTitle).collect(Collectors.toList());
-        
+
         List<String> expectListNameClubByNameAscSorting = expectListNameClubOrCenterCard(listNameClubByNameAscSorting, ascSortNameClub);
         List<String> expectListNameClubByNameDescSorting = expectListNameClubOrCenterCard(listNameClubByNameDescSorting, descSortNameClub);
 
         softAssert.assertEquals(listNameClubByNameAscSorting, expectListNameClubByNameAscSorting);
         softAssert.assertEquals(listNameClubByNameDescSorting, expectListNameClubByNameDescSorting);
-        
+
         softAssert.assertAll();
     }
-    
+
     @Test
     public void testSortingClubByRating() throws Exception {
         Comparator<Integer> ascSortRatinClub = (c1, c2) -> c1.compareTo(c2);
         Comparator<Integer> descSortRatinClub = (c1, c2) -> c2.compareTo(c1);
 
         SoftAssert softAssert = new SoftAssert();
-        
+
         AdvancedSearchClubComponent adsc = new HomePage(driver).clickAdvancedSearchIcon();
-        
+
         adsc.chooseSortByRating();
         adsc.chooseSortTypeAsc();
         List<Integer> listRatingClubByRatingAscSorting = adsc.getListCardsOnPage().stream()
@@ -161,7 +161,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
 
         softAssert.assertEquals(listRatingClubByRatingAscSorting, expectListRatingClubByRatingAscSorting);
         softAssert.assertEquals(listRatingClubByRatingDescSorting, expectListRatingByRatingDescSorting);
-        
+
         softAssert.assertAll();
     }
 
@@ -169,17 +169,17 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     public void testSortingCenterByName() throws Exception {
         Comparator<String> ascSortNameCenter = (c1, c2) -> c1.compareToIgnoreCase(c2);
         Comparator<String> descSortNameCenter = (c1, c2) -> c2.compareToIgnoreCase(c1);
-        
+
         SoftAssert softAssert = new SoftAssert();
-        
+
         AdvancedSearchCenterComponent adsc = new HomePage(driver).clickAdvancedSearchIcon().chooseCenter();
-        
+
         adsc.chooseSortByName();
         adsc.chooseSortTypeAsc();
         List<String> listNameCenterByNameAscSorting = adsc.getListCardsOnPage().stream()
                 .map(ClubCardComponent::getCenterTitle).collect(Collectors.toList());
 
-		adsc.chooseSortTypeDesc();
+        adsc.chooseSortTypeDesc();
         List<String> listNameCenterByNameDescSorting = adsc.getListCardsOnPage().stream()
                 .map(ClubCardComponent::getCenterTitle).collect(Collectors.toList());
 
@@ -188,10 +188,10 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
 
         softAssert.assertEquals(listNameCenterByNameAscSorting, expectListNameCenterByNameAscSorting);
         softAssert.assertEquals(listNameCenterByNameDescSorting, expectListNameCenterByNameDescSorting);
-        
+
         softAssert.assertAll();
     }
-    
+
     private List<String> expectListNameClubOrCenterCard(List<String> listClubCard, Comparator<String> comparatorSort) {
         List<String> copyListClubCard = new ArrayList<String>(listClubCard);
         copyListClubCard.sort(comparatorSort);
@@ -213,23 +213,24 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
         CenterService centerService = new CenterService(valueProvider.getDbUrl(), valueProvider.getDbUserName(), valueProvider.getUDbUserPassword());
         AdvancedSearchCenterComponent adsc = new HomePage(driver).clickAdvancedSearchIcon().chooseCenter();
 
-            adsc.chooseSortByRating()
-                .chooseSortTypeAsc();
+        adsc.chooseSortByRating()
+                .chooseSortTypeAsc()
+                .clearCity();
 
-            List<String> sortCenterByRatingAscUi = adsc.getListCardsOnPage().stream()
-                    .map(ClubCardComponent::getCenterTitle).collect(Collectors.toList());
+        List<String> sortCenterByRatingAscUi = adsc.getListCardsOnPage().stream()
+                .map(ClubCardComponent::getCenterTitle).collect(Collectors.toList());
 
-            adsc.chooseSortTypeDesc();
+        adsc.chooseSortTypeDesc();
 
-            List<String> sortCenterByRatingDescUi = adsc.getListCardsOnPage().stream()
-                    .map(ClubCardComponent::getCenterTitle).collect(Collectors.toList());
+        List<String> sortCenterByRatingDescUi = adsc.getListCardsOnPage().stream()
+                .map(ClubCardComponent::getCenterTitle).collect(Collectors.toList());
 
-            List<String> sortCenterByRatingAscDB = centerService.getCentersByRatingAsc().stream()
-                    .map(Center::getName).collect(Collectors.toList());
-            List<String> sortCenterByRatingDescDB = centerService.getCentersByRatingDesc().stream()
-                    .map(Center::getName).collect(Collectors.toList());
+        List<String> sortCenterByRatingAscDB = centerService.getCentersByRatingAsc().stream()
+                .map(Center::getName).collect(Collectors.toList());
+        List<String> sortCenterByRatingDescDB = centerService.getCentersByRatingDesc().stream()
+                .map(Center::getName).collect(Collectors.toList());
 
-        softAssert.assertEquals(sortCenterByRatingAscUi,sortCenterByRatingAscDB);
+        softAssert.assertEquals(sortCenterByRatingAscUi, sortCenterByRatingAscDB);
         softAssert.assertEquals(sortCenterByRatingDescUi, sortCenterByRatingDescDB);
 
         softAssert.assertAll();
