@@ -121,11 +121,11 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
         adsc.chooseSortByName();
         adsc.chooseSortTypeAsc();
         List<String> listNameClubByNameAscSorting = adsc.getListCardsOnPage().stream()
-                .map(ClubCardComponent::getClubTitle).collect(toList());
+                .map(ClubCardComponent::getClubTitle).collect(Collectors.toList());
         
         adsc.chooseSortTypeDesc();
         List<String> listNameClubByNameDescSorting = adsc.getListCardsOnPage().stream()
-                .map(ClubCardComponent::getClubTitle).collect(toList());
+                .map(ClubCardComponent::getClubTitle).collect(Collectors.toList());
         
         List<String> expectListNameClubByNameAscSorting = expectListNameClubOrCenterCard(listNameClubByNameAscSorting, ascSortNameClub);
         List<String> expectListNameClubByNameDescSorting = expectListNameClubOrCenterCard(listNameClubByNameDescSorting, descSortNameClub);
@@ -148,11 +148,11 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
         adsc.chooseSortByRating();
         adsc.chooseSortTypeAsc();
         List<Integer> listRatingClubByRatingAscSorting = adsc.getListCardsOnPage().stream()
-                .map(ClubCardComponent::getRating).collect(toList());
+                .map(ClubCardComponent::getRating).collect(Collectors.toList());
 
         adsc.chooseSortTypeDesc();
         List<Integer> listRatingClubByRatingDescSorting = adsc.getListCardsOnPage().stream()
-                .map(ClubCardComponent::getRating).collect(toList());
+                .map(ClubCardComponent::getRating).collect(Collectors.toList());
 
         List<Integer> expectListRatingClubByRatingAscSorting = expectListRatingClubOrCenterCard(listRatingClubByRatingAscSorting, ascSortRatinClub);
         List<Integer> expectListRatingByRatingDescSorting = expectListRatingClubOrCenterCard(listRatingClubByRatingDescSorting, descSortRatinClub);
@@ -175,11 +175,11 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
         adsc.chooseSortByName();
         adsc.chooseSortTypeAsc();
         List<String> listNameCenterByNameAscSorting = adsc.getListCardsOnPage().stream()
-                .map(ClubCardComponent::getCenterTitle).collect(toList());
+                .map(ClubCardComponent::getCenterTitle).collect(Collectors.toList());
 
 		adsc.chooseSortTypeDesc();
         List<String> listNameCenterByNameDescSorting = adsc.getListCardsOnPage().stream()
-                .map(ClubCardComponent::getCenterTitle).collect(toList());
+                .map(ClubCardComponent::getCenterTitle).collect(Collectors.toList());
 
         List<String> expectListNameCenterByNameAscSorting = expectListNameClubOrCenterCard(listNameCenterByNameAscSorting, ascSortNameCenter);
         List<String> expectListNameCenterByNameDescSorting = expectListNameClubOrCenterCard(listNameCenterByNameDescSorting, descSortNameCenter);
