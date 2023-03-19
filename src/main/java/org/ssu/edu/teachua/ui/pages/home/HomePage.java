@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.pages.home;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,6 +27,7 @@ public class HomePage extends BasePage {
         return waitForElementToAppear(loginSuccessMsg).getText();
     }
 
+    @Step("Go to advanced search page")
     public AdvancedSearchClubComponent clickAdvancedSearchIcon() {
         waitForElementToAppear(advancedSearchIcon).click();
         return new AdvancedSearchClubComponent(driver);
@@ -35,6 +37,7 @@ public class HomePage extends BasePage {
         return searchField.getText();
     }
 
+    @Step("Enter data into search field")
     public void fillInSearchField(String symbols) {
         searchField.clear();
         searchField.sendKeys(symbols);
