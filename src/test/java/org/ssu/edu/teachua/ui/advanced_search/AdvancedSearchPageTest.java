@@ -2,6 +2,7 @@ package org.ssu.edu.teachua.ui.advanced_search;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
+import org.ssu.edu.teachua.db.entities.Center;
 import org.ssu.edu.teachua.ui.components.card.ClubCardComponent;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchCenterComponent;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchClubComponent;
@@ -16,12 +17,14 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
 public class AdvancedSearchPageTest extends BaseTestRunnerUI {
 
     @Issue("TUA-210")
     @Description ("Verify that input field 'Вік дитини' accepts only positive integers from 2 to 18")
     @Test(dataProvider = "dpAgeFieldTest", dataProviderClass = DataProviderAdvancedSearch.class)
-    public void AgeFieldTest(List<String> age, List<String> expectedAge) {
+    public void testAgeField(List<String> age, List<String> expectedAge) {
         SoftAssert softAssert = new SoftAssert();
         AdvancedSearchClubComponent advancedSearchClubComponent = new HomePage(driver)
                 .clickAdvancedSearchIcon();
@@ -54,9 +57,9 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     }
 
     @Issue("TUA-224")
-    @Description ("[Header] Verify “Advanced search” button opens “Розширений пошук” section")
+    @Description ("Verify “Advanced search” button opens “Розширений пошук” section")
     @Test
-    public void advancedSearchComponentIsDisplayedAndHiddenTest() {
+    public void testAdvancedSearchComponentIsDisplayedAndHidden() {
         SoftAssert softAssert = new SoftAssert();
         HomePage homePage = new HomePage(driver);
 
@@ -74,9 +77,9 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     }
 
     @Issue("TUA-509")
-    @Description ("[Розширений пошук] Verify that all parameters are activated with the selected 'Гурток' radio button")
+    @Description ("Verify that all parameters are activated with the selected 'Гурток' radio button")
     @Test
-    public void allParametersActivatedTest() {
+    public void testAllParametersActivated() {
         SoftAssert softAssert = new SoftAssert();
 
         AdvancedSearchCenterComponent advancedSearchCenterComponent = new HomePage(driver)
@@ -118,11 +121,11 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
         adsc.chooseSortByName();
         adsc.chooseSortTypeAsc();
         List<String> listNameClubByNameAscSorting = adsc.getListCardsOnPage().stream()
-                .map(ClubCardComponent::getClubTitle).collect(Collectors.toList());
+                .map(ClubCardComponent::getClubTitle).collect(toList());
         
         adsc.chooseSortTypeDesc();
         List<String> listNameClubByNameDescSorting = adsc.getListCardsOnPage().stream()
-                .map(ClubCardComponent::getClubTitle).collect(Collectors.toList());
+                .map(ClubCardComponent::getClubTitle).collect(toList());
         
         List<String> expectListNameClubByNameAscSorting = expectListNameClubOrCenterCard(listNameClubByNameAscSorting, ascSortNameClub);
         List<String> expectListNameClubByNameDescSorting = expectListNameClubOrCenterCard(listNameClubByNameDescSorting, descSortNameClub);
@@ -145,11 +148,11 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
         adsc.chooseSortByRating();
         adsc.chooseSortTypeAsc();
         List<Integer> listRatingClubByRatingAscSorting = adsc.getListCardsOnPage().stream()
-                .map(ClubCardComponent::getRating).collect(Collectors.toList());
+                .map(ClubCardComponent::getRating).collect(toList());
 
         adsc.chooseSortTypeDesc();
         List<Integer> listRatingClubByRatingDescSorting = adsc.getListCardsOnPage().stream()
-                .map(ClubCardComponent::getRating).collect(Collectors.toList());
+                .map(ClubCardComponent::getRating).collect(toList());
 
         List<Integer> expectListRatingClubByRatingAscSorting = expectListRatingClubOrCenterCard(listRatingClubByRatingAscSorting, ascSortRatinClub);
         List<Integer> expectListRatingByRatingDescSorting = expectListRatingClubOrCenterCard(listRatingClubByRatingDescSorting, descSortRatinClub);
@@ -172,11 +175,11 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
         adsc.chooseSortByName();
         adsc.chooseSortTypeAsc();
         List<String> listNameCenterByNameAscSorting = adsc.getListCardsOnPage().stream()
-                .map(ClubCardComponent::getCenterTitle).collect(Collectors.toList());
+                .map(ClubCardComponent::getCenterTitle).collect(toList());
 
 		adsc.chooseSortTypeDesc();
         List<String> listNameCenterByNameDescSorting = adsc.getListCardsOnPage().stream()
-                .map(ClubCardComponent::getCenterTitle).collect(Collectors.toList());
+                .map(ClubCardComponent::getCenterTitle).collect(toList());
 
         List<String> expectListNameCenterByNameAscSorting = expectListNameClubOrCenterCard(listNameCenterByNameAscSorting, ascSortNameCenter);
         List<String> expectListNameCenterByNameDescSorting = expectListNameClubOrCenterCard(listNameCenterByNameDescSorting, descSortNameCenter);
@@ -198,7 +201,52 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
         copyListClubCard.sort(comparatorSort);
         return copyListClubCard;
     }
-    
-    
-    
+
+    @Description("Verify that the user can sort the search results alphabetically after clicking on the 'Центр' radio button")
+    @Issue("TUA-440")
+    @Test
+    public void testCentersSortAlphabetically() throws Exception {
+        SoftAssert softAssert = new SoftAssert();
+        Comparator<String> sortAsc = String::compareToIgnoreCase;
+        Comparator<String> sortDesc = (s1, s2) -> s2.compareToIgnoreCase(s1);
+
+        AdvancedSearchCenterComponent AdvancedSearchComponent = new HomePage(driver).clickAdvancedSearchIcon();
+        softAssert.assertTrue(AdvancedSearchComponent.isAdvancedSearchModalDisplayed(),
+                "Advanced search modal should be displayed");
+
+        AdvancedSearchComponent.chooseCenter();
+        List<String> uiCenterNames = AdvancedSearchComponent.getListCardsOnPage().stream()
+                .map(ClubCardComponent::getCenterTitle)
+                .collect(Collectors.toList());
+
+        List<String> expectedNamesAsc = expectListNameClubOrCenterCard(uiCenterNames, sortAsc);
+        softAssert.assertEquals(uiCenterNames, expectedNamesAsc,
+                "Center names should be displayed alphabetically on UI");
+
+        List<String> dbCenterNamesAsc = entityService.getCenterService()
+                .getCentresSortedByNameAsc(true).stream()
+                .map(Center::getName)
+                .collect(Collectors.toList());
+        softAssert.assertEquals(uiCenterNames, dbCenterNamesAsc,
+                "Center names on UI should be matched with DB (ASC)");
+
+        AdvancedSearchComponent.chooseSortTypeDesc();
+        uiCenterNames = AdvancedSearchComponent.getListCardsOnPage().stream()
+                .map(ClubCardComponent::getCenterTitle)
+                .collect(Collectors.toList());
+
+        List<String> expectedNamesDesc = expectListNameClubOrCenterCard(uiCenterNames, sortDesc);
+        softAssert.assertEquals(uiCenterNames, expectedNamesDesc,
+                "Center names should be sorted by descending on UI");
+
+        List<String> dbCenterNamesDesc = entityService.getCenterService()
+                .getCentresSortedByNameDesc(true).stream()
+                .map(Center::getName)
+                .collect(Collectors.toList());
+        softAssert.assertEquals(uiCenterNames, dbCenterNamesDesc,
+                "Center names on UI should be matched with DB (DESC)");
+
+        softAssert.assertAll();
+    }
+
 }

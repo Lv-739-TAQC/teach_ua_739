@@ -23,6 +23,9 @@ public class AddTaskPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//input[@id='picture']")
     protected WebElement photoInput;
 
+    @FindBy(how = How.XPATH, using = "//div[@class='ant-upload-list-picture-card-container']")
+    protected WebElement photoAppeared;
+
     @FindBy(how = How.XPATH, using = "//input[@id='name']")
     protected WebElement nameInput;
 
@@ -32,11 +35,14 @@ public class AddTaskPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//label[text()='Опис']//parent::div//following-sibling::div//div[contains(@class, 'ql-editor')]/p")
     protected WebElement descriptionInput;
 
-    @FindBy(how = How.XPATH, using = "//input[@id='challengeId']")
+    @FindBy(how = How.XPATH, using = "//div[contains(@class, 'ant-col-14')]//div[@class='ant-select-selector']")
     protected WebElement challengeDropdown;
 
     @FindBy(how = How.XPATH, using = "//span[text()='Зберегти']//parent::button")
     protected WebElement saveBtn;
+
+    @FindBy(how = How.XPATH, using = "//div[contains(@class, 'ant-message-warning')]")
+    protected WebElement errorMsg;
 
     public AddTaskPage(WebDriver driver) {
         super(driver);
@@ -52,7 +58,8 @@ public class AddTaskPage extends BasePage {
 
     @Step("Upload photo from '{photoPath}' into task photo field")
     public AddTaskPage uploadPhoto(String photoPath) {
-        waitForElementToAppear(photoInput).sendKeys(photoPath);
+        photoInput.sendKeys(photoPath);
+        waitForElementToAppear(photoAppeared);
         return this;
     }
 
@@ -76,17 +83,18 @@ public class AddTaskPage extends BasePage {
 
     @Step("Select '{challenge}' into task from challenge dropdown")
     public AddTaskPage selectChallenge(String challenge) {
-        waitForElementToAppear(challengeDropdown).click();
-        waitForElementToAppear(driver.findElement(By.xpath(String.format(CHALLENGE_NAME_XPATH, challenge)))).click();
+        challengeDropdown.click();
+        waitForElementToBeClickable(driver.findElement(By.xpath(String.format(CHALLENGE_NAME_XPATH, challenge)))).click();
         return this;
     }
 
     @Step("Click save button")
-    public void clickSaveButton() {
+    public AddTaskPage clickSaveButton() {
         waitForElementToAppear(saveBtn).click();
+        return this;
     }
 
-
+    @Step("Verify that all fields are empty by default")
     public boolean areWebElementsEmpty() {
         List<WebElement> taskPageFieldsList = new ArrayList<WebElement>(Arrays.asList(
                 startDateInput, photoInput, nameInput, titleInput, descriptionInput, challengeDropdown
@@ -98,5 +106,8 @@ public class AddTaskPage extends BasePage {
         }
         return isFilled;
     }
-
+    @Step("Get error message")
+    public String getErrorMsg() {
+        return waitForElementToAppear(errorMsg).getText();
+    }
 }
