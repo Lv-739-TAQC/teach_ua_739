@@ -33,6 +33,7 @@ public class HomePage extends BasePage {
         return new AdvancedSearchClubComponent(driver);
     }
 
+    @Step("Get text from search field")
     public String getSearchText() {
         return searchField.getText();
     }
