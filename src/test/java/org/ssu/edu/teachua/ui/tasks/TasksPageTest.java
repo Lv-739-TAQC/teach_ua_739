@@ -73,13 +73,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
     @Test(description = "[Завдання] Verify that admin can create a task with valid data on 'Додайте завдання' page")
     public void verifyThatAdminCanCreateTaskWithValidData() {
         Calendar now = Calendar.getInstance();
-        String title = new HomePage(driver)
-                .getHeader()
-                .openAdminProfileMenu()
-                .openContentMenu()
-                .openChallengesMenu()
-                .clickTasks()
-                .openAddTaskPage()
+        String title = addTaskPage
                 .selectStartDate(now.get(Calendar.DATE), now.get(Calendar.MONTH), now.get(Calendar.YEAR) + 1)
                 .uploadPhoto(PHOTO_PATH)
                 .typeName(NAME)
