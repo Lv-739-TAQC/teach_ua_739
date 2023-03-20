@@ -83,8 +83,8 @@ public class AddTaskPage extends BasePage {
 
     @Step("Select '{challenge}' into task from challenge dropdown")
     public AddTaskPage selectChallenge(String challenge) {
-        challengeDropdown.click();
-        waitForElementToBeClickable(driver.findElement(By.xpath(String.format(CHALLENGE_NAME_XPATH, challenge)))).click();
+        waitForElementToAppear(challengeDropdown).click();
+        waitForElementToAppear(driver.findElement(By.xpath(String.format(CHALLENGE_NAME_XPATH, challenge)))).click();
         return this;
     }
 
@@ -93,6 +93,7 @@ public class AddTaskPage extends BasePage {
         waitForElementToAppear(saveBtn).click();
         return this;
     }
+
 
     @Step("Verify that all fields are empty by default")
     public boolean areWebElementsEmpty() {

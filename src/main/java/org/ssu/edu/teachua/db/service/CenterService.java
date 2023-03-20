@@ -18,14 +18,26 @@ public class CenterService extends BaseService {
         super(url, username, password);
     }
 
-    public Center getCenterById(Integer id) throws DBException, EntityException {
-        return new CenterDAOImpl().findElementById(connection, id, true);
+    public Center getCenterById(Integer id) {
+        Center center = null;
+        try {
+            center = new CenterDAOImpl().findElementById(connection, id, true);
+        } catch (DBException | EntityException e) {
+            System.out.println(e.getMessage());
+        }
+        return center;
     }
 
-    public List<Center> getCentersByName(String name) throws DBException, EntityException {
-        return new CenterDAOImpl().findElementsBySQlRequest(
-                connection, SQL_FIND_CENTER_BY_NAME, true, name
-        );
+    public List<Center> getCentersByName(String name) {
+        List<Center> centerList = null;
+        try {
+            centerList = new CenterDAOImpl().findElementsBySQlRequest(
+                    connection, SQL_FIND_CENTER_BY_NAME, true, name
+            );
+        } catch (DBException | EntityException e) {
+            System.out.println(e.getMessage());
+        }
+        return centerList;
     }
 
     public List<Center> getCentresSortedByNameAsc(boolean isAsc) throws DBException, EntityException{

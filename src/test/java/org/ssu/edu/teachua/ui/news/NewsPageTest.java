@@ -21,7 +21,7 @@ public class NewsPageTest extends LoginWithAdminRunner {
     @Issue("TUA-31")
     @Severity(SeverityLevel.NORMAL)
     @Description("This test case verifies that the user can click on all available" +
-                 "\nbuttons on the News page and all corresponding pages will be opened.")
+            "\nbuttons on the News page and all corresponding pages will be opened.")
     @Test(dataProvider = "dpTestButtonsActivity", dataProviderClass = DataProviderNews.class)
     public void testButtonsActivity(String location, String expectedClubsTitle) {
         HomePage homePage = new HomePage(driver);
@@ -62,6 +62,7 @@ public class NewsPageTest extends LoginWithAdminRunner {
 
         softAssert.assertAll();
     }
+
     @Issue("TUA-146")
     @Description("Verify that news blocks are in descending order")
     @Test
