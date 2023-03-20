@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.ui.pages.clubs;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,5 +28,10 @@ public class ClubsPage extends BasePage {
             cards.add(new ClubCardComponent(driver, element));
         }
         return cards;
+    }
+
+    @Step("Select club by index: '{clubIndex}'")
+    public ClubCardComponent selectCertainClub(int clubIndex) {
+        return initClubsCard().get(clubIndex);
     }
 }

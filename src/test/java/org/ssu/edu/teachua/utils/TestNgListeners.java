@@ -9,15 +9,15 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 public class TestNgListeners implements ITestListener {
+
     @Override
     public void onTestFailure(ITestResult result) {
         ITestContext context = result.getTestContext();
-        WebDriver driver = (WebDriver) context.getAttribute("myDriver");
+        WebDriver driver = (WebDriver) context.getAttribute("driver");
         if (driver != null) {
             saveScreenshot(driver);
         }
     }
-
 
     @Attachment(value = "Page screenshot", type = "image/png")
     public byte[] saveScreenshot(WebDriver driver) {

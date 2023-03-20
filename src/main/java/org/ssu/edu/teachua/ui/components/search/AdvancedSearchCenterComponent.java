@@ -28,6 +28,9 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_cityName']")
     private WebElement citySelector;
 
+    @FindBy(how = How.XPATH, using = ".//*[@class='ant-select-clear']")
+    private WebElement clearCity;
+
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_districtName']")
     private WebElement districtSelector;
 
@@ -103,6 +106,13 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
         return this;
     }
 
+    @Step("Clear city selector in advanced search panel")
+    public AdvancedSearchCenterComponent clearCity() {
+        actions.moveToElement(citySelector).build().perform();
+        waitForElementToAppear(clearCity).click();
+        return new AdvancedSearchClubComponent(driver);
+    }
+
     @Step("Check that city parameter is activated")
     public boolean isCityParameterActivated() {
         return citySelector.isEnabled();
@@ -132,7 +142,7 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     }
 
     public boolean isStationParameterActivated() {
-         return clubRadio.isSelected();
+        return clubRadio.isSelected();
     }
 
     @Step("Check that remote parameter is deactivated")
@@ -158,24 +168,27 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     }
 
     @Step("Choose sort by rating")
-    public void chooseSortByRating() {
+    public AdvancedSearchCenterComponent chooseSortByRating() {
         sortByRating.click();
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         sleep(3);
+        return new AdvancedSearchCenterComponent(driver);
     }
 
     @Step("Choose ascending sort type")
-    public void chooseSortTypeAsc() {
+    public AdvancedSearchCenterComponent chooseSortTypeAsc() {
         sortTypeAsc.click();
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         sleep(3);
+        return new AdvancedSearchCenterComponent(driver);
     }
 
     @Step("Choose descending sort type")
-    public void chooseSortTypeDesc() {
+    public AdvancedSearchCenterComponent chooseSortTypeDesc() {
         sortTypeDesc.click();
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         sleep(3);
+        return new AdvancedSearchCenterComponent(driver);
     }
 
     @Step("Choose list show type")
@@ -203,6 +216,23 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
         sleep(5);
         List<WebElement> listClubCard = waitForElementsToAppear(driver.findElements(By.className("ant-card-body")));
         return listClubCard.stream().map(wb -> new ClubCardComponent(driver, wb)).collect(Collectors.toList());
+    }
+
+    @Step("Count cards in the page")
+    public int getCountCards() {
+        return getListCardsOnPage().size();
+    }
+
+    @Step("Get names and ratings of club cards")
+    public String[][] getNamesAndRatingsOfCards() {
+        int clubIndex = 0;
+        String[][] cardNamesAndRatings = new String[getCountCards()][2];
+        for (ClubCardComponent card : getListCardsOnPage()) {
+            cardNamesAndRatings[clubIndex][0] = card.getClubTitle();
+            cardNamesAndRatings[clubIndex][1] = String.valueOf((double) card.getRating());
+            clubIndex++;
+        }
+        return cardNamesAndRatings;
     }
 
     @Step("Click previous page button")
