@@ -23,6 +23,7 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
+    @Step("Get login success message")
     public String loginIsSuccess() {
         return waitForElementToAppear(loginSuccessMsg).getText();
     }
@@ -38,7 +39,7 @@ public class HomePage extends BasePage {
         return searchField.getText();
     }
 
-    @Step("Enter data into search field")
+    @Step("Enter '{symbols}' into search field")
     public void fillInSearchField(String symbols) {
         searchField.clear();
         searchField.sendKeys(symbols);
