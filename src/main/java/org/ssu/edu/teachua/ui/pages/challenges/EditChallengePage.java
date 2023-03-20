@@ -18,12 +18,20 @@ public class EditChallengePage extends AddChallengePage {
         super(driver);
     }
 
+    /**
+     * click 'change status'
+     * @return EditChallengePage with changed status
+     */
     @Step("Change challenge status")
     public EditChallengePage changeStatus() {
         waitForElementToBeClickable(changeStatus).click();
         return this;
     }
 
+    /**
+     * click 'change date'
+     * @return EditChallengePage with selected date
+     */
     @Step("Change challenge date")
     public EditChallengePage clickChangeDate() {
         waitForElementToBeClickable(changeDateBtn).click();

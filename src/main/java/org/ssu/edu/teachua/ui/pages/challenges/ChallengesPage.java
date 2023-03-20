@@ -41,68 +41,117 @@ public class ChallengesPage extends BasePage {
         super(driver);
     }
 
+    /**
+     * click 'to the list of tasks' button and open TasksPage
+     * @return opened TasksPage
+     */
     @Step("Open tasks page")
     public TasksPage openTasks() {
         waitForElementToBeClickable(tasksBtn).click();
         return new TasksPage(driver);
     }
 
+    /**
+     * click 'add challenge' button and open AddChallengePage
+     * @return opened AddChallengePage
+     */
     @Step("Add challenge")
     public AddChallengePage addChallenge() {
         waitForElementToBeClickable(addChallengeBtn).click();
         return new AddChallengePage(driver);
     }
 
+    /**
+     * type text into search field
+     * @param textToSearch -  text to search for
+     * @return ChallengesPage with typed text in search field
+     */
     @Step("Type '{textToSearch}' into search field")
     public ChallengesPage fillSearchField(String textToSearch) {
         waitForElementToBeClickable(searchField).sendKeys(textToSearch);
         return this;
     }
 
+    /**
+     * click to 'search' button
+     * @return found challenge in the ChallengesPage
+     */
     @Step("Click search button")
     public ChallengesPage clickSearchButton() {
         waitForElementToBeClickable(searchBtn).click();
         return new ChallengesPage(driver);
     }
 
+    /**
+     * click to 'previous page' button in the pagination bar
+     * @return opened previous ChallengesPage
+     */
     @Step("Open previous page")
     public ChallengesPage openPreviousPage() {
         waitForElementToBeClickable(previousPage).click();
         return new ChallengesPage(driver);
     }
 
+    /**
+     * click to 'next page' button in the pagination bar
+     * @return opened next ChallengesPage
+     */
     @Step("Open next page")
     public ChallengesPage openNextPage() {
         waitForElementToBeClickable(nextPage).click();
         return new ChallengesPage(driver);
     }
 
+    /**
+     * click to 'step over next five pages' button in the pagination bar
+     * @return opened fifth ChallengesPage
+     */
     @Step("Step over next five pages")
     public ChallengesPage stepOverNextFivePages() {
         waitForElementToBeClickable(stepOverNextFivePages).click();
         return new ChallengesPage(driver);
     }
 
+    /**
+     * show name of first table header element
+     * @return text of first table header element name from the ChallengesPage
+     */
     @Step("Get name of first table header element")
     public String getNameOfFirstTableHeaderElement() {
         return waitForElementToAppear(nameOfFirstTableHeaderElement).getText();
     }
 
+    /**
+     * show name of second table header element
+     * @return text of second table header element name from the ChallengesPage
+     */
     @Step("Get name of second table header element")
     public String getNameOfSecondTableHeaderElement() {
         return waitForElementToAppear(nameOfSecondTableHeaderElement).getText();
     }
 
+    /**
+     * show name of third table header element
+     * @return text of third table header element name from the ChallengesPage
+     */
     @Step("Get name of third table header element")
     public String getNameOfThirdTableHeaderElement() {
         return waitForElementToAppear(nameOfThirdTableHeaderElement).getText();
     }
 
+    /**
+     * show name of fourth table header element
+     * @return text of fourth table header element name from the ChallengesPage
+     */
     @Step("Get name of fourth table header element")
     public String getNameOfFourthTableHeaderElement() {
         return waitForElementToAppear(nameOfFourthTableHeaderElement).getText();
     }
 
+    /**
+     * show the list with all challenges
+     * @return list with challenge components from the ChallengesPage
+     */
     @Step("Get all challenges")
     private List<ViewChallengesTableItemComponent> getChallengesTableItems() {
         List<ViewChallengesTableItemComponent> challengesComponents = new ArrayList<>();
@@ -112,11 +161,20 @@ public class ChallengesPage extends BasePage {
         return challengesComponents;
     }
 
+    /**
+     * count challenges
+     * @return quantity of challenges from the ChallengesPage
+     */
     @Step("Count challenges")
     public int getCountAllChallenges() {
         return getChallengesTableItems().size();
     }
 
+    /**
+     * select by index from all challenges
+     * @param challengeIndex - choose certain challenge index
+     * @return challenge component from the ChallengesPage
+     */
     @Step("Select challenge by index: '{challengeIndex}'")
     public ViewChallengesTableItemComponent selectCertainChallenge(int challengeIndex) {
         return getChallengesTableItems().get(challengeIndex);
