@@ -22,11 +22,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
-
 public class AdvancedSearchPageTest extends BaseTestRunnerUI {
-
-    private ClubService clubService;
 
     @Issue("TUA-210")
     @Description("Verify that input field 'Вік дитини' accepts only positive integers from 2 to 18")
@@ -214,7 +210,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     @Test
     public void testIfClubsSortedByRating() throws DBException, EntityException {
 
-        clubService = new ClubService(valueProvider.getDbUrl(), valueProvider.getDbUserName(), valueProvider.getUDbUserPassword());
+        ClubService clubService = entityService.getClubService();
         AdvancedSearchCenterComponent advancedSearchClub = new HomePage(driver)
                 .clickAdvancedSearchIcon()
                 .chooseSortByRating()
