@@ -142,7 +142,7 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     }
 
     public boolean isStationParameterActivated() {
-         return clubRadio.isSelected();
+        return clubRadio.isSelected();
     }
 
     @Step("Check that remote parameter is deactivated")
@@ -216,6 +216,23 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
         sleep(5);
         List<WebElement> listClubCard = waitForElementsToAppear(driver.findElements(By.className("ant-card-body")));
         return listClubCard.stream().map(wb -> new ClubCardComponent(driver, wb)).collect(Collectors.toList());
+    }
+
+    @Step("Count cards in the page")
+    public int getCountCards() {
+        return getListCardsOnPage().size();
+    }
+
+    @Step("Get names and ratings of club cards")
+    public String[][] getNamesAndRatingsOfCards() {
+        int clubIndex = 0;
+        String[][] cardNamesAndRatings = new String[getCountCards()][2];
+        for (ClubCardComponent card : getListCardsOnPage()) {
+            cardNamesAndRatings[clubIndex][0] = card.getClubTitle();
+            cardNamesAndRatings[clubIndex][1] = String.valueOf((double) card.getRating());
+            clubIndex++;
+        }
+        return cardNamesAndRatings;
     }
 
     @Step("Click previous page button")

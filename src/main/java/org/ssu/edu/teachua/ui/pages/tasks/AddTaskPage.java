@@ -24,6 +24,9 @@ public class AddTaskPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//input[@id='picture']")
     protected WebElement photoInput;
 
+    @FindBy(how = How.XPATH, using = "//div[@class='ant-upload-list-picture-card-container']")
+    protected WebElement photoAppeared;
+
     @FindBy(how = How.XPATH, using = "//input[@id='name']")
     protected WebElement nameInput;
 
@@ -33,7 +36,7 @@ public class AddTaskPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//label[text()='Опис']//parent::div//following-sibling::div//div[contains(@class, 'ql-editor')]/p")
     protected WebElement descriptionInput;
 
-    @FindBy(how = How.XPATH, using = "//input[@id='challengeId']")
+    @FindBy(how = How.XPATH, using = "//div[contains(@class, 'ant-col-14')]//div[@class='ant-select-selector']")
     protected WebElement challengeDropdown;
 
     @FindBy(how = How.XPATH, using = "//span[text()='Зберегти']//parent::button")
@@ -71,7 +74,8 @@ public class AddTaskPage extends BasePage {
      */
     @Step("Upload photo from '{photoPath}' into task photo field")
     public AddTaskPage uploadPhoto(String photoPath) {
-        waitForElementToAppear(photoInput).sendKeys(photoPath);
+        photoInput.sendKeys(photoPath);
+        waitForElementToAppear(photoAppeared);
         return this;
     }
 
@@ -149,6 +153,7 @@ public class AddTaskPage extends BasePage {
         return waitForElementToAppear(successMessage).getText();
     }
 
+    @Step("Verify that all fields are empty by default")
     /**
      * show error message of uncreated task
      * @return text of error message
@@ -162,6 +167,7 @@ public class AddTaskPage extends BasePage {
      * Check if same input parameter are empty
      * @return boolean value if same input parameter are empty
      */
+    @Step("Verify that all fields are empty by default")
     public boolean areWebElementsEmpty() {
         List<WebElement> taskPageFieldsList = new ArrayList<WebElement>(Arrays.asList(
                 startDateInput, photoInput, nameInput, titleInput, descriptionInput, challengeDropdown
@@ -173,5 +179,8 @@ public class AddTaskPage extends BasePage {
         }
         return isFilled;
     }
-
+    @Step("Get error message")
+    public String getErrorMsg() {
+        return waitForElementToAppear(errorMessage).getText();
+    }
 }
