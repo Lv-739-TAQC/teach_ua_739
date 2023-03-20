@@ -8,6 +8,7 @@ import org.ssu.edu.teachua.db.service.TaskService;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.tasks.AddTaskPage;
 import org.ssu.edu.teachua.utils.StringGenerator;
+import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -40,8 +41,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
     private static final String TITLE = StringGenerator.generateRandomString(50);
     private static final String DESCRIPTION = StringGenerator.generateRandomString(200);
     private static final String CHALLENGE = "Ukrainian";
-    private static final String PHOTO_PATH = "D:\\Projects\\teach_ua_739\\src\\test\\resources\\photos\\heart.png";
-
+    private static final String PHOTO_PATH = valueProvider.getFilePath("photos\\heart.png");
     private TaskService taskService;
 
     @Issue(value = "TUA-526")
