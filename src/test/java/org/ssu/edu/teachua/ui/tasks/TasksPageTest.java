@@ -2,11 +2,7 @@ package org.ssu.edu.teachua.ui.tasks;
 
 import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.db.entities.Task;
-import org.ssu.edu.teachua.db.repository.DBException;
-import org.ssu.edu.teachua.db.repository.EntityException;
-import org.ssu.edu.teachua.db.service.TaskService;
 import io.qameta.allure.Description;
-import io.qameta.allure.Issue;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
@@ -96,8 +92,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
     private static final String TITLE = StringGenerator.generateRandomString(50);
     private static final String DESCRIPTION = StringGenerator.generateRandomString(200);
     private static final String CHALLENGE = "Ukrainian";
-    private static final String PHOTO_PATH = valueProvider.getFilePath("photos\\heart.png");
-    private TaskService taskService;
+    private final String PHOTO_PATH = valueProvider.getFilePath("photos\\heart.png");
 
     @Issue(value = "TUA-526")
     @Test(description = "[Завдання] Verify that admin can't create a task without choosing any challenge in dropdown list on the 'Челендж' field")
@@ -114,13 +109,8 @@ public class TasksPageTest extends LoginWithAdminRunner {
 
         softAssert.assertEquals(errorMessage, "Please, select challenge");
 
-        try {
-            taskService = new TaskService(valueProvider.getDbUrl(), valueProvider.getDbUserName(), valueProvider.getUDbUserPassword());
-            List<Task> tasks = taskService.getTasksByName(NAME);
-            softAssert.assertEquals(tasks.size(), 0);
-        } catch (DBException | EntityException e) {
-            throw new RuntimeException(e);
-        }
+        List<Task> tasks = entityService.getTaskService().getTasksByName(NAME);
+        softAssert.assertEquals(tasks.size(), 0);
         softAssert.assertAll();
     }
 
@@ -140,13 +130,9 @@ public class TasksPageTest extends LoginWithAdminRunner {
 
         softAssert.assertEquals(title, TITLE);
 
-        try {
-            taskService = new TaskService(valueProvider.getDbUrl(), valueProvider.getDbUserName(), valueProvider.getUDbUserPassword());
-            List<Task> tasks = taskService.getTasksByName(NAME);
-            softAssert.assertEquals(tasks.size(), 1);
-        } catch (DBException | EntityException e) {
-            throw new RuntimeException(e);
-        }
+
+        List<Task> tasks = entityService.getTaskService().getTasksByName(NAME);
+        softAssert.assertEquals(tasks.size(), 1);
         softAssert.assertAll();
     }
 
