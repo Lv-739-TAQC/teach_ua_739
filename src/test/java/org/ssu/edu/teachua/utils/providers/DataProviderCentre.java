@@ -6,8 +6,8 @@ import java.util.Arrays;
 
 public class DataProviderCentre {
 
-    @DataProvider(name = "dpTestAddCenter")
-    public static Object[][] dpTestAddCenter() {
+    @DataProvider(name = "dpTestAddCenterUI")
+    public static Object[][] dpTestAddCenterUI() {
         return new Object[][]{
                 {"First language center", "Лівий берег", "Одеса", "Фонтан", "Приморський", "проспект Бажана, 3А",
                         "50.406108, 30.668492", "0679002233", 1, "https://www.facebook.com/1lngcenter/",
@@ -18,4 +18,11 @@ public class DataProviderCentre {
         };
     }
 
+    @DataProvider(name = "dpTestAddCenterDB")
+    public static Object[][] dpTestAddCenterDB() {
+        return new Object[][]{
+                {"test-name-1", "test-location-1", "Дніпро", "Заводська", "Соборний", "Шевченка, 10А",
+                        "45.406508, 34.668592", "0679002233", 1, "0503334455", ("test-description-1").repeat(5), 1},
+        };
+    }
 }
