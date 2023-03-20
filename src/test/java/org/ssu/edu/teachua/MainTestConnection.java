@@ -63,10 +63,25 @@ public class MainTestConnection {
             System.out.println(eachCenter.getUserId() + " | " + eachCenter.getName());
         }
 
+        System.out.println("\nGet centers by  asc: ");
+        for (Center centers : (new CenterService(url, username, password)).getCentresSortedByNameAsc(true)) {
+            System.out.println(centers.getId()+ " | " + centers.getName());
+        }
+
         // Locations :
         System.out.println("\nGet locations by name : ");
         for (Location eachLocation : (new LocationService(url, username, password)).getLocationByName("First")) {
             System.out.println(eachLocation.getId() + " | " + eachLocation.getName());
+        }
+
+        //Clubs
+        System.out.println("\nGet club by id : ");
+        Club club = (new ClubService(url, username, password)).getClubsById(47);
+        System.out.println(club.getId() + " | " + club.getName());
+
+        System.out.println("\nGet club by name : ");
+        for (Club eachClub : (new ClubService(url, username, password)).getClubsByName("Курс «IT-Start»")) {
+            System.out.println(eachClub.getId() + " | " + eachClub.getName());
         }
     }
 }

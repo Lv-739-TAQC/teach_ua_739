@@ -94,6 +94,8 @@ public class AddTaskPage extends BasePage {
         return this;
     }
 
+
+    @Step("Verify that all fields are empty by default")
     public boolean areWebElementsEmpty() {
         List<WebElement> taskPageFieldsList = new ArrayList<WebElement>(Arrays.asList(
                 startDateInput, photoInput, nameInput, titleInput, descriptionInput, challengeDropdown
@@ -105,7 +107,7 @@ public class AddTaskPage extends BasePage {
         }
         return isFilled;
     }
-
+    @Step("Get error message")
     public String getErrorMsg() {
         return waitForElementToAppear(errorMsg).getText();
     }

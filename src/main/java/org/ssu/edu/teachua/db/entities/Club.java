@@ -71,4 +71,7 @@ public class Club extends Entity {
             mainColumnDB = "club_id", foreignColumnDB = "category_id")
     private Set<Category> category;
 
+    @ManyToOne(foreignTable = "centers", foreignColumnDB = "center_id")
+    private Center center_id;
+
 }

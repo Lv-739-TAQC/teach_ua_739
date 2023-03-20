@@ -13,6 +13,7 @@ public class ClubDAOImpl extends AbstractDAOImpl<Club> {
         entitiesDaoImpl = new TreeMap<>();
         entitiesDaoImpl.put("users", new UserDAOImpl());
         entitiesDaoImpl.put("categories", new CategoryDAOImpl());
+        entitiesDaoImpl.put("centers", new CenterDAOImpl());
     }
 
     public ClubDAOImpl() {

@@ -57,4 +57,28 @@ public class TasksPageTest extends LoginWithAdminRunner {
         dpSoftAssert.assertEquals(entityService.getTaskService().getTasksByName(name).size(), 0);
         dpSoftAssert.assertAll();
     }
+
+    @Issue("TUA-521")
+    @Description("Verify that admin can't create a task with invalid date on 'Додайте завдання' page")
+    @Test(dataProvider = "dpTestAddClubWithInvalidDate", dataProviderClass = DataProviderTask.class)
+    public void testAddClubWithInvalidDate(String photoPath, String name, String title,
+                                           String description, String challenge, int day, int month, int year,
+                                           String expectedErrorMsg) {
+        softAssert.assertTrue(addTaskPage.areWebElementsEmpty());
+
+        String actualErrorMsg = addTaskPage
+                .uploadPhoto(valueProvider.getFilePath(photoPath))
+                .typeName(name)
+                .typeTitle(title)
+                .typeDescription(description)
+                .selectChallenge(challenge)
+                .selectStartDate(day, month, year)
+                .clickSaveButton()
+                .getErrorMsg();
+
+        softAssert.assertEquals(actualErrorMsg, expectedErrorMsg);
+        softAssert.assertEquals(entityService.getTaskService().getTasksByName(name).size(), 0);
+        softAssert.assertAll();
+    }
+
 }
