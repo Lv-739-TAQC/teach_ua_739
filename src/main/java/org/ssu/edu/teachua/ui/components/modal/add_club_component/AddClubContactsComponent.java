@@ -38,6 +38,10 @@ public class AddClubContactsComponent extends BaseClubComponent {
         super(driver);
     }
 
+    /**
+     * This method open the Add Location pop-up
+     * @return new instance of AddLocationComponent
+     */
     @Step("Open Add Location pop-up")
     public AddLocationComponent clickAddLocationButton() {
         waitForElementToBeClickable(addLocationButton);
@@ -45,13 +49,22 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return new AddLocationComponent(driver);
     }
 
-    @Step("Make club online")
+    /**
+     * This method makes club online
+     * @return instance of AddClubContactsComponent
+     */
+    @Step("Makes club online")
     public AddClubContactsComponent clickOnlineSwitchButton() {
         waitForElementToBeClickable(onlineSwitchButton);
         this.onlineSwitchButton.click();
         return this;
     }
 
+    /**
+     * This method entering club Facebook contact
+     * @param contactFacebook
+     * @return instance of AddClubContactsComponent
+     */
     @Step("Enter Facebook contact {contactFacebook}")
     public AddClubContactsComponent enterContactFacebook(String contactFacebook) {
         waitForElementToBeClickable(contactFacebookField);
@@ -61,6 +74,11 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method entering club Website contact
+     * @param contactContact club Website
+     * @return instance of AddClubContactsComponent
+     */
     @Step("Enter club contact {contactContact}")
     public AddClubContactsComponent enterContactContact(String contactContact) {
         waitForElementToBeClickable(contactContactField);
@@ -70,6 +88,11 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method entering club Email contact
+     * @param contactEmail
+     * @return instance of AddClubContactsComponent
+     */
     @Step("Enter email contact {contactEmail}")
     public AddClubContactsComponent enterContactEmail(String contactEmail) {
         waitForElementToBeClickable(contactEmailField);
@@ -79,6 +102,11 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method entering club Skype contact
+     * @param contactSkype
+     * @return instance of AddClubContactsComponent
+     */
     @Step("Enter Skype contact{contactSkype}")
     public AddClubContactsComponent enterContactSkype(String contactSkype) {
         waitForElementToBeClickable(contactSkypeField);
@@ -88,6 +116,11 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method entering club WhatsApp contact
+     * @param contactWhatsApp
+     * @return instance of AddClubContactsComponent
+     */
     @Step("Enter WhatsApp contact {contactWhatsApp}")
     public AddClubContactsComponent enterContactWhatsApp(String contactWhatsApp) {
         waitForElementToBeClickable(contactWhatsAppField);
@@ -97,6 +130,11 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method entering club Phone number without country code
+     * @param contactPhone
+     * @return instance of AddClubContactsComponent
+     */
     @Step("Enter phone number {contactPhone}")
     public AddClubContactsComponent enterContactPhone(String contactPhone) {
         waitForElementToBeClickable(contactPhoneField);
@@ -106,6 +144,10 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method click on the 'Next' button
+     * @return new instance of AddClubDescriptionComponent
+     */
     @Step("Click on the 'Next' button")
     public AddClubDescriptionComponent clickNextStepButton() {
         waitForElementToBeClickable(nextStepButton);
@@ -113,6 +155,10 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return new AddClubDescriptionComponent(driver);
     }
 
+    /**
+     * This method click on the 'Back' button
+     * @return new instance of AddClubMainInfoComponent
+     */
     @Step("Click on the 'Back' button")
     public AddClubMainInfoComponent clickPreviousPageButton() {
         waitForElementToBeClickable(previousPageButton);

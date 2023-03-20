@@ -33,6 +33,11 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         super(driver);
     }
 
+    /**
+     * This method is entering name into 'name' field
+     * @param name name of club
+     * @return instance of AddClubMainInfoComponent
+     */
     @Step("Enter club name {name} into 'name' field")
     public AddClubMainInfoComponent enterClubName(String name) {
         this.waitForElementToBeClickable(nameField);
@@ -41,12 +46,22 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method choose the club categories from the list of categories checkboxes
+     * @param categoriesNumber  index of checkbox in the list
+     * @return instance of AddClubMainInfoComponent
+     */
     @Step("Choose club categories {categoriesNumber}")
     public AddClubMainInfoComponent getCategoriesCheckBoxes(int categoriesNumber) {
         waitForElementsToAppear(this.categoriesCheckBoxes).get(categoriesNumber).click();
         return this;
     }
 
+    /**
+     * This method is entering child min age for the club
+     * @param childAge - min child age for the club
+     * @return instance of AddClubMainInfoComponent
+     */
     @Step("Enter child min age {childAge}")
     public AddClubMainInfoComponent enterChildAgeFrom(String childAge) {
         waitForElementToBeClickable(childAgeFrom);
@@ -55,6 +70,11 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method is entering child max age for the club
+     * @param childAgeTo - max child age for the club
+     * @return instance of AddClubMainInfoComponent
+     */
     @Step("Enter child max age{childAgeTo}")
     public AddClubMainInfoComponent enterChildAgeFor(String childAgeTo) {
         waitForElementToBeClickable(childAgeFor);
@@ -62,6 +82,11 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         this.childAgeFor.sendKeys(childAgeTo);
         return this;
     }
+
+    /**
+     * This method open the dropdown with centers the club might be related to
+     * @return instance of AddClubMainInfoComponent
+     */
     @Step("Add center the club belong to")
     public AddClubMainInfoComponent getBelongingToCenter() {
         waitForElementToBeClickable(belongingToCenter);
@@ -70,12 +95,21 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
         return this;
     }
 
-    @Step("Choose center {centerNumber} the club belong to")
+    /**
+     * This method choose the center from dropdown the club belongs to
+     * @param centerNumber index of center in the list
+     * @return instance of AddClubMainInfoComponent
+     */
+    @Step("Choose center {centerNumber} the club belongs to")
     public AddClubMainInfoComponent getCertainCenter(int centerNumber) {
         waitForElementsToAppear(centerList).get(centerNumber).click();
         return this;
     }
 
+    /**
+     * This method click on the 'Next' button
+     * @return new instance of AddClubContactsComponent
+     */
     @Step("Click on the 'Next' button")
     public AddClubContactsComponent clickNextStepButton() {
         waitForElementToBeClickable(nextStepButton);

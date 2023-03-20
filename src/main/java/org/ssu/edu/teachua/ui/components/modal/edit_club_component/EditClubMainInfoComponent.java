@@ -34,6 +34,11 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
         super(driver);
     }
 
+    /**
+     * This method is deleting old name and entering new name into 'name' field
+     * @param editName name of club
+     * @return instance of EditClubMainInfoComponent
+     */
     @Step("Edit Club name {editName}")
     public EditClubMainInfoComponent enterNewClubName(String editName) {
         waitForElementToBeClickable(editNameField);
@@ -43,12 +48,22 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
         return this;
     }
 
+    /**
+     * This method choose the club categories from the list of categories checkboxes
+     * @param editCategory index of checkbox in the list
+     * @return instance of EditClubMainInfoComponent
+     */
     @Step("Edit club categories {editCategory}")
     public EditClubMainInfoComponent editCategoriesCheckBoxes(int editCategory) {
         waitForElementsToAppear(editCategoriesCheckBoxes).get(editCategory).click();
         return this;
     }
 
+    /**
+     * This method is deleting old child min age and entering new child min age for the club
+     * @param editChildAge min child age for the club
+     * @return instance of EditClubMainInfoComponent
+     */
     @Step("Edit child min age {editChildAge}")
     public EditClubMainInfoComponent enterEditChildAgeFrom(String editChildAge) {
         waitForElementToBeClickable(editChildAgeFrom);
@@ -58,6 +73,11 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
         return this;
     }
 
+    /**
+     * This method is deleting old child max age and entering new child max age for the club
+     * @param editChildAgeTo max child age for the club
+     * @return instance of EditClubMainInfoComponent
+     */
     @Step("Edit child max age {editChildAgeTo}")
     public EditClubMainInfoComponent enterEditChildAgeFor(String editChildAgeTo) {
         waitForElementToBeClickable(editChildAgeFor);
@@ -67,6 +87,10 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
         return this;
     }
 
+    /**
+     * This method open the dropdown with centers the club might be related to
+     * @return instance of EditClubMainInfoComponent
+     */
     @Step("Edit center the club belong to")
     public EditClubMainInfoComponent getEditBelongingToCenter() {
         waitForElementToBeClickable(editBelongingToCenter);
@@ -75,12 +99,21 @@ public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
         return this;
     }
 
+    /**
+     * This method choose the center from dropdown the club belongs to
+     * @param editCenter index of center in the list
+     * @return instance of EditClubMainInfoComponent
+     */
     @Step("Edit center {editCenter} the club belong to")
     public EditClubMainInfoComponent editGetCenter(int editCenter) {
         waitForElementsToAppear(editCenterList).get(editCenter).click();
         return this;
     }
 
+    /**
+     * This method click on the 'Next' button
+     * @return new instance of EditClubContactsComponent
+     */
     @Step("Click on the 'Next' button")
     public EditClubContactsComponent clickEditNextStepButton() {
         waitForElementToBeClickable(nextStepButton);

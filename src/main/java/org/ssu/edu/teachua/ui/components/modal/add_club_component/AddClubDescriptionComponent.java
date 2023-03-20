@@ -31,6 +31,11 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
         super(driver);
     }
 
+    /**
+     * This method uploading new club logo
+     * @param logoPath
+     * @return instance of AddClubDescriptionComponent
+     */
     @Step("Upload new logo {logoPath}")
     public AddClubDescriptionComponent uploadNewLogo(String logoPath) {
         waitForElementToAppear(uploadLogo);
@@ -38,6 +43,11 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method uploading new club background picture
+     * @param picturePath
+     * @return instance of AddClubDescriptionComponent
+     */
     @Step("Upload new background picture {picturePath}")
     public AddClubDescriptionComponent uploadNewBackgroundPicture(String picturePath) {
         waitForElementToAppear(uploadBackgroundPicture);
@@ -45,6 +55,11 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method uploading new club gallery
+     * @param galleryPath
+     * @return instance of AddClubDescriptionComponent
+     */
     @Step("Upload new gallery {galleryPath}")
     public AddClubDescriptionComponent uploadNewGallery(String galleryPath) {
         waitForElementToAppear(uploadGallery);
@@ -52,6 +67,11 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method entering description to club
+     * @param description
+     * @return instance of AddClubDescriptionComponent
+     */
     @Step("Enter description {description} to club")
     public AddClubDescriptionComponent enterDescription(String description) {
         waitForElementToBeClickable(descriptionField);
@@ -62,22 +82,37 @@ public class AddClubDescriptionComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method checks the green check-circle is appeared near the text-area-field with valid data in it
+     * @return element that method was applied to
+     */
     @Step("Check the description success")
     public boolean getDescriptionSuccess() {
         return waitForElementToAppear(descriptionFieldSuccess).isDisplayed();
     }
 
+    /**
+     * This method checks the error message is appeared near the field with invalid data in it
+     * @return element that method was applied to
+     */
     @Step("Check the error message is appear")
     public String getDescriptionErrorMessage() {
         return waitForElementToAppear(descriptionErrorMsg).getText();
     }
 
+    /**
+     * This method click on the 'End' button
+     */
     @Step("Click on the 'End' button")
     public void clickEndButton() {
         waitForElementToBeClickable(nextStepButton);
         nextStepButton.click();
     }
 
+    /**
+     * This method click on the 'Back' button
+     * @return new instance of AddClubContactsComponent
+     */
     @Step("Click on the 'Back' button")
     public AddClubContactsComponent clickPreviousPageButton() {
         waitForElementToBeClickable(previousPageButton);
