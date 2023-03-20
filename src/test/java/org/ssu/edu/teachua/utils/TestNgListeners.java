@@ -9,6 +9,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 public class TestNgListeners implements ITestListener {
+
     @Override
     public void onTestFailure(ITestResult result) {
         ITestContext context = result.getTestContext();
