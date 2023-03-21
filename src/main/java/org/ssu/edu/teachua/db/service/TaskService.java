@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.db.service;
 
+import io.qameta.allure.Step;
 import org.ssu.edu.teachua.db.entities.Task;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
@@ -15,6 +16,7 @@ public class TaskService extends BaseService {
         super(url, username, password);
     }
 
+    @Step("From database get tasks by id: '{id}'")
     public Task getTaskById(Integer id) {
         Task task = null;
         try {
@@ -25,6 +27,7 @@ public class TaskService extends BaseService {
         return task;
     }
 
+    @Step("From database get tasks by name: '{name}'")
     public List<Task> getTasksByName(String name) {
         List<Task> taskList = null;
         try {
