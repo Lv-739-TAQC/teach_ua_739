@@ -19,14 +19,14 @@ import java.util.List;
 
 public class TasksPageTest extends LoginWithAdminRunner {
 
-	private AddTaskPage addTaskPage;
+    private AddTaskPage addTaskPage;
 
-	@Test
-	public void testDescriptionFieldInvalid() {
-		System.out.println("Result is: " + addTaskPage.areWebElementsEmpty());
-	}
+    @Test
+    public void testDescriptionFieldInvalid() {
+        System.out.println("Result is: " + addTaskPage.areWebElementsEmpty());
+    }
 
-	@BeforeMethod
+    @BeforeMethod
     void openAddTaskPage() {
         driver.navigate().refresh();
         addTaskPage = new HomePage(driver)
@@ -41,10 +41,10 @@ public class TasksPageTest extends LoginWithAdminRunner {
     @Issue("TUA-524")
     @Severity(SeverityLevel.NORMAL)
     @Description("This test case verifies that admin can't create task with invalid data" +
-                 "\n in 'Заголовок' field on 'Додайте завдання' page")
+            "\n in 'Заголовок' field on 'Додайте завдання' page")
     @Test(dataProvider = "dpTestAddTaskInvalidTitle", dataProviderClass = DataProviderTask.class)
     public void testAddTaskInvalidTitle(int day, int month, int year, String photoPath, String name,
-                                   String title, String description, String challenge, String expectedErrorMsg) {
+                                        String title, String description, String challenge, String expectedErrorMsg) {
         SoftAssert dpSoftAssert = new SoftAssert();
         dpSoftAssert.assertTrue(addTaskPage.areWebElementsEmpty());
 
@@ -137,4 +137,30 @@ public class TasksPageTest extends LoginWithAdminRunner {
         softAssert.assertEquals(tasks.get(0).getName(), NAME);
         softAssert.assertAll();
     }
+
+    @Issue("TUA-525")
+    @Description("This test-case covers negative scenario when introducing changes" +
+            "\n to the task's 'Опис' field results in error message shown")
+    @Test(dataProvider = "dpTestAddTaskInvalidDescription", dataProviderClass = DataProviderTask.class)
+    public void testAddTaskInvalidDescription(int day, int month, int year, String photoPath, String name,
+                                              String title, String description, String challenge,
+                                              String expectedErrorMessage) {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(addTaskPage.areWebElementsEmpty());
+
+        String actualErrorMessage = addTaskPage
+                .selectStartDate(day, month, year)
+                .uploadPhoto(valueProvider.getFilePath(photoPath))
+                .typeName(name)
+                .typeTitle(title)
+                .typeDescription(description)
+                .selectChallenge(challenge)
+                .clickFailSaveButton()
+                .getErrorMsg();
+
+        softAssert.assertEquals(actualErrorMessage, expectedErrorMessage);
+        softAssert.assertEquals(entityService.getTaskService().getTasksByName(name).size(), 0);
+        softAssert.assertAll();
+    }
+
 }

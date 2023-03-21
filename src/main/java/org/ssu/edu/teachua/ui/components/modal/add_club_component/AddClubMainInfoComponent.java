@@ -26,7 +26,7 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
     @FindBy(how = How.XPATH, using = ".//div/form[@id='basic']//div[contains(@class, 'ant-select-in')]")
     private WebElement belongingToCenter;
 
-    @FindBy(how = How.XPATH, using = ".//div[@aria-selected='false' and @class]")
+    @FindBy(how = How.XPATH, using = "//div[@class='rc-virtual-list-holder-inner']/*[position()<=4]")
     private List<WebElement> centerList;
 
     public AddClubMainInfoComponent(WebDriver driver) {
