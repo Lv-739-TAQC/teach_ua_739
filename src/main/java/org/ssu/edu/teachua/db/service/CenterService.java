@@ -10,6 +10,8 @@ import java.util.List;
 public class CenterService extends BaseService {
 
     static final String SQL_FIND_CENTER_BY_NAME = "SELECT * FROM centers WHERE name = ?;";
+    static final String SQL_SORT_CENTERS_BY_RATING_ASC = "SELECT * FROM centers ORDER BY rating ASC LIMIT 6;";
+    static final String SQL_SORT_CENTERS_BY_RATING_DESC = "SELECT * FROM centers ORDER BY rating DESC LIMIT 6;";
     static final String SQL_FIND_CENTER_BY_NAME_ASC = "SELECT * FROM centers ORDER BY name ASC LIMIT 6;";
     static final String SQL_FIND_CENTER_BY_NAME_DESC = "SELECT * FROM centers ORDER BY name DESC LIMIT 6;";
 
@@ -50,5 +52,15 @@ public class CenterService extends BaseService {
         return new CenterDAOImpl().findElementsBySQlRequest(
                 connection, SQL_FIND_CENTER_BY_NAME_DESC, true
         );
+    }
+
+    public  List<Center> getCentersByRatingAsc() throws DBException, EntityException {
+        return new CenterDAOImpl().findElementsBySQlRequest(
+                connection, SQL_SORT_CENTERS_BY_RATING_ASC, true);
+    }
+
+    public  List<Center> getCentersByRatingDesc() throws DBException, EntityException {
+        return new CenterDAOImpl().findElementsBySQlRequest(
+                connection, SQL_SORT_CENTERS_BY_RATING_DESC, true);
     }
 }

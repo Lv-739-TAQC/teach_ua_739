@@ -2,17 +2,19 @@ package org.ssu.edu.teachua.ui.advanced_search;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
-import org.ssu.edu.teachua.db.entities.Club;
+import org.ssu.edu.teachua.db.entities.Center;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
+import org.ssu.edu.teachua.db.service.CenterService;
+import org.ssu.edu.teachua.db.entities.Club;
 import org.ssu.edu.teachua.db.service.ClubService;
-import org.ssu.edu.teachua.db.entities.Center;
 import org.ssu.edu.teachua.ui.components.card.ClubCardComponent;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchCenterComponent;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchClubComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.utils.runners.BaseTestRunnerUI;
 import org.ssu.edu.teachua.utils.providers.DataProviderAdvancedSearch;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -207,6 +209,38 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
         List<Integer> copyListClubCard = new ArrayList<Integer>(listClubCard);
         copyListClubCard.sort(comparatorSort);
         return copyListClubCard;
+    }
+
+    @Issue("TUA-449")
+    @Description("Verify that the user can sort the search results by rating " +
+            "after clicking on the 'Центр' radio button")
+    @Test
+    public void testSortingCenterByRating() throws DBException, EntityException {
+
+        CenterService centerService = new CenterService(valueProvider.getDbUrl(), valueProvider.getDbUserName(), valueProvider.getUDbUserPassword());
+        AdvancedSearchCenterComponent adsc = new HomePage(driver).clickAdvancedSearchIcon().chooseCenter();
+
+        adsc.chooseSortByRating()
+                .chooseSortTypeAsc()
+                .clearCity();
+
+        List<String> sortCenterByRatingAscUi = adsc.getListCardsOnPage().stream()
+                .map(ClubCardComponent::getCenterTitle).collect(Collectors.toList());
+
+        adsc.chooseSortTypeDesc();
+
+        List<String> sortCenterByRatingDescUi = adsc.getListCardsOnPage().stream()
+                .map(ClubCardComponent::getCenterTitle).collect(Collectors.toList());
+
+        List<String> sortCenterByRatingAscDB = centerService.getCentersByRatingAsc().stream()
+                .map(Center::getName).collect(Collectors.toList());
+        List<String> sortCenterByRatingDescDB = centerService.getCentersByRatingDesc().stream()
+                .map(Center::getName).collect(Collectors.toList());
+
+        softAssert.assertEquals(sortCenterByRatingAscUi, sortCenterByRatingAscDB);
+        softAssert.assertEquals(sortCenterByRatingDescUi, sortCenterByRatingDescDB);
+
+        softAssert.assertAll();
     }
 
     @Issue("TUA-516")
