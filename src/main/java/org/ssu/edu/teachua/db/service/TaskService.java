@@ -11,6 +11,7 @@ import java.util.List;
 public class TaskService extends BaseService {
 
     static final String SQL_FIND_TASK_BY_NAME = "SELECT * FROM tasks WHERE name = ?;";
+    static final String SQL_FIND_TASK_BY_DESCRIPTION = "SELECT * FROM tasks WHERE description = ?;";
 
     public TaskService(String url, String username, String password) throws DBException {
         super(url, username, password);
@@ -33,6 +34,19 @@ public class TaskService extends BaseService {
         try {
             taskList = new TaskDAOImpl().findElementsBySQlRequest(
                     connection, SQL_FIND_TASK_BY_NAME, true, name
+            );
+        } catch (DBException | EntityException e) {
+            System.out.println(e.getMessage());
+        }
+        return taskList;
+    }
+
+    @Step("From database get tasks by description: '{description}'")
+    public List<Task> getTasksByDescription(String description) {
+        List<Task> taskList = null;
+        try {
+            taskList = new TaskDAOImpl().findElementsBySQlRequest(
+                    connection, SQL_FIND_TASK_BY_DESCRIPTION, true, description
             );
         } catch (DBException | EntityException e) {
             System.out.println(e.getMessage());
