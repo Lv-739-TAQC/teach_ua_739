@@ -20,7 +20,7 @@ public class ViewTaskPage extends BasePage {
 
     @Step("Get task name")
     public String getTaskName() {
-        return taskName.getText();
+        return waitForElementToAppear(taskName).getText();
     }
 
     @Step("Get task content")
