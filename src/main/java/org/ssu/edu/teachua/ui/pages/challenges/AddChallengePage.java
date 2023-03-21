@@ -14,30 +14,70 @@ import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
  * the functionality to create a challenge
  */
 public class AddChallengePage extends BasePage {
+
+    /**
+     * WebElement represents 'input picture' button
+     */
     @FindBy(how = How.XPATH, using = "//input[@id='picture']")
     protected WebElement photoInput;
+    /**
+     * WebElement represents 'sort number' field of challenge
+     */
     @FindBy(how = How.XPATH, using = "//input[@id='sortNumber']")
     private WebElement sortNumber;
+    /**
+     * WebElement represents 'name' field of challenge
+     */
     @FindBy(how = How.XPATH, using = "//input[@id='name']")
     private WebElement name;
+    /**
+     * WebElement represents 'title' field of challenge
+     */
     @FindBy(how = How.XPATH, using = "//input[@id='title']")
     private WebElement title;
+    /**
+     * WebElement represents 'description' field of challenge
+     */
     @FindBy(how = How.XPATH, using = "//div[contains(@class,'ql-editor')]")
     private WebElement description;
+    /**
+     * WebElement represents verification if uploaded photo appeared
+     */
     @FindBy(how = How.XPATH, using = "//div[contains(@class, 'ant-upload-list-item-done')]")
     private WebElement photoAppeared;
+    /**
+     * WebElement represents 'preview photo' button
+     */
     @FindBy(how = How.XPATH, using = "//*[@class='anticon anticon-eye']")
     private WebElement previewPhoto;
+    /**
+     * WebElement represents 'delete photo' button
+     */
     @FindBy(how = How.XPATH, using = "//*[@class='anticon anticon-delete']")
     private WebElement deletePhoto;
+    /**
+     * WebElement represents 'save' button
+     */
     @FindBy(how = How.XPATH, using = "//*[@type='submit' and contains(@class,'add-contact-type-button')]")
     private WebElement saveBtn;
+    /**
+     * WebElement represents 'challenges' button which opens ChallengesPage
+     */
     @FindBy(how = How.XPATH, using = "//*[@class='back-btn'and @href='/dev/admin/challenges']")
     private WebElement challengesBtn;
+    /**
+     * WebElement represents 'challenges' button which opens ViewChallengePage
+     */
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-btn ant-btn-default flooded-button'])[2]")
     private WebElement viewChallengeBtn;
+    /**
+     * WebElement represents the text of success message after creating a challenge with valid data
+     */
     @FindBy(how = How.XPATH, using = "//div[@class='ant-message-custom-content ant-message-success']")
     private WebElement successMessage;
+    /**
+     * WebElement represents the text of error message after creating a challenge with invalid data
+     */
     @FindBy(how = How.XPATH, using = "//*[@class='ant-message']")
     private WebElement errorMessage;
 

@@ -22,26 +22,60 @@ import java.util.List;
  * the Challenges page
  */
 public class ChallengesPage extends BasePage {
+
+    /**
+     * WebElement represents 'tasks' button which opens TasksPage
+     */
     @FindBy(how = How.XPATH, using = "//*[@class='back-btn']")
     private WebElement tasksBtn;
+    /**
+     * WebElement represents 'add challenge' button which opens AddChallengePage
+     */
     @FindBy(how = How.XPATH, using = "//a[@href='/dev/admin/addChallenge']")
     private WebElement addChallengeBtn;
+    /**
+     * WebElement represents search field
+     */
     @FindBy(how = How.XPATH, using = "//span[contains(@class, 'ant-input-group')]//*[@type='text']")
     private WebElement searchField;
+    /**
+     * WebElement represents 'click to search' button
+     */
     @FindBy(how = How.XPATH, using = "//span[@class='ant-input-group-addon']")
     private WebElement searchBtn;
+    /**
+     * WebElement represents 'previous page' button in pagination
+     */
     @FindBy(how = How.XPATH, using = "//*[@title='Previous Page']")
     private WebElement previousPage;
+    /**
+     * WebElement represents 'next page' button in pagination
+     */
     @FindBy(how = How.XPATH, using = "//*[@title='Next Page']")
     private WebElement nextPage;
+    /**
+     * WebElement represents 'step oer next five pages' button in pagination
+     */
     @FindBy(how = How.XPATH, using = "//*[@title='Next 5 Pages']")
     private WebElement stepOverNextFivePages;
+    /**
+     * WebElement represents text of first table header element
+     */
     @FindBy(how = How.XPATH, using = "(//th[@class='ant-table-cell'])[1]")
     private WebElement nameOfFirstTableHeaderElement;
+    /**
+     * WebElement represents text of second table header element
+     */
     @FindBy(how = How.XPATH, using = "(//th[@class='ant-table-cell'])[2]")
     private WebElement nameOfSecondTableHeaderElement;
+    /**
+     * WebElement represents text of third table header element
+     */
     @FindBy(how = How.XPATH, using = "(//th[@class='ant-table-cell'])[3]")
     private WebElement nameOfThirdTableHeaderElement;
+    /**
+     * WebElement represents text of fourth table header element
+     */
     @FindBy(how = How.XPATH, using = "(//th[@class='ant-table-cell'])[4]")
     private WebElement nameOfFourthTableHeaderElement;
 

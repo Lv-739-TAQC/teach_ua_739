@@ -11,9 +11,15 @@ import org.openqa.selenium.support.How;
  * the functionality to edit a challenge
  */
 public class EditChallengePage extends AddChallengePage {
+
+    /**
+     * WebElement represents 'change status' button
+     */
     @FindBy(how = How.XPATH, using = "//button[@id='isActive']")
     private WebElement changeStatus;
-
+    /**
+     * WebElement represents 'change date' button
+     */
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-btn ant-btn-default flooded-button'])[3]")
     private WebElement changeDateBtn;
 
