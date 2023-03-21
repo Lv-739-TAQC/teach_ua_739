@@ -94,7 +94,8 @@ public class TasksPageTest extends LoginWithAdminRunner {
     private final String PHOTO_PATH = valueProvider.getFilePath("photos\\heart.png");
 
     @Issue(value = "TUA-526")
-    @Test(description = "[Завдання] Verify that admin can't create a task without choosing any challenge in dropdown list on the 'Челендж' field")
+    @Description(value = "[Завдання] Verify that admin can't create a task without choosing any challenge in dropdown list on the 'Челендж' field")
+    @Test
     public void verifyThatAdminCantCreateTaskWithoutChoosingAnyChallengeInDropdownList() {
         Calendar now = Calendar.getInstance();
         String errorMessage = addTaskPage
@@ -114,7 +115,8 @@ public class TasksPageTest extends LoginWithAdminRunner {
     }
 
     @Issue(value = "TUA-520")
-    @Test(description = "[Завдання] Verify that admin can create a task with valid data on 'Додайте завдання' page")
+    @Description(value = "[Завдання] Verify that admin can create a task with valid data on 'Додайте завдання' page")
+    @Test
     public void verifyThatAdminCanCreateTaskWithValidData() {
         Calendar now = Calendar.getInstance();
         String title = addTaskPage
