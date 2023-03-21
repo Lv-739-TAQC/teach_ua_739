@@ -45,13 +45,27 @@ _ _ _
 ### Properties:
 Create in *`src/test/resources/`* file *`data.properties`* with the following content inside:
 
-*`baseUiUrl=https://example.org.ua`*
 
-*`adminEmail=example@test.com`*  
-*`adminPassword=example`*
 
-*`userEmail=user@gmail.com`*  
-*`userPassword=userPassword`*
+```properties
+baseUiUrl=https://example.org.ua
+
+adminEmail=admin@gmail.com
+adminPassword=adminPassword
+
+userEmail=user@gmail.com
+userPassword=userPassword
+
+leadEmail=lead@gmail.com
+leadPassword=leadPassword
+
+dbUrl=dbUrl
+dbUserName=dbUserName
+dbUserPassword=dbUserPassword
+
+```
+
+
 _ _ _
 ### Allure reports:
 Obtain the folder *allure-results* under *target* directory.
