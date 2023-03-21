@@ -28,9 +28,9 @@ public class ChallengesService extends BaseService {
                 connection, SQL_FIND_CHALLENGE_BY_NAME, true, name
         );
     }
-    public List<Challenges> getChallengesBySortNumber(String sortNumber) throws DBException, EntityException {
+    public Challenges getChallengeBySortNumber(Integer sortNumber) throws DBException, EntityException {
         return new ChallengesDAOImpl().findElementsBySQlRequest(
                 connection, SQL_FIND_CHALLENGE_BY_SORT_NUMBER, true, sortNumber
-        );
+        ).get(0);
     }
 }
