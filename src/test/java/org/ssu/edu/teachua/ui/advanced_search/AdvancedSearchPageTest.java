@@ -2,17 +2,19 @@ package org.ssu.edu.teachua.ui.advanced_search;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
-import org.ssu.edu.teachua.db.entities.Club;
+import org.ssu.edu.teachua.db.entities.Center;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
+import org.ssu.edu.teachua.db.service.CenterService;
+import org.ssu.edu.teachua.db.entities.Club;
 import org.ssu.edu.teachua.db.service.ClubService;
-import org.ssu.edu.teachua.db.entities.Center;
 import org.ssu.edu.teachua.ui.components.card.ClubCardComponent;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchCenterComponent;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchClubComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.utils.runners.BaseTestRunnerUI;
 import org.ssu.edu.teachua.utils.providers.DataProviderAdvancedSearch;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -22,11 +24,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
-
 public class AdvancedSearchPageTest extends BaseTestRunnerUI {
-
-    private ClubService clubService;
 
     @Issue("TUA-210")
     @Description("Verify that input field 'Вік дитини' accepts only positive integers from 2 to 18")
@@ -209,12 +207,44 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
         return copyListClubCard;
     }
 
+    @Issue("TUA-449")
+    @Description("Verify that the user can sort the search results by rating " +
+            "after clicking on the 'Центр' radio button")
+    @Test
+    public void testSortingCenterByRating() throws DBException, EntityException {
+
+        CenterService centerService = new CenterService(valueProvider.getDbUrl(), valueProvider.getDbUserName(), valueProvider.getUDbUserPassword());
+        AdvancedSearchCenterComponent adsc = new HomePage(driver).clickAdvancedSearchIcon().chooseCenter();
+
+        adsc.chooseSortByRating()
+                .chooseSortTypeAsc()
+                .clearCity();
+
+        List<String> sortCenterByRatingAscUi = adsc.getListCardsOnPage().stream()
+                .map(ClubCardComponent::getCenterTitle).collect(Collectors.toList());
+
+        adsc.chooseSortTypeDesc();
+
+        List<String> sortCenterByRatingDescUi = adsc.getListCardsOnPage().stream()
+                .map(ClubCardComponent::getCenterTitle).collect(Collectors.toList());
+
+        List<String> sortCenterByRatingAscDB = centerService.getCentersByRatingAsc().stream()
+                .map(Center::getName).collect(Collectors.toList());
+        List<String> sortCenterByRatingDescDB = centerService.getCentersByRatingDesc().stream()
+                .map(Center::getName).collect(Collectors.toList());
+
+        softAssert.assertEquals(sortCenterByRatingAscUi, sortCenterByRatingAscDB);
+        softAssert.assertEquals(sortCenterByRatingDescUi, sortCenterByRatingDescDB);
+
+        softAssert.assertAll();
+    }
+
     @Issue("TUA-516")
     @Description("[Розширений пошук] Verify that the clubs can be sorted by rating")
     @Test
     public void testIfClubsSortedByRating() throws DBException, EntityException {
 
-        clubService = new ClubService(valueProvider.getDbUrl(), valueProvider.getDbUserName(), valueProvider.getUDbUserPassword());
+        ClubService clubService = entityService.getClubService();
         AdvancedSearchCenterComponent advancedSearchClub = new HomePage(driver)
                 .clickAdvancedSearchIcon()
                 .chooseSortByRating()
@@ -222,7 +252,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
                 .clearCity();
         String[][] actualClubsSortedAsc = advancedSearchClub.getNamesAndRatingsOfCards();
 
-        List<Club> clubsAscDb = clubService.getClubsSortedByRatingASC().subList(0, advancedSearchClub.getCountCards());
+        List<Club> clubsAscDb = clubService.getClubsSortedByRatingASC();
         String[][] expectedClubsSortedAsc = new String[clubsAscDb.size()][2];
         for (Club club : clubsAscDb) {
             expectedClubsSortedAsc[clubsAscDb.indexOf(club)][0] = club.getName();
@@ -231,7 +261,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
 
         String[][] actualClubsSortedDesc = advancedSearchClub.chooseSortTypeDesc().getNamesAndRatingsOfCards();
 
-        List<Club> clubsDescDb = clubService.getClubsSortedByRatingDESC().subList(0, advancedSearchClub.getCountCards());
+        List<Club> clubsDescDb = clubService.getClubsSortedByRatingDESC();
         String[][] expectedClubsSortedDesc = new String[clubsDescDb.size()][2];
         for (Club club : clubsDescDb) {
             expectedClubsSortedDesc[clubsDescDb.indexOf(club)][0] = club.getName();

@@ -9,12 +9,24 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.Parameters;
 
-
+/**
+ * This class contains a method to launch the browser driver according to the name of the browser we are calling
+ */
 public class Browsers {
 
+    /**
+     * This variable is required to solve the WebSocket Issue.
+     * Must be added as an argument for chrome and edge browsers
+     */
     private final String REMOTE_CONTROL = "--remote-allow-origins=*";
     WebDriver driver = null;
 
+    /**
+     *This method accepts the name of the browser as a parameter and,
+     * depending on this name, launches the browser we need
+     * @param browser extracts the name of the browser from the xml file using the {@link Parameters} annotation
+     * @return the driver of the selected browser
+     */
     @Parameters("browser")
     public WebDriver setUpBrowser(String browser) {
 
@@ -31,6 +43,7 @@ public class Browsers {
                 break;
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.addArguments("--allow-origins=https://speak-ukrainian.org.ua");
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
             default:
