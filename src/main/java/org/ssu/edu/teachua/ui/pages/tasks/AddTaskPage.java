@@ -153,12 +153,11 @@ public class AddTaskPage extends BasePage {
         return waitForElementToAppear(successMessage).getText();
     }
 
-    @Step("Verify that all fields are empty by default")
     /**
      * show error message of uncreated task
      * @return text of error message
      */
-    @Step("Get error message")
+    @Step("Verify that all fields are empty by default")
     public String checkErrorMessage() {
         return waitForElementToAppear(errorMessage).getText();
     }
