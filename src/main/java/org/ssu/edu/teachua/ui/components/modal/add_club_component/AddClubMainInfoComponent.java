@@ -48,7 +48,8 @@ public class AddClubMainInfoComponent extends BaseClubComponent {
     /**
      * This list of elements is finds by xPath the center dropdown elements
      */
-    @FindBy(how = How.XPATH, using = ".//div[@aria-selected='false' and @class]")
+    @FindBy(how = How.XPATH, using = "//div[@class='rc-virtual-list-holder-inner']/*[position()<=4]")
+
     private List<WebElement> centerList;
 
     public AddClubMainInfoComponent(WebDriver driver) {

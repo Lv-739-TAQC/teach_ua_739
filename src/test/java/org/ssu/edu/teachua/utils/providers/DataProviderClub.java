@@ -49,4 +49,12 @@ public class DataProviderClub {
                 {"Speaking club", 2, "6", "16", "0674443322", "Lorem ipsum dolor sit amet, consectetur", ERROR_MSG.get(3)}
         };
     }
+
+    @DataProvider(name = "dpTestAllFieldsValidCenter")
+    public static Object[][] dpTestAllFieldsValidCenter() {
+        return new Object[][]{
+                {"Test club name", 1, "3", "6", 2, "0667778899", "Lorem ipsum dolor sit amet, consectetur adips"}
+        };
+    }
+
 }

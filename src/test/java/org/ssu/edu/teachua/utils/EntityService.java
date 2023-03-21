@@ -1,6 +1,7 @@
 package org.ssu.edu.teachua.utils;
 
 import org.ssu.edu.teachua.db.repository.DBException;
+import org.ssu.edu.teachua.db.repository.EntityException;
 import org.ssu.edu.teachua.db.service.CenterService;
 import org.ssu.edu.teachua.db.service.ClubService;
 import org.ssu.edu.teachua.db.service.TaskService;

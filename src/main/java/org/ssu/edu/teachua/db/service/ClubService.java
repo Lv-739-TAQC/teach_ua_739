@@ -27,9 +27,17 @@ public class ClubService extends BaseService {
     }
 
     @Step("From database get clubs by name: '{name}'")
-    public List<Club> getClubsByName(String name) throws DBException, EntityException {
-        return new ClubDAOImpl().findElementsBySQlRequest(connection, SQL_FIND_CLUB_BY_NAME, true, name);
+
+    public List<Club> getClubsByName(String name) {
+        List<Club> clubs = null;
+        try {
+            clubs = new ClubDAOImpl().findElementsBySQlRequest(connection, SQL_FIND_CLUB_BY_NAME, true, name);
+        } catch (DBException | EntityException e) {
+            System.out.println(e.getMessage());
+        }
+        return clubs;
     }
+
 
     @Step("From database get clubs which are located in city: '{city}'")
     public List<Club> getClubsByCity(String city) throws DBException, EntityException {
