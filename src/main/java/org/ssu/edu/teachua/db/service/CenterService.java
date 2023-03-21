@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.db.service;
 
+import io.qameta.allure.Step;
 import org.ssu.edu.teachua.db.entities.Center;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
@@ -18,6 +19,7 @@ public class CenterService extends BaseService {
         super(url, username, password);
     }
 
+    @Step("From database get centers by id: '{id}'")
     public Center getCenterById(Integer id) {
         Center center = null;
         try {
@@ -28,6 +30,7 @@ public class CenterService extends BaseService {
         return center;
     }
 
+    @Step("From database get centers by name: '{name}'")
     public List<Center> getCentersByName(String name) {
         List<Center> centerList = null;
         try {
@@ -40,12 +43,14 @@ public class CenterService extends BaseService {
         return centerList;
     }
 
+    @Step("From database get centers sorted by rating in ascending order")
     public List<Center> getCentresSortedByNameAsc(boolean isAsc) throws DBException, EntityException{
         return new CenterDAOImpl().findElementsBySQlRequest(
                 connection, SQL_FIND_CENTER_BY_NAME_ASC, true
         );
     }
 
+    @Step("From database get centers sorted by rating in descending order")
     public List<Center> getCentresSortedByNameDesc(boolean isDesc) throws DBException, EntityException{
         return new CenterDAOImpl().findElementsBySQlRequest(
                 connection, SQL_FIND_CENTER_BY_NAME_DESC, true
