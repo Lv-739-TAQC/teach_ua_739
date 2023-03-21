@@ -14,20 +14,45 @@ import org.ssu.edu.teachua.ui.pages.challenges.EditChallengePage;
  * the functionality to view challenges table component of Challenges page
  */
 public class ViewChallengesTableItemComponent extends BaseComponent {
+
+    /**
+     * WebElement represents 'id' of challenge component
+     */
     @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[1]")
     private WebElement challengeId;
+    /**
+     * WebElement represents 'sort number' of challenge component
+     */
     @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[2]")
     private WebElement challengeSortNumber;
+    /**
+     * WebElement represents 'name' of challenge component
+     */
     @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[3]")
     private WebElement challengeName;
+    /**
+     * WebElement represents 'title' of challenge component
+     */
     @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[4]")
     private WebElement challengeTitle;
+    /**
+     * WebElement represents 'edit' button
+     */
     @FindBy(how = How.XPATH, using = ".//*[text()='Редагувати']")
     private WebElement editBtn;
+    /**
+     * WebElement represents 'delete' button
+     */
     @FindBy(how = How.XPATH, using = ".//*[text()='Видалити']")
     private WebElement deleteBtn;
+    /**
+     * WebElement represents 'confirm deleting' button
+     */
     @FindBy(how = How.XPATH, using = "//button[contains(@class, 'popConfirm-ok')]")
     private WebElement confirmDeletingBtnNode;
+    /**
+     * WebElement represents 'cancel deleting' button
+     */
     @FindBy(how = How.XPATH, using = "//button[contains(@class, 'popConfirm-cancel')]")
     private WebElement cancelDeletingBtnNode;
 

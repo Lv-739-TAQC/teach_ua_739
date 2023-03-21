@@ -19,20 +19,45 @@ import org.ssu.edu.teachua.ui.pages.challenges.EditChallengePage;
  * the functionality to edit challenges table component of Challenges page
  */
 public class EditChallengesTableItemComponent extends BaseComponent {
+
+    /**
+     * WebElement represents 'id' field of challenge component
+     */
     @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[1]")
     private WebElement challengeId;
+    /**
+     * WebElement represents 'sort number' field of challenge component
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='sortNumber']")
     private WebElement editSortNumber;
+    /**
+     * WebElement represents 'name' field of challenge component
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='name']")
     private WebElement editName;
+    /**
+     * WebElement represents 'title' field of challenge component
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='title']")
     private WebElement editTitle;
+    /**
+     * WebElement represents 'save' button
+     */
     @FindBy(how = How.XPATH, using = ".//*[text()='Зберегти']")
     private WebElement saveChangesBtn;
+    /**
+     * WebElement represents 'confirm saving' button
+     */
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'popConfirm-ok-button')]")
     private WebElement confirmSavingChangesBtn;
+    /**
+     * WebElement represents 'cancel saving' button
+     */
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'popConfirm-cancel-button')]")
     private WebElement cancelSavingChangesBtn;
+    /**
+     * WebElement represents 'cancel editing' button
+     */
     @FindBy(how = How.XPATH, using = ".//*[text()='Відмінити']")
     private WebElement cancelEditingBtn;
 
