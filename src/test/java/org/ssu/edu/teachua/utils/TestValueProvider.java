@@ -28,6 +28,14 @@ public class TestValueProvider {
         return properties.getProperty("adminPassword");
     }
 
+    public String getLeadEmail() {
+        return properties.getProperty("leadEmail");
+    }
+
+    public String getLeadPassword() {
+        return properties.getProperty("leadPassword");
+    }
+
     public String getUserEmail() {
         return properties.getProperty("userEmail");
     }

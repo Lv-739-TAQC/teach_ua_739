@@ -4,6 +4,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.ssu.edu.teachua.db.entities.Club;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
@@ -11,10 +12,16 @@ import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+import java.sql.Timestamp;
+import java.util.Arrays;
 
 public class ClubComponentTest extends LoginWithAdminRunner {
 
     private AddClubMainInfoComponent mainInfoComponent;
+
+    private Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
     @BeforeMethod
     void openAddClubForm() {
@@ -29,7 +36,7 @@ public class ClubComponentTest extends LoginWithAdminRunner {
     @Issue("TUA-173")
     @Issue("TUA-177")
     @Description("All these test-cases cover positive scenario when introducing changes" +
-                "\n to the 'Опис' field results in no error message shown")
+            "\n to the 'Опис' field results in no error message shown")
     @Test(dataProvider = "dpTestDescriptionFieldValid", dataProviderClass = DataProviderClub.class)
     public void testDescriptionFieldValid(String nameField, int categoriesNumber, String childAgeFrom,
                                           String childAgeFor, String contactPhone, String description) {
@@ -52,7 +59,7 @@ public class ClubComponentTest extends LoginWithAdminRunner {
     @Issue("TUA-178")
     @Severity(SeverityLevel.NORMAL)
     @Description("All of these test cases verify if specific error message is" +
-                 "\ndisplayed after entering invalid data in the 'Опис' field.")
+            "\ndisplayed after entering invalid data in the 'Опис' field.")
     @Test(dataProvider = "dpTestDescriptionFieldInvalid", dataProviderClass = DataProviderClub.class)
     public void testDescriptionFieldInvalid(String nameField, int categoriesNumber, String childAgeFrom,
                                             String childAgeFor, String contactPhone, String description,
@@ -70,4 +77,35 @@ public class ClubComponentTest extends LoginWithAdminRunner {
 
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
     }
+
+    @Issue("TUA-506")
+    @Description("This test-case verifies that having created a club on UI, it is possible to locate it in the DB")
+    @Test(dataProvider = "dpTestAllFieldsValidCenter", dataProviderClass = DataProviderClub.class)
+    public void testAllFieldsValidCenter(String nameField, int categoriesNumber, String childAgeFrom,
+                                         String childAgeFor, int centerNumber, String contactPhone, String description) {
+        String generatedClubName = nameField + timestamp.getTime();
+        mainInfoComponent
+                .enterClubName(generatedClubName)
+                .getCategoriesCheckBoxes(categoriesNumber)
+                .enterChildAgeFrom(childAgeFrom)
+                .enterChildAgeFor(childAgeFor)
+                .getBelongingToCenter()
+                .getCertainCenter(centerNumber)
+                .clickNextStepButton()
+                .enterContactPhone(contactPhone)
+                .clickNextStepButton()
+                .enterDescription(description)
+                .clickEndButton();
+
+        Club club = entityService.getClubService().getClubsByName(nameField).get(0);
+        System.out.println(entityService.getClubService().getClubsByName(nameField));
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(
+                Arrays.asList(club.getAgeFrom(), club.getAgeTo(), club.getDescription()),
+                Arrays.asList(childAgeFrom, childAgeFor, description)
+        );
+
+        softAssert.assertAll();
+    }
+
 }
