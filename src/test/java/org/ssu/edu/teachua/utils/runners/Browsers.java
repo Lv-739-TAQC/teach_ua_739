@@ -43,6 +43,7 @@ public class Browsers {
                 break;
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.addArguments("--allow-origins=https://speak-ukrainian.org.ua");
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
             default:

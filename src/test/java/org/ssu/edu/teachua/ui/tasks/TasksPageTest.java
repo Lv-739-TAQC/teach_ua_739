@@ -43,11 +43,6 @@ public class TasksPageTest extends LoginWithAdminRunner {
                 .openAddTaskPage();
     }
 
-    @Test
-    public void testDescriptionFieldInvalid() {
-        System.out.println("Result is: " + addTaskPage.areWebElementsEmpty());
-    }
-
     @Issue("TUA-524")
     @Severity(SeverityLevel.NORMAL)
     @Description("This test case verifies that admin can't create task with invalid data" +
@@ -114,7 +109,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
 					valueProvider.getUDbUserPassword());
 			List<Task> listTasksByName = taskService.getTasksByName(name);
 			Assert.assertEquals(listTasksByName.size(), 0);
-		} catch (DBException | EntityException e) {
+		} catch (DBException e) {
 			e.printStackTrace();
 		}
 	}
