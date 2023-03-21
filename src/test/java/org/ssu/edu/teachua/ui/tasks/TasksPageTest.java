@@ -134,6 +134,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
 
         List<Task> tasks = entityService.getTaskService().getTasksByName(NAME);
         softAssert.assertEquals(tasks.size(), 1);
+        softAssert.assertEquals(tasks.get(0).getName(), NAME);
         softAssert.assertAll();
     }
 }
