@@ -8,29 +8,58 @@ import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.modal.AddLocationComponent;
 import org.ssu.edu.teachua.ui.components.modal.BaseClubComponent;
 
+/**
+ * This class contains elements and classes
+ * that describe the Contacts page of Add Club pop-up
+ */
 public class AddClubContactsComponent extends BaseClubComponent {
 
+    /**
+     * This element is finds by xPath the "Add Location" button
+     */
     @FindBy(how = How.XPATH, using = ".//div/span[@class='add-club-location']")
     protected WebElement addLocationButton;
 
+    /**
+     * This element is finds by xPath the "Online" slider button
+     * which makes club online or offline
+     */
     @FindBy(how = How.XPATH, using = ".//button[@role]")
     protected WebElement onlineSwitchButton;
 
+    /**
+     * This element is finds by xPath the field for entering the club Facebook contact
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactFacebook']")
     protected WebElement contactFacebookField;
 
+    /**
+     * This element is finds by xPath the field for entering the club Website contact
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactContact']")
     protected WebElement contactContactField;
 
+    /**
+     * This element is finds by xPath the field for entering the club Email contact
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactПошта']")
     protected WebElement contactEmailField;
 
+    /**
+     * This element is finds by xPath the field for entering the club Skype contact
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactSkype']")
     protected WebElement contactSkypeField;
 
+    /**
+     * This element is finds by xPath the field for entering the club WhatsApp contact
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactWhatsApp']")
     protected WebElement contactWhatsAppField;
 
+    /**
+     * This element is finds by xPath the field for entering the club Phone number
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactТелефон']")
     protected WebElement contactPhoneField;
 
@@ -38,6 +67,10 @@ public class AddClubContactsComponent extends BaseClubComponent {
         super(driver);
     }
 
+    /**
+     * This method open the Add Location pop-up
+     * @return new instance of AddLocationComponent
+     */
     @Step("Open Add Location pop-up")
     public AddLocationComponent clickAddLocationButton() {
         waitForElementToBeClickable(addLocationButton);
@@ -45,13 +78,22 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return new AddLocationComponent(driver);
     }
 
-    @Step("Make club online")
+    /**
+     * This method makes club online
+     * @return instance of AddClubContactsComponent
+     */
+    @Step("Makes club online")
     public AddClubContactsComponent clickOnlineSwitchButton() {
         waitForElementToBeClickable(onlineSwitchButton);
         this.onlineSwitchButton.click();
         return this;
     }
 
+    /**
+     * This method entering club Facebook contact
+     * @param contactFacebook
+     * @return instance of AddClubContactsComponent
+     */
     @Step("Enter Facebook contact {contactFacebook}")
     public AddClubContactsComponent enterContactFacebook(String contactFacebook) {
         waitForElementToBeClickable(contactFacebookField);
@@ -61,6 +103,11 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method entering club Website contact
+     * @param contactContact club Website
+     * @return instance of AddClubContactsComponent
+     */
     @Step("Enter club contact {contactContact}")
     public AddClubContactsComponent enterContactContact(String contactContact) {
         waitForElementToBeClickable(contactContactField);
@@ -70,6 +117,11 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method entering club Email contact
+     * @param contactEmail
+     * @return instance of AddClubContactsComponent
+     */
     @Step("Enter email contact {contactEmail}")
     public AddClubContactsComponent enterContactEmail(String contactEmail) {
         waitForElementToBeClickable(contactEmailField);
@@ -79,6 +131,11 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method entering club Skype contact
+     * @param contactSkype
+     * @return instance of AddClubContactsComponent
+     */
     @Step("Enter Skype contact{contactSkype}")
     public AddClubContactsComponent enterContactSkype(String contactSkype) {
         waitForElementToBeClickable(contactSkypeField);
@@ -88,6 +145,11 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method entering club WhatsApp contact
+     * @param contactWhatsApp
+     * @return instance of AddClubContactsComponent
+     */
     @Step("Enter WhatsApp contact {contactWhatsApp}")
     public AddClubContactsComponent enterContactWhatsApp(String contactWhatsApp) {
         waitForElementToBeClickable(contactWhatsAppField);
@@ -97,6 +159,11 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method entering club Phone number without country code
+     * @param contactPhone
+     * @return instance of AddClubContactsComponent
+     */
     @Step("Enter phone number {contactPhone}")
     public AddClubContactsComponent enterContactPhone(String contactPhone) {
         waitForElementToBeClickable(contactPhoneField);
@@ -106,6 +173,10 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return this;
     }
 
+    /**
+     * This method click on the 'Next' button
+     * @return new instance of AddClubDescriptionComponent
+     */
     @Step("Click on the 'Next' button")
     public AddClubDescriptionComponent clickNextStepButton() {
         waitForElementToBeClickable(nextStepButton);
@@ -113,6 +184,10 @@ public class AddClubContactsComponent extends BaseClubComponent {
         return new AddClubDescriptionComponent(driver);
     }
 
+    /**
+     * This method click on the 'Back' button
+     * @return new instance of AddClubMainInfoComponent
+     */
     @Step("Click on the 'Back' button")
     public AddClubMainInfoComponent clickPreviousPageButton() {
         waitForElementToBeClickable(previousPageButton);

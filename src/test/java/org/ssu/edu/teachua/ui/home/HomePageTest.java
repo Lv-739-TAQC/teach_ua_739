@@ -16,15 +16,13 @@ import java.util.List;
 
 public class HomePageTest extends BaseTestRunnerUI {
 
-    private ClubService clubService;
-
     @Issue("TUA-226")
     @Description("[Basic Search] Verify that user can perform basic search by name of a club")
     @Test
     public void testIfClubIsFoundByName() throws DBException, EntityException {
 
         HomePage homePage = new HomePage(driver);
-        clubService = new ClubService(valueProvider.getDbUrl(), valueProvider.getDbUserName(), valueProvider.getUDbUserPassword());
+        ClubService clubService = entityService.getClubService();
 
         String location = homePage.getHeader().getLocation();
         List<Club> clubs = clubService.getClubsByCity(location);
