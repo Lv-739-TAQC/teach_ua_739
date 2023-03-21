@@ -1,14 +1,13 @@
 package org.ssu.edu.teachua.ui.tasks;
 
-import io.qameta.allure.Issue;
-import org.ssu.edu.teachua.db.entities.Task;
 import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.ssu.edu.teachua.db.entities.Task;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.tasks.AddTaskPage;
 import org.ssu.edu.teachua.utils.StringGenerator;
-import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.ssu.edu.teachua.utils.providers.DataProviderTask;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.testng.annotations.BeforeMethod;
@@ -20,9 +19,14 @@ import java.util.List;
 
 public class TasksPageTest extends LoginWithAdminRunner {
 
-    private AddTaskPage addTaskPage;
+	private AddTaskPage addTaskPage;
 
-    @BeforeMethod
+	@Test
+	public void testDescriptionFieldInvalid() {
+		System.out.println("Result is: " + addTaskPage.areWebElementsEmpty());
+	}
+
+	@BeforeMethod
     void openAddTaskPage() {
         driver.navigate().refresh();
         addTaskPage = new HomePage(driver)
@@ -32,11 +36,6 @@ public class TasksPageTest extends LoginWithAdminRunner {
                 .openChallengesMenu()
                 .clickTasks()
                 .openAddTaskPage();
-    }
-
-    @Test
-    public void testDescriptionFieldInvalid() {
-        System.out.println("Result is: " + addTaskPage.areWebElementsEmpty());
     }
 
     @Issue("TUA-524")
@@ -135,5 +134,4 @@ public class TasksPageTest extends LoginWithAdminRunner {
         softAssert.assertEquals(tasks.size(), 1);
         softAssert.assertAll();
     }
-
 }
