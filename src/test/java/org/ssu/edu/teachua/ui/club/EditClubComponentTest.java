@@ -53,17 +53,13 @@ public class EditClubComponentTest extends LoginWithLeadRunner {
 
       driver.navigate().refresh();
 
-        try {
-            List<Club> listClubByName = clubService.getClubsByName(newName);
-            Club club = null;
-            if (!listClubByName.isEmpty()) {
-                club = listClubByName.get(0);
-            }
-
-            Assert.assertEquals(club != null ? club.getName() : "errorClub",newName);
-        } catch (DBException | EntityException e) {
-            e.printStackTrace();
+        List<Club> listClubByName = clubService.getClubsByName(newName);
+        Club club = null;
+        if (!listClubByName.isEmpty()) {
+            club = listClubByName.get(0);
         }
+
+        Assert.assertEquals(club != null ? club.getName() : "errorClub",newName);
 
     }
 }
