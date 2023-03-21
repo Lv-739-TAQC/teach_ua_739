@@ -91,7 +91,6 @@ public class TasksPageTest extends LoginWithAdminRunner {
     private static final String TITLE = StringGenerator.generateRandomString(50);
     private static final String DESCRIPTION = StringGenerator.generateRandomString(200);
     private static final String CHALLENGE = "Ukrainian";
-    private final String PHOTO_PATH = valueProvider.getFilePath("photos\\heart.png");
 
     @Issue(value = "TUA-526")
     @Description(value = "[Завдання] Verify that admin can't create a task without choosing any challenge in dropdown list on the 'Челендж' field")
@@ -99,8 +98,8 @@ public class TasksPageTest extends LoginWithAdminRunner {
     public void verifyThatAdminCantCreateTaskWithoutChoosingAnyChallengeInDropdownList() {
         Calendar now = Calendar.getInstance();
         String errorMessage = addTaskPage
-                .selectStartDate(now.get(Calendar.DATE), now.get(Calendar.MONTH), now.get(Calendar.YEAR) + 1)
-                .uploadPhoto(PHOTO_PATH)
+                .selectStartDate(21, 3, now.get(Calendar.YEAR) + 1)
+                .uploadPhoto(valueProvider.getFilePath("photos\\heart.png"))
                 .typeName(NAME)
                 .typeTitle(TITLE)
                 .typeDescription(DESCRIPTION)
@@ -119,18 +118,17 @@ public class TasksPageTest extends LoginWithAdminRunner {
     @Test
     public void verifyThatAdminCanCreateTaskWithValidData() {
         Calendar now = Calendar.getInstance();
-        String title = addTaskPage
-                .selectStartDate(now.get(Calendar.DATE), now.get(Calendar.MONTH), now.get(Calendar.YEAR) + 1)
-                .uploadPhoto(PHOTO_PATH)
+        String name = addTaskPage
+                .selectStartDate(21, 3, now.get(Calendar.YEAR) + 1)
+                .uploadPhoto(valueProvider.getFilePath("photos\\heart.png"))
                 .typeName(NAME)
                 .typeTitle(TITLE)
                 .typeDescription(DESCRIPTION)
                 .selectChallenge(CHALLENGE)
                 .clickSuccessSaveButton()
-                .getChallengeTitle();
+                .getTaskName();
 
-        softAssert.assertEquals(title, TITLE);
-
+        softAssert.assertEquals(name, NAME);
 
         List<Task> tasks = entityService.getTaskService().getTasksByName(NAME);
         softAssert.assertEquals(tasks.size(), 1);

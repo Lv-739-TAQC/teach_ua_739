@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BasePage;
 import org.ssu.edu.teachua.ui.components.date_picker.SelectDateComponent;
-import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
+import org.ssu.edu.teachua.ui.pages.view.ViewTaskPage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -129,9 +129,9 @@ public class AddTaskPage extends BasePage {
      * @return ViewChallengePage with created task
      */
     @Step("Click save button and return ViewTaskPage")
-    public ViewChallengePage clickSuccessSaveButton() {
+    public ViewTaskPage clickSuccessSaveButton() {
         waitForElementToAppear(saveBtn).click();
-        return new ViewChallengePage(driver);
+        return new ViewTaskPage(driver);
     }
 
     /**
