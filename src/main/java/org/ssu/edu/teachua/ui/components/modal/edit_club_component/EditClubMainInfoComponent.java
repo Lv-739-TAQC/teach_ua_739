@@ -10,23 +10,45 @@ import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInf
 
 import java.util.List;
 
+/**
+ * This class contains elements and classes
+ * that describe the Main Info page of Edit Club pop-up
+ */
 public class EditClubMainInfoComponent extends AddClubMainInfoComponent {
 
+    /**
+     * This element is finds by xPath the field for entering club name
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='edit_category_name']")
     private WebElement editNameField; //min 5 characters //need to be clear
 
+    /**
+     * This list of elements is finds by xPath the checkboxes with possible categories for the club
+     */
     @FindBy(how = How.XPATH, using = ".//div/form[@id='edit_category']//div/label/span[contains(@class, 'ant-checkbox')]")
     private List<WebElement> editCategoriesCheckBoxes;
 
+    /**
+     * This element is finds by xPath the field for entering min child age
+     */
     @FindBy(how = How.XPATH, using = ".//div/form[@id='edit_category']//div/input[@aria-valuemin='2']")
     private WebElement editChildAgeFrom;
 
+    /**
+     * This element is finds by xPath the field for entering max child age
+     */
     @FindBy(how = How.XPATH, using = ".//div/form[@id='edit_category']//div/input[@aria-valuemin='3']")
     private WebElement editChildAgeFor;
 
+    /**
+     * This element is finds by xPath the dropdown with the centers for club
+     */
     @FindBy(how = How.XPATH, using = ".//div/form[@id='edit_category']//div[contains(@class, 'ant-select-in')]")
     private WebElement editBelongingToCenter; //click for open dropdown
 
+    /**
+     * This list of elements is finds by xPath the center dropdown elements
+     */
     @FindBy(how = How.XPATH, using = ".//div[@aria-selected='false' and @class]")
     private List<WebElement> editCenterList;
 

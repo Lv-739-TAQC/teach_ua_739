@@ -8,29 +8,58 @@ import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.modal.AddLocationComponent;
 import org.ssu.edu.teachua.ui.components.modal.BaseClubComponent;
 
+/**
+ * This class contains elements and classes
+ * that describe the Contacts page of Add Club pop-up
+ */
 public class AddClubContactsComponent extends BaseClubComponent {
 
+    /**
+     * This element is finds by xPath the "Add Location" button
+     */
     @FindBy(how = How.XPATH, using = ".//div/span[@class='add-club-location']")
     protected WebElement addLocationButton;
 
+    /**
+     * This element is finds by xPath the "Online" slider button
+     * which makes club online or offline
+     */
     @FindBy(how = How.XPATH, using = ".//button[@role]")
     protected WebElement onlineSwitchButton;
 
+    /**
+     * This element is finds by xPath the field for entering the club Facebook contact
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactFacebook']")
     protected WebElement contactFacebookField;
 
+    /**
+     * This element is finds by xPath the field for entering the club Website contact
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactContact']")
     protected WebElement contactContactField;
 
+    /**
+     * This element is finds by xPath the field for entering the club Email contact
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactПошта']")
     protected WebElement contactEmailField;
 
+    /**
+     * This element is finds by xPath the field for entering the club Skype contact
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactSkype']")
     protected WebElement contactSkypeField;
 
+    /**
+     * This element is finds by xPath the field for entering the club WhatsApp contact
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactWhatsApp']")
     protected WebElement contactWhatsAppField;
 
+    /**
+     * This element is finds by xPath the field for entering the club Phone number
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_contactТелефон']")
     protected WebElement contactPhoneField;
 

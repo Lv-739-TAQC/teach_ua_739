@@ -8,8 +8,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubDescriptionComponent;
 
+/**
+ * This class contains elements and classes
+ * that describe the Description page of Edit Club pop-up
+ */
 public class EditClubDescriptionComponent extends AddClubDescriptionComponent {
 
+    /**
+     * This element is finds by xPath the "Description" field
+     */
     @FindBy(how = How.XPATH, using = ".//textarea[@id='basic_descriptionText']")
     protected WebElement editDescriptionField; //min 40 max 1500 characters
 

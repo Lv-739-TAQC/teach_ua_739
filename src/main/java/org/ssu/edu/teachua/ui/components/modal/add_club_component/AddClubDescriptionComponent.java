@@ -7,23 +7,47 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.modal.BaseClubComponent;
 
+/**
+ * This class contains elements and classes
+ * that describe the Description page of Add Club pop-up
+ */
 public class AddClubDescriptionComponent extends BaseClubComponent {
 
+    /**
+     * This element is finds by xPath the "Upload new logo" input
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id = 'basic_urlLogo']")
     protected WebElement uploadLogo;
 
+    /**
+     * This element is finds by xPath the "Upload new background picture" input
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id = 'basic_urlBackground']")
     protected WebElement uploadBackgroundPicture;
 
+    /**
+     * This element is finds by xPath the "Upload gallery" input
+     */
     @FindBy(how = How.XPATH, using = "(.//input[@type='file'])[3]")
     protected WebElement uploadGallery;
 
+    /**
+     * This element is finds by xPath the "Description" field
+     */
     @FindBy(how = How.XPATH, using = ".//textarea[@id='basic_description']")
     protected WebElement descriptionField;
 
+    /**
+     * This element is finds by xPath the green check-circle
+     * which appears next to the area-text-field with valid data entered
+     */
     @FindBy(how = How.XPATH, using = ".//span[contains(@class, 'success')]")
     protected WebElement descriptionFieldSuccess;
 
+    /**
+     * This element is finds by xPath the error message
+     * which appears next to the field with invalid data entered
+     */
     @FindBy(how = How.XPATH, using = ".//div[@id='basic_description_help']")
     protected WebElement descriptionErrorMsg;
 

@@ -9,23 +9,45 @@ import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.modal.AddLocationComponent;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubContactsComponent;
 
+/**
+ * This class contains elements and classes
+ * that describe the Contacts page of Edit Club pop-up
+ */
 public class EditClubContactsComponent extends AddClubContactsComponent {
 
+    /**
+     * This element is finds by xPath the "Add Location" button
+     */
     @FindBy(how = How.XPATH, using = ".//span[@aria-label='edit']")
     private WebElement editLocationButton;
 
+    /**
+     * This element is finds by xPath the "Delete Location" icon
+     */
     @FindBy(how = How.XPATH, using = ".//span[@aria-label='delete']")
     private WebElement deleteLocationButton;
 
+    /**
+     * This element is finds by xPath the "Delete location?" message
+     */
     @FindBy(how = How.XPATH, using = ".//div[@class='ant-popover-message']")
     private WebElement deleteLocationMessage;
 
+    /**
+     * This element is finds by xPath the "Yes" button on the "Delete location?" message
+     */
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'ok-button')]")
     private WebElement okDeleteLocationButton;
 
+    /**
+     * This element is finds by xPath the "No" button on the "Delete location?" message
+     */
     @FindBy(how = How.XPATH, using = ".//button[contains(@class, 'cancel-button')]")
     private WebElement cancelDeleteLocationButton;
 
+    /**
+     * This element is finds by xPath the field for entering the club Phone number
+     */
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_Телефон']")
     protected WebElement editContactPhoneField;
 

@@ -20,6 +20,10 @@ import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * This class contains elements and classes
+ * that describe the Header components of the speak-ukrainian.org.ua
+ */
 public class HeaderComponent extends BaseComponent {
 
     @FindBy(how = How.XPATH, using = ".//div[@class='logo']")
