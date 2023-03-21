@@ -10,6 +10,7 @@ import java.math.BigInteger;
 @TableDB(name = "districts")
 @Data
 public class District extends Entity {
+
     @Column(name = "name")
     private String name;
 

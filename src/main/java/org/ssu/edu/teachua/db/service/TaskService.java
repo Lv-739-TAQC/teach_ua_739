@@ -15,13 +15,25 @@ public class TaskService extends BaseService {
         super(url, username, password);
     }
 
-    public  Task getTaskById(Integer id) throws DBException, EntityException {
-        return new TaskDAOImpl().findElementById(connection, id, true);
+    public Task getTaskById(Integer id) {
+        Task task = null;
+        try {
+            task = new TaskDAOImpl().findElementById(connection, id, true);
+        } catch (DBException | EntityException e) {
+            System.out.println(e.getMessage());
+        }
+        return task;
     }
 
-    public  List<Task> getTasksByName(String name) throws DBException, EntityException {
-        return new TaskDAOImpl().findElementsBySQlRequest(
-                connection, SQL_FIND_TASK_BY_NAME, true, name
-        );
+    public List<Task> getTasksByName(String name) {
+        List<Task> taskList = null;
+        try {
+            taskList = new TaskDAOImpl().findElementsBySQlRequest(
+                    connection, SQL_FIND_TASK_BY_NAME, true, name
+            );
+        } catch (DBException | EntityException e) {
+            System.out.println(e.getMessage());
+        }
+        return taskList;
     }
 }

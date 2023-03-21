@@ -10,9 +10,10 @@ public class City extends Entity {
 
     @Column(name = "latitude")
     private Double latitude;
+
     @Column(name = "longitude")
     private Double longitude;
+
     @Column(name = "name")
     private String name;
-
 }

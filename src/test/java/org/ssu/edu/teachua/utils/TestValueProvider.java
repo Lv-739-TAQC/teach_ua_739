@@ -1,7 +1,5 @@
 package org.ssu.edu.teachua.utils;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -38,7 +36,6 @@ public class TestValueProvider {
         return properties.getProperty("leadPassword");
     }
 
-
     public String getUserEmail() {
         return properties.getProperty("userEmail");
     }
@@ -46,32 +43,25 @@ public class TestValueProvider {
     public String getUserPassword() {
         return properties.getProperty("userPassword");
     }
-    public String getDbUrl() {
-        return properties.getProperty("dbUrl");
-    }
-    public String getDbUserName() {
-        return properties.getProperty("dbUserName");
-    }
-    public String getUDbUserPassword() {
-        return properties.getProperty("dbUserPassword");
-    }
 
     public String getBaseUiUrl() {
         return properties.getProperty("baseUiUrl");
     }
 
+    public String getDbUrl() {
+        return properties.getProperty("dbUrl");
+    }
+
+    public String getDbUserName() {
+        return properties.getProperty("dbUserName");
+    }
+
+    public String getUDbUserPassword() {
+        return properties.getProperty("dbUserPassword");
+    }
+
     public String getFilePath(String fileName) {
         return Paths.get(Paths.get(System.getProperty("user.dir")).toString(),
                 "src", "test", "resources", fileName).toString();
-    }
-
-    public String getStringFromFile(String filePath) {
-        try {
-            Path fileName = Path.of(filePath);
-            return Files.readString(fileName);
-        } catch (IOException e) {
-            System.out.println("File not found: " + e);
-        }
-        return filePath;
     }
 }
