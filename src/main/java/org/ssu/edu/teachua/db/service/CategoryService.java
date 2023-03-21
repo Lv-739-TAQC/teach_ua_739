@@ -16,12 +16,12 @@ public class CategoryService extends BaseService {
         super(url, username, password);
     }
 
-    @Step("From database get category by id: '{id}'")
+    @Step("From database get categories by id: '{id}'")
     public Category getCategoryById(Integer id) throws DBException, EntityException {
         return new CategoryDAOImpl().findElementById(connection, id, true);
     }
 
-    @Step("From database get category by name: '{name}'")
+    @Step("From database get categories by name: '{name}'")
     public List<Category> getCategoryByName(String name) throws DBException, EntityException {
         return new CategoryDAOImpl().findElementsBySQlRequest(
                 connection, SQL_FIND_CATEGORY_BY_NAME, true, name
