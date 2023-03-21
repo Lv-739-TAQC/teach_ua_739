@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BasePage;
 import org.ssu.edu.teachua.ui.components.date_picker.SelectDateComponent;
+import org.ssu.edu.teachua.ui.pages.view.ViewTaskPage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,13 +42,23 @@ public class AddTaskPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//span[text()='Зберегти']//parent::button")
     protected WebElement saveBtn;
 
-    @FindBy(how = How.XPATH, using = "//div[contains(@class, 'ant-message-warning')]")
-    protected WebElement errorMsg;
+    @FindBy(how = How.XPATH, using = "//div[@class='ant-message-custom-content ant-message-success']")
+    private WebElement successMessage;
+
+    @FindBy(how = How.XPATH, using = "//*[@class='ant-message']")
+    private WebElement errorMessage;
 
     public AddTaskPage(WebDriver driver) {
         super(driver);
     }
 
+    /**
+     * select date for future task
+     * @param day - day of task
+     * @param month - month of task
+     * @param year - year of task
+     * @return AddTaskPage with selected date
+     */
     @Step("Select date with '{day}' day, '{month}' month and '{year}' year into task start date field")
     public AddTaskPage selectStartDate(int day, int month, int year) {
         waitForElementToAppear(startDateInput).click();
@@ -56,6 +67,11 @@ public class AddTaskPage extends BasePage {
         return this;
     }
 
+    /**
+     * upload photo fo task
+     * @param photoPath - photoPath from computer
+     * @return AddTaskPage with selected photo
+     */
     @Step("Upload photo from '{photoPath}' into task photo field")
     public AddTaskPage uploadPhoto(String photoPath) {
         photoInput.sendKeys(photoPath);
@@ -63,24 +79,44 @@ public class AddTaskPage extends BasePage {
         return this;
     }
 
+    /**
+     * type name for task
+     * @param name - name of the task
+     * @return AddTaskPage with typed name
+     */
     @Step("Type '{name}' into task name field")
     public AddTaskPage typeName(String name) {
         waitForElementToAppear(nameInput).sendKeys(name);
         return this;
     }
 
+    /**
+     * type title for task
+     * @param title - title of the task
+     * @return AddTaskPage with typed title
+     */
     @Step("Type '{title}' into task title field")
     public AddTaskPage typeTitle(String title) {
         waitForElementToAppear(titleInput).sendKeys(title);
         return this;
     }
 
+    /**
+     * type description for task
+     * @param description - description of the task
+     * @return AddTaskPage with typed description
+     */
     @Step("Type '{description}' into task description field")
     public AddTaskPage typeDescription(String description) {
         waitForElementToAppear(descriptionInput).sendKeys(description);
         return this;
     }
 
+    /**
+     * select challenge from dropdown list for task
+     * @param challenge - challenge name of the task
+     * @return AddTaskPage with selected challenge
+     */
     @Step("Select '{challenge}' into task from challenge dropdown")
     public AddTaskPage selectChallenge(String challenge) {
         waitForElementToAppear(challengeDropdown).click();
@@ -88,13 +124,48 @@ public class AddTaskPage extends BasePage {
         return this;
     }
 
-    @Step("Click save button")
-    public AddTaskPage clickSaveButton() {
+    /**
+     * click save button and create task
+     * @return ViewChallengePage with created task
+     */
+    @Step("Click save button and return ViewTaskPage")
+    public ViewTaskPage clickSuccessSaveButton() {
+        waitForElementToAppear(saveBtn).click();
+        return new ViewTaskPage(driver);
+    }
+
+    /**
+     * click save button with invalid data to show error message
+     * @return AddTaskPage with error message
+     */
+    @Step("Click save button and return AddTaskPage")
+    public AddTaskPage clickFailSaveButton() {
         waitForElementToAppear(saveBtn).click();
         return this;
     }
 
+    /**
+     * show success message of created task
+     * @return text of success message
+     */
+    @Step("Get success message")
+    public String checkSuccessMessage() {
+        return waitForElementToAppear(successMessage).getText();
+    }
 
+    /**
+     * show error message of uncreated task
+     * @return text of error message
+     */
+    @Step("Verify that all fields are empty by default")
+    public String checkErrorMessage() {
+        return waitForElementToAppear(errorMessage).getText();
+    }
+
+    /**
+     * Check if same input parameter are empty
+     * @return boolean value if same input parameter are empty
+     */
     @Step("Verify that all fields are empty by default")
     public boolean areWebElementsEmpty() {
         List<WebElement> taskPageFieldsList = new ArrayList<WebElement>(Arrays.asList(
@@ -109,6 +180,6 @@ public class AddTaskPage extends BasePage {
     }
     @Step("Get error message")
     public String getErrorMsg() {
-        return waitForElementToAppear(errorMsg).getText();
+        return waitForElementToAppear(errorMessage).getText();
     }
 }

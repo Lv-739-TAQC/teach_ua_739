@@ -24,11 +24,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
-
 public class AdvancedSearchPageTest extends BaseTestRunnerUI {
-
-    private ClubService clubService;
 
     @Issue("TUA-210")
     @Description("Verify that input field 'Вік дитини' accepts only positive integers from 2 to 18")
@@ -248,7 +244,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     @Test
     public void testIfClubsSortedByRating() throws DBException, EntityException {
 
-        clubService = new ClubService(valueProvider.getDbUrl(), valueProvider.getDbUserName(), valueProvider.getUDbUserPassword());
+        ClubService clubService = entityService.getClubService();
         AdvancedSearchCenterComponent advancedSearchClub = new HomePage(driver)
                 .clickAdvancedSearchIcon()
                 .chooseSortByRating()
@@ -256,7 +252,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
                 .clearCity();
         String[][] actualClubsSortedAsc = advancedSearchClub.getNamesAndRatingsOfCards();
 
-        List<Club> clubsAscDb = clubService.getClubsSortedByRatingASC().subList(0, advancedSearchClub.getCountCards());
+        List<Club> clubsAscDb = clubService.getClubsSortedByRatingASC();
         String[][] expectedClubsSortedAsc = new String[clubsAscDb.size()][2];
         for (Club club : clubsAscDb) {
             expectedClubsSortedAsc[clubsAscDb.indexOf(club)][0] = club.getName();
@@ -265,7 +261,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
 
         String[][] actualClubsSortedDesc = advancedSearchClub.chooseSortTypeDesc().getNamesAndRatingsOfCards();
 
-        List<Club> clubsDescDb = clubService.getClubsSortedByRatingDESC().subList(0, advancedSearchClub.getCountCards());
+        List<Club> clubsDescDb = clubService.getClubsSortedByRatingDESC();
         String[][] expectedClubsSortedDesc = new String[clubsDescDb.size()][2];
         for (Club club : clubsDescDb) {
             expectedClubsSortedDesc[clubsDescDb.indexOf(club)][0] = club.getName();

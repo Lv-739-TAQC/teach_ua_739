@@ -18,6 +18,13 @@ public class EditTaskPage extends AddTaskPage {
         super(driver);
     }
 
+    /**
+     * select date for future task
+     * @param day - day of task
+     * @param month - month of task
+     * @param year - year of task
+     * @return AddTaskPage with selected date
+     */
     @Step("Select date with '{day}' day, '{month}' month and '{year}' year into task start date field")
     @Override
     public AddTaskPage selectStartDate(int day, int month, int year) {
@@ -27,6 +34,11 @@ public class EditTaskPage extends AddTaskPage {
         return this;
     }
 
+    /**
+     * clear and type name for task
+     * @param name - name of the task
+     * @return AddTaskPage with typed name
+     */
     @Step("Type '{name}' into task name field")
     @Override
     public AddTaskPage typeName(String name) {
@@ -35,6 +47,11 @@ public class EditTaskPage extends AddTaskPage {
         return super.typeName(name);
     }
 
+    /**
+     * clear and type title for task
+     * @param title - title of the task
+     * @return AddTaskPage with typed title
+     */
     @Step("Type '{title}' into task title field")
     @Override
     public AddTaskPage typeTitle(String title) {
@@ -42,6 +59,11 @@ public class EditTaskPage extends AddTaskPage {
         return super.typeTitle(title);
     }
 
+    /**
+     * clear and type description for task
+     * @param description - title of the task
+     * @return AddTaskPage with typed description
+     */
     @Step("Type '{description}' into task description field")
     @Override
     public AddTaskPage typeDescription(String description) {
@@ -49,6 +71,11 @@ public class EditTaskPage extends AddTaskPage {
         return super.typeDescription(description);
     }
 
+    /**
+     * select challenge from dropdown list for task
+     * @param challenge - challenge name of the task
+     * @return AddTaskPage with selected challenge
+     */
     @Step("Select '{challenge}' into task from challenge dropdown")
     @Override
     public AddTaskPage selectChallenge(String challenge) {

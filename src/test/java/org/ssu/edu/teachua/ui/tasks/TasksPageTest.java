@@ -1,26 +1,21 @@
 package org.ssu.edu.teachua.ui.tasks;
 
-
-import java.util.List;
-import org.ssu.edu.teachua.db.entities.Task;
-import org.ssu.edu.teachua.db.repository.DBException;
-import org.ssu.edu.teachua.db.repository.EntityException;
-import org.ssu.edu.teachua.db.service.TaskService;
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.ssu.edu.teachua.db.entities.Task;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.tasks.AddTaskPage;
+import org.ssu.edu.teachua.utils.StringGenerator;
 import org.ssu.edu.teachua.utils.providers.DataProviderTask;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Issue;
+import java.util.Calendar;
+import java.util.List;
 
 public class TasksPageTest extends LoginWithAdminRunner {
 
@@ -60,7 +55,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
                 .typeTitle(title)
                 .typeDescription(description)
                 .selectChallenge(challenge)
-                .clickSaveButton()
+                .clickFailSaveButton()
                 .getErrorMsg();
 
         dpSoftAssert.assertEquals(actualErrorMsg, expectedErrorMsg);
@@ -83,7 +78,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
                 .typeDescription(description)
                 .selectChallenge(challenge)
                 .selectStartDate(day, month, year)
-                .clickSaveButton()
+                .clickFailSaveButton()
                 .getErrorMsg();
 
         softAssert.assertEquals(actualErrorMsg, expectedErrorMsg);
@@ -113,4 +108,53 @@ public class TasksPageTest extends LoginWithAdminRunner {
 			e.printStackTrace();
 		}
 	}
+
+    private static final String NAME = StringGenerator.generateRandomString(20);
+    private static final String TITLE = StringGenerator.generateRandomString(50);
+    private static final String DESCRIPTION = StringGenerator.generateRandomString(200);
+    private static final String CHALLENGE = "Ukrainian";
+
+    @Issue(value = "TUA-526")
+    @Description(value = "[Завдання] Verify that admin can't create a task without choosing any challenge in dropdown list on the 'Челендж' field")
+    @Test
+    public void verifyThatAdminCantCreateTaskWithoutChoosingAnyChallengeInDropdownList() {
+        Calendar now = Calendar.getInstance();
+        String errorMessage = addTaskPage
+                .selectStartDate(21, 3, now.get(Calendar.YEAR) + 1)
+                .uploadPhoto(valueProvider.getFilePath("photos\\heart.png"))
+                .typeName(NAME)
+                .typeTitle(TITLE)
+                .typeDescription(DESCRIPTION)
+                .clickFailSaveButton()
+                .checkErrorMessage();
+
+        softAssert.assertEquals(errorMessage, "Please, select challenge");
+
+        List<Task> tasks = entityService.getTaskService().getTasksByName(NAME);
+        softAssert.assertEquals(tasks.size(), 0);
+        softAssert.assertAll();
+    }
+
+    @Issue(value = "TUA-520")
+    @Description(value = "[Завдання] Verify that admin can create a task with valid data on 'Додайте завдання' page")
+    @Test
+    public void verifyThatAdminCanCreateTaskWithValidData() {
+        Calendar now = Calendar.getInstance();
+        String name = addTaskPage
+                .selectStartDate(21, 3, now.get(Calendar.YEAR) + 1)
+                .uploadPhoto(valueProvider.getFilePath("photos\\heart.png"))
+                .typeName(NAME)
+                .typeTitle(TITLE)
+                .typeDescription(DESCRIPTION)
+                .selectChallenge(CHALLENGE)
+                .clickSuccessSaveButton()
+                .getTaskName();
+
+        softAssert.assertEquals(name, NAME);
+
+        List<Task> tasks = entityService.getTaskService().getTasksByName(NAME);
+        softAssert.assertEquals(tasks.size(), 1);
+        softAssert.assertEquals(tasks.get(0).getName(), NAME);
+        softAssert.assertAll();
+    }
 }
