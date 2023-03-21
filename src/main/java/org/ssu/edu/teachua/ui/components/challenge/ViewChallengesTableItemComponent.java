@@ -9,6 +9,10 @@ import org.ssu.edu.teachua.ui.base.BaseComponent;
 import org.ssu.edu.teachua.ui.pages.challenges.ChallengesPage;
 import org.ssu.edu.teachua.ui.pages.challenges.EditChallengePage;
 
+/**
+ * class contains elements and methods which represents
+ * the functionality to view challenges table component of Challenges page
+ */
 public class ViewChallengesTableItemComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[1]")
     private WebElement challengeId;

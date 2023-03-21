@@ -6,7 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-
+/**
+ * class contains elements and methods which represents
+ * the functionality to edit a challenge
+ */
 public class EditChallengePage extends AddChallengePage {
     @FindBy(how = How.XPATH, using = "//button[@id='isActive']")
     private WebElement changeStatus;

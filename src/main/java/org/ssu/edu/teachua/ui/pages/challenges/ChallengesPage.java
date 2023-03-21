@@ -1,3 +1,7 @@
+/**
+ * package contains classes
+ * related to challenges page, creating & editing of challenge
+ */
 package org.ssu.edu.teachua.ui.pages.challenges;
 
 import io.qameta.allure.Step;
@@ -13,6 +17,10 @@ import org.ssu.edu.teachua.ui.pages.tasks.TasksPage;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * class contains elements and methods which represents
+ * the Challenges page
+ */
 public class ChallengesPage extends BasePage {
     @FindBy(how = How.XPATH, using = "//*[@class='back-btn']")
     private WebElement tasksBtn;

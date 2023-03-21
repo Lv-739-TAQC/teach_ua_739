@@ -1,3 +1,7 @@
+/**
+ * package contains classes
+ * related to view & editing of challenges table components
+ */
 package org.ssu.edu.teachua.ui.components.challenge;
 
 import io.qameta.allure.Step;
@@ -10,6 +14,10 @@ import org.ssu.edu.teachua.ui.base.BaseComponent;
 import org.ssu.edu.teachua.ui.pages.challenges.ChallengesPage;
 import org.ssu.edu.teachua.ui.pages.challenges.EditChallengePage;
 
+/**
+ * class contains elements and methods which represents
+ * the functionality to edit challenges table component of Challenges page
+ */
 public class EditChallengesTableItemComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = "(.//*[@class='ant-table-cell']//a)[1]")
     private WebElement challengeId;

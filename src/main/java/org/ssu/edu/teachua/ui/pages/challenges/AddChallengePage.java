@@ -9,6 +9,10 @@ import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.base.BasePage;
 import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
 
+/**
+ * class contains elements and methods which represents
+ * the functionality to create a challenge
+ */
 public class AddChallengePage extends BasePage {
     @FindBy(how = How.XPATH, using = "//input[@id='picture']")
     protected WebElement photoInput;
