@@ -20,12 +20,20 @@ public class TasksPage extends BasePage {
         super(driver);
     }
 
+    /**
+     * click challenges button and open ChallengesPage
+     * @return opened ChallengesPage
+     */
     @Step("Open challenges page")
     public ChallengesPage openChallengesPage() {
         waitForElementToAppear(challengesBtn).click();
         return new ChallengesPage(driver);
     }
 
+    /**
+     * click add task button and open AddTaskPage
+     * @return opened AddTaskPage
+     */
     @Step("Open add task page")
     public AddTaskPage openAddTaskPage() {
         waitForElementToAppear(addTaskBtn).click();

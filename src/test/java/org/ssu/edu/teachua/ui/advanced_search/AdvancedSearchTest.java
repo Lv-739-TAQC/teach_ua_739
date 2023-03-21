@@ -1,4 +1,4 @@
-package org.ssu.edu.teachua.ui;
+package org.ssu.edu.teachua.ui.advanced_search;
 
 import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchCenterComponent;
