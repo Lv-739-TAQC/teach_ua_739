@@ -218,7 +218,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
                 .clearCity();
         String[][] actualClubsSortedAsc = advancedSearchClub.getNamesAndRatingsOfCards();
 
-        List<Club> clubsAscDb = clubService.getClubsSortedByRatingASC().subList(0, advancedSearchClub.getCountCards());
+        List<Club> clubsAscDb = clubService.getClubsSortedByRatingASC();
         String[][] expectedClubsSortedAsc = new String[clubsAscDb.size()][2];
         for (Club club : clubsAscDb) {
             expectedClubsSortedAsc[clubsAscDb.indexOf(club)][0] = club.getName();
@@ -227,7 +227,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
 
         String[][] actualClubsSortedDesc = advancedSearchClub.chooseSortTypeDesc().getNamesAndRatingsOfCards();
 
-        List<Club> clubsDescDb = clubService.getClubsSortedByRatingDESC().subList(0, advancedSearchClub.getCountCards());
+        List<Club> clubsDescDb = clubService.getClubsSortedByRatingDESC();
         String[][] expectedClubsSortedDesc = new String[clubsDescDb.size()][2];
         for (Club club : clubsDescDb) {
             expectedClubsSortedDesc[clubsDescDb.indexOf(club)][0] = club.getName();
