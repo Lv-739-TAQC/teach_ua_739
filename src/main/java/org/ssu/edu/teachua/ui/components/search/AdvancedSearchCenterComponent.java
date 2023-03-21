@@ -16,10 +16,10 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
 
     private final String XPATH = "//div[@class='ant-select-item ant-select-item-option' and @title='%s']";
 
-    @FindBy(how = How.XPATH, using = "//span[@class='ant-radio ant-radio-checked']/input[@class='ant-radio-input']")
-    private WebElement clubRadio;
+    @FindBy(how = How.XPATH, using = "//*[@class='ant-radio ant-radio-checked']/input[@class='ant-radio-input']")
+            private WebElement clubRadio;
 
-    @FindBy(how = How.XPATH, using = ".//input[@type='radio']//following::input[1]")
+    @FindBy(how = How.XPATH, using = "//span[@class='ant-radio ant-radio-checked']/input[@class='ant-radio-input']")
     private WebElement centerRadio;
 
     @FindBy(how = How.XPATH, using = ".//span[text()='Доступний онлайн']/parent::label//input")
