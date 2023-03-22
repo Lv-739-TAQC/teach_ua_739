@@ -18,7 +18,7 @@ public class BaseTestRunnerUI {
 
     protected WebDriver driver;
 
-    protected TestValueProvider valueProvider;
+    protected static final TestValueProvider valueProvider = new TestValueProvider();
     protected SoftAssert softAssert = new SoftAssert();
     protected Browsers browsers = new Browsers();
     protected Random random = new Random();
@@ -33,17 +33,10 @@ public class BaseTestRunnerUI {
         }
     }
 
-    @BeforeSuite
-    public void initTestValueProvider() {
-        if (valueProvider == null) {
-            valueProvider = new TestValueProvider();
-        }
-        WebDriverManager.chromedriver().setup();
-    }
-
     @Parameters("browser")
     @BeforeClass(description = "Init ChromeDriver.")
     protected void initDriver(String browser, ITestContext context) {
+        WebDriverManager.chromedriver().setup();
         driver = browsers.setUpBrowser(browser);
         context.setAttribute("driver", driver);
         driver.manage().window().maximize();

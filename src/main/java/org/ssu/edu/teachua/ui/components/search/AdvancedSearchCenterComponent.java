@@ -16,10 +16,10 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
 
     private final String XPATH = "//div[@class='ant-select-item ant-select-item-option' and @title='%s']";
 
-    @FindBy(how = How.XPATH, using = ".//input[@type='radio']")
-    private WebElement clubRadio;
+    @FindBy(how = How.XPATH, using = "//*[@class='ant-radio ant-radio-checked']/input[@class='ant-radio-input']")
+            private WebElement clubRadio;
 
-    @FindBy(how = How.XPATH, using = ".//input[@type='radio']//following::input[1]")
+    @FindBy(how = How.XPATH, using = "//*[@class='ant-radio-wrapper ant-radio-wrapper-in-form-item']")
     private WebElement centerRadio;
 
     @FindBy(how = How.XPATH, using = ".//span[text()='Доступний онлайн']/parent::label//input")
@@ -127,7 +127,7 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
 
     @Step("Check that district parameter is activated")
     public boolean isDistrictParameterActivated() {
-        return citySelector.isEnabled();
+        return districtSelector.isEnabled();
     }
 
     @Step("Select {station} station from drop-down list")
@@ -142,7 +142,7 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     }
 
     public boolean isStationParameterActivated() {
-        return clubRadio.isSelected();
+        return stationSelector.isEnabled();
     }
 
     @Step("Check that remote parameter is deactivated")
