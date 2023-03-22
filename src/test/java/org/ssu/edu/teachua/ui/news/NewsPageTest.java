@@ -1,15 +1,23 @@
 package org.ssu.edu.teachua.ui.news;
 
 import io.qameta.allure.*;
+import org.ssu.edu.teachua.db.entities.News;
+import org.ssu.edu.teachua.db.repository.DBException;
+import org.ssu.edu.teachua.db.repository.EntityException;
+import org.ssu.edu.teachua.db.service.NewsService;
 import org.ssu.edu.teachua.ui.components.card.NewsCardComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.news.NewsPage;
+import org.ssu.edu.teachua.ui.pages.view.ViewNewsPage;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderNews;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -17,6 +25,8 @@ import java.util.*;
 public class NewsPageTest extends LoginWithAdminRunner {
 
     private static final int NEWS_INDEX = 1;
+    private static final long EXPECTED_FILE_SIZE = 300000;
+    private static final String IMG_NAME = "heart.png";
 
     @Issue("TUA-31")
     @Severity(SeverityLevel.NORMAL)
@@ -125,4 +135,44 @@ public class NewsPageTest extends LoginWithAdminRunner {
                 .getNewsTitle();
         Assert.assertEquals(actualNewsTitle3, expectedNewsTitle3);
     }
+
+    @Description("Verifies that image of a news article which is bigger than 300KB was compressed to 300KB")
+    @Test(dataProvider = "newsData", dataProviderClass = DataProviderNews.class)
+    public void openAddNewsPage(String title, String content, String photoPath) throws DBException, EntityException {
+        ViewNewsPage addNews = new HomePage(driver)
+                .getHeader()
+                .openAdminProfileMenu()
+                .openPageMenu()
+                .clickNews()
+                .clickAddNewsArticle()
+                .addNewsTitle(title)
+                .addNewsContent(content)
+                .addNewsPhoto(valueProvider.getFilePath(photoPath))
+                .clickSubmit();
+        NewsService newsService = entityService.getNewsService();
+
+        News news = newsService.getNewsByURLTitleLogo(IMG_NAME);
+        String newsLogoURL = news.getUrlTitleLogo();
+        String webNewsLogoURL = valueProvider.getBaseUiUrl() + newsLogoURL;
+
+
+        long actualFileSize = 0;
+        try {
+            URL url = new URL(webNewsLogoURL);
+            InputStream is = url.openStream();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] b = new byte[2048];
+            int length;
+            while ((length = is.read(b)) != -1) {
+                baos.write(b, 0, length);
+            }
+            is.close();
+            byte[] actualImageData = baos.toByteArray();
+            actualFileSize = actualImageData.length;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Assert.assertTrue(actualFileSize <= EXPECTED_FILE_SIZE, "File size was not compressed");
+    }
+
 }

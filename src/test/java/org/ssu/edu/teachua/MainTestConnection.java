@@ -83,5 +83,10 @@ public class MainTestConnection {
         for (Club eachClub : (new ClubService(url, username, password)).getClubsByName("Курс «IT-Start»")) {
             System.out.println(eachClub.getId() + " | " + eachClub.getName());
         }
+
+        //News
+        System.out.println("\nGet news by id : ");
+        News news = (new NewsService(url, username, password)).getNewsById(58);
+        System.out.println(news.getId() + " | " + news.getTitle());
     }
 }
