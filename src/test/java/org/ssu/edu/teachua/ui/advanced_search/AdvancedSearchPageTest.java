@@ -2,6 +2,8 @@ package org.ssu.edu.teachua.ui.advanced_search;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.ssu.edu.teachua.db.entities.Center;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
@@ -217,6 +219,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     @Issue("TUA-449")
     @Description("Verify that the user can sort the search results by rating " +
             "after clicking on the 'Центр' radio button")
+    @Severity(SeverityLevel.NORMAL)
     @Test
     public void testSortingCenterByRating() throws DBException, EntityException {
 
