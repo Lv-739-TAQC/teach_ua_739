@@ -67,7 +67,7 @@ public class EditChallengesTableItemComponent extends BaseComponent {
 
     /**
      * click challenge 'id'
-     * @return opened EditChallengePage with selected challenge
+     * @return opened {@link EditChallengePage} with selected challenge
      */
     @Step("Click to challenge id")
     public EditChallengePage clickChallengeId() {
@@ -156,7 +156,7 @@ public class EditChallengesTableItemComponent extends BaseComponent {
 
     /**
      * click 'confirm' button
-     * @return opened ChallengesPage, updated challenge is shown in the page
+     * @return opened {@link ChallengesPage}, updated challenge is shown in the page
      */
     @Step("Confirm saving of challenge")
     public ChallengesPage clickConfirmSavingButton() {
@@ -176,7 +176,7 @@ public class EditChallengesTableItemComponent extends BaseComponent {
 
     /**
      * click 'cancel' button
-     * @return opened ChallengesPage, edited challenge has not been updated
+     * @return opened {@link ChallengesPage}, edited challenge has not been updated
      */
     @Step("Cancel editing of challenge")
     public ChallengesPage clickCancelEditingButton() {

@@ -24,12 +24,12 @@ import java.util.List;
 public class ChallengesPage extends BasePage {
 
     /**
-     * WebElement represents 'tasks' button which opens TasksPage
+     * WebElement represents 'tasks' button which opens {@link TasksPage}
      */
     @FindBy(how = How.XPATH, using = "//*[@class='back-btn']")
     private WebElement tasksBtn;
     /**
-     * WebElement represents 'add challenge' button which opens AddChallengePage
+     * WebElement represents 'add challenge' button which opens {@link AddChallengePage}
      */
     @FindBy(how = How.XPATH, using = "//a[@href='/dev/admin/addChallenge']")
     private WebElement addChallengeBtn;
@@ -84,8 +84,8 @@ public class ChallengesPage extends BasePage {
     }
 
     /**
-     * click 'to the list of tasks' button and open TasksPage
-     * @return opened TasksPage
+     * click 'to the list of tasks' button and open {@link TasksPage}
+     * @return opened {@link TasksPage}
      */
     @Step("Open tasks page")
     public TasksPage openTasks() {
@@ -94,8 +94,8 @@ public class ChallengesPage extends BasePage {
     }
 
     /**
-     * click 'add challenge' button and open AddChallengePage
-     * @return opened AddChallengePage
+     * click 'add challenge' button and open {@link AddChallengePage}
+     * @return opened {@link AddChallengePage}
      */
     @Step("Add challenge")
     public AddChallengePage addChallenge() {
