@@ -15,9 +15,11 @@ import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.utils.runners.BaseTestRunnerUI;
 import org.ssu.edu.teachua.utils.providers.DataProviderAdvancedSearch;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -25,6 +27,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AdvancedSearchPageTest extends BaseTestRunnerUI {
+
+    @BeforeMethod
+    public void goHome() {
+        driver.get(valueProvider.getBaseUiUrl());
+    }
 
     @Issue("TUA-210")
     @Description("Verify that input field 'Вік дитини' accepts only positive integers from 2 to 18")
