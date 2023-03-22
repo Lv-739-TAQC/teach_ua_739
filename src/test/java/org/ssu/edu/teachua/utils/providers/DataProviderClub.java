@@ -64,5 +64,4 @@ public class DataProviderClub {
                 "49.829104498711104, 24.005058710351314", "0123456789", "0123456789", "description".repeat(5)}
         };
     }
-
 }

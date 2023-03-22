@@ -18,5 +18,4 @@ public class CenterDAOImpl extends AbstractDAOImpl<Center> {
     public CenterDAOImpl() {
         super(Center.class, entitiesDaoImpl);
     }
-
 }

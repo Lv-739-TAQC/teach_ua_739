@@ -58,7 +58,7 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
     @Issue("TUA-178")
     @Severity(SeverityLevel.NORMAL)
     @Description("All of these test cases verify if specific error message is" +
-            "\ndisplayed after entering invalid data in the 'Опис' field.")
+            "\n displayed after entering invalid data in the 'Опис' field.")
     @Test(dataProvider = "dpTestDescriptionFieldInvalid", dataProviderClass = DataProviderClub.class)
     public void testDescriptionFieldInvalid(String nameField, int categoriesNumber, String childAgeFrom,
                                             String childAgeFor, String contactPhone, String description,
@@ -121,5 +121,4 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
 
         softAssert.assertAll();
     }
-
 }

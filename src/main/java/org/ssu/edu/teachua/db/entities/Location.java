@@ -55,5 +55,4 @@ public class Location extends Entity {
 
     @ManyToOne(foreignTable = "districts", foreignColumnDB = "district_id")
     private District district;
-
 }

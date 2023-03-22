@@ -81,5 +81,4 @@ public class DataProviderTask {
                         ("descriptio").repeat(30) + ".", "Ukrainian", ERROR_MSG.get(9)}
         };
     }
-
 }
