@@ -60,6 +60,5 @@ public class EditClubComponentTest extends LoginWithLeadRunner {
         }
 
         Assert.assertEquals(club != null ? club.getName() : "errorClub",newName);
-
     }
 }
