@@ -2,6 +2,8 @@ package org.ssu.edu.teachua.ui.advanced_search;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.ssu.edu.teachua.db.entities.Center;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
@@ -247,6 +249,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     }
 
     @Issue("TUA-516")
+    @Severity(SeverityLevel.NORMAL)
     @Description("[Розширений пошук] Verify that the clubs can be sorted by rating")
     @Test
     public void testIfClubsSortedByRating() throws DBException, EntityException {
