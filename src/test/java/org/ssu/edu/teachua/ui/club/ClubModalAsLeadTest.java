@@ -56,6 +56,5 @@ public class ClubModalAsLeadTest extends LoginWithLeadRunner {
         }
 
         Assert.assertEquals(club != null ? club.getName() : "errorClub",newName);
-
     }
 }

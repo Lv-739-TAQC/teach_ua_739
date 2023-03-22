@@ -109,5 +109,4 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
 
         softAssert.assertAll();
     }
-
 }
