@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * This class contains elements and classes
- * that describe advanced search page when chosen Center
+ * This class contains elements and methods that describe
+ * the functionality of advanced search component when Center radio button is selected
  */
 public class AdvancedSearchCenterComponent extends BaseComponent {
 

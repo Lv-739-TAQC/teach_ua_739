@@ -8,6 +8,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+/**
+ * This class contains elements and methods that describe
+ * the functionality of advanced search component when Club radio button is selected
+ */
 public class AdvancedSearchClubComponent extends AdvancedSearchCenterComponent {
 
     /**
