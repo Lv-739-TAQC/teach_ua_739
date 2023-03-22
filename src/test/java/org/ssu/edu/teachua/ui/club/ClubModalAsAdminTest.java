@@ -4,11 +4,9 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.ssu.edu.teachua.db.entities.Club;
+import org.ssu.edu.teachua.db.entities.Location;
+import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubContactsComponent;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
@@ -24,6 +22,7 @@ import java.util.Arrays;
 public class ClubModalAsAdminTest extends LoginWithAdminRunner {
 
     private AddClubMainInfoComponent mainInfoComponent;
+    private AddClubContactsComponent contactsComponent;
 
     private Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
@@ -106,6 +105,51 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
         softAssert.assertEquals(club.getAgeFrom().toString(), childAgeFrom);
         softAssert.assertEquals(club.getAgeTo().toString(), childAgeFor);
         softAssert.assertEquals(club.getDescriptionText(), description);
+
+        softAssert.assertAll();
+    }
+
+    @Issue("TUA-237")
+    @Description("This test case verifies that a 'Керівник'" +
+            " can add a location of a club that doesn't refer " +
+            "to any center after filling in mandatory fields with valid data.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(dataProvider = "dpTestAddLocationForClub", dataProviderClass = DataProviderClub.class)
+    public void testAddLocationForClub(String nameField, int categoryNum, String childAgeFrom, String childAgeFor,
+                     String locationNameField, String cityField, String districtField, String subwayField,
+                     String addressField, String coordinatesField, String phoneField, String contactPhone,
+                     String description) {
+
+        mainInfoComponent.enterClubName(nameField)
+                .getCategoriesCheckBoxes(categoryNum)
+                .enterChildAgeFrom(childAgeFrom)
+                .enterChildAgeFor(childAgeFor)
+                .clickNextStepButton()
+                .clickAddLocationButton()
+                .enterLocationName(locationNameField)
+                .selectLocationCity(cityField)
+                .selectLocationDistrict(districtField)
+                .selectLocationSubway(subwayField)
+                .enterLocationAddress(addressField)
+                .enterLocationGC(coordinatesField)
+                .enterLocationPhone(phoneField)
+                .pressAddLocationToListButton();
+
+        contactsComponent = new AddClubContactsComponent(driver);
+
+        contactsComponent.enterContactPhone(contactPhone)
+                .clickNextStepButton()
+                .enterDescription(description)
+                .clickEndButton();
+
+        Location location = entityService.getLocationService().getLocationByName(locationNameField).get(0);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(
+                Arrays.asList(location.getName(), location.getCity(), location.getDistrict(),
+                        location.getStation(), location.getAddress(), location.getPhone()),
+                Arrays.asList(locationNameField, cityField, districtField,
+                        subwayField, addressField, phoneField)
+        );
 
         softAssert.assertAll();
     }
