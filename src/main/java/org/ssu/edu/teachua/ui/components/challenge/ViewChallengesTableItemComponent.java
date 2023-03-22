@@ -62,7 +62,7 @@ public class ViewChallengesTableItemComponent extends BaseComponent {
 
     /**
      * click challenge 'id'
-     * @return opened EditChallengePage with selected challenge
+     * @return opened {@link EditChallengePage} with selected challenge
      */
     @Step("Click to challenge id")
     public EditChallengePage clickChallengeId() {
@@ -72,7 +72,7 @@ public class ViewChallengesTableItemComponent extends BaseComponent {
 
     /**
      * click challenge 'sort number'
-     * @return opened EditChallengePage with selected challenge
+     * @return opened {@link EditChallengePage} with selected challenge
      */
     @Step("Click to challenge sort number")
     public EditChallengePage clickChallengeSortNumber() {
@@ -82,7 +82,7 @@ public class ViewChallengesTableItemComponent extends BaseComponent {
 
     /**
      * click challenge 'name'
-     * @return opened EditChallengePage with selected challenge
+     * @return opened {@link EditChallengePage} with selected challenge
      */
     @Step("Click to challenge name")
     public EditChallengePage clickChallengeName() {
@@ -92,7 +92,7 @@ public class ViewChallengesTableItemComponent extends BaseComponent {
 
     /**
      * click challenge 'title'
-     * @return opened EditChallengePage with selected challenge
+     * @return opened {@link EditChallengePage} with selected challenge
      */
     @Step("Click to challenge title")
     public EditChallengePage clickChallengeTitle() {
@@ -122,7 +122,7 @@ public class ViewChallengesTableItemComponent extends BaseComponent {
 
     /**
      * click 'confirm' button
-     * @return opened ChallengesPage, deleted challenge is not shown in the page
+     * @return opened {@link ChallengesPage}, deleted challenge is not shown in the page
      */
     @Step("Confirm deleting of challenge")
     public ChallengesPage clickConfirmDeletingButton() {
@@ -132,7 +132,7 @@ public class ViewChallengesTableItemComponent extends BaseComponent {
 
     /**
      * click 'cancel' button
-     * @return opened ChallengesPage, selected challenge has not been deleted
+     * @return opened {@link ChallengesPage}, selected challenge has not been deleted
      */
     @Step("Cancel deleting of challenge")
     public ChallengesPage clickCancelDeletingButton() {

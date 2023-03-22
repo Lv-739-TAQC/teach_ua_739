@@ -48,9 +48,11 @@ public class TasksPageTest extends LoginWithAdminRunner {
 
     @Issue("TUA-524")
     @Severity(SeverityLevel.NORMAL)
-    @Description("This test case verifies that admin can't create task with invalid data" + "\n in 'Заголовок' field on 'Додайте завдання' page")
+    @Description("This test case verifies that admin can't create task with invalid data" +
+                 "\n in 'Заголовок' field on 'Додайте завдання' page")
     @Test(dataProvider = "dpTestAddTaskInvalidTitle", dataProviderClass = DataProviderTask.class)
-    public void testAddTaskInvalidTitle(int day, int month, int year, String photoPath, String name, String title, String description, String challenge, String expectedErrorMsg) {
+    public void testAddTaskInvalidTitle(int day, int month, int year, String photoPath, String name,
+                                        String title, String description, String challenge, String expectedErrorMsg) {
         SoftAssert dpSoftAssert = new SoftAssert();
         dpSoftAssert.assertTrue(addTaskPage.areWebElementsEmpty());
 
@@ -72,7 +74,8 @@ public class TasksPageTest extends LoginWithAdminRunner {
     @Issue("TUA-521")
     @Description("Verify that admin can't create a task with invalid date on 'Додайте завдання' page")
     @Test(dataProvider = "dpTestAddClubWithInvalidDate", dataProviderClass = DataProviderTask.class)
-    public void testAddClubWithInvalidDate(String photoPath, String name, String title, String description, String challenge, int day, int month, int year, String expectedErrorMsg) {
+    public void testAddClubWithInvalidDate(String photoPath, String name, String title, String description,
+                                           String challenge, int day, int month, int year, String expectedErrorMsg) {
         softAssert.assertTrue(addTaskPage.areWebElementsEmpty());
 
         String actualErrorMsg = addTaskPage.
@@ -121,7 +124,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
         Calendar now = Calendar.getInstance();
         String errorMessage = addTaskPage
                 .selectStartDate(21, 3, now.get(Calendar.YEAR) + 1)
-                .uploadPhoto(valueProvider.getFilePath("photos\\heart.png"))
+                .uploadPhoto(valueProvider.getFilePath("photos/heart.png"))
                 .typeName(NAME)
                 .typeTitle(TITLE)
                 .typeDescription(DESCRIPTION)
@@ -142,7 +145,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
         Calendar now = Calendar.getInstance();
         String name = addTaskPage
                 .selectStartDate(21, 3, now.get(Calendar.YEAR) + 1)
-                .uploadPhoto(valueProvider.getFilePath("photos\\heart.png"))
+                .uploadPhoto(valueProvider.getFilePath("photos/heart.png"))
                 .typeName(NAME)
                 .typeTitle(TITLE)
                 .typeDescription(DESCRIPTION)
@@ -182,5 +185,4 @@ public class TasksPageTest extends LoginWithAdminRunner {
         softAssert.assertEquals(entityService.getTaskService().getTasksByName(name).size(), 0);
         softAssert.assertAll();
     }
-
 }
