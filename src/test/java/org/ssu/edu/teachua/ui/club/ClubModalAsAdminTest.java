@@ -4,6 +4,10 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.ssu.edu.teachua.db.entities.Club;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
@@ -17,7 +21,7 @@ import org.testng.asserts.SoftAssert;
 import java.sql.Timestamp;
 import java.util.Arrays;
 
-public class ClubComponentTest extends LoginWithAdminRunner {
+public class ClubModalAsAdminTest extends LoginWithAdminRunner {
 
     private AddClubMainInfoComponent mainInfoComponent;
 
@@ -97,13 +101,11 @@ public class ClubComponentTest extends LoginWithAdminRunner {
                 .enterDescription(description)
                 .clickEndButton();
 
-        Club club = entityService.getClubService().getClubsByName(nameField).get(0);
-        System.out.println(entityService.getClubService().getClubsByName(nameField));
+        Club club = entityService.getClubService().getClubsByName(generatedClubName).get(0);
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(
-                Arrays.asList(club.getAgeFrom(), club.getAgeTo(), club.getDescription()),
-                Arrays.asList(childAgeFrom, childAgeFor, description)
-        );
+        softAssert.assertEquals(club.getAgeFrom().toString(), childAgeFrom);
+        softAssert.assertEquals(club.getAgeTo().toString(), childAgeFor);
+        softAssert.assertEquals(club.getDescriptionText(), description);
 
         softAssert.assertAll();
     }
