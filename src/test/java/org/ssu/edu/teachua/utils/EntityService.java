@@ -1,9 +1,11 @@
 package org.ssu.edu.teachua.utils;
 
+import org.ssu.edu.teachua.db.entities.Location;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
 import org.ssu.edu.teachua.db.service.CenterService;
 import org.ssu.edu.teachua.db.service.ClubService;
+import org.ssu.edu.teachua.db.service.LocationService;
 import org.ssu.edu.teachua.db.service.TaskService;
 
 public class EntityService {
@@ -41,5 +43,15 @@ public class EntityService {
             System.out.println(e.getMessage());
         }
         return clubService;
+    }
+
+    public LocationService getLocationService() {
+        LocationService locationService = null;
+        try {
+            locationService = new LocationService(dbUrl, dbName, dbPassword);
+        } catch (DBException e) {
+            System.out.println(e.getMessage());
+        }
+        return locationService;
     }
 }
