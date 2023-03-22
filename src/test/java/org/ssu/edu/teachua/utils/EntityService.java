@@ -4,6 +4,7 @@ import org.ssu.edu.teachua.db.entities.Location;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
 import org.ssu.edu.teachua.db.service.CenterService;
+import org.ssu.edu.teachua.db.service.ChallengesService;
 import org.ssu.edu.teachua.db.service.ClubService;
 import org.ssu.edu.teachua.db.service.LocationService;
 import org.ssu.edu.teachua.db.service.TaskService;
@@ -43,6 +44,16 @@ public class EntityService {
             System.out.println(e.getMessage());
         }
         return clubService;
+    }
+
+    public ChallengesService getChallengeService() {
+        ChallengesService challengesService = null;
+        try {
+            challengesService = new ChallengesService(dbUrl, dbName, dbPassword);
+        } catch (DBException e) {
+            System.out.println(e.getMessage());
+        }
+        return challengesService;
     }
 
     public LocationService getLocationService() {
