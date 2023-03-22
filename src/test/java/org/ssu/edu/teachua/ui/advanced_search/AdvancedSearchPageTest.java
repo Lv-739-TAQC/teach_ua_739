@@ -285,8 +285,8 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     @Test
     public void testCentersSortAlphabetically() throws Exception {
         SoftAssert softAssert = new SoftAssert();
-        Comparator<String> sortAsc = String::compareToIgnoreCase;
-        Comparator<String> sortDesc = (s1, s2) -> s2.compareToIgnoreCase(s1);
+        Comparator<String> sortAsc = (c1, c2) -> c1.compareToIgnoreCase(c2);
+        Comparator<String> sortDesc = (c1, c2) -> c2.compareToIgnoreCase(c1);
 
         AdvancedSearchCenterComponent AdvancedSearchComponent = new HomePage(driver).clickAdvancedSearchIcon();
         softAssert.assertTrue(AdvancedSearchComponent.isAdvancedSearchModalDisplayed(),
