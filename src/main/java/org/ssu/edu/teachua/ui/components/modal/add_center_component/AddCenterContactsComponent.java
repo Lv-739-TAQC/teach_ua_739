@@ -154,7 +154,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
     /**
      * click navigation to the next page button
      *
-     * @return opened Description tab of the center creation component
+     * @return opened {@link AddCenterDescriptionComponent}
      */
     @Step("Press 'Наступний крок' button")
     public AddCenterDescriptionComponent pressNextButton() {
@@ -165,7 +165,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
     /**
      * click navigation to the previous page button
      *
-     * @return opened Main Information tab of the center creation component
+     * @return opened {@link AddCenterMainInfoComponent}
      */
     @Step("Press 'Назад' button")
     public AddCenterMainInfoComponent pressBackButton() {
