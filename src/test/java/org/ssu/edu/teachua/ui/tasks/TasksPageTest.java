@@ -162,6 +162,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-525")
+    @Severity(SeverityLevel.NORMAL)
     @Description("This test-case covers negative scenario when introducing changes" +
             "\n to the task's 'Опис' field results in error message shown")
     @Test(dataProvider = "dpTestAddTaskInvalidDescription", dataProviderClass = DataProviderTask.class)
