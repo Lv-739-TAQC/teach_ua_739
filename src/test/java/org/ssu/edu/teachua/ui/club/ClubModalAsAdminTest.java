@@ -19,7 +19,7 @@ import org.testng.asserts.SoftAssert;
 import java.sql.Timestamp;
 import java.util.Arrays;
 
-public class ClubComponentTest extends LoginWithAdminRunner {
+public class ClubModalAsAdminTest extends LoginWithAdminRunner {
 
     private AddClubMainInfoComponent mainInfoComponent;
     private AddClubContactsComponent contactsComponent;
@@ -100,13 +100,11 @@ public class ClubComponentTest extends LoginWithAdminRunner {
                 .enterDescription(description)
                 .clickEndButton();
 
-        Club club = entityService.getClubService().getClubsByName(nameField).get(0);
-        System.out.println(entityService.getClubService().getClubsByName(nameField));
+        Club club = entityService.getClubService().getClubsByName(generatedClubName).get(0);
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(
-                Arrays.asList(club.getAgeFrom(), club.getAgeTo(), club.getDescription()),
-                Arrays.asList(childAgeFrom, childAgeFor, description)
-        );
+        softAssert.assertEquals(club.getAgeFrom().toString(), childAgeFrom);
+        softAssert.assertEquals(club.getAgeTo().toString(), childAgeFor);
+        softAssert.assertEquals(club.getDescriptionText(), description);
 
         softAssert.assertAll();
     }
@@ -155,5 +153,4 @@ public class ClubComponentTest extends LoginWithAdminRunner {
 
         softAssert.assertAll();
     }
-
 }
