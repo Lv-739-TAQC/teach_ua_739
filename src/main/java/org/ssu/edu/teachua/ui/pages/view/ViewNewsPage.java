@@ -10,6 +10,8 @@ import org.ssu.edu.teachua.ui.components.card.NewsCardComponent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ViewNewsPage extends BasePage {
 
@@ -27,6 +29,8 @@ public class ViewNewsPage extends BasePage {
 
     @FindBy(how = How.XPATH, using = "//div[@class='other-news']")
     private WebElement otherNewsTitle;
+    @FindBy(how = How.XPATH, using = "//div[@class='image']")
+    private WebElement newsPhoto;
 
     @FindBy(how = How.XPATH, using = "//div[@class='slick-track']/*[position() <= 3]")
     private List<WebElement> otherNewsNodes;
@@ -66,6 +70,15 @@ public class ViewNewsPage extends BasePage {
 
     public String getOtherNewsTitle() {
         return otherNewsTitle.getText();
+    }
+    public String getNewsPhotoURL() {
+        String rawURL = newsPhoto.getAttribute("style");
+        Pattern pattern = Pattern.compile("url\\(\"(.+?)\"\\)");
+        Matcher matcher = pattern.matcher(rawURL);
+        if (matcher.find()) {
+           return matcher.group(1);
+        }
+        return "";
     }
 
     @Step("Choose specific other news")
