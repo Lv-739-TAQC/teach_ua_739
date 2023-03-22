@@ -61,12 +61,12 @@ public class AddChallengePage extends BasePage {
     @FindBy(how = How.XPATH, using = "//*[@type='submit' and contains(@class,'add-contact-type-button')]")
     private WebElement saveBtn;
     /**
-     * WebElement represents 'challenges' button which opens ChallengesPage
+     * WebElement represents 'challenges' button which opens {@link ChallengesPage}
      */
     @FindBy(how = How.XPATH, using = "//*[@class='back-btn'and @href='/dev/admin/challenges']")
     private WebElement challengesBtn;
     /**
-     * WebElement represents 'challenges' button which opens ViewChallengePage
+     * WebElement represents 'challenges' button which opens {@link ViewChallengePage}
      */
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-btn ant-btn-default flooded-button'])[2]")
     private WebElement viewChallengeBtn;
@@ -264,8 +264,8 @@ public class AddChallengePage extends BasePage {
     }
 
     /**
-     * click 'challenges' button and open ChallengesPage
-     * @return opened ChallengesPage
+     * click 'challenges' button and open {@link ChallengesPage}
+     * @return opened {@link ChallengesPage}
      */
     @Step("Open challenges page")
     public ChallengesPage goToChallenges() {
@@ -274,8 +274,8 @@ public class AddChallengePage extends BasePage {
     }
 
     /**
-     * click 'view challenge' button and open ViewChallengePage
-     * @return opened ViewChallengePage with created challenge
+     * click 'view challenge' button and open {@link ViewChallengePage}
+     * @return opened {@link ViewChallengePage} with created challenge
      */
     @Step("View created challenge")
     public ViewChallengePage clickViewChallenge() {
