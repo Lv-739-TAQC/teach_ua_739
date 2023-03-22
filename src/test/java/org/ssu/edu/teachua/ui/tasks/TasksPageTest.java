@@ -121,7 +121,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
         Calendar now = Calendar.getInstance();
         String errorMessage = addTaskPage
                 .selectStartDate(21, 3, now.get(Calendar.YEAR) + 1)
-                .uploadPhoto(valueProvider.getFilePath("photos\\heart.png"))
+                .uploadPhoto(valueProvider.getFilePath("photos/heart.png"))
                 .typeName(NAME)
                 .typeTitle(TITLE)
                 .typeDescription(DESCRIPTION)
@@ -142,7 +142,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
         Calendar now = Calendar.getInstance();
         String name = addTaskPage
                 .selectStartDate(21, 3, now.get(Calendar.YEAR) + 1)
-                .uploadPhoto(valueProvider.getFilePath("photos\\heart.png"))
+                .uploadPhoto(valueProvider.getFilePath("photos/heart.png"))
                 .typeName(NAME)
                 .typeTitle(TITLE)
                 .typeDescription(DESCRIPTION)

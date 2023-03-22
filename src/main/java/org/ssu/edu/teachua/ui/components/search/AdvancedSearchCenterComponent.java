@@ -26,13 +26,13 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     /**
      * WebElement for Club radio-button
      */
-    @FindBy(how = How.XPATH, using = ".//input[@type='radio']")
+    @FindBy(how = How.XPATH, using = "//*[@class='ant-radio ant-radio-checked']/input[@class='ant-radio-input']")
     private WebElement clubRadio;
 
     /**
      * WebElement for Center radio-button
      */
-    @FindBy(how = How.XPATH, using = ".//input[@type='radio']//following::input[1]")
+    @FindBy(how = How.XPATH, using = "//*[@class='ant-radio-wrapper ant-radio-wrapper-in-form-item']")
     private WebElement centerRadio;
 
     /**
@@ -231,7 +231,7 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
      */
     @Step("Check that district parameter is activated")
     public boolean isDistrictParameterActivated() {
-        return citySelector.isEnabled();
+        return districtSelector.isEnabled();
     }
 
     /**
@@ -251,7 +251,7 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
      * @return true if station selector is activated
      */
     public boolean isStationParameterActivated() {
-        return clubRadio.isSelected();
+        return stationSelector.isEnabled();
     }
 
     /**
