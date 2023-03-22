@@ -5,19 +5,24 @@ import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.db.entities.Club;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.service.ClubService;
+import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.components.modal.edit_club_component.EditClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
+import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.ssu.edu.teachua.utils.runners.LoginWithLeadRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class ClubModalAsLeadTest extends LoginWithLeadRunner {
 
     private ProfilePage profilePage;
+    private Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
     @BeforeMethod
     void openEditClubForm() {
@@ -25,19 +30,19 @@ public class ClubModalAsLeadTest extends LoginWithLeadRunner {
         profilePage = new HomePage(driver)
                 .getHeader()
                 .openAdminProfileMenu()
-                .openProfilePage()
-                ;
+                .openProfilePage();
     }
 
     @Issue("TUA-508")
-    @Description("Verify that user as 'Керiвник гуртка' after edditing club is in a center " +
-            "can find eddited information about it on the website and database")
+    @Description("Verify that user as 'Керiвник гуртка' after editing club is in a center " +
+            "can find edited information about it on the website and database")
     @Test
     public void testEditClubNameAsLead() throws DBException {
         ClubService clubService = new ClubService(valueProvider.getDbUrl(), valueProvider.getDbUserName(), valueProvider.getUDbUserPassword());
         String newName = "new club name";
 
-      profilePage.clickClubDots(0)
+      profilePage
+              .clickClubDots(0)
               .clickEditClubButton()
               .enterNewClubName(newName)
               .editCategoriesCheckBoxes(8)
@@ -59,4 +64,35 @@ public class ClubModalAsLeadTest extends LoginWithLeadRunner {
 
         Assert.assertEquals(club != null ? club.getName() : "errorClub",newName);
     }
+
+    @Issue("TUA-506")
+    @Description("This test-case verifies that having created a club on UI, it is possible to locate it in the DB")
+    @Test(dataProvider = "dpTestAllFieldsValidCenter", dataProviderClass = DataProviderClub.class)
+    public void testAllFieldsValidCenter(String nameField, int categoriesNumber, String childAgeFrom,
+                                         String childAgeFor, int centerNumber, String contactPhone, String description) {
+        String generatedClubName = nameField + timestamp.getTime();
+        profilePage
+                .clickAddClubButton()
+                .enterClubName(generatedClubName)
+                .getCategoriesCheckBoxes(categoriesNumber)
+                .enterChildAgeFrom(childAgeFrom)
+                .enterChildAgeFor(childAgeFor)
+                .getBelongingToCenter()
+                .getCertainCenter(centerNumber)
+                .clickNextStepButton()
+                .enterContactPhone(contactPhone)
+                .clickNextStepButton()
+                .enterDescription(description)
+                .clickEndButton();
+
+        Club club = entityService.getClubService().getClubsByName(generatedClubName).get(0);
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(club.getName(), generatedClubName);
+        softAssert.assertEquals(club.getAgeFrom().toString(), childAgeFrom);
+        softAssert.assertEquals(club.getAgeTo().toString(), childAgeFor);
+        softAssert.assertEquals(club.getDescriptionText(), description);
+
+        softAssert.assertAll();
+    }
+
 }

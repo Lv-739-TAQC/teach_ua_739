@@ -4,7 +4,6 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import org.ssu.edu.teachua.db.entities.Club;
 import org.ssu.edu.teachua.db.entities.Location;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubContactsComponent;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
@@ -16,15 +15,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.sql.Timestamp;
 import java.util.Arrays;
 
 public class ClubModalAsAdminTest extends LoginWithAdminRunner {
 
     private AddClubMainInfoComponent mainInfoComponent;
     private AddClubContactsComponent contactsComponent;
-
-    private Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
     @BeforeMethod
     void openAddClubForm() {
@@ -81,34 +77,6 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
     }
 
-    @Issue("TUA-506")
-    @Description("This test-case verifies that having created a club on UI, it is possible to locate it in the DB")
-    @Test(dataProvider = "dpTestAllFieldsValidCenter", dataProviderClass = DataProviderClub.class)
-    public void testAllFieldsValidCenter(String nameField, int categoriesNumber, String childAgeFrom,
-                                         String childAgeFor, int centerNumber, String contactPhone, String description) {
-        String generatedClubName = nameField + timestamp.getTime();
-        mainInfoComponent
-                .enterClubName(generatedClubName)
-                .getCategoriesCheckBoxes(categoriesNumber)
-                .enterChildAgeFrom(childAgeFrom)
-                .enterChildAgeFor(childAgeFor)
-                .getBelongingToCenter()
-                .getCertainCenter(centerNumber)
-                .clickNextStepButton()
-                .enterContactPhone(contactPhone)
-                .clickNextStepButton()
-                .enterDescription(description)
-                .clickEndButton();
-
-        Club club = entityService.getClubService().getClubsByName(generatedClubName).get(0);
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(club.getAgeFrom().toString(), childAgeFrom);
-        softAssert.assertEquals(club.getAgeTo().toString(), childAgeFor);
-        softAssert.assertEquals(club.getDescriptionText(), description);
-
-        softAssert.assertAll();
-    }
-
     @Issue("TUA-237")
     @Description("This test case verifies that a 'Керівник'" +
             " can add a location of a club that doesn't refer " +
@@ -116,9 +84,9 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
     @Severity(SeverityLevel.CRITICAL)
     @Test(dataProvider = "dpTestAddLocationForClub", dataProviderClass = DataProviderClub.class)
     public void testAddLocationForClub(String nameField, int categoryNum, String childAgeFrom, String childAgeFor,
-                     String locationNameField, String cityField, String districtField, String subwayField,
-                     String addressField, String coordinatesField, String phoneField, String contactPhone,
-                     String description) {
+                                       String locationNameField, String cityField, String districtField, String subwayField,
+                                       String addressField, String coordinatesField, String phoneField, String contactPhone,
+                                       String description) {
 
         mainInfoComponent.enterClubName(nameField)
                 .getCategoriesCheckBoxes(categoryNum)
@@ -153,4 +121,5 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
 
         softAssert.assertAll();
     }
+
 }
