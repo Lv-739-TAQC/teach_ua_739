@@ -10,10 +10,6 @@ import org.testng.ITestContext;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 import java.time.Duration;
 import java.util.Random;
 
@@ -36,30 +32,6 @@ public class BaseTestRunnerUI {
             System.out.println(exception.getMessage());
         }
     }
-    public void ignoreCertificate() {
-        try {
-            TrustManager[] trustAllCerts = new TrustManager[]{
-                    new X509TrustManager() {
-                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                            return null;
-                        }
-
-                        public void checkClientTrusted(
-                                java.security.cert.X509Certificate[] certs, String authType) {
-                        }
-
-                        public void checkServerTrusted(
-                                java.security.cert.X509Certificate[] certs, String authType) {
-                        }
-                    }
-            };
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
-            HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
-        } catch (Exception e) {
-            System.out.println("Was not able to set up ignore certificate options");
-        }
-    }
 
     @Parameters("browser")
     @BeforeClass(description = "Init ChromeDriver.")
@@ -71,7 +43,6 @@ public class BaseTestRunnerUI {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(valueProvider.getBaseUiUrl());
         checkErrorPage(browser);
-        ignoreCertificate();
     }
 
     @Parameters("browser")
