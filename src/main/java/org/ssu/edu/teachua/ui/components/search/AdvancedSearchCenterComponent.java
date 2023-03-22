@@ -370,7 +370,7 @@ public class AdvancedSearchCenterComponent extends BaseComponent {
     public List<ClubCardComponent> getListCardsOnPage() {
         //Club`s or Center`s forms (cards)  are loaded from BD and displayed on the page within 2-3 seconds. Some bug.
         sleep(5);
-        List<WebElement> listClubCard = waitForElementsToAppear(driver.findElements(By.className("ant-card-body")));
+        List<WebElement> listClubCard = waitForElementsToAppear(driver.findElements(By.xpath("//*[@class='ant-card-body']")));
         return listClubCard.stream().map(wb -> new ClubCardComponent(driver, wb)).collect(Collectors.toList());
     }
 
