@@ -32,24 +32,24 @@ public class UserMenuComponent extends BaseComponent {
     public UserMenuComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }
-    
+
     @Step("Click add club button. Open the main form for add club.")
     public AddClubMainInfoComponent openAddClubForm() {
         waitForElementToBeClickable(addClubButton).click();
         return new AddClubMainInfoComponent(driver);
     }
-    
+
     @Step("Click add center button. Open the main form for add center.")
     public AddCenterMainInfoComponent openAddCentreForm() {
         waitForElementToBeClickable(addCentreButton).click();
         return new AddCenterMainInfoComponent(driver);
     }
-    
-    
+
+
     public void openSearchCertificates() {
         waitForElementToBeClickable(searchCertificates).click();
     }
-    
+
     @Step("Click personal cabinet button. Open person page.")
     public ProfilePage openProfilePage() {
         waitForElementToBeClickable(profilePage).click();
