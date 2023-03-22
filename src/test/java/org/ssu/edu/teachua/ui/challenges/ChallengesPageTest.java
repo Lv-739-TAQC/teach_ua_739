@@ -3,21 +3,26 @@ package org.ssu.edu.teachua.ui.challenges;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.ssu.edu.teachua.db.entities.Challenges;
+import org.ssu.edu.teachua.db.repository.DBException;
+import org.ssu.edu.teachua.db.repository.EntityException;
+import org.ssu.edu.teachua.db.service.ChallengesService;
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.pages.view.ViewChallengePage;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderChallenge;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public class ChallengesPageTest extends LoginWithAdminRunner {
 
     private AddChallengePage addChallengePage;
+    private ChallengesService challengesService;
 
     @BeforeMethod
     void openAddChallengePage() {
@@ -34,7 +39,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     @Issue("TUA-151")
     @Severity(SeverityLevel.NORMAL)
     @Description("We need to check whether the challenge is created" +
-                 "\nif all parameters are filled with valid values.")
+            "\nif all parameters are filled with valid values.")
     @Test(dataProvider = "dpTestAddChallengeValid", dataProviderClass = DataProviderChallenge.class)
     public void testAddChallengeValid(String number, String name, String title, String description,
                                       String photoName, String expectedSuccessMsg) {
@@ -133,7 +138,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-157")
-    @Description ("Verify that a challenge can't be created if mandatory parameters are empty")
+    @Description("Verify that a challenge can't be created if mandatory parameters are empty")
     @Test(dataProvider = "dpTestEmptySortNumber", dataProviderClass = DataProviderChallenge.class)
     public void testErrorMessagesForChallengeSortNumberField(String sortNumber, String name, String title,
                                                              String description, String photoPath,
@@ -160,11 +165,11 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-336")
-    @Description ("Verify that admin cannot create challenge with invalid data in 'Назва' field")
+    @Description("Verify that admin cannot create challenge with invalid data in 'Назва' field")
     @Test(dataProvider = "dpTestInvalidValueNameField", dataProviderClass = DataProviderChallenge.class)
     public void testErrorMessagesForChallengeInvalidValueNameField(String title, String description,
-                                                             String photoPath, List<String> invalidNames,
-                                                             List<String> expectedErrorMsg) {
+                                                                   String photoPath, List<String> invalidNames,
+                                                                   List<String> expectedErrorMsg) {
 
         addChallengePage
                 .fillSortNumber(String.valueOf(System.currentTimeMillis()))
@@ -194,7 +199,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-335")
-    @Description ("Verify that 'admin' is able to create a challenge with the valid data")
+    @Description("Verify that 'admin' is able to create a challenge with the valid data")
     @Test(dataProvider = "dpTestValidValueNameField", dataProviderClass = DataProviderChallenge.class)
     public void testCreatingChallengeWithValidNameField(String title, String description,
                                                         String photoPath, List<String> validName,
@@ -243,22 +248,32 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     @Issue("TUA-527")
     @Description("Verifies that fields on a challenge page are empty and user can create a challenge with valid data")
     @Test(dataProvider = "challengeData", dataProviderClass = DataProviderChallenge.class)
-    public void testChallengeCreation(String sortNumber, String photoPath, String name,
-                                      String title, String description) {
+    public void testChallengeCreation(String randomSortNumber, String photoPath, String name,
+                                      String title, String description) throws DBException, EntityException {
         Assert.assertTrue(addChallengePage.getSortNumber().getText().isEmpty());
         Assert.assertTrue(addChallengePage.getName().getText().isEmpty());
         Assert.assertTrue(addChallengePage.getTitle().getText().isEmpty());
         Assert.assertTrue(addChallengePage.getDescription().getText().isEmpty());
+        Integer sortNumber = Integer.parseInt(randomSortNumber);
 
-        addChallengePage.fillSortNumber(sortNumber)
+        Challenges expectedChallenge = new Challenges();
+        expectedChallenge.setName(name);
+        expectedChallenge.setTitle(title);
+        expectedChallenge.setDescription(description);
+        expectedChallenge.setSortNumber(BigInteger.valueOf(sortNumber));
+
+        addChallengePage.fillSortNumber(randomSortNumber)
                 .addPhoto(valueProvider.getFilePath(photoPath))
                 .fillName(name)
                 .fillTitle(title)
                 .fillDescription(description)
-                .clickSave()
-                .clickViewChallenge();
+                .clickSave();
 
-        ViewChallengePage viewChallenge = new ViewChallengePage(driver);
-        Assert.assertEquals(viewChallenge.getChallengeDescription(), description);
+        challengesService = entityService.getChallengeService();
+        Challenges actualChallenge = challengesService.getChallengeBySortNumber(sortNumber);
+        Assert.assertEquals(actualChallenge.getName(),expectedChallenge.getName());
+        Assert.assertEquals(actualChallenge.getTitle(),expectedChallenge.getTitle());
+        Assert.assertEquals(actualChallenge.getDescription().replaceAll("<[^>]*>", ""),expectedChallenge.getDescription());
+        Assert.assertEquals(actualChallenge.getSortNumber(),expectedChallenge.getSortNumber());
     }
 }

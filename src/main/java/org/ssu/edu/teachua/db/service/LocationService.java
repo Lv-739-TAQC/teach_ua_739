@@ -14,9 +14,14 @@ public class LocationService extends BaseService {
         super(url, username, password);
     }
 
-    public List<Location> getLocationByName(String name) throws DBException, EntityException {
-        return new LocationDAOImpl().findElementsBySQlRequest(
-                connection, SQL_FIND_LOCATION_BY_NAME, true, name
-        );
+    public List<Location> getLocationByName(String name){
+        List<Location> locations = null;
+        try {
+            locations = new LocationDAOImpl().findElementsBySQlRequest(
+                    connection, SQL_FIND_LOCATION_BY_NAME, true, name);
+        } catch (DBException | EntityException e) {
+            System.out.println(e.getMessage());
+        }
+        return locations;
     }
 }

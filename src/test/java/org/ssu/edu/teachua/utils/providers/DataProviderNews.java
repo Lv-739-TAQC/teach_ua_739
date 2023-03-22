@@ -14,4 +14,11 @@ public class DataProviderNews {
                 {"Львів", "Гуртки у місті Львів"}
         };
     }
+
+    @DataProvider(name = "newsData")
+    public static Object[][] getNewsData() {
+        return new Object[][]{
+                {"Example23_Приклад", "ExamplePOIUQ*$%9328r2390idkdslxmsn1!;?*(0_,/ЇЄПриклад~+=-", "photos/heart.png",}
+        };
+    }
 }

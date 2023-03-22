@@ -38,7 +38,6 @@ public class ClubService extends BaseService {
         return clubs;
     }
 
-
     @Step("From database get clubs which are located in city: '{city}'")
     public List<Club> getClubsByCity(String city) throws DBException, EntityException {
         return new ClubDAOImpl().findElementsBySQlRequest(connection, SQL_FIND_CLUB_BY_CITY, true, city);
@@ -58,5 +57,4 @@ public class ClubService extends BaseService {
     public List<Club> getClubsSortedByRatingDESC() throws DBException, EntityException {
         return new ClubDAOImpl().findElementsBySQlRequest(connection, SQL_FIND_CLUB_SORTED_BY_RATING_DESC, true);
     }
-
 }

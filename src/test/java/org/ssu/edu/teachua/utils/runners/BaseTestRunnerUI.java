@@ -33,11 +33,6 @@ public class BaseTestRunnerUI {
         }
     }
 
-//    @BeforeSuite
-//    public void initTestValueProvider() {
-//
-//    }
-
     @Parameters("browser")
     @BeforeClass(description = "Init ChromeDriver.")
     protected void initDriver(String browser, ITestContext context) {

@@ -4,13 +4,9 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.db.entities.Club;
 import org.ssu.edu.teachua.db.repository.DBException;
-import org.ssu.edu.teachua.db.repository.EntityException;
 import org.ssu.edu.teachua.db.service.ClubService;
 import org.ssu.edu.teachua.ui.components.modal.edit_club_component.EditClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
-import org.ssu.edu.teachua.utils.providers.DataProviderClub;
-import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.ssu.edu.teachua.utils.runners.LoginWithLeadRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -18,7 +14,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class EditClubComponentTest extends LoginWithLeadRunner {
+public class ClubModalAsLeadTest extends LoginWithLeadRunner {
 
     private EditClubMainInfoComponent editClubComponent;
 
@@ -60,6 +56,5 @@ public class EditClubComponentTest extends LoginWithLeadRunner {
         }
 
         Assert.assertEquals(club != null ? club.getName() : "errorClub",newName);
-
     }
 }
