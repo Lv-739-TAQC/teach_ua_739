@@ -7,6 +7,7 @@ import org.openqa.selenium.support.How;
 import org.ssu.edu.teachua.ui.components.menus.sections.ContentSection;
 
 import io.qameta.allure.Step;
+import org.ssu.edu.teachua.ui.components.menus.sections.PageSection;
 
 /**
  * This class contains methods and elements that describe the menu components for 'Admin' role
@@ -24,6 +25,11 @@ public class AdminMenuComponent extends UserMenuComponent {
      */
     @FindBy(how = How.XPATH, using = "//ul[contains(@id, 'content-popup')]")
     private WebElement contentNode;
+    @FindBy(how = How.XPATH, using = ".//div[contains(@aria-controls, 'website-popup')]")
+    private WebElement pageMenu;
+
+    @FindBy(how = How.XPATH, using = "//ul[contains(@id, 'website-popup')]")
+    private WebElement pageNode;
 
     public AdminMenuComponent(WebDriver driver, WebElement node) {
         super(driver, node);
@@ -38,6 +44,12 @@ public class AdminMenuComponent extends UserMenuComponent {
     public ContentSection openContentMenu() {
         waitForElementToBeClickable(contentMenu).click();
         return new ContentSection(driver, contentNode);
+    }
+
+    @Step("Click page button. Open menu`s page section.")
+    public PageSection openPageMenu() {
+        waitForElementToBeClickable(pageMenu).click();
+        return new PageSection(driver, pageNode);
     }
 }
 
