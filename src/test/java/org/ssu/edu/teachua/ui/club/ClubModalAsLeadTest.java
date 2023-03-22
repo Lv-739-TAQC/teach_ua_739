@@ -7,6 +7,7 @@ import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.service.ClubService;
 import org.ssu.edu.teachua.ui.components.modal.edit_club_component.EditClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
+import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 import org.ssu.edu.teachua.utils.runners.LoginWithLeadRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -16,17 +17,16 @@ import java.util.List;
 
 public class ClubModalAsLeadTest extends LoginWithLeadRunner {
 
-    private EditClubMainInfoComponent editClubComponent;
+    private ProfilePage profilePage;
 
     @BeforeMethod
     void openEditClubForm() {
         driver.navigate().refresh();
-        editClubComponent = new HomePage(driver)
+        profilePage = new HomePage(driver)
                 .getHeader()
                 .openAdminProfileMenu()
                 .openProfilePage()
-                .clickClubDots(0)
-                .clickEditClubButton();
+                ;
     }
 
     @Issue("TUA-508")
@@ -37,7 +37,9 @@ public class ClubModalAsLeadTest extends LoginWithLeadRunner {
         ClubService clubService = new ClubService(valueProvider.getDbUrl(), valueProvider.getDbUserName(), valueProvider.getUDbUserPassword());
         String newName = "new club name";
 
-      editClubComponent.enterNewClubName(newName)
+      profilePage.clickClubDots(0)
+              .clickEditClubButton()
+              .enterNewClubName(newName)
               .editCategoriesCheckBoxes(8)
               .enterEditChildAgeFrom("5")
               .enterEditChildAgeFor("8")
