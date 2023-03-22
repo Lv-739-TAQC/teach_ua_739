@@ -2,6 +2,8 @@ package org.ssu.edu.teachua.ui.advanced_search;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.ssu.edu.teachua.db.entities.Center;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
@@ -34,6 +36,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     }
 
     @Issue("TUA-210")
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verify that input field 'Вік дитини' accepts only positive integers from 2 to 18")
     @Test(dataProvider = "dpAgeFieldTest", dataProviderClass = DataProviderAdvancedSearch.class)
     public void testAgeField(List<String> age, List<String> expectedAge) {
@@ -69,6 +72,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     }
 
     @Issue("TUA-224")
+    @Severity(SeverityLevel.CRITICAL)
     @Description("Verify “Advanced search” button opens “Розширений пошук” section")
     @Test
     public void testAdvancedSearchComponentIsDisplayedAndHidden() {
@@ -89,6 +93,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     }
 
     @Issue("TUA-509")
+    @Severity(SeverityLevel.CRITICAL)
     @Description("Verify that all parameters are activated with the selected 'Гурток' radio button")
     @Test
     public void testAllParametersActivated() {
@@ -281,6 +286,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     }
 
     @Description("Verify that the user can sort the search results alphabetically after clicking on the 'Центр' radio button")
+    @Severity(SeverityLevel.NORMAL)
     @Issue("TUA-440")
     @Test
     public void testCentersSortAlphabetically() throws Exception {
