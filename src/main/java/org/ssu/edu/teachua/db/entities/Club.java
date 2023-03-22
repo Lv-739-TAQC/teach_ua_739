@@ -1,6 +1,10 @@
 package org.ssu.edu.teachua.db.entities;
 
 import lombok.Data;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.ssu.edu.teachua.db.annotation.Column;
 import org.ssu.edu.teachua.db.annotation.ManyToMany;
 import org.ssu.edu.teachua.db.annotation.ManyToOne;
@@ -73,5 +77,18 @@ public class Club extends Entity {
 
     @ManyToOne(foreignTable = "centers", foreignColumnDB = "center_id")
     private Center center_id;
+
+    public String getDescriptionText(){
+        Object obj = null;
+        try {
+            obj = new JSONParser().parse(this.getDescription());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        JSONObject jo = (JSONObject) obj;
+        JSONArray blocks = (JSONArray) jo.get("blocks");
+        JSONObject firstBlock = (JSONObject) blocks.get(0);
+        return  (String) firstBlock.get("text");
+    }
 
 }

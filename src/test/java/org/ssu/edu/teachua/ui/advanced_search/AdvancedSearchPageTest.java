@@ -15,9 +15,11 @@ import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.utils.runners.BaseTestRunnerUI;
 import org.ssu.edu.teachua.utils.providers.DataProviderAdvancedSearch;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -25,6 +27,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AdvancedSearchPageTest extends BaseTestRunnerUI {
+
+    @BeforeMethod
+    public void goHome() {
+        driver.get(valueProvider.getBaseUiUrl());
+    }
 
     @Issue("TUA-210")
     @Description("Verify that input field 'Вік дитини' accepts only positive integers from 2 to 18")
@@ -317,6 +324,20 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
         softAssert.assertEquals(uiCenterNames, dbCenterNamesDesc,
                 "Center names on UI should be matched with DB (DESC)");
 
+        softAssert.assertAll();
+    }
+
+    @Issue(value = "TUA-510")
+    @Test(description = "[Розширений пошук] Verify that 'Доступний онлайн', 'Категорії', 'Вік дитини' parameters are deactivated after selecting 'Центр' radio button")
+    public void verifyThatAvailableOnlineCategoriesChildAgeParametersAreDeactivated() {
+        SoftAssert softAssert = new SoftAssert();
+        AdvancedSearchCenterComponent advancedSearchCenterComponent = new HomePage(driver)
+                .clickAdvancedSearchIcon()
+                .chooseCenter();
+
+        softAssert.assertTrue(advancedSearchCenterComponent.isOnlineParameterDeactivated(), "Online parameter is activated");
+        softAssert.assertTrue(advancedSearchCenterComponent.isCategoriesParameterDeactivated(), "Categories parameter is activated");
+        softAssert.assertTrue(advancedSearchCenterComponent.isChildAgeParameterDeactivated(), "Child age parameter is activated");
         softAssert.assertAll();
     }
 

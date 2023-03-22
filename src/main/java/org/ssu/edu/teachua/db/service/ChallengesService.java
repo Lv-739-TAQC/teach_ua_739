@@ -11,6 +11,7 @@ import java.util.List;
 public class ChallengesService extends BaseService {
 
     static final String SQL_FIND_CHALLENGE_BY_NAME = "SELECT * FROM challenges WHERE name = ?;";
+    static final String SQL_FIND_CHALLENGE_BY_SORT_NUMBER = "SELECT * FROM challenges WHERE sort_number = ?;";
 
     public ChallengesService(String url, String username, String password) throws DBException {
         super(url, username, password);
@@ -26,5 +27,10 @@ public class ChallengesService extends BaseService {
         return new ChallengesDAOImpl().findElementsBySQlRequest(
                 connection, SQL_FIND_CHALLENGE_BY_NAME, true, name
         );
+    }
+    public Challenges getChallengeBySortNumber(Integer sortNumber) throws DBException, EntityException {
+        return new ChallengesDAOImpl().findElementsBySQlRequest(
+                connection, SQL_FIND_CHALLENGE_BY_SORT_NUMBER, true, sortNumber
+        ).get(0);
     }
 }

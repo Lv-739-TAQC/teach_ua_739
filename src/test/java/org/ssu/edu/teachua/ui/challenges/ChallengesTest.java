@@ -13,18 +13,11 @@ public class ChallengesTest extends LoginWithAdminRunner {
     private static final String DESCRIPTION =
             "В эпоху Возрождения разделяется понятие искусства (искусной деятельности) " +
             "и персонализированной художественной деятельности с индивидуальными образами";
-    private static final String PHOTO_PATH = "path_to_photo";
 
     @Issue(value = "TUA-338")
     @Test(description = "[Challenge] Verify that 'Admin' cannot create challenge with invalid data in 'Опис' field on 'Опис' tab")
     public void verifyThatAdminCannotCreateChallengeWithInvalidDataInDescriptionFieldOnDescriptionTab() {
         String errorMessage = new HomePage(driver)
-                .getHeader()
-                .openGuestProfileMenu()
-                .openLogInForm()
-                .enterEmail(valueProvider.getAdminEmail())
-                .enterPassword(valueProvider.getAdminPassword())
-                .clickLoginButton()
                 .getHeader()
                 .openAdminProfileMenu()
                 .openContentMenu()
@@ -35,7 +28,7 @@ public class ChallengesTest extends LoginWithAdminRunner {
                 .fillName(NAME)
                 .fillTitle(TITLE)
                 .fillDescription(DESCRIPTION)
-                .addPhoto(PHOTO_PATH)
+                .addPhoto(valueProvider.getFilePath("photos\\heart.png"))
                 .clickSave()
                 .checkErrorMessage();
 

@@ -11,7 +11,7 @@ import java.util.List;
 public class ClubService extends BaseService {
 
     static final String SQL_FIND_CLUB_BY_NAME = "SELECT * FROM clubs WHERE name = ?;";
-    static final String SQL_FIND_CLUB_BY_CITY = "SELECT * FROM clubs as cl JOIN locations l ON cl.id = l.club_id JOIN cities ct ON l.city_id = ct.id WHERE ct.name = ?;";
+    static final String SQL_FIND_CLUB_BY_CITY = "SELECT * FROM clubs as cl JOIN locations l ON cl.id = l.club_id JOIN cities ct ON l.city_id = ct.id WHERE ct.name = ? LIMIT 2;";
     static final String SQL_FIND_CLUB_BY_PREFIX = "SELECT * FROM clubs WHERE name like ?;";
     static final String SQL_FIND_CLUB_SORTED_BY_RATING_ASC = "SELECT * FROM clubs WHERE id IN (SELECT DISTINCT club_category.club_id FROM club_category) ORDER BY rating ASC, id LIMIT 6;";
     static final String SQL_FIND_CLUB_SORTED_BY_RATING_DESC = "SELECT * FROM clubs WHERE id IN (SELECT DISTINCT club_category.club_id FROM club_category) ORDER BY rating DESC, id LIMIT 6;";
@@ -38,7 +38,6 @@ public class ClubService extends BaseService {
         return clubs;
     }
 
-
     @Step("From database get clubs which are located in city: '{city}'")
     public List<Club> getClubsByCity(String city) throws DBException, EntityException {
         return new ClubDAOImpl().findElementsBySQlRequest(connection, SQL_FIND_CLUB_BY_CITY, true, city);
@@ -58,5 +57,4 @@ public class ClubService extends BaseService {
     public List<Club> getClubsSortedByRatingDESC() throws DBException, EntityException {
         return new ClubDAOImpl().findElementsBySQlRequest(connection, SQL_FIND_CLUB_SORTED_BY_RATING_DESC, true);
     }
-
 }
