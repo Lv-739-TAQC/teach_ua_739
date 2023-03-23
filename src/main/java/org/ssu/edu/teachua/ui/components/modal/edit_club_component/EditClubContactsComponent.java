@@ -51,12 +51,18 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
     @FindBy(how = How.XPATH, using = ".//input[@id='basic_Телефон']")
     protected WebElement editContactPhoneField;
 
+    /**
+     * creation constructor matching super
+     *
+     * @param driver instance
+     */
     public EditClubContactsComponent(WebDriver driver) {
         super(driver);
     }
 
     /**
      * This method open the Add Location pop-up
+     *
      * @return new instance of AddLocationComponent
      */
     @Step("Open Edit Location pop-up")
@@ -68,6 +74,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
 
     /**
      * This method deleting current location
+     *
      * @return delete location message
      */
     @Step("Delete current location")
@@ -80,6 +87,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
 
     /**
      * This method confirm deletion the location
+     *
      * @return instance of EditClubContactsComponent
      */
     @Step("Confirm deletion the location")
@@ -91,6 +99,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
 
     /**
      * This method cancel deletion the location
+     *
      * @return instance of EditClubContactsComponent
      */
     @Step("Cancel deletion the location")
@@ -102,6 +111,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
 
     /**
      * This method editing the club 'online' status
+     *
      * @return instance of EditClubContactsComponent
      */
     @Step("Edit the club 'online' status")
@@ -113,6 +123,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
 
     /**
      * This method deleting old club Facebook contact and entering new club Facebook contact
+     *
      * @param editContactFacebook
      * @return instance of EditClubContactsComponent
      */
@@ -127,6 +138,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
 
     /**
      * This method deleting old club Website contact and entering new club Website contact
+     *
      * @param editContactContact club Website
      * @return instance of EditClubContactsComponent
      */
@@ -141,6 +153,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
 
     /**
      * This method deleting old club Email contact and entering new club Email contact
+     *
      * @param editContactEmail
      * @return instance of EditClubContactsComponent
      */
@@ -155,6 +168,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
 
     /**
      * This method deleting old club Skype contact and entering new club Skype contact
+     *
      * @param editContactSkype
      * @return instance of EditClubContactsComponent
      */
@@ -169,6 +183,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
 
     /**
      * This method deleting old club WhatsApp contact and entering new club WhatsApp contact
+     *
      * @param editContactWhatsApp
      * @return instance of EditClubContactsComponent
      */
@@ -183,6 +198,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
 
     /**
      * This method deleting old club Phone number without country code and entering new club Phone number without country code
+     *
      * @param editContactPhone
      * @return instance of EditClubContactsComponent
      */
@@ -197,6 +213,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
 
     /**
      * This method click on the 'Next' button
+     *
      * @return new instance of EditClubDescriptionComponent
      */
     @Step("Click on the 'Next' button")
@@ -208,6 +225,7 @@ public class EditClubContactsComponent extends AddClubContactsComponent {
 
     /**
      * This method click on the 'Back' button
+     *
      * @return new instance of EditClubDescriptionComponent
      */
     @Step("Click on the 'Back' button")

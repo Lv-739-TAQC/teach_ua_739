@@ -63,7 +63,8 @@ public class ViewNewsPage extends BasePage {
 
     /**
      * getting all cards with other news
-     * @return List<NewsCardComponent> - list with all other news
+     *
+     * @return {@link List<NewsCardComponent>} - list with all other news
      */
     public List<NewsCardComponent> getCardsWithOtherNews() {
         List<NewsCardComponent> otherNewsComponents = new ArrayList<>();
@@ -75,6 +76,7 @@ public class ViewNewsPage extends BasePage {
 
     /**
      * count of all other news in the view news page
+     *
      * @return int - count of all other news
      */
     @Step("Get all other news from page")
@@ -84,6 +86,7 @@ public class ViewNewsPage extends BasePage {
 
     /**
      * checks if 'donate' button is enabled
+     *
      * @return boolean
      */
     public boolean isDonateButtonEnabled() {
@@ -92,6 +95,7 @@ public class ViewNewsPage extends BasePage {
 
     /**
      * show news title
+     *
      * @return String of news title
      */
     public String getNewsTitle() {
@@ -100,6 +104,7 @@ public class ViewNewsPage extends BasePage {
 
     /**
      * show news date
+     *
      * @return String of news date
      */
     public String getNewsDate() {
@@ -108,6 +113,7 @@ public class ViewNewsPage extends BasePage {
 
     /**
      * show news description
+     *
      * @return String of news description
      */
     public String getNewsDescription() {
@@ -116,23 +122,26 @@ public class ViewNewsPage extends BasePage {
 
     /**
      * get count of all other news
+     *
      * @return int - count of all other news
      */
     public String getOtherNewsTitle() {
         return otherNewsTitle.getText();
     }
+
     public String getNewsPhotoURL() {
         String rawURL = newsPhoto.getAttribute("style");
         Pattern pattern = Pattern.compile("url\\(\"(.+?)\"\\)");
         Matcher matcher = pattern.matcher(rawURL);
         if (matcher.find()) {
-           return matcher.group(1);
+            return matcher.group(1);
         }
         return "";
     }
 
     /**
      * click on a specific other news
+     *
      * @param componentNumber - number of other news card
      * @return opened NewsCardComponent
      */

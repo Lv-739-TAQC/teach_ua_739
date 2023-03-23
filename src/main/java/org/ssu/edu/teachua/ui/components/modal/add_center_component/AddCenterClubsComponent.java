@@ -35,6 +35,8 @@ public class AddCenterClubsComponent extends BaseAddCenterComponent {
 
     /**
      * creation constructor matching super
+     *
+     * @param driver instance
      */
     public AddCenterClubsComponent(WebDriver driver) {
         super(driver);
@@ -45,6 +47,7 @@ public class AddCenterClubsComponent extends BaseAddCenterComponent {
      * it is possible to choose several clubs for one center
      *
      * @param numberClub - club ordinal number in the list
+     * @return current page
      */
     @Step("Tick a club {clubNumber}")
     public AddCenterClubsComponent checkClub(int numberClub) {

@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
-* This class contains elements and methods that
-* represent the profile page functionality
-*/
+ * This class contains elements and methods that
+ * represent the profile page functionality
+ */
 public class ProfilePage extends BasePage {
 
     /**
@@ -138,7 +138,8 @@ public class ProfilePage extends BasePage {
 
     /**
      * Gets all static information on the profile page
-     * @return List<String> with all static information
+     *
+     * @return {@link List<String>} with all static information
      */
     public List<String> getProfilePageContent() {
         List<WebElement> pageContent = waitForElementsToAppear(Arrays.asList(
@@ -149,6 +150,7 @@ public class ProfilePage extends BasePage {
 
     /**
      * click the 'editProfile' button
+     *
      * @return opened EditProfileComponent
      */
     @Step("Click on the 'Редагувати профіль' button")
@@ -159,6 +161,7 @@ public class ProfilePage extends BasePage {
 
     /**
      * click the 'add' button
+     *
      * @return ProfilePage with specific dropdown-menu
      */
     @Step("Click on the 'Додати' button")
@@ -169,6 +172,7 @@ public class ProfilePage extends BasePage {
 
     /**
      * click 'addClub' button
+     *
      * @return opened AddClubMainInfoComponent
      */
     @Step("Click on the 'Додати гурток' button")
@@ -179,6 +183,7 @@ public class ProfilePage extends BasePage {
 
     /**
      * click 'addCenter' button
+     *
      * @return opened AddCenterMainInfoComponent
      */
     @Step("Click on the 'Додати центр' button")
@@ -189,6 +194,7 @@ public class ProfilePage extends BasePage {
 
     /**
      * click on the dots of a specific club
+     *
      * @return ProfilePage with specific dropdown-menu
      */
     @Step("Click on the three dots of specific club")
@@ -199,6 +205,7 @@ public class ProfilePage extends BasePage {
 
     /**
      * click 'editClub' button
+     *
      * @return opened EditClubMainInfoComponent
      */
     @Step("Click on the 'Редагувати гурток' button")
@@ -209,6 +216,7 @@ public class ProfilePage extends BasePage {
 
     /**
      * click 'deleteClub' button
+     *
      * @return ProfilePage and club is deleted
      */
     @Step("Click on the 'Видалити гурток' button")
@@ -219,6 +227,7 @@ public class ProfilePage extends BasePage {
 
     /**
      * click 'dropdown-menu'
+     *
      * @return ProfilePage with specific dropdown-menu
      */
     @Step("Click on the 'Мої гуртки/центри' button")
@@ -230,6 +239,7 @@ public class ProfilePage extends BasePage {
 
     /**
      * click 'centers' button on the dropdown-menu
+     *
      * @return ProfilePage
      */
     @Step("Choose the 'центри' section")
@@ -240,6 +250,7 @@ public class ProfilePage extends BasePage {
 
     /**
      * click on the dots of a specific center
+     *
      * @return ProfilePage with specific dropdown-menu
      */
     @Step("Click on the three dots of specific centre")
@@ -250,6 +261,7 @@ public class ProfilePage extends BasePage {
 
     /**
      * click 'editCenter' button
+     *
      * @return opened EditCenterMainInfoComponent
      */
     @Step("Click on the 'Редагувати Центр' button")
@@ -260,6 +272,7 @@ public class ProfilePage extends BasePage {
 
     /**
      * method for getting node of editProfile component
+     *
      * @return webElement of editProfileNode
      */
     public WebElement getEditProfileNode() {

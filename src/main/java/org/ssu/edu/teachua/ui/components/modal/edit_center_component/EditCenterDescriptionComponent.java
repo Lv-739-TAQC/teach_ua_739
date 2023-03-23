@@ -65,6 +65,8 @@ public class EditCenterDescriptionComponent extends AddCenterDescriptionComponen
 
     /**
      * creation constructor matching super
+     *
+     * @param driver instance
      */
     public EditCenterDescriptionComponent(WebDriver driver) {
         super(driver);

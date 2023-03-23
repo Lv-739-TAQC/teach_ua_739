@@ -61,6 +61,8 @@ public class EditCenterMainInfoComponent extends AddCenterMainInfoComponent {
 
     /**
      * creation constructor matching super
+     *
+     * @param driver instance
      */
     public EditCenterMainInfoComponent(WebDriver driver) {
         super(driver);
