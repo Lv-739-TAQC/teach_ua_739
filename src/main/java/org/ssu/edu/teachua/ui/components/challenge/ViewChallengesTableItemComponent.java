@@ -56,6 +56,9 @@ public class ViewChallengesTableItemComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = "//button[contains(@class, 'popConfirm-cancel')]")
     private WebElement cancelDeletingBtnNode;
 
+    /**
+     * creation constructor matching super with two parameters
+     */
     public ViewChallengesTableItemComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }

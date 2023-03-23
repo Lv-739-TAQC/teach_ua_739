@@ -65,6 +65,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-229")
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verify that a 'Керівник' can add a photo with invalid parameters\n into the ‘Баннер’ file picker")
     @Test(dataProvider = "dpTestCompressAndUploadPhoto", dataProviderClass = DataProviderChallenge.class)
     public void testIfPhotoCompressedAndUploaded(String photoPath) {
@@ -73,6 +74,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-231")
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verify the error messages of ‘Назва Челенджу’ field\n on ‘Основна інформація’ tab of 'Додати челендж' pop-up")
     @Test(dataProvider = "dpTestErrorMessageChallengeNameField", dataProviderClass = DataProviderChallenge.class)
     public void testErrorMessagesForChallengeNameField(String sortNumber, String title, String description,

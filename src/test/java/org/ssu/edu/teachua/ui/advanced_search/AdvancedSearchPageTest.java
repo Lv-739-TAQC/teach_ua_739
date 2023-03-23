@@ -252,6 +252,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     }
 
     @Issue("TUA-516")
+    @Severity(SeverityLevel.NORMAL)
     @Description("[Розширений пошук] Verify that the clubs can be sorted by rating")
     @Test
     public void testIfClubsSortedByRating() throws DBException, EntityException {
