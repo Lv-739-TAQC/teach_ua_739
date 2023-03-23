@@ -67,6 +67,8 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
 
     /**
      * creation constructor matching super
+     *
+     * @param driver instance
      */
     public AddCenterMainInfoComponent(WebDriver driver) {
         super(driver);
@@ -76,6 +78,7 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
      * enter center name
      *
      * @param centerName - center name
+     * @return current page
      */
     @Step("Enter center name {centerName}")
     public AddCenterMainInfoComponent enterCenterName(String centerName) {
@@ -88,7 +91,7 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
     /**
      * click Add location button
      *
-     * @return opened AddLocationComponent with all fields empty
+     * @return opened {@link AddLocationComponent}
      */
     @Step("Click 'Додати локацію' button")
     public AddLocationComponent pressAddLocationButton() {
@@ -100,6 +103,7 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
      * choose a location for the center by entering location ordinal number in the list
      *
      * @param numberLocation - location ordinal number in the list
+     * @return current page
      */
     @Step("Tick a location {locationNumber}")
     public AddCenterMainInfoComponent checkLocation(int numberLocation) {
@@ -112,7 +116,7 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
     /**
      * click navigation to the next page button
      *
-     * @return opened Contacts tab of the center creation component
+     * @return opened {@link AddCenterContactsComponent}
      */
     @Step("Press 'Наступний крок' button")
     public AddCenterContactsComponent pressNextButton() {
@@ -122,6 +126,8 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
 
     /**
      * getting invalid center name error message text
+     *
+     * @return error message text
      */
     public String getCenterNameError() {
         return waitForElementToAppear(centerNameError).getText();

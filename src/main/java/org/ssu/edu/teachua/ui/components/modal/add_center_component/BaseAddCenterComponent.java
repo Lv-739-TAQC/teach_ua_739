@@ -81,6 +81,8 @@ public abstract class BaseAddCenterComponent extends BaseComponent {
 
     /**
      * creation constructor matching super
+     *
+     * @param driver instance
      */
     public BaseAddCenterComponent(WebDriver driver) {
         super(driver);
@@ -88,6 +90,8 @@ public abstract class BaseAddCenterComponent extends BaseComponent {
 
     /**
      * getter for the Main Information step text
+     *
+     * @return WebElement mainInfo
      */
     public WebElement getMainInfo() {
         return mainInfo;
@@ -95,6 +99,8 @@ public abstract class BaseAddCenterComponent extends BaseComponent {
 
     /**
      * getter for the Contacts step text
+     *
+     * @return WebElement contacts
      */
     public WebElement getContacts() {
         return contacts;
@@ -102,6 +108,8 @@ public abstract class BaseAddCenterComponent extends BaseComponent {
 
     /**
      * getter for the Description step text
+     *
+     * @return WebElement description
      */
     public WebElement getDescription() {
         return description;
@@ -109,6 +117,8 @@ public abstract class BaseAddCenterComponent extends BaseComponent {
 
     /**
      * getter for the Clubs step text
+     *
+     * @return WebElement clubs
      */
     public WebElement getClubs() {
         return clubs;

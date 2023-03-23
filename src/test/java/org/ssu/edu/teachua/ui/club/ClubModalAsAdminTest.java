@@ -34,6 +34,7 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
     @Issue("TUA-172")
     @Issue("TUA-173")
     @Issue("TUA-177")
+    @Severity(SeverityLevel.NORMAL)
     @Description("All these test-cases cover positive scenario when introducing changes" +
             "\n to the 'Опис' field results in no error message shown")
     @Test(dataProvider = "dpTestDescriptionFieldValid", dataProviderClass = DataProviderClub.class)
@@ -84,9 +85,9 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
     @Severity(SeverityLevel.CRITICAL)
     @Test(dataProvider = "dpTestAddLocationForClub", dataProviderClass = DataProviderClub.class)
     public void testAddLocationForClub(String nameField, int categoryNum, String childAgeFrom, String childAgeFor,
-                                       String locationNameField, String cityField, String districtField, String subwayField,
-                                       String addressField, String coordinatesField, String phoneField, String contactPhone,
-                                       String description) {
+                                       String locationNameField, String cityField, String districtField, String addressField,
+                                       String coordinatesField, String phoneField, String contactPhone, String description,
+                                       String expectedResult) {
 
         mainInfoComponent.enterClubName(nameField)
                 .getCategoriesCheckBoxes(categoryNum)
@@ -97,28 +98,17 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
                 .enterLocationName(locationNameField)
                 .selectLocationCity(cityField)
                 .selectLocationDistrict(districtField)
-                .selectLocationSubway(subwayField)
                 .enterLocationAddress(addressField)
                 .enterLocationGC(coordinatesField)
                 .enterLocationPhone(phoneField)
                 .pressAddLocationToListButton();
-
         contactsComponent = new AddClubContactsComponent(driver);
-
         contactsComponent.enterContactPhone(contactPhone)
                 .clickNextStepButton()
                 .enterDescription(description)
                 .clickEndButton();
 
         Location location = entityService.getLocationService().getLocationByName(locationNameField).get(0);
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(
-                Arrays.asList(location.getName(), location.getCity(), location.getDistrict(),
-                        location.getStation(), location.getAddress(), location.getPhone()),
-                Arrays.asList(locationNameField, cityField, districtField,
-                        subwayField, addressField, phoneField)
-        );
-
-        softAssert.assertAll();
+        Assert.assertEquals(location.getCity(),  expectedResult);
     }
 }

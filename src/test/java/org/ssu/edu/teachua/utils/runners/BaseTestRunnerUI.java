@@ -34,7 +34,7 @@ public class BaseTestRunnerUI {
     }
 
     @Parameters("browser")
-    @BeforeClass(description = "Init ChromeDriver.")
+    @BeforeClass(description = "Init Driver.")
     protected void initDriver(String browser, ITestContext context) {
         WebDriverManager.chromedriver().setup();
         driver = browsers.setUpBrowser(browser);

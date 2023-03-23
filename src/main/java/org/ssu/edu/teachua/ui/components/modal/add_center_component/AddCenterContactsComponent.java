@@ -68,6 +68,8 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
 
     /**
      * creation constructor matching super
+     *
+     * @param driver instance
      */
     public AddCenterContactsComponent(WebDriver driver) {
         super(driver);
@@ -77,6 +79,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
      * enter center Facebook
      *
      * @param centerFacebook - Facebook page of the center
+     * @return current page
      */
     @Step("Enter center Facebook {centerFacebook}")
     public AddCenterContactsComponent enterCenterFacebook(String centerFacebook) {
@@ -90,6 +93,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
      * enter center site
      *
      * @param centerSite - website of the center
+     * @return current page
      */
     @Step("Enter center site {centerSite}")
     public AddCenterContactsComponent enterCenterSite(String centerSite) {
@@ -103,6 +107,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
      * enter center E-mail
      *
      * @param centerMail - E-mail address of the center
+     * @return current page
      */
     @Step("Enter center e-mail {centerEmail}")
     public AddCenterContactsComponent enterCenterMail(String centerMail) {
@@ -116,6 +121,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
      * enter center Skype
      *
      * @param centerSkype - Skype of the center
+     * @return current page
      */
     @Step("Enter center Skype {centerSkype}")
     public AddCenterContactsComponent enterCenterSkype(String centerSkype) {
@@ -129,6 +135,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
      * enter center What's Up
      *
      * @param centerWhatsApp - What's up contact of the center
+     * @return current page
      */
     @Step("Enter center What's App {centerWhatsApp}")
     public AddCenterContactsComponent enterCenterWhatsAppNumber(String centerWhatsApp) {
@@ -142,6 +149,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
      * enter center contact phone number
      *
      * @param contactPhone - contact phone number of the center
+     * @return current page
      */
     @Step("Enter center phone number {centerPhone}")
     public AddCenterContactsComponent enterPhone(String contactPhone) {
@@ -154,7 +162,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
     /**
      * click navigation to the next page button
      *
-     * @return opened Description tab of the center creation component
+     * @return opened {@link AddCenterDescriptionComponent}
      */
     @Step("Press 'Наступний крок' button")
     public AddCenterDescriptionComponent pressNextButton() {
@@ -165,7 +173,7 @@ public class AddCenterContactsComponent extends BaseAddCenterComponent {
     /**
      * click navigation to the previous page button
      *
-     * @return opened Main Information tab of the center creation component
+     * @return opened {@link AddCenterMainInfoComponent}
      */
     @Step("Press 'Назад' button")
     public AddCenterMainInfoComponent pressBackButton() {
