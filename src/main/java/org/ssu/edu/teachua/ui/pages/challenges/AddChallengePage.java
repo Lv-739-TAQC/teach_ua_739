@@ -81,50 +81,86 @@ public class AddChallengePage extends BasePage {
     @FindBy(how = How.XPATH, using = "//*[@class='ant-message']")
     private WebElement errorMessage;
 
+    /**
+     * creation constructor matching super with one parameter
+     */
     public AddChallengePage(WebDriver driver) {
         super(driver);
     }
 
+    /**
+     * @return WebElement sortNumber
+     */
     public WebElement getSortNumber() {
         return sortNumber;
     }
 
+    /**
+     * @return WebElement name
+     */
     public WebElement getName() {
         return name;
     }
 
+    /**
+     * @return WebElement title
+     */
     public WebElement getTitle() {
         return title;
     }
 
+    /**
+     * @return WebElement description
+     */
     public WebElement getDescription() {
         return description;
     }
 
+    /**
+     * @return WebElement photoAppeared
+     */
     public WebElement getPhotoAppeared() {
         return photoAppeared;
     }
 
+    /**
+     * @return WebElement previewPhoto
+     */
     public WebElement getPhotoPreview() {
         return previewPhoto;
     }
 
+    /**
+     * @return WebElement deletePhoto
+     */
     public WebElement getDeletePhoto() {
         return deletePhoto;
     }
 
+    /**
+     * @return WebElement saveBtn
+     */
     public WebElement getSaveButton() {
         return saveBtn;
     }
 
+    /**
+     * @return WebElement challengesBtn
+     */
     public WebElement getGoToChallengesBtn() {
         return challengesBtn;
     }
 
+    /**
+     * @return WebElement viewChallengeBtn
+     */
     public WebElement getViewChallengeBtn() {
         return viewChallengeBtn;
     }
 
+    /**
+     * @return WebElement errorMessage
+     */
     public WebElement getErrorMessage() {
         return errorMessage;
     }

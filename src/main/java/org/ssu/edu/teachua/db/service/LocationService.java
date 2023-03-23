@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.db.service;
 
+import io.qameta.allure.Step;
 import org.ssu.edu.teachua.db.entities.Location;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
@@ -14,6 +15,7 @@ public class LocationService extends BaseService {
         super(url, username, password);
     }
 
+    @Step("From database get locations by name: '{name}'")
     public List<Location> getLocationByName(String name){
         List<Location> locations = null;
         try {

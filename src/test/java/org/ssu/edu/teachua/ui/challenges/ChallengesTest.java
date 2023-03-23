@@ -28,7 +28,7 @@ public class ChallengesTest extends LoginWithAdminRunner {
                 .fillName(NAME)
                 .fillTitle(TITLE)
                 .fillDescription(DESCRIPTION)
-                .addPhoto(valueProvider.getFilePath("photos\\heart.png"))
+                .addPhoto(valueProvider.getFilePath("photos/heart.png"))
                 .clickSave()
                 .checkErrorMessage();
 

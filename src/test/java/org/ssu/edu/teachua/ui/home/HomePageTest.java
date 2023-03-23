@@ -2,6 +2,8 @@ package org.ssu.edu.teachua.ui.home;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.ssu.edu.teachua.db.entities.Club;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
@@ -17,6 +19,7 @@ import java.util.List;
 public class HomePageTest extends BaseTestRunnerUI {
 
     @Issue("TUA-226")
+    @Severity(SeverityLevel.CRITICAL)
     @Description("[Basic Search] Verify that user can perform basic search by name of a club")
     @Test
     public void testIfClubIsFoundByName() throws DBException, EntityException {

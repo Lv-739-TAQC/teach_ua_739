@@ -12,7 +12,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.*;
 
-@Getter
 public abstract class AbstractDAOImpl<E extends Entity> implements AbstractDAO<E> {
 
     Class entityClass;
@@ -104,52 +103,7 @@ public abstract class AbstractDAOImpl<E extends Entity> implements AbstractDAO<E
         }
         return allElemetns;
     }
-
-    @Override
-    public Integer countAllElement(Connection con) throws DBException{
-        Integer count = 0;
-        cn = con;
-        try {
-            st = cn.createStatement();
-            rs = st.executeQuery(SQL_COUNT_ELEMENT);
-            if (!rs.isClosed() && rs.next()){
-                count = rs.getInt(1);
-            }
-            rs.close();
-            st.close();
-        } catch (SQLException e) {
-            throw new DBException(String.format("Exception while count data from table %s method countAllElement",nameDB),e);
-        } finally {
-            close(rs);
-            close(ps);
-        }
-        return count;
-    }
     
-    @Override
-    public Integer countAllElement(Connection con, String SQLRequest, Object[] parameters) throws DBException{
-        Integer count = 0;
-        cn = con;
-        try {
-            ps = cn.prepareStatement(SQLRequest);
-            for (int i = 1; i<=parameters.length;i++){
-                ps.setObject(i,parameters[i-1]);
-            }
-            rs = ps.executeQuery();
-            if (!rs.isClosed() && rs.next()){
-                count = rs.getInt(1);
-            }
-            rs.close();
-            ps.close();
-        } catch (SQLException e) {
-            throw new DBException(String.format("Exception while count data from table %s method countAllElement with parametrs",nameDB),e);
-        } finally {
-            close(rs);
-            close(ps);
-        }
-        return count;
-    }
-
     private E readNextElement(Connection con, ResultSet resultSet, boolean versionOfSearch) throws DBException,EntityException{
         E element = null;
         try {

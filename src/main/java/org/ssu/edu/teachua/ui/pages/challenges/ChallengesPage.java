@@ -79,6 +79,9 @@ public class ChallengesPage extends BasePage {
     @FindBy(how = How.XPATH, using = "(//th[@class='ant-table-cell'])[4]")
     private WebElement nameOfFourthTableHeaderElement;
 
+    /**
+     * creation constructor matching super with one parameter
+     */
     public ChallengesPage(WebDriver driver) {
         super(driver);
     }

@@ -2,6 +2,8 @@ package org.ssu.edu.teachua.ui.club;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.ssu.edu.teachua.db.entities.Club;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.service.ClubService;
@@ -66,12 +68,14 @@ public class ClubModalAsLeadTest extends LoginWithLeadRunner {
     }
 
     @Issue("TUA-506")
+    @Severity(SeverityLevel.NORMAL)
     @Description("This test-case verifies that having created a club on UI, it is possible to locate it in the DB")
     @Test(dataProvider = "dpTestAllFieldsValidCenter", dataProviderClass = DataProviderClub.class)
     public void testAllFieldsValidCenter(String nameField, int categoriesNumber, String childAgeFrom,
                                          String childAgeFor, int centerNumber, String contactPhone, String description) {
         String generatedClubName = nameField + timestamp.getTime();
         profilePage
+                .clickAddButton()
                 .clickAddClubButton()
                 .enterClubName(generatedClubName)
                 .getCategoriesCheckBoxes(categoriesNumber)

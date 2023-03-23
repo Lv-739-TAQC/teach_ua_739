@@ -57,7 +57,7 @@ public class AddCenterClubsComponent extends BaseAddCenterComponent {
     /**
      * click center creation process completion button
      *
-     * @return opened Profile page
+     * @return opened {@link ProfilePage}
      * with a message shown that the center was successfully created
      */
     @Step("Press 'Завершити' button")
@@ -69,7 +69,7 @@ public class AddCenterClubsComponent extends BaseAddCenterComponent {
     /**
      * click navigation to the previous page button
      *
-     * @return opened Description tab of the center creation component
+     * @return opened {@link AddCenterDescriptionComponent}
      */
     @Step("Press 'Назад' button")
     public AddCenterDescriptionComponent pressBackButton() {
