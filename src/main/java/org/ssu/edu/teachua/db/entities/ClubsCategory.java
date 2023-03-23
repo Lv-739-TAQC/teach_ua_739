@@ -15,5 +15,4 @@ public class ClubsCategory extends Entity {
 
     @Column(name = "category_id")
     public BigInteger categoryId;
-
 }

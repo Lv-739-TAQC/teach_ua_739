@@ -6,7 +6,6 @@ import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
 import org.ssu.edu.teachua.db.repository.impl.NewsDAOImpl;
 
-
 public class NewsService extends BaseService {
     static final String SQL_FIND_CHALLENGE_BY_URL_TITLE_LOGO = "SELECT * FROM news WHERE url_title_logo LIKE ? ORDER BY ID DESC LIMIT 1;";
 

@@ -7,8 +7,6 @@ import io.qameta.allure.SeverityLevel;
 import org.ssu.edu.teachua.db.entities.Club;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.service.ClubService;
-import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
-import org.ssu.edu.teachua.ui.components.modal.edit_club_component.EditClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 import org.ssu.edu.teachua.utils.providers.DataProviderClub;

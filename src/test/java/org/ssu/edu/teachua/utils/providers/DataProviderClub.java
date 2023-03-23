@@ -65,6 +65,4 @@ public class DataProviderClub {
                 "City(latitude=49.9935, longitude=36.2304, name=Харків)"}
         };
     }
-
-
 }
