@@ -75,7 +75,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify that admin can't create a task with invalid date on 'Додайте завдання' page")
     @Test(dataProvider = "dpTestAddClubWithInvalidDate", dataProviderClass = DataProviderTask.class)
-    public void testAddClubWithInvalidDate(String photoPath, String name, String title, String description,
+    public void testAddTaskWithInvalidDate(String photoPath, String name, String title, String description,
                                            String challenge, int day, int month, int year, String expectedErrorMsg) {
         softAssert.assertTrue(addTaskPage.areWebElementsEmpty());
 
