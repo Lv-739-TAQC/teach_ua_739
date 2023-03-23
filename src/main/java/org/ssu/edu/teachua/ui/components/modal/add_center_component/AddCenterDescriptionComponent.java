@@ -105,6 +105,8 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
 
     /**
      * successful validation of the description field
+     *
+     * @return boolean value
      */
     @Step("Validate description field for no error appearance")
     public boolean getDescriptionSuccess() {
@@ -113,6 +115,8 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
 
     /**
      * error message validation of the description field
+     *
+     * @return error message text
      */
     @Step("Validate description field for error appearance")
     public String getDescriptionErrorMessage() {
@@ -122,7 +126,7 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
     /**
      * click navigation to the next page button
      *
-     * @return opened Club tab of the center creation component
+     * @return opened {@link AddCenterClubsComponent}
      */
     @Step("Press 'Наступний крок' button")
     public AddCenterClubsComponent pressNextButton() {
@@ -133,7 +137,7 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
     /**
      * click navigation to the previous page button
      *
-     * @return opened Contacts tab of the center creation component
+     * @return opened {@link AddCenterContactsComponent}
      */
     @Step("Press 'Назад' button")
     public AddCenterContactsComponent pressBackButton() {

@@ -34,6 +34,7 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
     @Issue("TUA-172")
     @Issue("TUA-173")
     @Issue("TUA-177")
+    @Severity(SeverityLevel.NORMAL)
     @Description("All these test-cases cover positive scenario when introducing changes" +
             "\n to the 'Опис' field results in no error message shown")
     @Test(dataProvider = "dpTestDescriptionFieldValid", dataProviderClass = DataProviderClub.class)
