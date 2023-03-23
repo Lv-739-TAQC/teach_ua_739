@@ -109,6 +109,6 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
                 .clickEndButton();
 
         Location location = entityService.getLocationService().getLocationByName(locationNameField).get(0);
-        Assert.assertEquals(location.getCity(),  expectedResult);
+        Assert.assertEquals(location.getCity().toString(),  expectedResult);
     }
 }
