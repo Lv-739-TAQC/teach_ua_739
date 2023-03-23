@@ -222,6 +222,7 @@ public class AdvancedSearchPageTest extends BaseTestRunnerUI {
     @Issue("TUA-449")
     @Description("Verify that the user can sort the search results by rating " +
             "after clicking on the 'Центр' radio button")
+    @Severity(SeverityLevel.NORMAL)
     @Test
     public void testSortingCenterByRating() throws DBException, EntityException {
 
