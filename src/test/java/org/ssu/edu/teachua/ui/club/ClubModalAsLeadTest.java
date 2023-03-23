@@ -75,6 +75,7 @@ public class ClubModalAsLeadTest extends LoginWithLeadRunner {
                                          String childAgeFor, int centerNumber, String contactPhone, String description) {
         String generatedClubName = nameField + timestamp.getTime();
         profilePage
+                .clickAddButton()
                 .clickAddClubButton()
                 .enterClubName(generatedClubName)
                 .getCategoriesCheckBoxes(categoriesNumber)

@@ -72,6 +72,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-521")
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verify that admin can't create a task with invalid date on 'Додайте завдання' page")
     @Test(dataProvider = "dpTestAddClubWithInvalidDate", dataProviderClass = DataProviderTask.class)
     public void testAddClubWithInvalidDate(String photoPath, String name, String title, String description,
