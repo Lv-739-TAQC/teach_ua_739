@@ -143,7 +143,7 @@ public class NewsPageTest extends LoginWithAdminRunner {
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verifies that image of a news article which is bigger than 300KB was compressed to 300KB")
     @Test(dataProvider = "newsData", dataProviderClass = DataProviderNews.class)
-    public void openAddNewsPage(String title, String content, String photoPath) throws DBException, EntityException {
+    public void testFileCompression(String title, String content, String photoPath) throws DBException, EntityException {
         ViewNewsPage addNews = new HomePage(driver)
                 .getHeader()
                 .openAdminProfileMenu()
