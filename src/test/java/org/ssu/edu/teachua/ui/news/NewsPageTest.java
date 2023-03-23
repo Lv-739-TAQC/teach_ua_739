@@ -9,9 +9,11 @@ import org.ssu.edu.teachua.ui.components.card.NewsCardComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.news.NewsPage;
 import org.ssu.edu.teachua.ui.pages.view.ViewNewsPage;
+import org.ssu.edu.teachua.utils.TestNgListeners;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderNews;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -95,6 +97,7 @@ public class NewsPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-33")
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verifies that elements of a news article, such as date, image, title and details button are clickable " +
             "and redirect to appropriate news article")
     @Test
@@ -136,6 +139,8 @@ public class NewsPageTest extends LoginWithAdminRunner {
         Assert.assertEquals(actualNewsTitle3, expectedNewsTitle3);
     }
 
+    @Issue(value = "TUA-782")
+    @Severity(SeverityLevel.CRITICAL)
     @Description("Verifies that image of a news article which is bigger than 300KB was compressed to 300KB")
     @Test(dataProvider = "newsData", dataProviderClass = DataProviderNews.class)
     public void openAddNewsPage(String title, String content, String photoPath) throws DBException, EntityException {

@@ -48,6 +48,9 @@ public class ViewNewsPage extends BasePage {
      */
     @FindBy(how = How.XPATH, using = "//div[@class='other-news']")
     private WebElement otherNewsTitle;
+    /**
+     * locator represents news photo
+     */
     @FindBy(how = How.XPATH, using = "//div[@class='image']")
     private WebElement newsPhoto;
 

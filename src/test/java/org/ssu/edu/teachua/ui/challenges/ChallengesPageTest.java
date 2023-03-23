@@ -246,6 +246,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-527")
+    @Severity(SeverityLevel.CRITICAL)
     @Description("Verifies that fields on a challenge page are empty and user can create a challenge with valid data")
     @Test(dataProvider = "challengeData", dataProviderClass = DataProviderChallenge.class)
     public void testChallengeCreation(String randomSortNumber, String photoPath, String name,
