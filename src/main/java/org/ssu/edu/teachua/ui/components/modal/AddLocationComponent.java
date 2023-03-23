@@ -95,6 +95,9 @@ public class AddLocationComponent extends BaseComponent {
 
     /**
      * creation constructor matching super with two parameters
+     *
+     * @param driver instance
+     * @param node   element
      */
     public AddLocationComponent(WebDriver driver, WebElement node) {
         super(driver, node);
@@ -102,6 +105,8 @@ public class AddLocationComponent extends BaseComponent {
 
     /**
      * creation constructor matching super with one parameter
+     *
+     * @param driver instance
      */
     public AddLocationComponent(WebDriver driver) {
         super(driver);
@@ -122,6 +127,7 @@ public class AddLocationComponent extends BaseComponent {
      * enter location name
      *
      * @param locationName - location name
+     * @return current page
      */
     @Step("Enter location name {locationName}")
     public AddLocationComponent enterLocationName(String locationName) {
@@ -135,6 +141,7 @@ public class AddLocationComponent extends BaseComponent {
      * choose a location city from a drop-down list
      *
      * @param city - location city
+     * @return current page
      */
     @Step("Select a city {city} from a drop-down list")
     public AddLocationComponent selectLocationCity(String city) {
@@ -147,6 +154,7 @@ public class AddLocationComponent extends BaseComponent {
      * choose a location district from a drop-down list
      *
      * @param district - location district
+     * @return current page
      */
     @Step("Select a district {district} from a drop-down list")
     public AddLocationComponent selectLocationDistrict(String district) {
@@ -159,6 +167,7 @@ public class AddLocationComponent extends BaseComponent {
      * choose a location subway or locality from a drop-down list
      *
      * @param subwayLocality - location subway station or locality
+     * @return current page
      */
     @Step("Select a subway/locality {subwayLocality} from a drop-down list")
     public AddLocationComponent selectLocationSubway(String subwayLocality) {
@@ -171,6 +180,7 @@ public class AddLocationComponent extends BaseComponent {
      * enter location address to the field
      *
      * @param locationAddress - location address
+     * @return current page
      */
     @Step("Enter location address {locationAddress}")
     public AddLocationComponent enterLocationAddress(String locationAddress) {
@@ -184,6 +194,7 @@ public class AddLocationComponent extends BaseComponent {
      * enter location GPS coordinates
      *
      * @param locationGC - location GPS coordinates
+     * @return current page
      */
     @Step("Enter location latitude and longitude {locationLatitudeLongitude}")
     public AddLocationComponent enterLocationGC(String locationGC) {
@@ -197,6 +208,7 @@ public class AddLocationComponent extends BaseComponent {
      * enter a location phone number to the field
      *
      * @param locationPhone - location contact phone number
+     * @return current page
      */
     @Step("Enter location phone {locationPhone}")
     public AddLocationComponent enterLocationPhone(String locationPhone) {
@@ -219,6 +231,8 @@ public class AddLocationComponent extends BaseComponent {
 
     /**
      * click Add location to the locations list button in case of invalid fields input
+     *
+     * @return current page
      */
     public AddLocationComponent pressAddLocationInvalidInput() {
         waitForElementToBeClickable(this.addLocationToListButton).click();

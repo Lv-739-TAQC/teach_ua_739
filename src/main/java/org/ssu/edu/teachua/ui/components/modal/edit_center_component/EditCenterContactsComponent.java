@@ -70,6 +70,8 @@ public class EditCenterContactsComponent extends AddCenterContactsComponent {
 
     /**
      * creation constructor matching super
+     *
+     * @param driver instance
      */
     public EditCenterContactsComponent(WebDriver driver) {
         super(driver);

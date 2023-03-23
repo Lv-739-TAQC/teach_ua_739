@@ -67,6 +67,8 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
 
     /**
      * creation constructor matching super
+     *
+     * @param driver instance
      */
     public AddCenterMainInfoComponent(WebDriver driver) {
         super(driver);
@@ -76,6 +78,7 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
      * enter center name
      *
      * @param centerName - center name
+     * @return current page
      */
     @Step("Enter center name {centerName}")
     public AddCenterMainInfoComponent enterCenterName(String centerName) {
@@ -100,6 +103,7 @@ public class AddCenterMainInfoComponent extends BaseAddCenterComponent {
      * choose a location for the center by entering location ordinal number in the list
      *
      * @param numberLocation - location ordinal number in the list
+     * @return current page
      */
     @Step("Tick a location {locationNumber}")
     public AddCenterMainInfoComponent checkLocation(int numberLocation) {

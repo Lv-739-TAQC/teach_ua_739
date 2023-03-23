@@ -32,6 +32,8 @@ public class DeleteLocationComponent extends AddLocationComponent {
 
     /**
      * creation constructor matching super
+     *
+     * @param driver instance
      */
     public DeleteLocationComponent(WebDriver driver, WebElement node) {
         super(driver, node);

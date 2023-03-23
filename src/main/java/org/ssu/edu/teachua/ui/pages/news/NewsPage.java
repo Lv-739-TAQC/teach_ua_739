@@ -48,7 +48,8 @@ public class NewsPage extends BasePage {
 
     /**
      * getting all cards with news
-     * @return List<NewsCardComponent> - list with all news
+     *
+     * @return {@link List<NewsCardComponent>} - list with all news
      */
     public List<NewsCardComponent> getCardsWithNews() {
         List<NewsCardComponent> newsComponents = new ArrayList<>();
@@ -60,7 +61,8 @@ public class NewsPage extends BasePage {
 
     /**
      * getting all cards with clubs
-     * @return List<ClubCardComponent> - list with all clubs
+     *
+     * @return {@link List<ClubCardComponent>} - list with all clubs
      */
     public List<ClubCardComponent> getCardsWithClubs() {
         List<ClubCardComponent> clubComponents = new ArrayList<>();
@@ -72,6 +74,7 @@ public class NewsPage extends BasePage {
 
     /**
      * count of all news in the news page
+     *
      * @return int - count of all news
      */
     @Step("Get all clubs from page")
@@ -81,6 +84,7 @@ public class NewsPage extends BasePage {
 
     /**
      * count of all clubs in the news page
+     *
      * @return int - count of all clubs
      */
     @Step("Get all news from page")
@@ -90,6 +94,7 @@ public class NewsPage extends BasePage {
 
     /**
      * show news title
+     *
      * @return String of news title
      */
     public String getNewsTitle() {
@@ -98,6 +103,7 @@ public class NewsPage extends BasePage {
 
     /**
      * show clubs title
+     *
      * @return String of clubs title
      */
     public String getClubsTitle() {
@@ -106,6 +112,7 @@ public class NewsPage extends BasePage {
 
     /**
      * click on a specific news
+     *
      * @param componentNumber - number of news card
      * @return opened NewsCardComponent
      */
@@ -116,6 +123,7 @@ public class NewsPage extends BasePage {
 
     /**
      * click on a specific club
+     *
      * @param componentNumber - number of club card
      * @return opened ClubCardComponent
      */

@@ -62,6 +62,8 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
 
     /**
      * creation constructor matching super
+     *
+     * @param driver instance
      */
     public AddCenterDescriptionComponent(WebDriver driver) {
         super(driver);
@@ -71,6 +73,7 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
      * enter center logo
      *
      * @param centerLogoPath - path to center logo file location
+     * @return current page
      */
     @Step("Add a logo {logo}")
     public AddCenterDescriptionComponent addCenterLogo(String centerLogoPath) {
@@ -82,6 +85,7 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
      * enter center photo
      *
      * @param photo - path to center photo file location
+     * @return current page
      */
     @Step("Add a photo {photo}")
     public AddCenterDescriptionComponent addCenterPhoto(String photo) {
@@ -94,6 +98,7 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
      *
      * @param description - description of the center,
      *                    should contain from 40 to 3000 symbols
+     * @return current page
      */
     @Step("Fill in 'Опис' {description} field")
     public AddCenterDescriptionComponent addCenterDescription(String description) {
