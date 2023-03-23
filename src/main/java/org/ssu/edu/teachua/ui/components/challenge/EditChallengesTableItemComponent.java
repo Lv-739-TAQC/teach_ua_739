@@ -61,6 +61,9 @@ public class EditChallengesTableItemComponent extends BaseComponent {
     @FindBy(how = How.XPATH, using = ".//*[text()='Відмінити']")
     private WebElement cancelEditingBtn;
 
+    /**
+     * creation constructor matching super with two parameters
+     */
     public EditChallengesTableItemComponent(WebDriver driver, WebElement node) {
         super(driver, node);
     }

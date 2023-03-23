@@ -60,9 +60,11 @@ public class DataProviderClub {
     @DataProvider(name = "dpTestAddLocationForClub")
     public static Object[][] dpTestAddLocationForClub() {
         return new Object[][]{
-                {"Hurtok", 2, "3", "15", "LocationTest", "Київ", "Святошинський", "Академмістечко", "Ivana Krylova",
-                "49.829104498711104, 24.005058710351314", "0123456789", "0123456789", "description".repeat(5)}
+                {"Hurtok3210", 2, "3", "15", "LocationTest123", "Харків", "Київський", "Ivana Krylova",
+                        "49.829104498711104, 24.005058710351314", "0123456789", "0123456789", "description".repeat(5),
+                        "City(latitude=49.9935, longitude=36.2304, name=Харків)"}
         };
     }
+
 
 }
