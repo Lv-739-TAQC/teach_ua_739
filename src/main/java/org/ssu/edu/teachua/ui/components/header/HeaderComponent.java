@@ -149,7 +149,7 @@ public class HeaderComponent extends BaseComponent {
     @Step("Click challenges in header. Get list web-element challenges")
     public List<WebElement> getChallenges() {
         By challenges = By.xpath("//span/a[contains(@href, 'dev/challenges')]");
-        return driver.findElements(challenges);
+        return waitForElementsToAppear(driver.findElements(challenges));
     }
 
     /**
