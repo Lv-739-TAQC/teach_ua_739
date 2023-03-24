@@ -29,7 +29,7 @@ import static org.ssu.edu.teachua.utils.Helper.checkFileSize;
 public class NewsPageTest extends LoginWithAdminRunner {
 
     private static final int NEWS_INDEX = 1;
-    private static final long EXPECTED_FILE_SIZE = 300000;
+    private static final long EXPECTED_FILE_SIZE = 300;
     private static final String IMG_NAME = "heart.png";
 
     @Issue("TUA-31")
@@ -161,8 +161,8 @@ public class NewsPageTest extends LoginWithAdminRunner {
         News news = newsService.getNewsByURLTitleLogo(IMG_NAME);
         String newsLogoURL = news.getUrlTitleLogo();
         String webNewsLogoURL = valueProvider.getBaseUiUrl() + newsLogoURL;
-        long actualFileSize = checkFileSize(webNewsLogoURL);
-        Assert.assertTrue(actualFileSize <= EXPECTED_FILE_SIZE, "File size was not compressed");
+        int actualFileSize = checkFileSize(webNewsLogoURL);
+        Assert.assertTrue(actualFileSize <= EXPECTED_FILE_SIZE, "File size " + actualFileSize + " KB " + "was not compressed to " + EXPECTED_FILE_SIZE + " KB");
     }
 
 }

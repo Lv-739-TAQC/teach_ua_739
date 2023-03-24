@@ -8,7 +8,7 @@ import java.net.URL;
 
 public class Helper {
     @Step("Check file size")
-    public static long checkFileSize(String fileURL) {
+    public static int checkFileSize(String fileURL) {
         long actualFileSize = 0;
         try {
             URL url = new URL(fileURL);
@@ -25,6 +25,9 @@ public class Helper {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return actualFileSize;
+        double actualFileSizeInKB = actualFileSize / 1024.0;
+        return (int) Math.round(actualFileSizeInKB);
+
     }
+
 }
