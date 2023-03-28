@@ -147,6 +147,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get text of editProfile title
+     *
      * @return String with this title
      */
     public String getEditProfileTitle() {
@@ -155,6 +156,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * enter your new last name
+     *
      * @param lastName - new last name
      * @return EditProfileComponent
      */
@@ -168,6 +170,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get text of alert message for 'lastName' field
+     *
      * @return String with this alert message
      */
     public String getAlertMessageLastName() {
@@ -177,6 +180,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * enter your new first name
+     *
      * @param firstName - new first name
      * @return EditProfileComponent
      */
@@ -190,6 +194,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get text of alert message for 'firstName' field
+     *
      * @return String with this alert message
      */
     public String getAlertMessageFirstName() {
@@ -198,6 +203,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * enter your new phone
+     *
      * @param phone - new phone
      * @return EditProfileComponent
      */
@@ -211,6 +217,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get text of alert message for 'phone' field
+     *
      * @return String with this alert message
      */
     public String getAlertMessagePhone() {
@@ -219,6 +226,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * upload your new photo
+     *
      * @param photoPath - path of your photo
      * @return EditProfileComponent
      */
@@ -231,6 +239,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * click 'changePassword' button
+     *
      * @return EditProfileComponent with fields for entering a new password
      */
     @Step("Choose the 'Змінити пароль' section")
@@ -241,6 +250,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * enter your current password
+     *
      * @param currentPassword - current password
      * @return EditProfileComponent
      */
@@ -254,6 +264,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get text of alert message for 'currentPassword' field
+     *
      * @return String with this alert message
      */
     public String getAlertMessageCurrentPassword() {
@@ -262,6 +273,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get border color for 'currentPassword' field
+     *
      * @return String - color name
      */
     public String getBorderColorForCurrentPasswordField() {
@@ -270,6 +282,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get border color for 'newPassword' field
+     *
      * @return String - color name
      */
     public String getBorderColorForNewPasswordField() {
@@ -278,6 +291,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get border color for 'confirmPassword' field
+     *
      * @return String - color name
      */
     public String getBorderColorForConfirmPasswordField() {
@@ -286,6 +300,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * enter your new password
+     *
      * @param password - new password
      * @return EditProfileComponent
      */
@@ -299,6 +314,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get text of alert message for 'newPassword' field
+     *
      * @return String with this alert message
      */
     public String getAlertMessageNewPassword() {
@@ -307,6 +323,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * confirm your password
+     *
      * @param password - entered password
      * @return EditProfileComponent
      */
@@ -320,6 +337,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get text of alert message for 'confirmPassword' field
+     *
      * @return String with this alert message
      */
     public String getAlertMessageConfirmPassword() {
@@ -329,6 +347,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * click 'saveChanges' button
+     *
      * @return EditProfileComponent
      */
     @Step("Click on the 'Зберегти зміни' button")
@@ -339,6 +358,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * click 'saveChanges' button
+     *
      * @return opened ProfilePage
      */
     @Step("Close the 'Редагувати профіль' window")
@@ -349,9 +369,20 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * method for getting locator of 'saveChangesButton'
+     *
      * @return webElement of saveChangesButton
      */
     public WebElement getSaveChangesButton() {
         return saveChangesButton;
+    }
+
+    /**
+     * show the name of user
+     *
+     * @return text of user's name
+     */
+    @Step("Get user's name")
+    public String getUserName() {
+        return editFirstNameField.getAttribute("value");
     }
 }
