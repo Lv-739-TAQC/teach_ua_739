@@ -52,6 +52,12 @@ public class EditProfileComponent extends BaseComponent {
     private WebElement editPhoneField;
 
     /**
+     * locator represents 'e-mail address' field
+     */
+    @FindBy(how = How.XPATH, using = ".//input[@id='edit_email']")
+    private WebElement getEmailAddress;
+
+    /**
      * locator represents alert message for 'phone' field
      */
     @FindBy(how = How.XPATH, using = ".//div[@id='edit_phone_help' and @role='alert']")
@@ -377,12 +383,42 @@ public class EditProfileComponent extends BaseComponent {
     }
 
     /**
-     * show the name of user
+     * show the first name of user
      *
-     * @return text of user's name
+     * @return text of user's first name
      */
-    @Step("Get user's name")
-    public String getUserName() {
+    @Step("Get user's first name")
+    public String getUserFirstName() {
         return editFirstNameField.getAttribute("value");
+    }
+
+    /**
+     * show the last name of user
+     *
+     * @return text of user's last name
+     */
+    @Step("Get user's last name")
+    public String getUserLastName() {
+        return editLastNameField.getAttribute("value");
+    }
+
+    /**
+     * show the phone number of user
+     *
+     * @return text of user's phone number
+     */
+    @Step("Get user's phone number")
+    public String getUserPhone() {
+        return editPhoneField.getAttribute("value");
+    }
+
+    /**
+     * show the e-mail address of user
+     *
+     * @return text of user's e-mail address
+     */
+    @Step("Get user's e-mail address")
+    public String getUserEmail() {
+        return getEmailAddress.getAttribute("value");
     }
 }
