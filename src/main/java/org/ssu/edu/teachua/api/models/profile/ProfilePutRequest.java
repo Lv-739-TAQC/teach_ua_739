@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ProfileRequest {
+public class ProfilePutRequest {
     public String firstName;
     public String lastName;
     public String email;
