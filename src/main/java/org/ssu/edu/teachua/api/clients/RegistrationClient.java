@@ -12,8 +12,7 @@ public class RegistrationClient extends BaseClient {
         super(url, contentType);
     }
 
-    public Response registerUser(int id, String firstName, String lastName, String email, String password, String phone, String roleName,
-                                 String verificationCode, String urlLogo, boolean status) {
+    public Response registerUser(String firstName, String lastName, String email, String password, String phone, String roleName) {
         RegistrationRequest request = new RegistrationRequest(firstName, lastName, email, password, phone, roleName);
         return prepareRequest()
                 .body(request)
