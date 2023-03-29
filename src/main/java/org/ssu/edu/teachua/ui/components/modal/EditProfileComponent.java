@@ -52,6 +52,12 @@ public class EditProfileComponent extends BaseComponent {
     private WebElement editPhoneField;
 
     /**
+     * locator represents 'e-mail address' field
+     */
+    @FindBy(how = How.XPATH, using = ".//input[@id='edit_email']")
+    private WebElement getEmailAddress;
+
+    /**
      * locator represents alert message for 'phone' field
      */
     @FindBy(how = How.XPATH, using = ".//div[@id='edit_phone_help' and @role='alert']")
@@ -147,6 +153,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get text of editProfile title
+     *
      * @return String with this title
      */
     public String getEditProfileTitle() {
@@ -155,6 +162,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * enter your new last name
+     *
      * @param lastName - new last name
      * @return EditProfileComponent
      */
@@ -168,6 +176,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get text of alert message for 'lastName' field
+     *
      * @return String with this alert message
      */
     public String getAlertMessageLastName() {
@@ -177,6 +186,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * enter your new first name
+     *
      * @param firstName - new first name
      * @return EditProfileComponent
      */
@@ -190,6 +200,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get text of alert message for 'firstName' field
+     *
      * @return String with this alert message
      */
     public String getAlertMessageFirstName() {
@@ -198,6 +209,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * enter your new phone
+     *
      * @param phone - new phone
      * @return EditProfileComponent
      */
@@ -211,6 +223,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get text of alert message for 'phone' field
+     *
      * @return String with this alert message
      */
     public String getAlertMessagePhone() {
@@ -219,6 +232,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * upload your new photo
+     *
      * @param photoPath - path of your photo
      * @return EditProfileComponent
      */
@@ -231,6 +245,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * click 'changePassword' button
+     *
      * @return EditProfileComponent with fields for entering a new password
      */
     @Step("Choose the 'Змінити пароль' section")
@@ -241,6 +256,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * enter your current password
+     *
      * @param currentPassword - current password
      * @return EditProfileComponent
      */
@@ -254,6 +270,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get text of alert message for 'currentPassword' field
+     *
      * @return String with this alert message
      */
     public String getAlertMessageCurrentPassword() {
@@ -262,6 +279,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get border color for 'currentPassword' field
+     *
      * @return String - color name
      */
     public String getBorderColorForCurrentPasswordField() {
@@ -270,6 +288,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get border color for 'newPassword' field
+     *
      * @return String - color name
      */
     public String getBorderColorForNewPasswordField() {
@@ -278,6 +297,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get border color for 'confirmPassword' field
+     *
      * @return String - color name
      */
     public String getBorderColorForConfirmPasswordField() {
@@ -286,6 +306,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * enter your new password
+     *
      * @param password - new password
      * @return EditProfileComponent
      */
@@ -299,6 +320,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get text of alert message for 'newPassword' field
+     *
      * @return String with this alert message
      */
     public String getAlertMessageNewPassword() {
@@ -307,6 +329,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * confirm your password
+     *
      * @param password - entered password
      * @return EditProfileComponent
      */
@@ -320,6 +343,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * get text of alert message for 'confirmPassword' field
+     *
      * @return String with this alert message
      */
     public String getAlertMessageConfirmPassword() {
@@ -329,6 +353,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * click 'saveChanges' button
+     *
      * @return EditProfileComponent
      */
     @Step("Click on the 'Зберегти зміни' button")
@@ -339,6 +364,7 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * click 'saveChanges' button
+     *
      * @return opened ProfilePage
      */
     @Step("Close the 'Редагувати профіль' window")
@@ -349,9 +375,50 @@ public class EditProfileComponent extends BaseComponent {
 
     /**
      * method for getting locator of 'saveChangesButton'
+     *
      * @return webElement of saveChangesButton
      */
     public WebElement getSaveChangesButton() {
         return saveChangesButton;
+    }
+
+    /**
+     * show the first name of user
+     *
+     * @return text of user's first name
+     */
+    @Step("Get user's first name")
+    public String getUserFirstName() {
+        return editFirstNameField.getAttribute("value");
+    }
+
+    /**
+     * show the last name of user
+     *
+     * @return text of user's last name
+     */
+    @Step("Get user's last name")
+    public String getUserLastName() {
+        return editLastNameField.getAttribute("value");
+    }
+
+    /**
+     * show the phone number of user
+     *
+     * @return text of user's phone number
+     */
+    @Step("Get user's phone number")
+    public String getUserPhone() {
+        return editPhoneField.getAttribute("value");
+    }
+
+    /**
+     * show the e-mail address of user
+     *
+     * @return text of user's e-mail address
+     */
+    @Step("Get user's e-mail address")
+    public String getUserEmail() {
+        return getEmailAddress.getAttribute("value");
     }
 }
