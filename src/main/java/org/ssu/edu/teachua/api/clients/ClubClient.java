@@ -12,22 +12,14 @@ public class ClubClient extends BaseClient {
 
     private final String path = "/api/club";
 
-    public Response createClub(int id, String name, String description, int centerId, String categoriesName, int ageFrom,
-                               int ageTo, String urlBackground, String urlLogo, boolean isOnline, String contacts,
-                               boolean isApproved, int userId, int clubExternalId, int centerExternalId) {
-        ClubRequest request = new ClubRequest(id, name, description, centerId, categoriesName, ageFrom, ageTo, urlBackground,
-                urlLogo, isOnline, contacts, isApproved, userId, clubExternalId, centerExternalId);
+    public Response createClub(ClubRequest request) {
         return prepareRequest()
                 .body(request)
                 .when()
-                .post();
+                .post(path);
     }
 
-    public Response editClub(int id, String name, String description, int centerId, String categoriesName, int ageFrom,
-                             int ageTo, String urlBackground, String urlLogo, boolean isOnline, String contacts,
-                             boolean isApproved, int userId, int clubExternalId, int centerExternalId) {
-        ClubRequest request = new ClubRequest(id, name, description, centerId, categoriesName, ageFrom, ageTo, urlBackground,
-                urlLogo, isOnline, contacts, isApproved, userId, clubExternalId, centerExternalId);
+    public Response editClub(ClubRequest request, int id) {
         return prepareRequest()
                 .body(request)
                 .when()
@@ -35,17 +27,13 @@ public class ClubClient extends BaseClient {
     }
 
     public Response viewClub(int id) {
-        ClubRequest request = new ClubRequest(id);
         return prepareRequest()
-                .body(request)
                 .when()
                 .get(path + "/" + id);
     }
 
     public Response deleteClub(int id) {
-        ClubRequest request = new ClubRequest(id);
         return prepareRequest()
-                .body(request)
                 .when()
                 .delete(path + "/" + id);
     }
