@@ -7,19 +7,21 @@ import lombok.Data;
 @AllArgsConstructor
 public class ClubRequest {
     public int id;
-    public int ageFrom;
-    public int ageTo;
     public String name;
     public String description;
-    public String urlWeb;
-    public String urlLogo;
+    public int centerId;
+    public String categoriesName;
+    public int ageFrom;
+    public int ageTo;
     public String urlBackground;
-    public String workTime;
-    public double rating;
-    public int feedbackCount;
+    public String urlLogo;
     public boolean isOnline;
-    public boolean isApproved;
     public String contacts;
+    public boolean isApproved;
+    public int userId;
     public int clubExternalId;
     public int centerExternalId;
+
+    public ClubRequest(int id) {
+    }
 }

@@ -12,44 +12,38 @@ public class ClubClient extends BaseClient {
 
     private final String path = "/api/club";
 
-    public Response createClub(int id, int ageFrom, int ageTo, String name, String description, String urlWeb, String urlLogo,
-                               String urlBackground, String workTime, double rating, int feedbackCount, boolean isOnline,
-                               boolean isApproved, String contacts, int clubExternalId, int centerExternalId) {
-        ClubRequest request = new ClubRequest(id, ageFrom, ageTo, name, description, urlWeb, urlLogo, urlBackground, workTime,
-                rating, feedbackCount, isOnline, isApproved, contacts, clubExternalId, centerExternalId);
+    public Response createClub(int id, String name, String description, int centerId, String categoriesName, int ageFrom,
+                               int ageTo, String urlBackground, String urlLogo, boolean isOnline, String contacts,
+                               boolean isApproved, int userId, int clubExternalId, int centerExternalId) {
+        ClubRequest request = new ClubRequest(id, name, description, centerId, categoriesName, ageFrom, ageTo, urlBackground,
+                urlLogo, isOnline, contacts, isApproved, userId, clubExternalId, centerExternalId);
         return prepareRequest()
                 .body(request)
                 .when()
-                .post(path + "/" + id);
+                .post();
     }
 
-    public Response editClub(int id, int ageFrom, int ageTo, String name, String description, String urlWeb, String urlLogo,
-                             String urlBackground, String workTime, double rating, int feedbackCount, boolean isOnline,
-                             boolean isApproved, String contacts, int clubExternalId, int centerExternalId) {
-        ClubRequest request = new ClubRequest(id, ageFrom, ageTo, name, description, urlWeb, urlLogo, urlBackground, workTime,
-                rating, feedbackCount, isOnline, isApproved, contacts, clubExternalId, centerExternalId);
+    public Response editClub(int id, String name, String description, int centerId, String categoriesName, int ageFrom,
+                             int ageTo, String urlBackground, String urlLogo, boolean isOnline, String contacts,
+                             boolean isApproved, int userId, int clubExternalId, int centerExternalId) {
+        ClubRequest request = new ClubRequest(id, name, description, centerId, categoriesName, ageFrom, ageTo, urlBackground,
+                urlLogo, isOnline, contacts, isApproved, userId, clubExternalId, centerExternalId);
         return prepareRequest()
                 .body(request)
                 .when()
                 .put(path + "/" + id);
     }
 
-    public Response viewClub(int id, int ageFrom, int ageTo, String name, String description, String urlWeb, String urlLogo,
-                             String urlBackground, String workTime, double rating, int feedbackCount, boolean isOnline,
-                             boolean isApproved, String contacts, int clubExternalId, int centerExternalId) {
-        ClubRequest request = new ClubRequest(id, ageFrom, ageTo, name, description, urlWeb, urlLogo, urlBackground, workTime,
-                rating, feedbackCount, isOnline, isApproved, contacts, clubExternalId, centerExternalId);
+    public Response viewClub(int id) {
+        ClubRequest request = new ClubRequest(id);
         return prepareRequest()
                 .body(request)
                 .when()
                 .get(path + "/" + id);
     }
 
-    public Response deleteClub(int id, int ageFrom, int ageTo, String name, String description, String urlWeb, String urlLogo,
-                               String urlBackground, String workTime, double rating, int feedbackCount, boolean isOnline,
-                               boolean isApproved, String contacts, int clubExternalId, int centerExternalId) {
-        ClubRequest request = new ClubRequest(id, ageFrom, ageTo, name, description, urlWeb, urlLogo, urlBackground, workTime,
-                rating, feedbackCount, isOnline, isApproved, contacts, clubExternalId, centerExternalId);
+    public Response deleteClub(int id) {
+        ClubRequest request = new ClubRequest(id);
         return prepareRequest()
                 .body(request)
                 .when()

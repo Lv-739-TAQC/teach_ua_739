@@ -11,10 +11,6 @@ public class ClubResponse {
     public String urlBackground;
     public String workTime;
     public double rating;
-    public int feedbackCount;
-    public boolean isOnline;
     public boolean isApproved;
-    public String contacts;
-    public int clubExternalId;
-    public int centerExternalId;
+    public boolean isOnline;
 }
