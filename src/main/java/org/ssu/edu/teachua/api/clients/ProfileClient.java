@@ -13,16 +13,14 @@ public class ProfileClient extends BaseClient{
         super(url, contentType, accessToken);
     }
 
-    public Response updateProfile(String id, String firstName, String lastName, String email, String phone, String roleName, String urlLogo, boolean status) {
-        ProfilePutRequest request = new ProfilePutRequest(firstName, lastName, email, phone, roleName, urlLogo, status);
+    public Response updateProfile(String id, ProfilePutRequest request) {
         return prepareRequest()
                 .body(request)
                 .when()
                 .put(path + "/" + id);
     }
 
-    public Response updatePassword(int id, String oldPassword, String newPassword, String newPasswordVerify) {
-        ProfilePatchRequest request = new ProfilePatchRequest(oldPassword, newPassword, newPasswordVerify);
+    public Response updatePassword(int id, ProfilePatchRequest request) {
         return prepareRequest()
                 .body(request)
                 .when()
