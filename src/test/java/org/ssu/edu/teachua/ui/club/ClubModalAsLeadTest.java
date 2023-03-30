@@ -10,7 +10,7 @@ import org.ssu.edu.teachua.db.service.ClubService;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
 import org.ssu.edu.teachua.utils.providers.DataProviderClub;
-import org.ssu.edu.teachua.utils.runners.LoginWithLeadRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithLeadUIRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -19,7 +19,7 @@ import org.testng.asserts.SoftAssert;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class ClubModalAsLeadTest extends LoginWithLeadRunner {
+public class ClubModalAsLeadTest extends LoginWithLeadUIRunner {
 
     private ProfilePage profilePage;
     private Timestamp timestamp = new Timestamp(System.currentTimeMillis());

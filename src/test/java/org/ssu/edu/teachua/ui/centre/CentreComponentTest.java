@@ -7,7 +7,7 @@ import io.qameta.allure.SeverityLevel;
 import org.ssu.edu.teachua.db.entities.Center;
 import org.ssu.edu.teachua.ui.components.modal.add_center_component.AddCenterMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminUIRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderCentre;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
-public class CentreComponentTest extends LoginWithAdminRunner {
+public class CentreComponentTest extends LoginWithAdminUIRunner {
 
     private AddCenterMainInfoComponent mainInfoComponent;
     private Timestamp timestamp = new Timestamp(System.currentTimeMillis());
