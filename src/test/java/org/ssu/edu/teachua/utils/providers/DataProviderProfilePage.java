@@ -10,7 +10,7 @@ public class DataProviderProfilePage {
 
     protected static final TestValueProvider valueProvider = new TestValueProvider();
 
-    protected Random random = new Random();
+    protected static Random random = new Random();
 
     @DataProvider(name = "dpTestChangePassword")
     public static Object[][] dpTestChangePassword() {
@@ -49,15 +49,15 @@ public class DataProviderProfilePage {
     }
 
     @DataProvider(name = "dpTestIfPasswordIsNotUpdated")
-    private Object[][] dpTestIfPasswordIsNotUpdated() {
+    private static Object[][] dpTestIfPasswordIsNotUpdated() {
         return new Object[][]{
-                {"123_newPass", valueProvider.getUserEmail(), "", 400,
+                {"", "123_%testPass", valueProvider.getAdminPassword(), 400,
                         Arrays.asList("Будь ласка, введіть діючий пароль", "Будь ласка, введіть новий пароль", "Будь ласка, підтвердіть новий пароль")
                 }};
     }
 
     @DataProvider(name = "dpTestIfProfileIsUpdated")
-    private Object[][] dpTestIfProfileIsUpdated() {
+    private static Object[][] dpTestIfProfileIsUpdated() {
         String phoneNumber = String.format("067%08d", random.nextInt(100_000_000));
         StringBuilder randomLetters = new StringBuilder();
         char firstLetter = (char) (random.nextInt(26) + 'A');
