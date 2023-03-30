@@ -2,11 +2,11 @@ package org.ssu.edu.teachua.api.models.challenge;
 
 import lombok.Data;
 
-import java.util.ArrayList;
-
 @Data
-public class DeleteChallengeResponse {
+public class GetTaskInChallenge {
     private int id;
     private String name;
-    private ArrayList<DeleteTaskInChallenge> tasks;
+    private String headerText;
+    private String picture;
+    private String startDate;
 }

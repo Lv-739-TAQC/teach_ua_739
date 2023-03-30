@@ -4,20 +4,13 @@ import lombok.Data;
 
 @Data
 public class PostChallengeResponse {
-    public int id;
-    public String name;
-    public String title;
-    public String description;
-    public String registrationLink;
-    public String picture;
-    public int sortNumber;
-    public boolean isActive;
-    public PostUser user;
-}
-
- class PostUser{
-    public int id;
-    public String firstName;
-    public String lastName;
-    public String urlLogo;
+    private int id;
+    private String name;
+    private String title;
+    private String description;
+    private String registrationLink;
+    private String picture;
+    private int sortNumber;
+    private boolean isActive;
+    private User user;
 }

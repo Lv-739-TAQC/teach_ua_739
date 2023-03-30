@@ -4,12 +4,12 @@ import lombok.Data;
 
 @Data
 public class PutChallengeResponse {
-    public int id;
-    public String name;
-    public String title;
-    public String description;
-    public String registrationLink;
-    public String picture;
-    public int sortNumber;
-    public boolean isActive;
+    private int id;
+    private String name;
+    private String title;
+    private String description;
+    private String registrationLink;
+    private String picture;
+    private int sortNumber;
+    private boolean isActive;
 }
