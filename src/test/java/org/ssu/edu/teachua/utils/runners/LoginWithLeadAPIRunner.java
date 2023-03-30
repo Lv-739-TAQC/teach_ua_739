@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeClass;
 
 
 public class LoginWithLeadAPIRunner extends BaseTestRunnerAPI {
-    private String accessToken;
+    protected String accessToken;
 
     protected int userId;
 
