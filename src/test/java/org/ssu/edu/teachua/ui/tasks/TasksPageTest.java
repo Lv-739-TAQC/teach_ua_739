@@ -11,7 +11,7 @@ import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.tasks.AddTaskPage;
 import org.ssu.edu.teachua.utils.StringGenerator;
 import org.ssu.edu.teachua.utils.providers.DataProviderTask;
-import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminUIRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -20,7 +20,7 @@ import org.testng.asserts.SoftAssert;
 import java.util.Calendar;
 import java.util.List;
 
-public class TasksPageTest extends LoginWithAdminRunner {
+public class TasksPageTest extends LoginWithAdminUIRunner {
 
     private static final String NAME = StringGenerator.generateRandomString(20);
     private static final String TITLE = StringGenerator.generateRandomString(50);
