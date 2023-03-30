@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ProfilePatchRequest {
-    public String oldPassword;
-    public String newPassword;
-    public String newPasswordVerify;
+    private String oldPassword;
+    private String newPassword;
+    private String newPasswordVerify;
 }

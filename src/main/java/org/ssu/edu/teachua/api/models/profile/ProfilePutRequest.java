@@ -6,11 +6,11 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ProfilePutRequest {
-    public String firstName;
-    public String lastName;
-    public String email;
-    public String phone;
-    public String roleName;
-    public String urlLogo;
-    public boolean status;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phone;
+    private String roleName;
+    private String urlLogo;
+    private boolean status;
 }
