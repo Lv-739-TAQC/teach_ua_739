@@ -4,11 +4,12 @@ import lombok.Data;
 
 @Data
 public class TaskResponse {
+    public int id;
     public String name;
     public String headerText;
     public String description;
     public String picture;
     public String startDate;
-    public Integer challengeId;
+    public int challengeId;
 }
 

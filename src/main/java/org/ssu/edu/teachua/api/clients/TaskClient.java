@@ -23,7 +23,7 @@ public class TaskClient extends BaseClient {
     }
 
     public Response putTask (int id, String name, String headerText, String description, String picture,
-                             String startDate, Integer challengeId){
+                             String startDate, int challengeId){
         TaskPutRequest request = new TaskPutRequest (name, headerText, description, picture, startDate,challengeId);
         return prepareRequest()
                 .body(request)

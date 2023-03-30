@@ -11,7 +11,7 @@ public class TaskPutRequest {
     public String description;
     public String picture;
     public String startDate;
-    public Integer challengeId;
+    public int challengeId;
 }
 
 
