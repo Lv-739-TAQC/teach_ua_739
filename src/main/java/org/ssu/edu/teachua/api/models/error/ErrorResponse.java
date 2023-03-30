@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class ErrorResponse {
 
-    public int status;
-    public String message;
+    private int status;
+    private String message;
 }
