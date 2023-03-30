@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class SignInResponse {
-    public int id;
-    public String email;
-    public String roleName;
-    public String accessToken;
-    public String refreshToken;
+    private int id;
+    private String email;
+    private String roleName;
+    private String accessToken;
+    private String refreshToken;
 }
