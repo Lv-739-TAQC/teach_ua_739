@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeClass;
  * The necessary browser with our site is launched in the {@link BaseTestRunnerUI} class,
  * which is inherited by this class
  */
-public class LoginWithUserRunner extends BaseTestRunnerUI {
+public class LoginWithUserUIRunner extends BaseTestRunnerUI {
 
     /**
      *This method is a precondition for tests for which we need to be registered as "User"

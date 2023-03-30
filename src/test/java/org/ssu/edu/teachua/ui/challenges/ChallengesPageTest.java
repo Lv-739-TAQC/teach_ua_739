@@ -10,7 +10,7 @@ import org.ssu.edu.teachua.db.service.ChallengesService;
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminUIRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderChallenge;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 import java.math.BigInteger;
 import java.util.List;
 
-public class ChallengesPageTest extends LoginWithAdminRunner {
+public class ChallengesPageTest extends LoginWithAdminUIRunner {
 
     private AddChallengePage addChallengePage;
     private ChallengesService challengesService;
