@@ -13,7 +13,7 @@ public class ProfileClient extends BaseClient{
         super(url, contentType, accessToken);
     }
 
-    public Response updateProfile(String id, ProfilePutRequest request) {
+    public Response updateProfile(int id, ProfilePutRequest request) {
         return prepareRequest()
                 .body(request)
                 .when()
