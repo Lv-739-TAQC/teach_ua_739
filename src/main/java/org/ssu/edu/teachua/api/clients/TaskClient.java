@@ -13,18 +13,14 @@ public class TaskClient extends BaseClient {
         super(url, contentType, accessToken);
     }
 
-    public Response postTask (int id, String name, String headerText, String description,
-                              String picture, String startDate){
-        TaskPostRequest request = new TaskPostRequest (name, headerText, description, picture, startDate);
+    public Response postTask (int id, TaskPostRequest request){
         return prepareRequest()
                 .body(request)
                 .when()
                 .post(String.format("%s/%d/task", path, id));
     }
 
-    public Response putTask (int id, String name, String headerText, String description, String picture,
-                             String startDate, int challengeId){
-        TaskPutRequest request = new TaskPutRequest (name, headerText, description, picture, startDate,challengeId);
+    public Response putTask (int id, TaskPutRequest request){
         return prepareRequest()
                 .body(request)
                 .when()
