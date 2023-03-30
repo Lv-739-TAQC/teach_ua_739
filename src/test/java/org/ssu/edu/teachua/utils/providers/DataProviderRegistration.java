@@ -14,7 +14,7 @@ public class DataProviderRegistration {
     @DataProvider(name = "dpTestIfUserNotCreated")
     public static Object[][] dpTestIfUserNotCreated() {
         return new Object[][]{
-                { "John", "Doe", "jonDoe_3003@xmail.com", "123456", "06700000067", "ROLE_MANAGER",
+                { "John", "Doe", "jondoe@gmail.com", "123456", "0670000067", "ROLE_MANAGER",
                     400, "password must contain at least one uppercase and lowercase letter and password must contain at least one number and special symbol and password size must be between 8 and 20"
                 },
         };
