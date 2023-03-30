@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.api.clients;
 
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.models.registration.RegistrationRequest;
@@ -12,8 +13,8 @@ public class RegistrationClient extends BaseClient {
         super(url, contentType);
     }
 
-    public Response registerUser(String firstName, String lastName, String email, String password, String phone, String roleName) {
-        RegistrationRequest request = new RegistrationRequest(firstName, lastName, email, password, phone, roleName);
+    @Step("Create a request for adding user using 'POST' method. Enter values in 'Body'")
+    public Response registerUser(RegistrationRequest request) {
         return prepareRequest()
                 .body(request)
                 .when()
