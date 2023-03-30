@@ -6,10 +6,10 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class RegistrationRequest {
-    public String firstName;
-    public String lastName;
-    public String email;
-    public String password;
-    public String phone;
-    public String roleName;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
+    private String phone;
+    private String roleName;
 }

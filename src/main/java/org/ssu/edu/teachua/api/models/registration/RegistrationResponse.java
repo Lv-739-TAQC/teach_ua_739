@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class RegistrationResponse {
-    public int id;
-    public String email;
-    public String roleName;
+    private int id;
+    private String email;
+    private String roleName;
 }
