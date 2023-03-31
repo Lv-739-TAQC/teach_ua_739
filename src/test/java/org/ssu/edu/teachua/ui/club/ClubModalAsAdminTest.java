@@ -8,16 +8,13 @@ import org.ssu.edu.teachua.db.entities.Location;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubContactsComponent;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminUIRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-import java.util.Arrays;
-
-public class ClubModalAsAdminTest extends LoginWithAdminRunner {
+public class ClubModalAsAdminTest extends LoginWithAdminUIRunner {
 
     private AddClubMainInfoComponent mainInfoComponent;
     private AddClubContactsComponent contactsComponent;
