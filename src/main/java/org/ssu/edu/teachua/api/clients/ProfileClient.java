@@ -21,7 +21,7 @@ public class ProfileClient extends BaseClient {
                 .put(path + "/" + id);
     }
 
-    @Step("Create a request for updating password using 'PATCH' method. Enter values in 'Body'")
+    @Step("Create a request for updating password using 'PATCH' method. Enter values in 'Body': {request}")
     public Response updatePassword(int id, ProfilePatchRequest request) {
         return prepareRequest()
                 .body(request)
