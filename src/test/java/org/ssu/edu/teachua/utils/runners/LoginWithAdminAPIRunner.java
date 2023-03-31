@@ -11,20 +11,12 @@ public class LoginWithAdminAPIRunner extends BaseTestRunnerAPI {
     protected String accessToken;
     protected int userId;
 
-    @BeforeClass(description = "Precondition method : get accessToken for Admin account")
+    @BeforeClass(description = "Precondition method : get accessToken and id for Admin account")
     public void getAccessToken() {
         LoginClient client = new LoginClient(valueProvider.getBaseUiUrl(), ContentType.JSON);
         Response response = client.signIn(valueProvider.getAdminEmail(), valueProvider.getAdminPassword());
         SignInResponse signInResponse = response.as(SignInResponse.class);
         accessToken = signInResponse.getAccessToken();
-    }
-
-    @BeforeClass (description = "Get 'id' endpoint")
-    public void getUserId() {
-        LoginClient client = new LoginClient(valueProvider.getBaseUiUrl(), ContentType.JSON);
-        Response response = client.signIn(valueProvider.getAdminEmail(), valueProvider.getAdminPassword());
-        SignInResponse signInResponse = response.as(SignInResponse.class);
         userId = signInResponse.getId();
     }
-
 }
