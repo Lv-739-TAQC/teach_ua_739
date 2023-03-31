@@ -9,7 +9,6 @@ import org.testng.annotations.BeforeClass;
 
 public class LoginWithUserAPIRunner extends BaseTestRunnerAPI {
     protected String accessToken;
-
     protected int userId;
 
     @BeforeClass(description = "Precondition method : get accessToken for User account")

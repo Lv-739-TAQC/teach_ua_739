@@ -9,7 +9,6 @@ import java.util.Random;
 public class DataProviderProfilePage {
 
     protected static final TestValueProvider valueProvider = new TestValueProvider();
-
     protected static Random random = new Random();
 
     @DataProvider(name = "dpTestChangePassword")
