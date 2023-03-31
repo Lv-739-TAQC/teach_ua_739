@@ -93,4 +93,14 @@ public class DataProviderChallenge {
                 {sortNumber, "photos/heart.png", "Example23_Приклад", "Example:78Приклад", "ExamplePOIUQ*$%91!;?*(0_,/ЇЄПриклад~+=-"}
         };
     }
+
+    @DataProvider(name = "dpTestCreateChallengeInvalid")
+    public static Object[][] dpTestCreateChallengeInvalid() {
+        return new Object[][]{
+                {"name", "tit", "des", null, "/upload/test/test.png", 1, 400},
+                {"Lorem ipsum dolor sit amet, consect", "Lorem ipsum dolor sit amet, consect",
+                        ("description").repeat(500), null, "/upload/test/test.png", 1, 400},
+                {"эЭъЪыЫёЁ", "эЭъЪыЫёЁ", "эЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁ", null, "/upload/test/test.png", 1, 400}
+        };
+    }
 }

@@ -5,7 +5,7 @@ import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.models.profile.ProfilePatchRequest;
 import org.ssu.edu.teachua.api.models.profile.ProfilePutRequest;
 
-public class ProfileClient extends BaseClient{
+public class ProfileClient extends BaseClient {
 
     private final String path = "/api/user";
 
