@@ -2,7 +2,11 @@ package org.ssu.edu.teachua.api.models.club;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.ssu.edu.teachua.api.models.category.Category;
+import org.ssu.edu.teachua.api.models.center.Center;
+import org.ssu.edu.teachua.api.models.feedback.Feedback;
 import org.ssu.edu.teachua.api.models.location.Location;
+import org.ssu.edu.teachua.api.models.user.User;
 
 import java.util.ArrayList;
 

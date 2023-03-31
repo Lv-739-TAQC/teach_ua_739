@@ -11,4 +11,5 @@ public class UrlGallery {
     private ClubResponse.Club club;
     private String urlGallery;
     private String url;
+
 }

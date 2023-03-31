@@ -27,4 +27,5 @@ public class ClubRequest {
     private int userId;
     private int clubExternalId;
     private int centerExternalId;
+
 }
