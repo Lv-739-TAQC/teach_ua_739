@@ -16,7 +16,7 @@ import java.math.BigInteger;
 
 public class LeadChallengeTest extends LoginWithLeadAPIRunner {
 
-    private final int viewChallengeId = 849;
+    private final int challengeId = 849;
 
     private final ChallengeClient client = new ChallengeClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
 
@@ -28,9 +28,9 @@ public class LeadChallengeTest extends LoginWithLeadAPIRunner {
     public void testViewChallengeWithLeadRights() {
         SoftAssert dpSoftAssert = new SoftAssert();
 
-        Response response = client.viewChallenge(viewChallengeId);
+        Response response = client.viewChallenge(challengeId);
         dpSoftAssert.assertEquals(response.getStatusCode(), 200);
-        dpSoftAssert.assertEquals(response.as(GetChallengeResponse.class).getId(), BigInteger.valueOf(viewChallengeId));
+        dpSoftAssert.assertEquals(response.as(GetChallengeResponse.class).getId(), BigInteger.valueOf(challengeId));
         dpSoftAssert.assertEquals(response.as(GetChallengeResponse.class).getName(), "Ukrainian");
 
         dpSoftAssert.assertAll();

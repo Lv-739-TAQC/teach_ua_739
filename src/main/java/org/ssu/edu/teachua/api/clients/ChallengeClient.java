@@ -24,4 +24,10 @@ public class ChallengeClient extends BaseClient {
                 .when()
                 .get(path + "/" + id);
     }
+
+    public Response deleteChallenge(int id) {
+        return prepareRequest()
+                .when()
+                .delete(path + "/" + id);
+    }
 }

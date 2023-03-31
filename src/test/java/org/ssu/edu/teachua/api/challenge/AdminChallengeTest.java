@@ -19,7 +19,7 @@ import java.math.BigInteger;
 
 public class AdminChallengeTest extends LoginWithAdminAPIRunner {
 
-    private final int viewChallengeId = 837;
+    private final int challengeId = 837;
 
     private final ChallengeClient client = new ChallengeClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
 
@@ -49,9 +49,9 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
     public void testViewChallengeWithAdminRights() {
         SoftAssert dpSoftAssert = new SoftAssert();
 
-        Response response = client.viewChallenge(viewChallengeId);
+        Response response = client.viewChallenge(challengeId);
         dpSoftAssert.assertEquals(response.getStatusCode(), 200);
-        dpSoftAssert.assertEquals(response.as(GetChallengeResponse.class).getId(), BigInteger.valueOf(viewChallengeId));
+        dpSoftAssert.assertEquals(response.as(GetChallengeResponse.class).getId(), BigInteger.valueOf(challengeId));
         dpSoftAssert.assertEquals(response.as(GetChallengeResponse.class).getName(), "Ukrainian");
 
         dpSoftAssert.assertAll();
