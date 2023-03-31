@@ -25,7 +25,7 @@ public class LeadChallengeTest extends LoginWithLeadAPIRunner {
     @Description("This test case verifies that user with any rights can view" +
                  "\ninformation about specific challenge (lead rights)")
     @Test
-    public void viewChallengeWithLeadRights() {
+    public void testViewChallengeWithLeadRights() {
         SoftAssert dpSoftAssert = new SoftAssert();
 
         Response response = client.viewChallenge(viewChallengeId);

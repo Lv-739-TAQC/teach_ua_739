@@ -25,7 +25,7 @@ public class UserChallengeTest extends LoginWithUserAPIRunner {
     @Description("This test case verifies that user with any rights can view" +
                  "\ninformation about specific challenge (user rights)")
     @Test
-    public void viewChallengeWithUserRights() {
+    public void testViewChallengeWithUserRights() {
         SoftAssert dpSoftAssert = new SoftAssert();
 
         Response response = client.viewChallenge(viewChallengeId);

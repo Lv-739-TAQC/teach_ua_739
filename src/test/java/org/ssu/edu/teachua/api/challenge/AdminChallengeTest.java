@@ -46,7 +46,7 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
     @Description("This test case verifies that user with any rights can view" +
                  "\ninformation about specific challenge (admin rights)")
     @Test
-    public void viewChallengeWithAdminRights() {
+    public void testViewChallengeWithAdminRights() {
         SoftAssert dpSoftAssert = new SoftAssert();
 
         Response response = client.viewChallenge(viewChallengeId);
