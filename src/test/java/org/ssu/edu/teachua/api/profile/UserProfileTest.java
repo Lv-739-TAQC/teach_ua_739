@@ -10,18 +10,12 @@ import org.ssu.edu.teachua.api.models.error.ErrorResponse;
 import org.ssu.edu.teachua.api.models.profile.ProfilePutRequest;
 import org.ssu.edu.teachua.utils.providers.DataProviderProfilePage;
 import org.ssu.edu.teachua.utils.runners.LoginWithUserAPIRunner;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class UserProfileTest extends LoginWithUserAPIRunner {
 
-    private ProfileClient client;
-
-    @BeforeMethod
-    public void initClient() {
-        client = new ProfileClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
-    }
+    private final ProfileClient client = new ProfileClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
 
     @Issue("TUA-415")
     @Severity(SeverityLevel.CRITICAL)

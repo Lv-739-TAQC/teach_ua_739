@@ -6,7 +6,6 @@ import org.ssu.edu.teachua.api.clients.LoginClient;
 import org.ssu.edu.teachua.api.models.login.SignInResponse;
 import org.testng.annotations.BeforeClass;
 
-
 public class LoginWithUserAPIRunner extends BaseTestRunnerAPI {
     protected String accessToken;
 
