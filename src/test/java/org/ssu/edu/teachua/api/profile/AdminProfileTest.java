@@ -40,9 +40,11 @@ public class AdminProfileTest extends LoginWithAdminAPIRunner {
         ErrorResponse responseNewPasswordConfirm = client.updatePassword(id, verifyNewPasswordConfirm).as(ErrorResponse.class);
 
         softAssert.assertEquals(responseOldPassword.getMessage(), expectedMsg.get(0));
-        softAssert.assertEquals(responseNewPassword.getMessage(), expectedMsg.get(1));
-        softAssert.assertEquals(responseNewPasswordConfirm.getMessage(), expectedMsg.get(2));
         softAssert.assertEquals(responseOldPassword.getStatus(), expectedStatusCode);
+        softAssert.assertEquals(responseNewPassword.getMessage(), expectedMsg.get(1));
+        softAssert.assertEquals(responseNewPassword.getStatus(), expectedStatusCode);
+        softAssert.assertEquals(responseNewPasswordConfirm.getMessage(), expectedMsg.get(2));
+        softAssert.assertEquals(responseNewPasswordConfirm.getStatus(), expectedStatusCode);
         softAssert.assertAll();
     }
 }
