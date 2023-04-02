@@ -27,17 +27,17 @@ public class AdminProfileTest extends LoginWithAdminAPIRunner {
     @Issue("TUA-750")
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify that user cannot change password after leaving empty fields in the 'Change password' pop-up")
-    @Test(dataProvider = "dpTestIfPasswordIsNotUpdated", dataProviderClass = DataProviderProfilePage.class)
-    public void testIfPasswordIsNotUpdated(String emptyData, String newPassword, String oldPassword, int expectedStatusCode, List<String> expectedMsg) {
+    @Test(dataProvider = "dpTestIfPasswordNotUpdated", dataProviderClass = DataProviderProfilePage.class)
+    public void testIfPasswordNotUpdated(int id, String emptyData, String newPassword, String oldPassword, int expectedStatusCode, List<String> expectedMsg) {
 
         ProfilePatchRequest verifyOldPassword = new ProfilePatchRequest(emptyData, newPassword, newPassword);
-        ErrorResponse responseOldPassword = client.updatePassword(userId, verifyOldPassword).as(ErrorResponse.class);
+        ErrorResponse responseOldPassword = client.updatePassword(id, verifyOldPassword).as(ErrorResponse.class);
 
         ProfilePatchRequest verifyNewPassword = new ProfilePatchRequest(oldPassword, emptyData, newPassword);
-        ErrorResponse responseNewPassword = client.updatePassword(userId, verifyNewPassword).as(ErrorResponse.class);
+        ErrorResponse responseNewPassword = client.updatePassword(id, verifyNewPassword).as(ErrorResponse.class);
 
         ProfilePatchRequest verifyNewPasswordConfirm = new ProfilePatchRequest(oldPassword, newPassword, emptyData);
-        ErrorResponse responseNewPasswordConfirm = client.updatePassword(userId, verifyNewPasswordConfirm).as(ErrorResponse.class);
+        ErrorResponse responseNewPasswordConfirm = client.updatePassword(id, verifyNewPasswordConfirm).as(ErrorResponse.class);
 
         softAssert.assertEquals(responseOldPassword.getMessage(), expectedMsg.get(0));
         softAssert.assertEquals(responseNewPassword.getMessage(), expectedMsg.get(1));

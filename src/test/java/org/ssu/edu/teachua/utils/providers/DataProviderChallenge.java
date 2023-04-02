@@ -95,7 +95,7 @@ public class DataProviderChallenge {
     }
 
     @DataProvider(name = "dpTestIfChallengeIsNotCreated")
-    public static Object[][] dpTestIfChallengeIsNotCreated() {
+    public static Object[][] dpTestIfChallengeNotCreated() {
         return new Object[][]{
                 {Arrays.asList("testTitle", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", "photos/image.png", "546789"),
                         Arrays.asList("Дыผð*.:", "t", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", ""),

@@ -1,15 +1,14 @@
 package org.ssu.edu.teachua.utils.providers;
 
-import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.testng.annotations.DataProvider;
 
 import java.util.Arrays;
-import java.util.Random;
+
+import static org.ssu.edu.teachua.utils.StringGenerator.randomName;
+import static org.ssu.edu.teachua.utils.StringGenerator.randomPhoneNumber;
 
 public class DataProviderProfilePage {
 
-    protected static final TestValueProvider valueProvider = new TestValueProvider();
-    protected static Random random = new Random();
 
     @DataProvider(name = "dpTestChangePassword")
     public static Object[][] dpTestChangePassword() {
@@ -47,27 +46,19 @@ public class DataProviderProfilePage {
                 {"", "Телефон не відповідає формату +38(___) ___ __ __"}};
     }
 
-    @DataProvider(name = "dpTestIfPasswordIsNotUpdated")
-    private static Object[][] dpTestIfPasswordIsNotUpdated() {
+    @DataProvider(name = "dpTestIfPasswordNotUpdated")
+    private static Object[][] dpTestIfPasswordNotUpdated() {
         return new Object[][]{
-                {"", "123_%testPass", valueProvider.getAdminPassword(), 400,
+                {1, "", "123_%testPass", "admin@gmail.com", 400,
                         Arrays.asList("Будь ласка, введіть діючий пароль", "Будь ласка, введіть новий пароль", "Будь ласка, підтвердіть новий пароль")
                 }};
     }
 
-    @DataProvider(name = "dpTestIfProfileIsUpdated")
-    private static Object[][] dpTestIfProfileIsUpdated() {
-        String phoneNumber = String.format("067%08d", random.nextInt(100_000_000));
-        StringBuilder randomLetters = new StringBuilder();
-        char firstLetter = (char) (random.nextInt(26) + 'A');
-        randomLetters.append(firstLetter);
-        for (int i = 1; i < 5; i++) {
-            char letter = (char) (random.nextInt(26) + 'a');
-            randomLetters.append(letter);
-        }
+    @DataProvider(name = "dpTestIfProfileUpdated")
+    private static Object[][] dpTestIfProfileUpdated() {
         return new Object[][]{
-                {Arrays.asList("John", "Doe", valueProvider.getUserEmail(), "06700000067", "ROLE_USER"),
-                        randomLetters.toString(), randomLetters.append("Z").toString(), phoneNumber, 200
+                {203, Arrays.asList("Hanna", "Kukh", "soyec48727@busantei.com", "0648768777", "ROLE_MANAGER", null), true,
+                        randomName(), randomName() + "z", randomPhoneNumber(), 200
                 }};
     }
 

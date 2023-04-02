@@ -9,7 +9,6 @@ import org.testng.annotations.BeforeClass;
 
 public class LoginWithAdminAPIRunner extends BaseTestRunnerAPI {
     protected String accessToken;
-    protected int userId;
 
     @BeforeClass(description = "Precondition method : get accessToken and id for Admin account")
     public void getAccessToken() {
@@ -17,6 +16,5 @@ public class LoginWithAdminAPIRunner extends BaseTestRunnerAPI {
         Response response = client.signIn(valueProvider.getAdminEmail(), valueProvider.getAdminPassword());
         SignInResponse signInResponse = response.as(SignInResponse.class);
         accessToken = signInResponse.getAccessToken();
-        userId = signInResponse.getId();
     }
 }

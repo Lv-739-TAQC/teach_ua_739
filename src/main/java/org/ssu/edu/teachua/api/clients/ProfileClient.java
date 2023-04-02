@@ -14,6 +14,7 @@ public class ProfileClient extends BaseClient {
         super(url, contentType, accessToken);
     }
 
+    @Step("Create a request for updating profile using 'PUT' method. Enter values in 'Body': {request}")
     public Response updateProfile(int id, ProfilePutRequest request) {
         return prepareRequest()
                 .body(request)
