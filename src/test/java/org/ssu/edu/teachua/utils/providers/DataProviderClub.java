@@ -2,6 +2,7 @@ package org.ssu.edu.teachua.utils.providers;
 
 import org.testng.annotations.DataProvider;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
@@ -63,6 +64,23 @@ public class DataProviderClub {
                 {"Hurtok3210", 2, "3", "15", "LocationTest123", "Харків", "Київський", "Ivana Krylova",
                 "49.829104498711104, 24.005058710351314", "0123456789", "0123456789", "description".repeat(5),
                 "City(latitude=49.9935, longitude=36.2304, name=Харків)"}
+        };
+    }
+
+    @DataProvider(name = "pdTestCreateClubDescriptionInvalid")
+    public static Object[][] pdTestCreateClubDescriptionInvalid() {
+        String description = ("{\"blocks\":" +
+                "[{\"key\":\"brl63\"," +
+                "\"text\":\"что-то написанное на русском языке\"," +
+                "\"type\":\"unstyled\"," +
+                "\"depth\":0," +
+                "\"inlineStyleRanges\":[]," +
+                "\"entityRanges\":[]," +
+                "\"data\":{}}]," +
+                "\"entityMap\":{}}");
+        String errorMsg = "Опис гуртка не може містити російські літери";
+        return new Object[][] {
+                {null, "NameName", 2, 18, true, null, description, null, BigInteger.valueOf(272), 400, errorMsg}
         };
     }
 }
