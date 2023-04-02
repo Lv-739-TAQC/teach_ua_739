@@ -1,7 +1,10 @@
 package org.ssu.edu.teachua.utils.providers;
 
+import org.ssu.edu.teachua.api.models.location.Location;
+import org.ssu.edu.teachua.api.models.url_gallery.UrlGallery;
 import org.testng.annotations.DataProvider;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -65,4 +68,20 @@ public class DataProviderClub {
                 "City(latitude=49.9935, longitude=36.2304, name=Харків)"}
         };
     }
+    
+    @DataProvider(name = "dpVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters")
+    public static Object[][] dpVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters() {
+        return new Object[][]{
+                {0, "Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів12346578901234657890123465789012346578901234657890123465789012346578901234657890123465789012346578901234657890",
+				"{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+				2, new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти")),
+				new ArrayList<Location>(), 2, 18,
+				"/dev/static/images/user/avatar/user1.png",
+				"/dev/static/images/user/avatar/user1.png",
+				new ArrayList<UrlGallery>(),
+				true, "{\"1\"::\"ліл\"}",
+				true, 264, 0, 0}
+        };
+    }
+    
 }

@@ -3,6 +3,7 @@ package org.ssu.edu.teachua.api.profile;
 import org.ssu.edu.teachua.api.clients.ProfileClient;
 import org.ssu.edu.teachua.api.models.profile.ProfilePutRequest;
 import org.ssu.edu.teachua.api.models.profile.ProfileResponse;
+import org.ssu.edu.teachua.utils.providers.DataProviderProfilePage;
 import org.ssu.edu.teachua.utils.runners.LoginWithUserAPIRunner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -18,23 +19,22 @@ public class UserProfileTest extends LoginWithUserAPIRunner {
 	
 	@Issue("TUA-416")
 	@Severity(SeverityLevel.NORMAL)
-	@Description("he user or manager can change their role")
-	@Test
-	public void testVerifyThatUserCanChangeTheirRole() {
+	@Description("The user or manager can change their role")
+	@Test (dataProvider = "dpTestVerifyThatUserCanChangeTheirRole",
+			dataProviderClass = DataProviderProfilePage.class)
+	public void testVerifyThatUserCanChangeTheirRole(int id,
+			String firstName, String lastName,
+     		String email, String phone, String roleName,
+     		String urlLogo, boolean status) {
 		ProfilePutRequest profilePutRequest = new ProfilePutRequest(
-				"Nastia",
-				"Kukh",
-				"soyec48727@busantei.com",
-				"0999999922",
-				"ROLE_USER",
-				null,
-				true
-				);
-		ProfileResponse profileResponse = client.updateProfile(203, profilePutRequest).as(ProfileResponse.class);
+				id, firstName, lastName,
+	     		email, phone, roleName,
+	     		urlLogo, status);
+		ProfileResponse profileResponse = client.updateProfile(id, profilePutRequest).as(ProfileResponse.class);
 		SoftAssert softAssert = new SoftAssert();
 		softAssert.assertEquals(profileResponse.getRoleName(), "ROLE_USER");
 		profilePutRequest.setRoleName("ROLE_MANAGER");
-		profileResponse = client.updateProfile(203, profilePutRequest).as(ProfileResponse.class);
+		profileResponse = client.updateProfile(id, profilePutRequest).as(ProfileResponse.class);
 		softAssert.assertEquals(profileResponse.getRoleName(), "ROLE_MANAGER");
 		softAssert.assertAll();
 	}

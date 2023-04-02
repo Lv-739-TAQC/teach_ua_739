@@ -15,34 +15,29 @@ import io.qameta.allure.Issue;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.restassured.http.ContentType;
+import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 
 public class UserClubTest extends LoginWithUserAPIRunner{
+	
 	private final ClubClient client = new ClubClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
 	
 	
 	@Issue("TUA-437")
 	@Severity(SeverityLevel.NORMAL)
 	@Description("Verify that User  cann`t create new club is in a center if \"Назва\" field contain more than 100 characters")
-	@Test
-	public void testVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters() {
+	@Test(dataProvider = "dpVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters",
+			dataProviderClass = DataProviderClub.class)
+	public void testVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters(
+			int id, String name, String description, int centerId,
+		    ArrayList<String> categoriesName, ArrayList<Location> locations,
+		    int ageFrom, int ageTo, String urlBackground, String urlLogo, ArrayList<UrlGallery> urlGallery,
+		    boolean isOnline, String contacts, boolean isApproved, int userId, int clubExternalId, int centerExternalId) {
+		
 		ClubRequest request = new ClubRequest(
-					0, 
-					"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів12346578901234657890123465789012346578901234657890123465789012346578901234657890123465789012346578901234657890",
-					"{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
-					2,
-					new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти")),
-					new ArrayList<Location>(),
-					2,
-					18,
-					"/dev/static/images/user/avatar/user1.png",
-					 "/dev/static/images/user/avatar/user1.png",
-					 new ArrayList<UrlGallery>(),
-					 true,
-					 "{\"1\"::\"ліл\"}",
-					 true,
-					 264,
-					 0,
-					 0);
+				id, name, description, centerId,
+			    categoriesName, locations,
+			    ageFrom, ageTo, urlBackground, urlLogo, urlGallery,
+			    isOnline, contacts, isApproved, userId, clubExternalId, centerExternalId);
 		
 		ErrorResponse errorResponse = client.createClub(request).as(ErrorResponse.class);
 		SoftAssert softAssert = new SoftAssert();

@@ -39,4 +39,14 @@ public class DataProviderProfilePage {
 				{ "!@#$%^&*(_+.:", "Телефон не відповідає формату +38(___) ___ __ __" },
 				{ "", "Телефон не відповідає формату +38(___) ___ __ __" } };
 	}
+    
+    @DataProvider(name = "dpTestVerifyThatUserCanChangeTheirRole")
+   	private Object[][] dpTestVerifyThatUserCanChangeTheirRole() {
+   		return new Object[][] {{
+   			203, "Nastia", "Kukh", "soyec48727@busantei.com",
+			"0999999922", "ROLE_USER", null, true
+   		}};
+    }
+    
+ 
 }
