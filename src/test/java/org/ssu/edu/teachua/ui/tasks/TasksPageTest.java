@@ -79,8 +79,8 @@ public class TasksPageTest extends LoginWithAdminUIRunner {
                                            String challenge, int day, int month, int year, String expectedErrorMsg) {
         softAssert.assertTrue(addTaskPage.areWebElementsEmpty());
 
-        String actualErrorMsg = addTaskPage.
-                uploadPhoto(valueProvider.getFilePath(photoPath))
+        String actualErrorMsg = addTaskPage
+                .uploadPhoto(valueProvider.getFilePath(photoPath))
                 .typeName(name)
                 .typeTitle(title)
                 .typeDescription(description)
