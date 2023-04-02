@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeClass;
 public class LoginWithUserAPIRunner extends BaseTestRunnerAPI {
     protected String accessToken;
 
-    @BeforeClass(description = "Precondition method : get accessToken and id for User account")
+    @BeforeClass(description = "Precondition method : get accessToken for User account")
     public void getAccessToken() {
         LoginClient client = new LoginClient(valueProvider.getBaseUiUrl(), ContentType.JSON);
         Response response = client.signIn(valueProvider.getUserEmail(), valueProvider.getUserPassword());
