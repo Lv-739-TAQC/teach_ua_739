@@ -2,6 +2,7 @@ package org.ssu.edu.teachua.api.models.club;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.ssu.edu.teachua.api.models.location.Location;
 import org.ssu.edu.teachua.api.models.url_gallery.UrlGallery;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ClubRequest {
     private int id;
     private String name;
