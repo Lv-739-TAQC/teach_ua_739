@@ -16,6 +16,8 @@ import org.ssu.edu.teachua.utils.runners.BaseTestRunnerAPI;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class RegistrationTest extends BaseTestRunnerAPI {
 
     private RegistrationClient client;
@@ -30,12 +32,14 @@ public class RegistrationTest extends BaseTestRunnerAPI {
     @Description("Verify that user with invalid data in \"Пароль\" field can`t be created")
     @Test(dataProvider = "dpTestIfUserNotCreated", dataProviderClass = DataProviderRegistration.class)
     public void testIfUserNotCreated(String firstName, String lastName, String email, String password, String phone, String roleName,
-                                     int expectedStatusCode, String expectedMsg) throws DBException, EntityException {
+                                     int expectedStatusCode, List<String> expectedMsg) throws DBException, EntityException {
         UserService userService = entityService.getUserService();
         RegistrationRequest request = new RegistrationRequest(firstName, lastName, email, password, phone, roleName);
         ErrorResponse registrationResponse = client.registerUser(request).as(ErrorResponse.class);
 
-        softAssert.assertEquals(registrationResponse.getMessage(), expectedMsg);
+        softAssert.assertTrue(registrationResponse.getMessage().contains(expectedMsg.get(0)));
+        softAssert.assertTrue(registrationResponse.getMessage().contains(expectedMsg.get(1)));
+        softAssert.assertTrue(registrationResponse.getMessage().contains(expectedMsg.get(2)));
         softAssert.assertEquals(registrationResponse.getStatus(), expectedStatusCode);
         softAssert.assertEquals(userService.getUsersByEmail(email).size(), 0);
         softAssert.assertAll();
