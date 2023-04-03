@@ -86,12 +86,12 @@ public class DataProviderClub {
                 "\"entityMap\":{}}");
 
         return new Object[][]{
-                {null, "name", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(0)},
+                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "name", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(0)},
 
-                {null, "namenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamen", 2, 18, true, null,
+                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "namenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamen", 2, 18, true, null,
                         description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(0)},
 
-                {null, "nameЁёЫыЭэ", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(1)},
+                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "nameЁёЫыЭэ", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(1)},
 
         };
     }
