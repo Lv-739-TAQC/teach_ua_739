@@ -2,6 +2,8 @@ package org.ssu.edu.teachua.utils.providers;
 
 import org.testng.annotations.DataProvider;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,6 +14,11 @@ public class DataProviderClub {
             "Опис гуртка не може містити російські літери",
             "Некоректний опис гуртка\nОпис гуртка не може містити російські літери",
             "Некоректний опис гуртка\nОпис гуртка може містити від 40 до 1500 символів."
+    );
+
+    public static final List<String> API_ERROR_MSG = Arrays.asList(
+            "name Довжина назви має бути від 5 до 100 символів",
+            "name Помилка. Присутні недопустимі символи"
     );
 
     @DataProvider(name = "dpTestDescriptionFieldValid")
@@ -61,8 +68,31 @@ public class DataProviderClub {
     public static Object[][] dpTestAddLocationForClub() {
         return new Object[][]{
                 {"Hurtok3210", 2, "3", "15", "LocationTest123", "Харків", "Київський", "Ivana Krylova",
-                "49.829104498711104, 24.005058710351314", "0123456789", "0123456789", "description".repeat(5),
-                "City(latitude=49.9935, longitude=36.2304, name=Харків)"}
+                        "49.829104498711104, 24.005058710351314", "0123456789", "0123456789", "description".repeat(5),
+                        "City(latitude=49.9935, longitude=36.2304, name=Харків)"}
+        };
+    }
+
+    @DataProvider(name = "dpApiTestEditClubInvalidData")
+    public static Object[][] dpApiTestEditClubInvalidData() {
+        String description = ("{\"blocks\":" +
+                "[{\"key\":\"brl63\"," +
+                "\"text\":\"descriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescri\"," +
+                "\"type\":\"unstyled\"," +
+                "\"depth\":0," +
+                "\"inlineStyleRanges\":[]," +
+                "\"entityRanges\":[]," +
+                "\"data\":{}}]," +
+                "\"entityMap\":{}}");
+
+        return new Object[][]{
+                {null, "name", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(0)},
+
+                {null, "namenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamen", 2, 18, true, null,
+                        description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(0)},
+
+                {null, "nameЁёЫыЭэ", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(1)},
+
         };
     }
 }

@@ -2,6 +2,8 @@ package org.ssu.edu.teachua.api.tasks;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.clients.TaskClient;
@@ -26,6 +28,7 @@ public class TasksTest extends LoginWithAdminAPIRunner {
     }
 
     @Issue("TUA-446")
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verify that admin can not edit Task using spaces as values")
     @Test(dataProvider = "testEditTaskWithInvalidData", dataProviderClass = DataProviderTask.class)
     public void testEditTaskWithInvalidData(String name, String headerText, String description, String picture,
@@ -45,6 +48,7 @@ public class TasksTest extends LoginWithAdminAPIRunner {
     }
 
     @Issue("TUA-444")
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verify that admin can edit Task with valid values")
     @Test(dataProvider = "testEditTaskWithValidData", dataProviderClass = DataProviderTask.class)
     public void testEditTaskWithValidData(String name, String headerText, String description, String picture,
@@ -66,6 +70,7 @@ public class TasksTest extends LoginWithAdminAPIRunner {
     }
 
     @Issue("TUA-442")
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verify that admin can not create Task with invalid values")
     @Test(dataProvider = "testCreateTaskWithInvalidData", dataProviderClass = DataProviderTask.class)
     public void testCreateTaskWithInvalidData(String name, String headerText, String description, String picture,
@@ -82,6 +87,7 @@ public class TasksTest extends LoginWithAdminAPIRunner {
     }
 
     @Issue("TUA-441")
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verify that admin can create Task with valid values")
     @Test(dataProvider = "testCreateTaskWithValidData", dataProviderClass = DataProviderTask.class)
     public void testCreateTaskWithValidData(String name, String headerText, String description, String picture,
