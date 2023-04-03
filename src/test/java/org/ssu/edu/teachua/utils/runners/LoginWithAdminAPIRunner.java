@@ -8,7 +8,8 @@ import org.testng.annotations.BeforeClass;
 
 
 public class LoginWithAdminAPIRunner extends BaseTestRunnerAPI {
-    private String accessToken;
+    protected String accessToken;
+    protected int userId;
 
     @BeforeClass(description = "Precondition method : get accessToken for Admin account")
     public void getAccessToken() {

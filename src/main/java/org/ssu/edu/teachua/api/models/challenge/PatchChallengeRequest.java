@@ -5,11 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class PostChallengeRequest {
+public class PatchChallengeRequest {
     private String name;
+    private int sortNumber;
     private String title;
-    private String description;
-    private String registrationLink;
-    private String picture;
-    private String sortNumber;
 }

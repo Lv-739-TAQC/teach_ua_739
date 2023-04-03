@@ -93,4 +93,24 @@ public class DataProviderChallenge {
                 {sortNumber, "photos/heart.png", "Example23_Приклад", "Example:78Приклад", "ExamplePOIUQ*$%91!;?*(0_,/ЇЄПриклад~+=-"}
         };
     }
+
+    @DataProvider(name = "dpTestRussianValueNameField")
+    public static Object[][] dpTestRussianValueNameField() {
+        return new Object[][]{
+                {"писатель эссеист", "Заголовок Челенджу",
+                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. L" +
+                                "orem Ipsum has been the industry's standard dummy text ever since the 1500s",
+                        null, "/upload/test/image.png", "1737637", 400,
+                        "Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи"}
+        };
+    }
+
+    @DataProvider(name = "dpTestEmptySortNumberField")
+    public static Object[][] dpTestEmptySortNumberField() {
+        return new Object[][]{
+                {"Челендж_99", "99-й найкращий",
+                        "Який-небудь опис челенджу, челенджу челенджу челенджу челенджу",
+                        null, "/upload/test/image.png", "", 400, "Поле порядковий номер не має бути пустим"}
+        };
+    }
 }
