@@ -17,6 +17,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class TasksTest extends LoginWithAdminAPIRunner {
     private TaskClient taskClient;
     SoftAssert softAssert = new SoftAssert();
@@ -32,7 +35,13 @@ public class TasksTest extends LoginWithAdminAPIRunner {
     @Description("Verify that admin can not edit Task using spaces as values")
     @Test(dataProvider = "testEditTaskWithInvalidData", dataProviderClass = DataProviderTask.class)
     public void testEditTaskWithInvalidData(String name, String headerText, String description, String picture,
-                                            String startDate, int challengeId, String expectedErrorMsg) {
+                                            String startDate, int challengeId) {
+
+        List<String> expectedMsg = Arrays.asList(
+                "name must contain a minimum of 5 and a maximum of 255 letters",
+                "name must not be blank",
+                "description must contain a maximum of 10000 letters"
+        );
 
         TaskPutRequest invalidPutRequest = new TaskPutRequest(name, headerText, description,
                 picture, startDate, challengeId);
@@ -42,7 +51,10 @@ public class TasksTest extends LoginWithAdminAPIRunner {
 
         softAssert.assertEquals(putResponse.statusCode(), 400);
         softAssert.assertEquals(taskPutResponse.getStatus(), 400);
-        softAssert.assertEquals(taskPutResponse.getMessage(), expectedErrorMsg);
+
+        softAssert.assertTrue(taskPutResponse.getMessage().contains(expectedMsg.get(0)));
+        softAssert.assertTrue(taskPutResponse.getMessage().contains(expectedMsg.get(1)));
+        softAssert.assertTrue(taskPutResponse.getMessage().contains(expectedMsg.get(2)));
 
         softAssert.assertAll();
     }

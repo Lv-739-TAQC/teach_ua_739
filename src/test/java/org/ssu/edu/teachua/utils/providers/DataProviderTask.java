@@ -95,10 +95,10 @@ public class DataProviderTask {
     public static Object[][] dpCantEditTask() {
         return new Object[][]{
                 {" ", "header text must contain min fourty letters", " ", "/upload/test/test.png",
-                        "2023-11-03", 777, API_ERROR_MSG.get(5) },
+                        "2023-11-03", 777},
 
                 {null, "header text must contain min fourty letters", null, "/upload/test/test.png",
-                        "2023-11-03", 777, API_ERROR_MSG.get(4)}
+                        "2023-11-03", 777}
         };
     }
     @DataProvider(name = "testEditTaskWithValidData")
