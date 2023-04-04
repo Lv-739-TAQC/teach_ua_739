@@ -13,7 +13,6 @@ import java.util.ArrayList;
 @Data
 @AllArgsConstructor
 public class ClubResponse {
-    public class Club {
         private int id;
         private int ageFrom;
         private int ageTo;
@@ -36,5 +35,4 @@ public class ClubResponse {
         private String contacts;
         private int clubExternalId;
         private int centerExternalId;
-    }
 }

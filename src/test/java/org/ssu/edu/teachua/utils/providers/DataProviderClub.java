@@ -2,6 +2,7 @@ package org.ssu.edu.teachua.utils.providers;
 
 import org.testng.annotations.DataProvider;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -61,8 +62,29 @@ public class DataProviderClub {
     public static Object[][] dpTestAddLocationForClub() {
         return new Object[][]{
                 {"Hurtok3210", 2, "3", "15", "LocationTest123", "Харків", "Київський", "Ivana Krylova",
-                "49.829104498711104, 24.005058710351314", "0123456789", "0123456789", "description".repeat(5),
-                "City(latitude=49.9935, longitude=36.2304, name=Харків)"}
+                        "49.829104498711104, 24.005058710351314", "0123456789", "0123456789", "description".repeat(5),
+                        "City(latitude=49.9935, longitude=36.2304, name=Харків)"}
+        };
+    }
+
+    @DataProvider(name = "dpTestDeletePreviouslyCreatedClub")
+    public static Object[][] testDeletePreviouslyCreatedClub() {
+        String description = ("{\"blocks\":" +
+                "[{\"key\":\"brl63\"," +
+                "\"text\":\"Основним видом діяльності закладу є освітня і мистецька діяльність, яка включає організацію," +
+                " забезпечення та реалізацію мистецько-освітнього процесу з метою формування у здобувачів початкової музичної" +
+                "освіти, компетентностей, передбачених освітніми програмами. У школі присутні напрямки: танці, хореографія," +
+                " вокальна студія, музика, музичні інструменти, академічний та народний вокал, композиція.\"," +
+                "\"type\":\"unstyled\"," +
+                "\"depth\":0," +
+                "\"inlineStyleRanges\":[]," +
+                "\"entityRanges\":[]," +
+                "\"data\":{}}]," +
+                "\"entityMap\":{}}");
+        ArrayList<String> categoriesName = new ArrayList<>();
+        return new Object[][]{
+                {0, "Голосистi діти", description, 0, categoriesName.add("Вокальна студія, музика, музичні інструменти"), new ArrayList<>(), 2, 18,
+                        null, null, new ArrayList<>(), true, "{}", true, 0, 0, 0, 200}
         };
     }
 }
