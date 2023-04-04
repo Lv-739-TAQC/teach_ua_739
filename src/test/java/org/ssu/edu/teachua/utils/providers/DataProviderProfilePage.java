@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.utils.providers;
 
+import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.testng.annotations.DataProvider;
 
 import java.util.Arrays;
@@ -8,7 +9,6 @@ import static org.ssu.edu.teachua.utils.StringGenerator.randomName;
 import static org.ssu.edu.teachua.utils.StringGenerator.randomPhoneNumber;
 
 public class DataProviderProfilePage {
-
 
     @DataProvider(name = "dpTestChangePassword")
     public static Object[][] dpTestChangePassword() {
@@ -49,7 +49,7 @@ public class DataProviderProfilePage {
     @DataProvider(name = "dpTestIfPasswordNotUpdated")
     private static Object[][] dpTestIfPasswordNotUpdated() {
         return new Object[][]{
-                {1, "", "123_%testPass", "admin@gmail.com", 400,
+                {1, "", "123_%testPass", "admin", 400,
                         Arrays.asList("Будь ласка, введіть діючий пароль", "Будь ласка, введіть новий пароль", "Будь ласка, підтвердіть новий пароль")
                 }};
     }
