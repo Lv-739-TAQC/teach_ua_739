@@ -17,4 +17,5 @@ public class LoginWithLeadAPIRunner extends BaseTestRunnerAPI {
         SignInResponse signInResponse = response.as(SignInResponse.class);
         accessToken = signInResponse.getAccessToken();
     }
+
 }

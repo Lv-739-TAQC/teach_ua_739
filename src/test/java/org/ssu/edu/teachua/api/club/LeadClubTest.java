@@ -5,17 +5,18 @@ import io.qameta.allure.Issue;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.clients.ClubClient;
 import org.ssu.edu.teachua.api.models.club.ClubRequest;
 import org.ssu.edu.teachua.api.models.club.ClubResponse;
 import org.ssu.edu.teachua.api.models.location.Location;
-import org.ssu.edu.teachua.api.models.ok_response.OkResponse;
 import org.ssu.edu.teachua.api.models.url_gallery.UrlGallery;
 import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.ssu.edu.teachua.utils.runners.LoginWithLeadAPIRunner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class LeadClubTest extends LoginWithLeadAPIRunner {
@@ -25,19 +26,20 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
     @Severity(SeverityLevel.NORMAL)
     @Description("This test case verifies that the club lead can delete a previously created by him club")
     @Test(dataProvider = "dpTestDeletePreviouslyCreatedClub", dataProviderClass = DataProviderClub.class)
-    public void testDeletePreviouslyCreatedClub(int id, String name, String description, int centerId, ArrayList<String> categoriesName,
-                               ArrayList<Location> locations, int ageFrom, int ageTo, String urlBackground, String urlLogo,
-                               ArrayList<UrlGallery> urlGallery, boolean isOnline, String contacts, boolean isApproved,
-                               int userId, int clubExternalId, int centerExternalId, int expectedStatusCode) {
+    public void testDeletePreviouslyCreatedClub(ArrayList<String> categoriesName, String name, int ageFrom,
+                                                int ageTo, boolean isOnline, ArrayList<String> contacts,
+                                                String description, ArrayList<String> locations, BigInteger userId,
+                                                int expectedStatusCode) {
         SoftAssert softAssert = new SoftAssert();
-        ClubRequest clubRequest = new ClubRequest(id, name, description, centerId, categoriesName, locations, ageFrom,
-                ageTo, urlBackground, urlLogo, urlGallery, isOnline, contacts, isApproved, userId, clubExternalId, centerExternalId);
+        ClubRequest clubRequest = new ClubRequest(
+                categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId
+        );
         ClubResponse clubResponse = client.createClub(clubRequest).as(ClubResponse.class);
-        OkResponse okResponseCreate = client.createClub(clubRequest).as(OkResponse.class);
-        softAssert.assertEquals(okResponseCreate.getStatus(), expectedStatusCode);
+        Response okResponseCreate = client.createClub(clubRequest);
+        softAssert.assertEquals(okResponseCreate.getStatusCode(), expectedStatusCode);
         client.deleteClub(clubResponse.getId());
-        OkResponse okResponseDelete = client.deleteClub(id).as(OkResponse.class);
-        softAssert.assertEquals(okResponseDelete.getStatus(), expectedStatusCode);
+        Response okResponseDelete = client.deleteClub(clubResponse.getId());
+        softAssert.assertEquals(okResponseDelete.getStatusCode(), expectedStatusCode);
         softAssert.assertAll();
     }
 }

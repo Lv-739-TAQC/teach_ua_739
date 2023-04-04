@@ -35,4 +35,5 @@ public class ClubResponse {
         private String contacts;
         private int clubExternalId;
         private int centerExternalId;
+
 }

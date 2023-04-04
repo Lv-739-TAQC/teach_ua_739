@@ -2,6 +2,7 @@ package org.ssu.edu.teachua.utils.providers;
 
 import org.testng.annotations.DataProvider;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -81,10 +82,9 @@ public class DataProviderClub {
                 "\"entityRanges\":[]," +
                 "\"data\":{}}]," +
                 "\"entityMap\":{}}");
-        ArrayList<String> categoriesName = new ArrayList<>();
         return new Object[][]{
-                {0, "Голосистi діти", description, 0, categoriesName.add("Вокальна студія, музика, музичні інструменти"), new ArrayList<>(), 2, 18,
-                        null, null, new ArrayList<>(), true, "{}", true, 0, 0, 0, 200}
+                {new ArrayList<>(Arrays.asList("Вокальна студія, музика, музичні інструменти")), "Голосисті діти", 2, 18,
+                        true, null, description, null, BigInteger.valueOf(854), 200}
         };
     }
 }
