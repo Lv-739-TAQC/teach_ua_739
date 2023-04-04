@@ -1,6 +1,7 @@
 package org.ssu.edu.teachua.api.club;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.clients.ClubClient;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 
 public class AdminClubTest extends LoginWithAdminAPIRunner {
 
+    @Issue(value = "TUA-469")
     @Description(value = "Verify that the duplicate club cannot be created")
     @Test
     public void verifyThatTheDuplicateClubCannotBeCreated() {

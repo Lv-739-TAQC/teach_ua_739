@@ -1,6 +1,7 @@
 package org.ssu.edu.teachua.api.profile;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.clients.LoginClient;
@@ -30,6 +31,7 @@ public class UserProfileTest extends LoginWithUserAPIRunner {
         loginClient = new LoginClient(valueProvider.getBaseUiUrl(), ContentType.JSON);
     }
 
+    @Issue(value = "TUA-421")
     @Description(value = "Verify that user can not save changes where mandatory fields are empty")
     @Test
     public void verifyThatUserCanNotSaveChangesWhereMandatoryFieldsAreEmpty() {
@@ -58,7 +60,7 @@ public class UserProfileTest extends LoginWithUserAPIRunner {
         updateResponse = profileClient.updateProfile(signInResponse.getId(), profilePutRequest);
         errorResponse = updateResponse.as(ErrorResponse.class);
         softAssert.assertEquals(errorResponse.getStatus(), 400);
-        softAssert.assertEquals(errorResponse.getMessage(), "\"phone\" can`t be null");
+        softAssert.assertEquals(errorResponse.getMessage(), "phone must not be blank");
         softAssert.assertAll();
     }
 }
