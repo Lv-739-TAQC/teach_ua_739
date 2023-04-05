@@ -5,6 +5,7 @@ import io.qameta.allure.Issue;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.clients.ProfileClient;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
 import org.ssu.edu.teachua.api.models.profile.ProfilePutRequest;
@@ -13,6 +14,8 @@ import org.ssu.edu.teachua.utils.runners.LoginWithUserAPIRunner;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 public class UserProfileTest extends LoginWithUserAPIRunner {
 
