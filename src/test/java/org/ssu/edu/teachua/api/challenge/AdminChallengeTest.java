@@ -33,7 +33,7 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
     public void testCreateChallengeInvalid(String name, String title, String description, String registrationLink,
                                            String picture, int sortNumber, int expectedStatusCode) {
         PostChallengeRequest postChallengeRequest = new PostChallengeRequest(
-                name, title, description, registrationLink, picture, sortNumber
+                name, title, description, registrationLink, picture, BigInteger.valueOf(sortNumber)
         );
         ErrorResponse errorResponse = client.createChallenge(postChallengeRequest).as(ErrorResponse.class);
 
