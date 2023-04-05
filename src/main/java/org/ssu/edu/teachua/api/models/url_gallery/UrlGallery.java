@@ -8,8 +8,7 @@ import org.ssu.edu.teachua.api.models.club.ClubResponse;
 @AllArgsConstructor
 public class UrlGallery {
     private int id;
-    private ClubResponse.Club club;
+    private ClubResponse club;
     private String urlGallery;
     private String url;
-
 }
