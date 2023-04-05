@@ -36,14 +36,13 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
                                                 int ageTo, boolean isOnline, ArrayList<String> contacts,
                                                 String description, ArrayList<String> locations, BigInteger userId,
                                                 int expectedStatusCode) {
-        SoftAssert softAssert = new SoftAssert();
+
         ClubRequest clubRequest = new ClubRequest(
                 categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId
         );
-        ClubResponse clubResponse = client.createClub(clubRequest).as(ClubResponse.class);
         Response okResponseCreate = client.createClub(clubRequest);
+        ClubResponse clubResponse = okResponseCreate.as(ClubResponse.class);
         softAssert.assertEquals(okResponseCreate.getStatusCode(), expectedStatusCode);
-        client.deleteClub(clubResponse.getId());
         Response okResponseDelete = client.deleteClub(clubResponse.getId());
         softAssert.assertEquals(okResponseDelete.getStatusCode(), expectedStatusCode);
         softAssert.assertAll();
