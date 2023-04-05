@@ -15,32 +15,31 @@ import org.ssu.edu.teachua.utils.runners.LoginWithLeadAPIRunner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class LeadClubTest extends LoginWithLeadAPIRunner {
-    private final ClubClient client = new ClubClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
+        private final ClubClient client = new ClubClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
 
-    @Issue("TUA-501")
-    @Severity(SeverityLevel.CRITICAL)
-    @Description("Verify that User as 'Керiвник гуртка' cannot create new club is in " +
-            "a center with Russian alphabet for 'Назва' field")
-    @Test(dataProvider = "dpTestInvalidNameFieldForClub", dataProviderClass = DataProviderClub.class)
-    public void testCreateClubWithInvalidName (int id, ArrayList<String> categoriesName, String name, int ageFrom,
-                                               int ageTo, String urlLogo, String urlBackground, boolean status,
-                                               String description, int userId, ArrayList<Location> locations,
-                                               ArrayList<UrlGallery> urlGallery, String contacts, int centerId,
-                                               int centerExternalId, int clubExternalId, boolean isApproved,
-                                               int expectedStatusCode, String expectedErrorMsg) {
-        SoftAssert softAssert = new SoftAssert();
+        @Issue("TUA-501")
+        @Severity(SeverityLevel.CRITICAL)
+        @Description("Verify that User as 'Керiвник гуртка' cannot create new club is in " +
+                "a center with Russian alphabet for 'Назва' field")
+        @Test(dataProvider = "dpTestInvalidNameFieldForClub", dataProviderClass = DataProviderClub.class)
+        public void testCreateClubWithInvalidName (ArrayList<String> categoriesName, String name, int ageFrom,
+                                                   int ageTo, boolean isOnline, ArrayList<String> contacts,
+                                                   String description,ArrayList<String> locations, BigInteger userId,
+                                                   int expectedStatusCode, String expectedErrorMsg) {
+            SoftAssert softAssert = new SoftAssert();
 
-        ClubRequest request = new ClubRequest( id, name, description, centerId,
-                categoriesName, locations, ageFrom, ageTo, urlBackground, urlLogo, urlGallery,
-                status, contacts, isApproved, userId, clubExternalId, centerExternalId
-        );
-        ErrorResponse errorResponse = client.createClub(request).as(ErrorResponse.class);
+            ClubRequest clubRequest = new ClubRequest(
+                    categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId
+            );
+            ErrorResponse errorResponse = client.createClub(clubRequest).as(ErrorResponse.class);
 
-        softAssert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
-        softAssert.assertEquals(errorResponse.getMessage(), expectedErrorMsg);
-        softAssert.assertAll();
-    }
+            softAssert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
+            softAssert.assertEquals(errorResponse.getMessage(), expectedErrorMsg);
+            softAssert.assertAll();
+        }
+
 }

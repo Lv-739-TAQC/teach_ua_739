@@ -4,6 +4,7 @@ import org.ssu.edu.teachua.api.models.location.Location;
 import org.ssu.edu.teachua.api.models.url_gallery.UrlGallery;
 import org.testng.annotations.DataProvider;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -72,21 +73,19 @@ public class DataProviderClub {
     @DataProvider(name = "dpTestInvalidNameFieldForClub")
     public static Object[][] dpTestInvalidNameFieldForClub() {
         return new Object[][]{
-                {0,new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти")), "Э э ъ Ъ Ы ы",
-                        2, 18, "/dev/static/images/user/avatar/user1.png", "/dev/static/images/user/avatar/user1.png",
-                        true,
+                {new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти")), "Э э ъ Ъ Ы ы",
+                        2, 18, true, null,
                         "{\"blocks\":" +
                                 "[{\"key\":\"brl63\"," +
-                                "\"text\":\"Ми поставили перед собою ціль створити мережунайкращих центрів раннього " +
-                                "розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть " +
-                                "від результатів.\"," +
+                                "\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього " +
+                                "розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\"," +
                                 "\"type\":\"unstyled\"," +
-                                "\"depth\":0," +
+                                "\"depth\":1," +
                                 "\"inlineStyleRanges\":[]," +
                                 "\"entityRanges\":[]," +
                                 "\"data\":{}}]," +
                                 "\"entityMap\":{}}",
-                        854, new ArrayList<Location>(), new ArrayList<UrlGallery>(), "{\"1\"::\"ліл\"}", 2,0,0, true, 400,
+                        new ArrayList<Location>(), BigInteger.valueOf(854), 400,
                         "name Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи’"}
         };
     }
