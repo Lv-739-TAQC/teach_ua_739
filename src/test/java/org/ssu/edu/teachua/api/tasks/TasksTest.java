@@ -17,6 +17,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class TasksTest extends LoginWithAdminAPIRunner {
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify that admin can not edit Task using spaces as values")
     @Test(dataProvider = "testEditTaskWithInvalidData", dataProviderClass = DataProviderTask.class)
-    public void testEditTaskWithInvalidData(String name, String headerText, String description, String picture, String startDate, int challengeId) {
+    public void testEditTaskWithInvalidData(String name, String headerText, String description, String picture, String startDate, BigInteger challengeId) {
 
         List<String> expectedMsg = Arrays.asList("name must contain a minimum of 5 and a maximum of 255 letters", "name must not be blank", "description must contain a maximum of 10000 letters");
 
@@ -53,7 +54,7 @@ public class TasksTest extends LoginWithAdminAPIRunner {
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify that admin can edit Task with valid values")
     @Test(dataProvider = "testEditTaskWithValidData", dataProviderClass = DataProviderTask.class)
-    public void testEditTaskWithValidData(String name, String headerText, String description, String picture, String date, int challengeId) {
+    public void testEditTaskWithValidData(String name, String headerText, String description, String picture, String date, BigInteger challengeId) {
         TaskPutRequest validDataPutRequest = new TaskPutRequest(name, headerText, description, picture, date, challengeId);
 
         Response validDataResponse = taskClient.putTask(777, validDataPutRequest);
