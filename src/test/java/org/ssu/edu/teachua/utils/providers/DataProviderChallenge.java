@@ -126,7 +126,7 @@ public class DataProviderChallenge {
         return new Object[][]{
                 {"Челендж_99", "99-й найкращий",
                         "Який-небудь опис челенджу, челенджу челенджу челенджу челенджу",
-                        null, "/upload/test/image.png", "", 400, "Поле порядковий номер не має бути пустим"}
+                        null, "/upload/test/image.png", null, 400, "Поле порядковий номер не має бути пустим"}
         };
     }
 }
