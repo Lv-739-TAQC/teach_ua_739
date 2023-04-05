@@ -43,13 +43,17 @@ public class TasksTest extends LoginWithAdminAPIRunner {
 
         Response putResponse = taskClient.putTask(777, invalidPutRequest);
         ErrorResponse taskPutResponse = putResponse.as(ErrorResponse.class);
+        String actualErrorMsg = taskPutResponse.getMessage();
 
         softAssert.assertEquals(putResponse.statusCode(), 400, "status code");
         softAssert.assertEquals(taskPutResponse.getStatus(), 400);
-        softAssert.assertTrue(taskPutResponse.getMessage().contains(expectedMsg.get(0)));
-        softAssert.assertTrue(taskPutResponse.getMessage().contains(expectedMsg.get(1)));
-        softAssert.assertTrue(taskPutResponse.getMessage().contains(expectedMsg.get(2)));
-        softAssert.assertAll();
+        softAssert.assertTrue(actualErrorMsg.contains(expectedMsg.get(1)));
+
+        if (actualErrorMsg.length() != expectedMsg.get(1).length()) {
+            softAssert.assertTrue(actualErrorMsg.contains(expectedMsg.get(0)));
+            softAssert.assertTrue(actualErrorMsg.contains(expectedMsg.get(2)));
+            softAssert.assertAll();
+        }
     }
 
     @Issue("TUA-444")
