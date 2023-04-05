@@ -48,7 +48,7 @@ public class TasksTest extends LoginWithAdminAPIRunner {
         Response putResponse = taskClient.putTask(777, invalidPutRequest);
         ErrorResponse taskPutResponse = putResponse.as(ErrorResponse.class);
 
-        softAssert.assertEquals(putResponse.statusCode(), 400);
+        softAssert.assertEquals(putResponse.statusCode(), 400, "status code");
         softAssert.assertEquals(taskPutResponse.getStatus(), 400);
 
         softAssert.assertTrue(taskPutResponse.getMessage().contains(expectedMsg.get(0)));
