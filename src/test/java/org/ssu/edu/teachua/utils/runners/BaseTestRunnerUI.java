@@ -19,7 +19,7 @@ public class BaseTestRunnerUI {
     protected WebDriver driver;
 
     protected static final TestValueProvider valueProvider = new TestValueProvider();
-    protected SoftAssert softAssert = new SoftAssert();
+    protected SoftAssert softAssert;
     protected Browsers browsers = new Browsers();
     protected Random random = new Random();
     protected EntityService entityService = new EntityService();
@@ -31,6 +31,11 @@ public class BaseTestRunnerUI {
         } catch (RuntimeException exception) {
             System.out.println(exception.getMessage());
         }
+    }
+
+    @BeforeMethod
+    public void initSoftAssert() {
+        softAssert = new SoftAssert();
     }
 
     @Parameters("browser")
