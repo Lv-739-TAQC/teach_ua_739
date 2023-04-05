@@ -8,6 +8,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.models.challenge.GetChallengeResponse;
 import org.ssu.edu.teachua.utils.providers.DataProviderChallenge;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.ssu.edu.teachua.api.clients.ChallengeClient;
 import org.ssu.edu.teachua.api.models.challenge.PostChallengeRequest;
@@ -20,8 +21,12 @@ import java.math.BigInteger;
 public class AdminChallengeTest extends LoginWithAdminAPIRunner {
 
     private final int challengeId = 837;
+    private ChallengeClient client;
 
-    private final ChallengeClient client = new ChallengeClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
+    @BeforeMethod
+    private void initClient() {
+        client = new ChallengeClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
+    }
 
     @Issue("TUA-430")
     @Severity(SeverityLevel.NORMAL)
