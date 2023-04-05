@@ -21,6 +21,15 @@ public class DataProviderTask {
 
     );
 
+    public static final List<String> API_ERROR_MSG = Arrays.asList(
+            "name must contain a minimum of 5 and a maximum of 50 letters",
+            "name Помилка. Текст містить недопустимі символи",
+            "description must contain a minimum of 40 and a maximum of 3000 letters",
+            "description Помилка. Текст містить недопустимі символи and name Помилка. Текст містить недопустимі символи",
+            "name must not be blank",
+            "description must contain a maximum of 3000 letters and name must not be blank and name must contain a minimum of 5 and a maximum of 50 letters"
+    );
+
     @DataProvider(name = "dpTestAddTaskInvalidTitle")
     public static Object[][] dpTestAddTaskInvalidTitle() {
         return new Object[][]{
@@ -79,6 +88,50 @@ public class DataProviderTask {
                 {25, 05, 2025, "photos/image.png", "Впровадження електронного каталогу",
                         "Електронний каталог: досвід впровадження та використання",
                         ("descriptio").repeat(30) + ".", "Ukrainian", ERROR_MSG.get(9)}
+        };
+    }
+
+    @DataProvider(name = "testEditTaskWithInvalidData")
+    public static Object[][] dpCantEditTask() {
+        return new Object[][]{
+                {" ", "header text must contain min fourty letters", " ", "/upload/test/test.png",
+                        "2023-11-03", 777},
+
+                {null, "header text must contain min fourty letters", null, "/upload/test/test.png",
+                        "2023-11-03", 777}
+        };
+    }
+    @DataProvider(name = "testEditTaskWithValidData")
+    public static Object[][] dpTestEditTask() {
+        return new Object[][]{
+                {"namenamename1213#$%", "header text must contain min fourty letters",
+                "descriptiondescriptiondescriptiondescriptiondescription12345$%%^$#", "/upload/test/test.png", "2023-12-03", 777}
+        };
+    }
+
+    @DataProvider(name = "testCreateTaskWithInvalidData")
+    public static Object[][] dpTestCantCreateTask() {
+        return new Object[][]{
+                {"name", "header text must contain min fourty letters", "descriptiondescriptiondescriptiondescriptiondescription",
+                        "/upload/test/test.png", "2023-12-03", API_ERROR_MSG.get(0)},
+                {"namenamenamenamenamenamenamenamenamenamenamenamenam", "header text must contain min fourty letters",
+                "descriptiondescriptiondescriptiondescriptiondescription", "/upload/test/test.png", "2023-11-03", API_ERROR_MSG.get(0)},
+                {"namenameЁ, Ы,Э", "header text must contain min fourty letters", "descriptiondescriptiondescriptiondescriptiondescription",
+                        "/upload/test/test.png",  "2023-11-03", API_ERROR_MSG.get(1)},
+                {"namenamename", "header text must contain min fourty letters", "descriptiondescriptiondescriptiondescr", "/upload/test/test.png",
+                "2023-11-03", API_ERROR_MSG.get(2)},
+                {"namenamename", "header text must contain min fourty letters", " descriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondedescriptiondescriptiondescridescriptionde ",
+                        "/upload/test/test.png", "2023-11-03", API_ERROR_MSG.get(2)},
+                { "namenamename", "header text must contain min fourty letters", "descriptiondescriptiondescriptiondescriptiondescription Ё, Ы,Э ", "/upload/test/test.png",
+                        "2023-11-03", API_ERROR_MSG.get(3)}
+        };
+    }
+
+    @DataProvider(name = "testCreateTaskWithValidData")
+    public static Object[][] dpTestCreateTask() {
+        return new Object[][] {
+                {"namenamename1213#$%", "header text must contain min fourty letters",
+                "descriptiondescriptiondescriptiondescriptiondescription12345$%%^$# ", "/upload/test/test.png",  "2023-12-03"}
         };
     }
 }
