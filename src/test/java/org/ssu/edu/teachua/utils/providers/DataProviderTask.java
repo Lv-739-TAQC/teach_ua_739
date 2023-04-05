@@ -2,6 +2,7 @@ package org.ssu.edu.teachua.utils.providers;
 
 import org.testng.annotations.DataProvider;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class DataProviderTask {
             "name must contain a minimum of 5 and a maximum of 50 letters",
             "name Помилка. Текст містить недопустимі символи",
             "description must contain a minimum of 40 and a maximum of 3000 letters",
-            "description Помилка. Текст містить недопустимі символи and name Помилка. Текст містить недопустимі символи",
+            "description Помилка. Текст містить недопустимі символи",
             "name must not be blank",
             "description must contain a maximum of 3000 letters and name must not be blank and name must contain a minimum of 5 and a maximum of 50 letters"
     );
@@ -95,17 +96,17 @@ public class DataProviderTask {
     public static Object[][] dpCantEditTask() {
         return new Object[][]{
                 {" ", "header text must contain min fourty letters", " ", "/upload/test/test.png",
-                        "2023-11-03", 777},
+                        "2023-11-03", BigInteger.valueOf(777)},
 
                 {null, "header text must contain min fourty letters", null, "/upload/test/test.png",
-                        "2023-11-03", 777}
+                        "2023-11-03", BigInteger.valueOf(777)}
         };
     }
     @DataProvider(name = "testEditTaskWithValidData")
     public static Object[][] dpTestEditTask() {
         return new Object[][]{
                 {"namenamename1213#$%", "header text must contain min fourty letters",
-                "descriptiondescriptiondescriptiondescriptiondescription12345$%%^$#", "/upload/test/test.png", "2023-12-03", 777}
+                "descriptiondescriptiondescriptiondescriptiondescription12345$%%^$#", "/upload/test/test.png", "2023-12-03", BigInteger.valueOf(777)}
         };
     }
 
