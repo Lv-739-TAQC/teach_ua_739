@@ -58,7 +58,7 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
 
     @Issue("TUA-756")
     @Severity(SeverityLevel.NORMAL)
-    @jdk.jfr.Description("Verify that admin can't create challenge with invalid value that contains Russian letters in 'Назва' field")
+    @Description("Verify that admin can't create challenge with invalid value that contains Russian letters in 'Назва' field")
     @Test(dataProvider = "dpTestRussianValueNameField", dataProviderClass = DataProviderChallenge.class)
     public void testCreateChallengeWithInvalidName ( String name, String title, String description,
                                                      String registrationLink, String picture, BigInteger sortNumber,
@@ -75,7 +75,7 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
 
     @Issue("TUA-757")
     @Severity(SeverityLevel.NORMAL)
-    @jdk.jfr.Description("Verify that admin can't create challenge leaving empty 'Порядковий номер' field")
+    @Description("Verify that admin can't create challenge leaving empty 'Порядковий номер' field")
     @Test(dataProvider = "dpTestEmptySortNumberField", dataProviderClass = DataProviderChallenge.class)
     public void testCreateChallengeWithEmptySortNumberField ( String name, String title, String description,
                                                               String registrationLink, String picture, BigInteger sortNumber,
@@ -92,7 +92,7 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
 
     @Issue("TUA-751")
     @Severity(SeverityLevel.NORMAL)
-    @io.qameta.allure.Description("Verify that user can not create Challenge after entering invalid data into \"Name\" field")
+    @Description("Verify that user can not create Challenge after entering invalid data into \"Name\" field")
     @Test(dataProvider = "dpTestIfChallengeIsNotCreated", dataProviderClass = DataProviderChallenge.class)
     public void testIfChallengeNotCreated(String title, String description, String link, String picturePath, BigInteger sortNumber, List<String> invalidNames, List<String> expectedMsg, int expectedStatusCode) {
 
