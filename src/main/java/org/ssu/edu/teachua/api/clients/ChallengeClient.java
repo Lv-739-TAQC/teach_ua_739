@@ -10,8 +10,7 @@ import io.restassured.response.Response;
 import io.qameta.allure.Step;
 
 public class ChallengeClient extends BaseClient{
-
-    private final String path = "/api/challenge";
+	private final String path = "/api/challenge";
     public ChallengeClient(String url, ContentType contentType, String accessToken) {
         super(url, contentType, accessToken);
     }
@@ -48,7 +47,7 @@ public class ChallengeClient extends BaseClient{
     @Step("Create a request for update challenge entity using 'PATCH' method. Enter values in 'parameter Id': {id}, 'Body': {request}")
     public Response updateChallengePatch(int id, PatchChallengeRequest request) {
         return prepareRequest()
-                .body(request)
+        		.body(request)
                 .when()
                 .patch(path + "/" + id);
     }
@@ -56,7 +55,7 @@ public class ChallengeClient extends BaseClient{
     @Step("Create a request for update challenge entity using 'PUT' method. Enter values in 'parameter Id': {id}, 'Body': {request}")
     public Response updateChallengePut(int id, PutChallengeRequest request) {
         return prepareRequest()
-                .body(request)
+        		.body(request)
                 .when()
                 .put(path + "/" + id);
     }
@@ -64,8 +63,9 @@ public class ChallengeClient extends BaseClient{
     @Step("Create a request for set new start date of challenge using 'PUT' method. Enter values in 'parameter Id': {id}, 'Body': {request}")
     public Response updateStartDateChallenge(int id, PutChallengeNewDateRequest request) {
         return prepareRequest()
-                .body(request)
+        		.body(request)
                 .when()
                 .put(path + "/" + id + "/clone");
     }
 }
+

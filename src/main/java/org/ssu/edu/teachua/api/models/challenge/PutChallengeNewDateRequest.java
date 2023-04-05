@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class PutChallengeNewDateRequest {
-    private String startDate;
+	private String startDate;
 }

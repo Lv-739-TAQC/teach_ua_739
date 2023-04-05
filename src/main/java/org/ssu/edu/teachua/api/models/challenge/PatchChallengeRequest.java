@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class PatchChallengeRequest {
-    private String name;
-    private int sortNumber;
+	private String name;
+	private int sortNumber;
     private String title;
 }
