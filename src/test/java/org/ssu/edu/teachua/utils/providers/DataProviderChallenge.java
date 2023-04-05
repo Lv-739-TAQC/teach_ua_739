@@ -2,6 +2,7 @@ package org.ssu.edu.teachua.utils.providers;
 
 import org.testng.annotations.DataProvider;
 
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -118,4 +119,23 @@ public class DataProviderChallenge {
         };
     }
 
+    @DataProvider(name = "dpTestRussianValueNameField")
+    public static Object[][] dpTestRussianValueNameField() {
+        return new Object[][]{
+                {"писатель эссеист", "Заголовок Челенджу",
+                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. L" +
+                                "orem Ipsum has been the industry's standard dummy text ever since the 1500s",
+                        null, "/upload/test/image.png", BigInteger.valueOf(1737637), 400,
+                        "Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи"}
+        };
+    }
+
+    @DataProvider(name = "dpTestEmptySortNumberField")
+    public static Object[][] dpTestEmptySortNumberField() {
+        return new Object[][]{
+                {"Челендж_99", "99-й найкращий",
+                        "Який-небудь опис челенджу, челенджу челенджу челенджу челенджу",
+                        null, "/upload/test/image.png", null, 400, "Поле порядковий номер не має бути пустим"}
+        };
+    }
 }

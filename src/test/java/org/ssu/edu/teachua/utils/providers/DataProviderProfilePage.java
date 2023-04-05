@@ -1,6 +1,5 @@
 package org.ssu.edu.teachua.utils.providers;
 
-import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.testng.annotations.DataProvider;
 
 import java.util.Arrays;
@@ -77,6 +76,18 @@ public class DataProviderProfilePage {
                         400, ("\"lastName\"" + " can contain from 1 to 25 letters")},
                 {203, "Nastia", "Kukhar123343#", "999999922", "soyec48727@busantei.com", "ROLE_MANAGER", null, true,
                         400, ("\"lastName\"" + " can`t contain numbers")},
+        };
+    }
+
+    @DataProvider(name = "dpTestUpdatePhoneInvalid")
+    private static Object[][] dpTestUpdatePhoneInvalid() {
+        return new Object[][]{
+                {854, "Jane", "Doe", "janedoelead123@gmail.com", "123456789121212", "ROLE_MANAGER", null, true,
+                        400, ("phone Phone number must contain 10 numbers and can`t contain other symbols")},
+                {854, "Jane", "Doe", "janedoelead123@gmail.com", "assdsdsd", "ROLE_MANAGER", null, true,
+                        400, ("phone Phone number must contain 10 numbers and can`t contain other symbols")},
+                {854, "Jane", "Doe", "janedoelead123@gmail.com", "@$#%#%^", "ROLE_MANAGER", null, true,
+                        400, ("phone Phone number must contain 10 numbers and can`t contain other symbols")}
         };
     }
 }

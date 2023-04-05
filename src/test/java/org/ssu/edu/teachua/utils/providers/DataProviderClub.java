@@ -1,8 +1,10 @@
 package org.ssu.edu.teachua.utils.providers;
 
+import org.ssu.edu.teachua.api.models.location.Location;
 import org.testng.annotations.DataProvider;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -81,6 +83,46 @@ public class DataProviderClub {
         String errorMsg = "Опис гуртка не може містити російські літери";
         return new Object[][] {
                 {null, "NameName", 2, 18, true, null, description, null, BigInteger.valueOf(272), 400, errorMsg}
+        };
+    }
+
+    @DataProvider(name = "dpTestInvalidNameFieldForClub")
+    public static Object[][] dpTestInvalidNameFieldForClub() {
+        return new Object[][]{
+                {new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти")), "Э э ъ Ъ Ы ы",
+                        2, 18, true, null,
+                        "{\"blocks\":" +
+                                "[{\"key\":\"brl63\"," +
+                                "\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього " +
+                                "розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\"," +
+                                "\"type\":\"unstyled\"," +
+                                "\"depth\":1," +
+                                "\"inlineStyleRanges\":[]," +
+                                "\"entityRanges\":[]," +
+                                "\"data\":{}}]," +
+                                "\"entityMap\":{}}",
+                        new ArrayList<Location>(), BigInteger.valueOf(854), 400,
+                        "name Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи’"}
+        };
+    }
+
+    @DataProvider(name = "dpTestDeletePreviouslyCreatedClub")
+    public static Object[][] testDeletePreviouslyCreatedClub() {
+        String description = ("{\"blocks\":" +
+                "[{\"key\":\"brl63\"," +
+                "\"text\":\"Основним видом діяльності закладу є освітня і мистецька діяльність, яка включає організацію," +
+                " забезпечення та реалізацію мистецько-освітнього процесу з метою формування у здобувачів початкової музичної" +
+                "освіти, компетентностей, передбачених освітніми програмами. У школі присутні напрямки: танці, хореографія," +
+                " вокальна студія, музика, музичні інструменти, академічний та народний вокал, композиція.\"," +
+                "\"type\":\"unstyled\"," +
+                "\"depth\":0," +
+                "\"inlineStyleRanges\":[]," +
+                "\"entityRanges\":[]," +
+                "\"data\":{}}]," +
+                "\"entityMap\":{}}");
+        return new Object[][]{
+                {new ArrayList<>(Arrays.asList("Вокальна студія, музика, музичні інструменти")), "Голосисті діти", 2, 18,
+                        true, null, description, null, BigInteger.valueOf(854), 200}
         };
     }
 }
