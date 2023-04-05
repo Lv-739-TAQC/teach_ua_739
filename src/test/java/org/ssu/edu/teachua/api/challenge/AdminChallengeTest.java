@@ -10,11 +10,17 @@ import org.ssu.edu.teachua.api.models.challenge.PostChallengeRequest;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
 import org.ssu.edu.teachua.utils.providers.DataProviderChallenge;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminAPIRunner;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class AdminChallengeTest extends LoginWithAdminAPIRunner {
-    private final ChallengeClient client = new ChallengeClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
+    private ChallengeClient client;
+
+    @BeforeMethod
+    private void initClient() {
+        client = new ChallengeClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
+    }
 
     @Issue("TUA-756")
     @Severity(SeverityLevel.NORMAL)
