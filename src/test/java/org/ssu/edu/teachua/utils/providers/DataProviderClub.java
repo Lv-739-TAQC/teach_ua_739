@@ -1,7 +1,6 @@
 package org.ssu.edu.teachua.utils.providers;
 
 import org.ssu.edu.teachua.api.models.location.Location;
-import org.ssu.edu.teachua.api.models.url_gallery.UrlGallery;
 import org.testng.annotations.DataProvider;
 
 import java.math.BigInteger;
@@ -70,6 +69,23 @@ public class DataProviderClub {
         };
     }
 
+    @DataProvider(name = "pdTestCreateClubDescriptionInvalid")
+    public static Object[][] pdTestCreateClubDescriptionInvalid() {
+        String description = ("{\"blocks\":" +
+                "[{\"key\":\"brl63\"," +
+                "\"text\":\"что-то написанное на русском языке\"," +
+                "\"type\":\"unstyled\"," +
+                "\"depth\":0," +
+                "\"inlineStyleRanges\":[]," +
+                "\"entityRanges\":[]," +
+                "\"data\":{}}]," +
+                "\"entityMap\":{}}");
+        String errorMsg = "Опис гуртка не може містити російські літери";
+        return new Object[][] {
+                {null, "NameName", 2, 18, true, null, description, null, BigInteger.valueOf(272), 400, errorMsg}
+        };
+    }
+
     @DataProvider(name = "dpTestInvalidNameFieldForClub")
     public static Object[][] dpTestInvalidNameFieldForClub() {
         return new Object[][]{
@@ -89,7 +105,6 @@ public class DataProviderClub {
                         "name Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи’"}
         };
     }
-
 
     @DataProvider(name = "dpTestDeletePreviouslyCreatedClub")
     public static Object[][] testDeletePreviouslyCreatedClub() {

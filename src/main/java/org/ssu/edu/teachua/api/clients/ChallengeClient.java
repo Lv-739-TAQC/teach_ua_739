@@ -10,7 +10,9 @@ import io.restassured.response.Response;
 import io.qameta.allure.Step;
 
 public class ChallengeClient extends BaseClient{
+
 	private final String path = "/api/challenge";
+
     public ChallengeClient(String url, ContentType contentType, String accessToken) {
         super(url, contentType, accessToken);
     }

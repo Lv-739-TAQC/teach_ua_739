@@ -13,8 +13,6 @@ import org.ssu.edu.teachua.api.models.error.ErrorResponse;
 import org.ssu.edu.teachua.api.models.profile.ProfilePutRequest;
 import org.ssu.edu.teachua.utils.providers.DataProviderProfilePage;
 import org.ssu.edu.teachua.utils.runners.LoginWithLeadAPIRunner;
-import org.testng.asserts.SoftAssert;
-
 
 public class LeadProfileTest extends LoginWithLeadAPIRunner {
     private final ProfileClient client = new ProfileClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
