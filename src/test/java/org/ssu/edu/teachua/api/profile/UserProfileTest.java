@@ -9,6 +9,8 @@ import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.clients.ProfileClient;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
 import org.ssu.edu.teachua.api.models.profile.ProfilePutRequest;
+import org.ssu.edu.teachua.db.repository.DBException;
+import org.ssu.edu.teachua.db.repository.EntityException;
 import org.ssu.edu.teachua.utils.providers.DataProviderProfilePage;
 import org.ssu.edu.teachua.utils.runners.LoginWithUserAPIRunner;
 import org.testng.annotations.BeforeMethod;
