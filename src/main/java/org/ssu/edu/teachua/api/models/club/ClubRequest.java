@@ -11,6 +11,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClubRequest {
+
     private ArrayList<String> categoriesName;
     private String name;
     private int ageFrom;

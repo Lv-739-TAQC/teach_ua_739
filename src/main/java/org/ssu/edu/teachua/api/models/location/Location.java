@@ -2,7 +2,8 @@ package org.ssu.edu.teachua.api.models.location;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.ssu.edu.teachua.api.models.center.Center;
+
+import org.ssu.edu.teachua.api.models.center.CenterRequest;
 import org.ssu.edu.teachua.api.models.city.City;
 import org.ssu.edu.teachua.api.models.district.District;
 import org.ssu.edu.teachua.api.models.location_city.LocationCity;
@@ -23,7 +24,7 @@ public class Location {
     private City city;
     private LocationCity locationCity;
     private String club;
-    private Center center;
+    private CenterRequest center;
     private String cityName;
     private String districtName;
     private String stationName;

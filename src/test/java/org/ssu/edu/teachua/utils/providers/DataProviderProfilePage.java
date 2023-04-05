@@ -18,7 +18,7 @@ public class DataProviderProfilePage {
     }
 
     @DataProvider(name = "dpTestVerifieDataLastName")
-    private Object[][] dpTestVerifieDataLastName() {
+    private static Object[][] dpTestVerifieDataLastName() {
         return new Object[][]{
                 {"AfBbCcDdEeFfGgHhIiJjKkLlMm", "Прізвище не може містити більше, ніж 25 символів"},
                 {"!@#$%^&,", "Прізвище не може містити спеціальні символи"},
@@ -31,6 +31,18 @@ public class DataProviderProfilePage {
                 {"Lastname'", "Прізвище повинно починатися та закінчуватися літерою"},
                 {"", "Введіть прізвище"}
         };
+    }
+
+    @DataProvider(name = "dpTestVerifieDataPhoneNumber")
+    private static Object[][] dpTestVerifieDataNumberPhone() {
+        return new Object[][]{
+                {"+3806895", "Телефон не відповідає формату +38(___) ___ __ __"},
+                {"+38065987458", "Телефон не відповідає формату +38(___) ___ __ __"},
+                {"+3806593859632586", "Телефон не відповідає формату +38(___) ___ __ __"},
+                {"+3806598521475", "Телефон не відповідає формату +38(___) ___ __ __"},
+                {"jngeoлщшогнеп", "Телефон не відповідає формату +38(___) ___ __ __"},
+                {"!@#$%^&*(_+.:", "Телефон не відповідає формату +38(___) ___ __ __"},
+                {"", "Телефон не відповідає формату +38(___) ___ __ __"}};
     }
 
     @DataProvider(name = "dpTestIfPasswordNotUpdated")
@@ -48,24 +60,32 @@ public class DataProviderProfilePage {
                         randomName(), randomName() + "z", randomPhoneNumber(), 200
                 }};
     }
-	private Object[][] dpTestVerifieDataNumberPhone() {
-		return new Object[][] {
-				{ "+3806895", "Телефон не відповідає формату +38(___) ___ __ __" },
-				{ "+38065987458", "Телефон не відповідає формату +38(___) ___ __ __" },
-				{ "+3806593859632586", "Телефон не відповідає формату +38(___) ___ __ __" },
-				{ "+3806598521475", "Телефон не відповідає формату +38(___) ___ __ __" },
-				{ "jngeoлщшогнеп", "Телефон не відповідає формату +38(___) ___ __ __" },
-				{ "!@#$%^&*(_+.:", "Телефон не відповідає формату +38(___) ___ __ __" },
-				{ "", "Телефон не відповідає формату +38(___) ___ __ __" } };
-	}
-    @DataProvider(name = "dpTestUpdateProfile")
-	private static Object[][] dpTestUpdateProfile() {
-		return new Object[][] {
-				{ "Nastia", "Kukh", "soyec48727@busantei.com", "999999922", "ROLE_MANAGER", null, true,
-				400, "\"firstName\" can`t be null", "\"lastName\" can`t be null", "phone must not be blank"}
-        };
-	}
 
+    @DataProvider(name = "dpTestUpdateProfile")
+    private static Object[][] dpTestUpdateProfile() {
+        return new Object[][] {
+                { "Nastia", "Kukh", "soyec48727@busantei.com", "999999922", "ROLE_MANAGER", null, true,
+                        400, "\"firstName\" can`t be null", "\"lastName\" can`t be null", "phone must not be blank"}
+        };
+    }
+
+    @DataProvider(name = "dpTestUpdateFirstLastNamesInvalid")
+    private static Object[][] dpTestUpdateFirstLastNamesInvalid() {
+        return new Object[][]{
+                {203, "Nastia1234", "Kukh", "999999922", "soyec48727@busantei.com", "ROLE_MANAGER", null, true,
+                        400, ("\"firstName\"" + " can`t contain numbers")},
+                {203, "NastiaNastiaNastiaNastiaNastia", "Kukh", "999999922", "soyec48727@busantei.com", "ROLE_MANAGER", null, true,
+                        400, ("\"firstName\"" + " can contain from 1 to 25 letters")},
+                {203, "Nastia!@##$#$%", "Kukh", "999999922", "soyec48727@busantei.com", "ROLE_MANAGER", null, true,
+                        400, ("\"firstName\"" + " can contain only ukrainian and english letters")},
+                {203, "Nastia", "Kukhar#%$#", "999999922", "soyec48727@busantei.com", "ROLE_MANAGER", null, true,
+                        400, ("\"lastName\"" + " can contain only ukrainian and english letters")},
+                {203, "Nastia", "KukharKukharKukharKukharKukharKukharKukharK", "999999922", "soyec48727@busantei.com", "ROLE_MANAGER", null, true,
+                        400, ("\"lastName\"" + " can contain from 1 to 25 letters")},
+                {203, "Nastia", "Kukhar123343#", "999999922", "soyec48727@busantei.com", "ROLE_MANAGER", null, true,
+                        400, ("\"lastName\"" + " can`t contain numbers")},
+        };
+    }
 
     @DataProvider(name = "dpTestUpdatePhoneInvalid")
     private static Object[][] dpTestUpdatePhoneInvalid() {

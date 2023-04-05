@@ -7,6 +7,7 @@ import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.clients.LoginClient;
 import org.ssu.edu.teachua.api.clients.ProfileClient;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
+import org.ssu.edu.teachua.api.models.error.ErrorResponse;
 import org.ssu.edu.teachua.api.models.login.SignInResponse;
 import org.ssu.edu.teachua.api.models.profile.ProfilePutRequest;
 import io.qameta.allure.Severity;
@@ -80,6 +81,24 @@ public class UserProfileTest extends LoginWithUserAPIRunner {
         softAssert.assertEquals(responseEditLastName.statusCode(), expectedStatusCode);
         softAssert.assertEquals(responseEditPhone.statusCode(), expectedStatusCode);
         softAssert.assertEquals(entityService.getUserService().getUsersByEmail(data.get(2)).get(0).getFirstName(), firstName);
+        softAssert.assertAll();
+    }
+
+    @Issue("TUA-415")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("This test case verifies that user can not save changes with invalid" +
+                 "\n data where edit profile (fields lastName and firstName)")
+    @Test(dataProvider = "dpTestUpdateFirstLastNamesInvalid", dataProviderClass = DataProviderProfilePage.class)
+    public void testUpdateFirstLastNamesInvalid(int id, String firstName, String lastName, String email,
+                                                String phone, String roleName, String urlLogo, boolean status,
+                                                int expectedStatusCode, String expectedErrorMsg) {
+        ProfilePutRequest profilePutRequest = new ProfilePutRequest(
+                firstName, lastName, email, phone, roleName, urlLogo, status
+        );
+        ErrorResponse errorResponse = client.updateProfile(id, profilePutRequest).as(ErrorResponse.class);
+
+        softAssert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
+        softAssert.assertEquals(errorResponse.getMessage(), expectedErrorMsg);
         softAssert.assertAll();
     }
 }
