@@ -14,6 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public class AdminChallengeTest extends LoginWithAdminAPIRunner {
@@ -29,7 +30,7 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
     @Description("Verify that admin can't create challenge with invalid value that contains Russian letters in 'Назва' field")
     @Test(dataProvider = "dpTestRussianValueNameField", dataProviderClass = DataProviderChallenge.class)
     public void testCreateChallengeWithInvalidName ( String name, String title, String description,
-                                                    String registrationLink, String picture, String sortNumber,
+                                                    String registrationLink, String picture, BigInteger sortNumber,
                                                      int expectedStatusCode, String expectedErrorMsg){
 
         PostChallengeRequest postChallengeRequest = new PostChallengeRequest(
@@ -46,7 +47,7 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
     @Description("Verify that admin can't create challenge leaving empty 'Порядковий номер' field")
     @Test(dataProvider = "dpTestEmptySortNumberField", dataProviderClass = DataProviderChallenge.class)
     public void testCreateChallengeWithEmptySortNumberField ( String name, String title, String description,
-                                                     String registrationLink, String picture, String sortNumber,
+                                                     String registrationLink, String picture, BigInteger sortNumber,
                                                      int expectedStatusCode, String expectedErrorMsg){
 
         PostChallengeRequest postChallengeRequest = new PostChallengeRequest(
@@ -61,7 +62,7 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
     @Severity(SeverityLevel.NORMAL)
     @io.qameta.allure.Description("Verify that user can not create Challenge after entering invalid data into \"Name\" field")
     @Test(dataProvider = "dpTestIfChallengeIsNotCreated", dataProviderClass = DataProviderChallenge.class)
-    public void testIfChallengeNotCreated(String title, String description, String link, String picturePath, String sortNumber, List<String> invalidNames, List<String> expectedMsg, int expectedStatusCode) {
+    public void testIfChallengeNotCreated(String title, String description, String link, String picturePath, BigInteger sortNumber, List<String> invalidNames, List<String> expectedMsg, int expectedStatusCode) {
 
         PostChallengeRequest requestFirst = new PostChallengeRequest(invalidNames.get(0), title, description, link, picturePath, sortNumber);
         ErrorResponse responseFirst = client.createChallenge(requestFirst).as(ErrorResponse.class);

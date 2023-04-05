@@ -2,6 +2,7 @@ package org.ssu.edu.teachua.utils.providers;
 
 import org.testng.annotations.DataProvider;
 
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -97,7 +98,7 @@ public class DataProviderChallenge {
     @DataProvider(name = "dpTestIfChallengeIsNotCreated")
     public static Object[][] dpTestIfChallengeNotCreated() {
         return new Object[][]{
-                {"testTitle", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", null, "/upload/photos/image.png", "546789",
+                {"testTitle", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", null, "/upload/photos/image.png", BigInteger.valueOf(546789),
                         Arrays.asList("Дыผð*.:", "t", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", ""),
                         Arrays.asList("Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи",
                                 "Назва Челенджу закоротка",
@@ -115,7 +116,7 @@ public class DataProviderChallenge {
                 {"писатель эссеист", "Заголовок Челенджу",
                         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. L" +
                                 "orem Ipsum has been the industry's standard dummy text ever since the 1500s",
-                        null, "/upload/test/image.png", "1737637", 400,
+                        null, "/upload/test/image.png",BigInteger.valueOf(1737637), 400,
                         "Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи"}
         };
     }
