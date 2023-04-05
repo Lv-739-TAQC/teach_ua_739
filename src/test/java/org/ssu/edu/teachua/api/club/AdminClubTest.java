@@ -10,7 +10,7 @@ import org.ssu.edu.teachua.api.models.club.ClubRequest;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
 import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminAPIRunner;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -21,7 +21,7 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
 
     private ClubClient client;
 
-    @BeforeMethod
+    @BeforeClass
     private void initClient() {
         client = new ClubClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
     }

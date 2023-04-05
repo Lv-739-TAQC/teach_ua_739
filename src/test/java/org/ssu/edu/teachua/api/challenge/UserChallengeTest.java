@@ -10,7 +10,7 @@ import org.ssu.edu.teachua.api.clients.ChallengeClient;
 import org.ssu.edu.teachua.api.models.challenge.GetChallengeResponse;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
 import org.ssu.edu.teachua.utils.runners.LoginWithUserAPIRunner;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -21,7 +21,7 @@ public class UserChallengeTest extends LoginWithUserAPIRunner {
     private final int challengeId = 826;
     private ChallengeClient client;
 
-    @BeforeMethod
+    @BeforeClass
     private void initClient() {
         client = new ChallengeClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
     }

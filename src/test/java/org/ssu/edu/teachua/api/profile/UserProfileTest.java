@@ -13,7 +13,7 @@ import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
 import org.ssu.edu.teachua.utils.providers.DataProviderProfilePage;
 import org.ssu.edu.teachua.utils.runners.LoginWithUserAPIRunner;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -23,7 +23,7 @@ public class UserProfileTest extends LoginWithUserAPIRunner {
 
     private ProfileClient client;
 
-    @BeforeMethod
+    @BeforeClass
     private void initClient() {
         client = new ProfileClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
     }
