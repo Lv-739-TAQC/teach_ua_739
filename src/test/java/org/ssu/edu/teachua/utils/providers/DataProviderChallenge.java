@@ -2,6 +2,7 @@ package org.ssu.edu.teachua.utils.providers;
 
 import org.testng.annotations.DataProvider;
 
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -91,6 +92,50 @@ public class DataProviderChallenge {
         String sortNumber = dateFormat.format(new Date(timestamp));
         return new Object[][]{
                 {sortNumber, "photos/heart.png", "Example23_Приклад", "Example:78Приклад", "ExamplePOIUQ*$%91!;?*(0_,/ЇЄПриклад~+=-"}
+        };
+    }
+
+    @DataProvider(name = "dpTestIfChallengeIsNotCreated")
+    public static Object[][] dpTestIfChallengeNotCreated() {
+        return new Object[][]{
+                {"testTitle", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", null, "/upload/photos/image.png", 546789,
+                        Arrays.asList("Дыผð*.:", "t", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", ""),
+                        Arrays.asList("Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи",
+                                "Назва Челенджу закоротка",
+                                "Назва Челенджу задовга",
+                                "Поле не повинно бути пустим"),
+                        400
+                }
+        };
+    }
+
+    @DataProvider(name = "dpTestCreateChallengeInvalid")
+    public static Object[][] dpTestCreateChallengeInvalid() {
+        return new Object[][]{
+                {"name", "tit", "des", null, "/upload/test/test.png", 1, 400},
+                {"Lorem ipsum dolor sit amet, consect", "Lorem ipsum dolor sit amet, consect",
+                        ("description").repeat(500), null, "/upload/test/test.png", 1, 400},
+                {"эЭъЪыЫёЁ", "эЭъЪыЫёЁ", "эЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁ", null, "/upload/test/test.png", 1, 400}
+        };
+    }
+
+    @DataProvider(name = "dpTestRussianValueNameField")
+    public static Object[][] dpTestRussianValueNameField() {
+        return new Object[][]{
+                {"писатель эссеист", "Заголовок Челенджу",
+                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. L" +
+                                "orem Ipsum has been the industry's standard dummy text ever since the 1500s",
+                        null, "/upload/test/image.png", BigInteger.valueOf(1737637), 400,
+                        "Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи"}
+        };
+    }
+
+    @DataProvider(name = "dpTestEmptySortNumberField")
+    public static Object[][] dpTestEmptySortNumberField() {
+        return new Object[][]{
+                {"Челендж_99", "99-й найкращий",
+                        "Який-небудь опис челенджу, челенджу челенджу челенджу челенджу",
+                        null, "/upload/test/image.png", null, 400, "Поле порядковий номер не має бути пустим"}
         };
     }
 }

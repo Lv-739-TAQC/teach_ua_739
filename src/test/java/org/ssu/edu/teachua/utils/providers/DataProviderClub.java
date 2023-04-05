@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.utils.providers;
 
+import org.ssu.edu.teachua.api.models.location.Location;
 import org.testng.annotations.DataProvider;
 
 import java.math.BigInteger;
@@ -14,6 +15,11 @@ public class DataProviderClub {
             "Опис гуртка не може містити російські літери",
             "Некоректний опис гуртка\nОпис гуртка не може містити російські літери",
             "Некоректний опис гуртка\nОпис гуртка може містити від 40 до 1500 символів."
+    );
+
+    public static final List<String> API_ERROR_MSG = Arrays.asList(
+            "name Довжина назви має бути від 5 до 100 символів",
+            "name Помилка. Присутні недопустимі символи"
     );
 
     @DataProvider(name = "dpTestDescriptionFieldValid")
@@ -65,6 +71,66 @@ public class DataProviderClub {
                 {"Hurtok3210", 2, "3", "15", "LocationTest123", "Харків", "Київський", "Ivana Krylova",
                         "49.829104498711104, 24.005058710351314", "0123456789", "0123456789", "description".repeat(5),
                         "City(latitude=49.9935, longitude=36.2304, name=Харків)"}
+        };
+    }
+
+    @DataProvider(name = "dpApiTestEditClubInvalidData")
+    public static Object[][] dpApiTestEditClubInvalidData() {
+        String description = ("{\"blocks\":" +
+                "[{\"key\":\"brl63\"," +
+                "\"text\":\"descriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescri\"," +
+                "\"type\":\"unstyled\"," +
+                "\"depth\":0," +
+                "\"inlineStyleRanges\":[]," +
+                "\"entityRanges\":[]," +
+                "\"data\":{}}]," +
+                "\"entityMap\":{}}");
+
+        return new Object[][]{
+                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "name", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(0)},
+
+                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "namenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamen", 2, 18, true, null,
+                        description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(0)},
+
+                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "nameЁёЫыЭэ", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(1)},
+
+        };
+    }
+
+    @DataProvider(name = "pdTestCreateClubDescriptionInvalid")
+    public static Object[][] pdTestCreateClubDescriptionInvalid() {
+        String description = ("{\"blocks\":" +
+                "[{\"key\":\"brl63\"," +
+                "\"text\":\"что-то написанное на русском языке\"," +
+                "\"type\":\"unstyled\"," +
+                "\"depth\":0," +
+                "\"inlineStyleRanges\":[]," +
+                "\"entityRanges\":[]," +
+                "\"data\":{}}]," +
+                "\"entityMap\":{}}");
+        String errorMsg = "Опис гуртка не може містити російські літери";
+        return new Object[][] {
+                {null, "NameName", 2, 18, true, null, description, null, BigInteger.valueOf(272), 400, errorMsg}
+        };
+    }
+
+    @DataProvider(name = "dpTestInvalidNameFieldForClub")
+    public static Object[][] dpTestInvalidNameFieldForClub() {
+        return new Object[][]{
+                {new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти")), "Э э ъ Ъ Ы ы",
+                        2, 18, true, null,
+                        "{\"blocks\":" +
+                                "[{\"key\":\"brl63\"," +
+                                "\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього " +
+                                "розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\"," +
+                                "\"type\":\"unstyled\"," +
+                                "\"depth\":1," +
+                                "\"inlineStyleRanges\":[]," +
+                                "\"entityRanges\":[]," +
+                                "\"data\":{}}]," +
+                                "\"entityMap\":{}}",
+                        new ArrayList<Location>(), BigInteger.valueOf(854), 400,
+                        "name Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи’"}
         };
     }
 

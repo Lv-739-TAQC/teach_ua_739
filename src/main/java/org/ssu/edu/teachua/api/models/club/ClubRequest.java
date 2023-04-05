@@ -9,6 +9,7 @@ import java.util.ArrayList;
 @Data
 @AllArgsConstructor
 public class ClubRequest {
+
     private ArrayList<String> categoriesName;
     private String name;
     private int ageFrom;
