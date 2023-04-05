@@ -90,5 +90,13 @@ public class DataProviderProfilePage {
                         400, ("phone Phone number must contain 10 numbers and can`t contain other symbols")}
         };
     }
+    
+    @DataProvider(name = "dpTestVerifyThatUserCanChangeRole")
+   	private static Object[][] dpTestVerifyThatUserCanChangeRole() {
+   		return new Object[][] {{
+   			847, "Illia", "Kapustin", "k.ilya.v@gmail.com",
+			"0675673309", "ROLE_USER", null, true
+   		}};
+    }
 }
 
