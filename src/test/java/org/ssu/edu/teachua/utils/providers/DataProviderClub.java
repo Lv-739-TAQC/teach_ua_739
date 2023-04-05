@@ -2,6 +2,7 @@ package org.ssu.edu.teachua.utils.providers;
 
 import org.testng.annotations.DataProvider;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -63,6 +64,25 @@ public class DataProviderClub {
                 {"Hurtok3210", 2, "3", "15", "LocationTest123", "Харків", "Київський", "Ivana Krylova",
                 "49.829104498711104, 24.005058710351314", "0123456789", "0123456789", "description".repeat(5),
                 "City(latitude=49.9935, longitude=36.2304, name=Харків)"}
+        };
+    }
+
+    @DataProvider(name = "dpTestDuplicateClubCannotBeCreated")
+    public static Object[][] dpTestDuplicateClubCannotBeCreated() {
+        return new Object[][]{
+                {
+                    "Спортивні секції",
+                    "Спроба1",
+                    2,
+                    18,
+                    true,
+                    "{}",
+                    "{\\\"blocks\\\":[{\\\"key\\\":\\\"brl63\\\",\\\"text\\\":\\\"йййййййййййййййййййййййййййййййййййййййййййййййййййййййййй\\\",\\\"type\\\":\\\"unstyled\\\",\\\"depth\\\":0,\\\"inlineStyleRanges\\\":[],\\\"entityRanges\\\":[],\\\"data\\\":{}}],\\\"entityMap\\\":{}}",
+                    new ArrayList<>(),
+                    272,
+                    409,
+                    "Club already exist with name: Спроба1"
+                }
         };
     }
 }

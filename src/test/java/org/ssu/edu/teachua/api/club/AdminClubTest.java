@@ -7,6 +7,8 @@ import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.clients.ClubClient;
 import org.ssu.edu.teachua.api.models.club.ClubRequest;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
+import org.ssu.edu.teachua.api.models.location.Location;
+import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminAPIRunner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -17,28 +19,31 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
 
     @Issue(value = "TUA-469")
     @Description(value = "Verify that the duplicate club cannot be created")
-    @Test
-    public void verifyThatTheDuplicateClubCannotBeCreated() {
+    @Test(dataProvider = "dpTestDuplicateClubCannotBeCreated", dataProviderClass = DataProviderClub.class)
+    public void verifyThatTheDuplicateClubCannotBeCreated(
+            String category, String name, Integer ageFrom, Integer ageTo, Boolean isOnline, String contacts,
+            String description, ArrayList<Location> locations, Integer userId, int statusCode, String errorMessage
+    ) {
         ClubClient clubClient = new ClubClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
         ClubRequest clubRequest = new ClubRequest();
         ArrayList<String> categoriesName = new ArrayList<>();
-        categoriesName.add("Спортивні секції");
+        categoriesName.add(category);
         clubRequest.setCategoriesName(categoriesName);
-        clubRequest.setName("Спроба1");
-        clubRequest.setAgeFrom(2);
-        clubRequest.setAgeTo(18);
-        clubRequest.setOnline(true);
-        clubRequest.setContacts("{}");
-        clubRequest.setDescription("{\\\"blocks\\\":[{\\\"key\\\":\\\"brl63\\\",\\\"text\\\":\\\"йййййййййййййййййййййййййййййййййййййййййййййййййййййййййй\\\",\\\"type\\\":\\\"unstyled\\\",\\\"depth\\\":0,\\\"inlineStyleRanges\\\":[],\\\"entityRanges\\\":[],\\\"data\\\":{}}],\\\"entityMap\\\":{}}");
-        clubRequest.setLocations(new ArrayList<>());
-        clubRequest.setUserId(272);
+        clubRequest.setName(name);
+        clubRequest.setAgeFrom(ageFrom);
+        clubRequest.setAgeTo(ageTo);
+        clubRequest.setOnline(isOnline);
+        clubRequest.setContacts(contacts);
+        clubRequest.setDescription(description);
+        clubRequest.setLocations(locations);
+        clubRequest.setUserId(userId);
 
         Response response = clubClient.createClub(clubRequest);
         ErrorResponse errorResponse = response.as(ErrorResponse.class);
 
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(errorResponse.getStatus(), 409);
-        softAssert.assertEquals(errorResponse.getMessage(), "Club already exist with name: Спроба1");
+        softAssert.assertEquals(errorResponse.getStatus(), statusCode);
+        softAssert.assertEquals(errorResponse.getMessage(), errorMessage);
         softAssert.assertAll();
     }
 }
