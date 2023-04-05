@@ -60,13 +60,6 @@ public class TestValueProvider {
         return properties.getProperty("dbUserPassword");
     }
 
-    public String getSomeUserEmail() {
-        return properties.getProperty("someUserEmail");
-    }
-    public String getSomeUserPassword() {
-        return properties.getProperty("someUserPassword");
-    }
-
     public String getFilePath(String fileName) {
         return Paths.get(Paths.get(System.getProperty("user.dir")).toString(),
                 "src", "test", "resources", fileName).toString();

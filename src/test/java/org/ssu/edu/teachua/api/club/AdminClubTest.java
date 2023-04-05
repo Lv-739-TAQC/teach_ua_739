@@ -13,6 +13,7 @@ import org.ssu.edu.teachua.utils.runners.LoginWithAdminAPIRunner;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class AdminClubTest extends LoginWithAdminAPIRunner {
@@ -22,7 +23,7 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
     @Test(dataProvider = "dpTestDuplicateClubCannotBeCreated", dataProviderClass = DataProviderClub.class)
     public void verifyThatTheDuplicateClubCannotBeCreated(
             String category, String name, Integer ageFrom, Integer ageTo, Boolean isOnline, String contacts,
-            String description, ArrayList<Location> locations, Integer userId, int statusCode, String errorMessage
+            String description, ArrayList<String> locations, BigInteger userId, int statusCode, String errorMessage
     ) {
         ClubClient clubClient = new ClubClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
         ClubRequest clubRequest = new ClubRequest();
@@ -33,7 +34,9 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
         clubRequest.setAgeFrom(ageFrom);
         clubRequest.setAgeTo(ageTo);
         clubRequest.setOnline(isOnline);
-        clubRequest.setContacts(contacts);
+        ArrayList<String> contactsList = new ArrayList<>();
+        contactsList.add(contacts);
+        clubRequest.setContacts(contactsList);
         clubRequest.setDescription(description);
         clubRequest.setLocations(locations);
         clubRequest.setUserId(userId);

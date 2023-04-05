@@ -23,12 +23,10 @@ import java.util.List;
 
 public class UserProfileTest extends LoginWithUserAPIRunner {
 
-    private LoginClient loginClient;
     private ProfileClient client;
 
     @BeforeClass
     private void initClient() {
-        loginClient = new LoginClient(valueProvider.getBaseUiUrl(), ContentType.JSON);
         client = new ProfileClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
     }
 
@@ -39,29 +37,25 @@ public class UserProfileTest extends LoginWithUserAPIRunner {
             String firstName, String lastName, String email, String phone, String roleName, String urlLogo, boolean status,
             int statusCode, String firstNameErrorMessage, String lastNameErrorMessage, String phoneNameErrorMessage
     ) {
-        Response response = loginClient.signIn(valueProvider.getSomeUserEmail(), valueProvider.getSomeUserPassword());
-        SignInResponse signInResponse = response.as(SignInResponse.class);
-
-        ProfileClient profileClient = new ProfileClient(valueProvider.getBaseUiUrl(), ContentType.JSON, signInResponse.getAccessToken());
+        ProfileClient profileClient = new ProfileClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
 
         ProfilePutRequest profilePutRequest = new ProfilePutRequest(firstName, lastName, email, phone, roleName, urlLogo, status);
         profilePutRequest.setFirstName(null);
-        Response updateResponse = profileClient.updateProfile(signInResponse.getId(), profilePutRequest);
+        Response updateResponse = profileClient.updateProfile(userId, profilePutRequest);
         ErrorResponse errorResponse = updateResponse.as(ErrorResponse.class);
-        SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(errorResponse.getStatus(), statusCode);
         softAssert.assertEquals(errorResponse.getMessage(), firstNameErrorMessage);
 
         profilePutRequest.setFirstName(firstName);
         profilePutRequest.setLastName(null);
-        updateResponse = profileClient.updateProfile(signInResponse.getId(), profilePutRequest);
+        updateResponse = profileClient.updateProfile(userId, profilePutRequest);
         errorResponse = updateResponse.as(ErrorResponse.class);
         softAssert.assertEquals(errorResponse.getStatus(), statusCode);
         softAssert.assertEquals(errorResponse.getMessage(), lastNameErrorMessage);
 
         profilePutRequest.setLastName(lastName);
         profilePutRequest.setPhone(null);
-        updateResponse = profileClient.updateProfile(signInResponse.getId(), profilePutRequest);
+        updateResponse = profileClient.updateProfile(userId, profilePutRequest);
         errorResponse = updateResponse.as(ErrorResponse.class);
         softAssert.assertEquals(errorResponse.getStatus(), statusCode);
         softAssert.assertEquals(errorResponse.getMessage(), phoneNameErrorMessage);

@@ -122,7 +122,7 @@ public class DataProviderClub {
                     "{}",
                     "{\\\"blocks\\\":[{\\\"key\\\":\\\"brl63\\\",\\\"text\\\":\\\"йййййййййййййййййййййййййййййййййййййййййййййййййййййййййй\\\",\\\"type\\\":\\\"unstyled\\\",\\\"depth\\\":0,\\\"inlineStyleRanges\\\":[],\\\"entityRanges\\\":[],\\\"data\\\":{}}],\\\"entityMap\\\":{}}",
                     new ArrayList<>(),
-                    272,
+                    BigInteger.valueOf(272),
                     409,
                     "Club already exist with name: Спроба1"
                 }
