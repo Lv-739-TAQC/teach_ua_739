@@ -153,4 +153,14 @@ public class DataProviderClub {
                         true, null, description, null, BigInteger.valueOf(854), 200}
         };
     }
+    
+    @DataProvider(name = "dpVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters")
+    public static Object[][] dpVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters() {
+        return new Object[][]{
+                { new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти")),
+                	"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів12346578901234657890123465789012346578901234657890123465789012346578901234657890123465789012346578901234657890",
+                	2, 18,true, 
+                	"{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+                	BigInteger.valueOf(264) }};
+    }
 }
