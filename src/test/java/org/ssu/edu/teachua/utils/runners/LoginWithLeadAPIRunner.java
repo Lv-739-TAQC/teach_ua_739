@@ -10,7 +10,6 @@ import org.testng.annotations.BeforeClass;
 
 public class LoginWithLeadAPIRunner extends BaseTestRunnerAPI {
     protected String accessToken;
-    protected int userId;
 
     protected EntityService entityService = new EntityService();
 

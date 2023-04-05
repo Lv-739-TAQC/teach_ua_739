@@ -30,7 +30,6 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
                                                    int ageTo, boolean isOnline, ArrayList<String> contacts,
                                                    String description,ArrayList<String> locations, BigInteger userId,
                                                    int expectedStatusCode, String expectedErrorMsg) {
-            SoftAssert softAssert = new SoftAssert();
 
             ClubRequest clubRequest = new ClubRequest(
                     categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId

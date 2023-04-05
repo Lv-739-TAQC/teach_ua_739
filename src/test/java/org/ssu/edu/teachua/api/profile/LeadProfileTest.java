@@ -26,7 +26,6 @@ public class LeadProfileTest extends LoginWithLeadAPIRunner {
     public void testUpdatePhoneInvalid(int id, String firstName, String lastName, String email, String phone,
                                        String roleName, String urlLogo, boolean status, int expectedStatusCode,
                                        String expectedErrorMsg) throws DBException, EntityException {
-        SoftAssert softAssert = new SoftAssert();
 
         ProfilePutRequest profilePutRequest = new ProfilePutRequest(
                 firstName, lastName, email, phone, roleName, urlLogo, status
