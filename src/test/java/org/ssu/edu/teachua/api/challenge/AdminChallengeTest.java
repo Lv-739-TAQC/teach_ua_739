@@ -14,13 +14,11 @@ import org.ssu.edu.teachua.api.clients.ChallengeClient;
 import org.ssu.edu.teachua.api.models.challenge.PostChallengeRequest;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminAPIRunner;
-import org.testng.asserts.SoftAssert;
 
 import java.math.BigInteger;
 
 public class AdminChallengeTest extends LoginWithAdminAPIRunner {
 
-    private final int challengeId = 837;
     private ChallengeClient client;
 
     @BeforeClass
@@ -34,16 +32,14 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
     @Test(dataProvider = "dpTestCreateChallengeInvalid", dataProviderClass = DataProviderChallenge.class)
     public void testCreateChallengeInvalid(String name, String title, String description, String registrationLink,
                                            String picture, int sortNumber, int expectedStatusCode) {
-        SoftAssert dpSoftAssert = new SoftAssert();
-
         PostChallengeRequest postChallengeRequest = new PostChallengeRequest(
                 name, title, description, registrationLink, picture, sortNumber
         );
         ErrorResponse errorResponse = client.createChallenge(postChallengeRequest).as(ErrorResponse.class);
 
-        dpSoftAssert.assertFalse(errorResponse.getMessage().isEmpty());
-        dpSoftAssert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
-        dpSoftAssert.assertAll();
+        softAssert.assertFalse(errorResponse.getMessage().isEmpty());
+        softAssert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
+        softAssert.assertAll();
     }
 
     @Issue("TUA-437")
@@ -52,13 +48,11 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
                  "\ninformation about specific challenge (admin rights)")
     @Test
     public void testViewChallengeWithAdminRights() {
-        SoftAssert dpSoftAssert = new SoftAssert();
+        Response response = client.viewChallenge(837);
+        softAssert.assertEquals(response.getStatusCode(), 200);
+        softAssert.assertEquals(response.as(GetChallengeResponse.class).getId(), BigInteger.valueOf(837));
+        softAssert.assertEquals(response.as(GetChallengeResponse.class).getName(), "Ukrainian");
 
-        Response response = client.viewChallenge(challengeId);
-        dpSoftAssert.assertEquals(response.getStatusCode(), 200);
-        dpSoftAssert.assertEquals(response.as(GetChallengeResponse.class).getId(), BigInteger.valueOf(challengeId));
-        dpSoftAssert.assertEquals(response.as(GetChallengeResponse.class).getName(), "Ukrainian");
-
-        dpSoftAssert.assertAll();
+        softAssert.assertAll();
     }
 }

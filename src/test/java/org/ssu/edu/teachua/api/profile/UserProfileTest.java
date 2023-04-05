@@ -15,7 +15,6 @@ import org.ssu.edu.teachua.utils.providers.DataProviderProfilePage;
 import org.ssu.edu.teachua.utils.runners.LoginWithUserAPIRunner;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
@@ -58,15 +57,13 @@ public class UserProfileTest extends LoginWithUserAPIRunner {
     public void testUpdateFirstLastNamesInvalid(int id, String firstName, String lastName, String email,
                                                 String phone, String roleName, String urlLogo, boolean status,
                                                 int expectedStatusCode, String expectedErrorMsg) {
-        SoftAssert dpSoftAssert = new SoftAssert();
-
         ProfilePutRequest profilePutRequest = new ProfilePutRequest(
                 firstName, lastName, email, phone, roleName, urlLogo, status
         );
         ErrorResponse errorResponse = client.updateProfile(id, profilePutRequest).as(ErrorResponse.class);
 
-        dpSoftAssert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
-        dpSoftAssert.assertEquals(errorResponse.getMessage(), expectedErrorMsg);
-        dpSoftAssert.assertAll();
+        softAssert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
+        softAssert.assertEquals(errorResponse.getMessage(), expectedErrorMsg);
+        softAssert.assertAll();
     }
 }

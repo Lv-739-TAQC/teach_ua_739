@@ -12,7 +12,6 @@ import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminAPIRunner;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -35,15 +34,13 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
                                                  int ageTo, boolean isOnline, ArrayList<String> contacts,
                                                  String description, ArrayList<String> locations, BigInteger userId,
                                                  int expectedStatusCode, String expectedErrorMsg) {
-        SoftAssert dpSoftAssert = new SoftAssert();
-
         ClubRequest clubRequest = new ClubRequest(
                 categoriesName, name, ageForm, ageTo, isOnline, contacts, description, locations, userId
         );
         ErrorResponse errorResponse = client.createClub(clubRequest).as(ErrorResponse.class);
 
-        dpSoftAssert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
-        dpSoftAssert.assertEquals(errorResponse.getMessage(), expectedErrorMsg);
-        dpSoftAssert.assertAll();
+        softAssert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
+        softAssert.assertEquals(errorResponse.getMessage(), expectedErrorMsg);
+        softAssert.assertAll();
     }
 }

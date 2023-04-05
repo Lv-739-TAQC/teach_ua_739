@@ -11,13 +11,11 @@ import org.ssu.edu.teachua.api.models.challenge.GetChallengeResponse;
 import org.ssu.edu.teachua.utils.runners.LoginWithLeadAPIRunner;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import java.math.BigInteger;
 
 public class LeadChallengeTest extends LoginWithLeadAPIRunner {
 
-    private final int challengeId = 849;
     private ChallengeClient client;
 
     @BeforeClass
@@ -31,13 +29,11 @@ public class LeadChallengeTest extends LoginWithLeadAPIRunner {
                  "\ninformation about specific challenge (lead rights)")
     @Test
     public void testViewChallengeWithLeadRights() {
-        SoftAssert dpSoftAssert = new SoftAssert();
+        Response response = client.viewChallenge(849);
+        softAssert.assertEquals(response.getStatusCode(), 200);
+        softAssert.assertEquals(response.as(GetChallengeResponse.class).getId(), BigInteger.valueOf(849));
+        softAssert.assertEquals(response.as(GetChallengeResponse.class).getName(), "Ukrainian");
 
-        Response response = client.viewChallenge(challengeId);
-        dpSoftAssert.assertEquals(response.getStatusCode(), 200);
-        dpSoftAssert.assertEquals(response.as(GetChallengeResponse.class).getId(), BigInteger.valueOf(challengeId));
-        dpSoftAssert.assertEquals(response.as(GetChallengeResponse.class).getName(), "Ukrainian");
-
-        dpSoftAssert.assertAll();
+        softAssert.assertAll();
     }
 }
