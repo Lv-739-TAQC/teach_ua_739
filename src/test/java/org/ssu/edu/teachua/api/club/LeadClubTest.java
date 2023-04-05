@@ -13,6 +13,7 @@ import org.ssu.edu.teachua.api.models.location.Location;
 import org.ssu.edu.teachua.api.models.url_gallery.UrlGallery;
 import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.ssu.edu.teachua.utils.runners.LoginWithLeadAPIRunner;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -20,7 +21,12 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class LeadClubTest extends LoginWithLeadAPIRunner {
-    private final ClubClient client = new ClubClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
+    private ClubClient client;
+
+    @BeforeClass
+    public void initClient() {
+        client = new ClubClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
+    }
 
     @Issue("TUA-468")
     @Severity(SeverityLevel.NORMAL)
