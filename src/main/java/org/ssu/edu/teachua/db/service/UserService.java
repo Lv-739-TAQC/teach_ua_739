@@ -13,6 +13,7 @@ public class UserService extends BaseService {
 
     static final String SQL_FIND_USER_BY_EMAIL_AND_PASSWORD = "SELECT * FROM users WHERE email = ? and password ?;";
     static final String SQL_FIND_USER_BY_EMAIL = "SELECT * FROM users WHERE email = ?;";
+    static final String SQL_FIND_USER_BY_ID = "SELECT * FROM users WHERE id = ?;";
 
     public UserService(String url, String username, String password) throws DBException {
         super(url, username, password);
@@ -29,6 +30,13 @@ public class UserService extends BaseService {
     public List<User> getUsersByEmail(String email) throws DBException, EntityException {
         return new UserDAOImpl().findElementsBySQlRequest(
                 connection, SQL_FIND_USER_BY_EMAIL, true, email
+        );
+    }
+
+    @Step("From database get users by id: '{id}'")
+    public List<User> getUsersById(int id) throws DBException, EntityException {
+        return new UserDAOImpl().findElementsBySQlRequest(
+                connection, SQL_FIND_USER_BY_ID, true, id
         );
     }
 }

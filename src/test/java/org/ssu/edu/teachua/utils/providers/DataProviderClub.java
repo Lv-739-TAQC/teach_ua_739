@@ -1,7 +1,10 @@
 package org.ssu.edu.teachua.utils.providers;
 
+import org.ssu.edu.teachua.api.models.location.Location;
+import org.ssu.edu.teachua.api.models.url_gallery.UrlGallery;
 import org.testng.annotations.DataProvider;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -66,6 +69,27 @@ public class DataProviderClub {
                 "City(latitude=49.9935, longitude=36.2304, name=Харків)"}
         };
     }
+
+    @DataProvider(name = "dpTestInvalidNameFieldForClub")
+    public static Object[][] dpTestInvalidNameFieldForClub() {
+        return new Object[][]{
+                {new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти")), "Э э ъ Ъ Ы ы",
+                        2, 18, true, null,
+                        "{\"blocks\":" +
+                                "[{\"key\":\"brl63\"," +
+                                "\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього " +
+                                "розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\"," +
+                                "\"type\":\"unstyled\"," +
+                                "\"depth\":1," +
+                                "\"inlineStyleRanges\":[]," +
+                                "\"entityRanges\":[]," +
+                                "\"data\":{}}]," +
+                                "\"entityMap\":{}}",
+                        new ArrayList<Location>(), BigInteger.valueOf(854), 400,
+                        "name Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи’"}
+        };
+    }
+
 
     @DataProvider(name = "dpTestDuplicateClubCannotBeCreated")
     public static Object[][] dpTestDuplicateClubCannotBeCreated() {

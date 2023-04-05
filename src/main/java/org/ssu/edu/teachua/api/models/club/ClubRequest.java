@@ -6,28 +6,20 @@ import lombok.NoArgsConstructor;
 import org.ssu.edu.teachua.api.models.location.Location;
 import org.ssu.edu.teachua.api.models.url_gallery.UrlGallery;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClubRequest {
-    private int id;
-    private String name;
-    private String description;
-    private int centerId;
     private ArrayList<String> categoriesName;
-    private ArrayList<Location> locations;
+    private String name;
     private int ageFrom;
     private int ageTo;
-    private String urlBackground;
-    private String urlLogo;
-    private ArrayList<UrlGallery> urlGallery;
     private boolean isOnline;
-    private String contacts;
-    private boolean isApproved;
-    private int userId;
-    private int clubExternalId;
-    private int centerExternalId;
-
+    private ArrayList<String> contacts;
+    private String description;
+    private ArrayList<String> locations;
+    private BigInteger userId;
 }

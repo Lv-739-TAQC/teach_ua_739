@@ -28,7 +28,8 @@ public class AdminProfileTest extends LoginWithAdminAPIRunner {
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify that user cannot change password after leaving empty fields in the 'Change password' pop-up")
     @Test(dataProvider = "dpTestIfPasswordNotUpdated", dataProviderClass = DataProviderProfilePage.class)
-    public void testIfPasswordNotUpdated(int id, String emptyData, String newPassword, String oldPassword, int expectedStatusCode, List<String> expectedMsg) {
+    public void testIfPasswordNotUpdated(int id, String emptyData, String newPassword, String oldPassword,
+                                         int expectedStatusCode, List<String> expectedMsg) {
 
         ProfilePatchRequest verifyOldPassword = new ProfilePatchRequest(emptyData, newPassword, newPassword);
         ErrorResponse responseOldPassword = client.updatePassword(id, verifyOldPassword).as(ErrorResponse.class);
