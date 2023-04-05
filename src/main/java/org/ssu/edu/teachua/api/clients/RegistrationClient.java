@@ -13,7 +13,7 @@ public class RegistrationClient extends BaseClient {
         super(url, contentType);
     }
 
-    @Step("Create a request for adding user using 'POST' method. Enter values in 'Body'")
+    @Step("Create a request for adding user using 'POST' method. Enter values in 'Body': {request}")
     public Response registerUser(RegistrationRequest request) {
         return prepareRequest()
                 .body(request)

@@ -23,6 +23,28 @@ public class UserProfileTest extends LoginWithUserAPIRunner {
         client = new ProfileClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
     }
 
+    @Issue("TUA-408")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify that user can edit profile with valid data")
+    @Test(dataProvider = "dpTestIfProfileUpdated", dataProviderClass = DataProviderProfilePage.class)
+    public void testIfProfileUpdated(int id, List<String> data, boolean status, String firstName, String lastName, String phone, int expectedStatusCode) throws DBException, EntityException {
+
+        ProfilePutRequest requestEditFirstName = new ProfilePutRequest(firstName, data.get(1), data.get(2), data.get(3), data.get(4), data.get(5), status);
+        Response responseEditFirstName = client.updateProfile(id, requestEditFirstName);
+
+        ProfilePutRequest requestEditLastName = new ProfilePutRequest(firstName, lastName, data.get(2), data.get(3), data.get(4), data.get(5), status);
+        Response responseEditLastName = client.updateProfile(id, requestEditLastName);
+
+        ProfilePutRequest requestEditPhone = new ProfilePutRequest(firstName, lastName, data.get(2), phone, data.get(4), data.get(5), status);
+        Response responseEditPhone = client.updateProfile(id, requestEditPhone);
+
+        softAssert.assertEquals(responseEditFirstName.statusCode(), expectedStatusCode);
+        softAssert.assertEquals(responseEditLastName.statusCode(), expectedStatusCode);
+        softAssert.assertEquals(responseEditPhone.statusCode(), expectedStatusCode);
+        softAssert.assertEquals(entityService.getUserService().getUsersByEmail(data.get(2)).get(0).getFirstName(), firstName);
+        softAssert.assertAll();
+    }
+
     @Issue("TUA-415")
     @Severity(SeverityLevel.CRITICAL)
     @Description("This test case verifies that user can not save changes with invalid" +

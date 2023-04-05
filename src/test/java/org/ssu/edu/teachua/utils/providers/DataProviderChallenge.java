@@ -94,6 +94,20 @@ public class DataProviderChallenge {
         };
     }
 
+    @DataProvider(name = "dpTestIfChallengeIsNotCreated")
+    public static Object[][] dpTestIfChallengeNotCreated() {
+        return new Object[][]{
+                {"testTitle", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", null, "/upload/photos/image.png", 546789,
+                        Arrays.asList("Дыผð*.:", "t", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", ""),
+                        Arrays.asList("Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи",
+                                "Назва Челенджу закоротка",
+                                "Назва Челенджу задовга",
+                                "Поле не повинно бути пустим"),
+                        400
+                }
+        };
+    }
+
     @DataProvider(name = "dpTestCreateChallengeInvalid")
     public static Object[][] dpTestCreateChallengeInvalid() {
         return new Object[][]{
@@ -103,4 +117,5 @@ public class DataProviderChallenge {
                 {"эЭъЪыЫёЁ", "эЭъЪыЫёЁ", "эЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁ", null, "/upload/test/test.png", 1, 400}
         };
     }
+
 }

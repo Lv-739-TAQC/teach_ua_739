@@ -1,6 +1,12 @@
 package org.ssu.edu.teachua.utils.providers;
 
+import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.testng.annotations.DataProvider;
+
+import java.util.Arrays;
+
+import static org.ssu.edu.teachua.utils.StringGenerator.randomName;
+import static org.ssu.edu.teachua.utils.StringGenerator.randomPhoneNumber;
 
 public class DataProviderProfilePage {
 
@@ -40,6 +46,22 @@ public class DataProviderProfilePage {
                 {"", "Телефон не відповідає формату +38(___) ___ __ __"}};
     }
 
+    @DataProvider(name = "dpTestIfPasswordNotUpdated")
+    private static Object[][] dpTestIfPasswordNotUpdated() {
+        return new Object[][]{
+                {1, "", "123_%testPass", "admin", 400,
+                        Arrays.asList("Будь ласка, введіть діючий пароль", "Будь ласка, введіть новий пароль", "Будь ласка, підтвердіть новий пароль")
+                }};
+    }
+
+    @DataProvider(name = "dpTestIfProfileUpdated")
+    private static Object[][] dpTestIfProfileUpdated() {
+        return new Object[][]{
+                {203, Arrays.asList("Hanna", "Kukh", "soyec48727@busantei.com", "0648768777", "ROLE_MANAGER", null), true,
+                        randomName(), randomName() + "z", randomPhoneNumber(), 200
+                }};
+    }
+
     @DataProvider(name = "dpTestUpdateFirstLastNamesInvalid")
     private static Object[][] dpTestUpdateFirstLastNamesInvalid() {
         return new Object[][]{
@@ -58,3 +80,4 @@ public class DataProviderProfilePage {
         };
     }
 }
+
