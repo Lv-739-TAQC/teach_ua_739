@@ -24,7 +24,6 @@ import java.util.ArrayList;
 public class AdminClubTest extends LoginWithAdminAPIRunner {
 
     private ClubClient clubClient;
-    SoftAssert softAssert = new SoftAssert();
 
     @BeforeClass
     private void initClient() {
@@ -39,6 +38,7 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
                                               int ageTo, boolean isOnline, ArrayList<String> contacts,
                                               String description, ArrayList<String> locations, BigInteger userId, String expectedErrorMsg) {
 
+        SoftAssert softAssert = new SoftAssert();
         ClubRequest invalidDataRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId);
         Response postResponse = clubClient.createClub(invalidDataRequest);
         ErrorResponse errorResponse = postResponse.as(ErrorResponse.class);

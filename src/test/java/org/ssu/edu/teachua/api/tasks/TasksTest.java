@@ -22,8 +22,6 @@ import java.util.List;
 
 public class TasksTest extends LoginWithAdminAPIRunner {
     private TaskClient taskClient;
-    SoftAssert softAssert = new SoftAssert();
-
 
     @BeforeClass
     private void initClient() {
@@ -42,6 +40,7 @@ public class TasksTest extends LoginWithAdminAPIRunner {
                 "name must not be blank",
                 "description must contain a maximum of 10000 letters"
         );
+        SoftAssert softAssert = new SoftAssert();
 
         TaskPutRequest invalidPutRequest = new TaskPutRequest(name, headerText, description,
                 picture, startDate, challengeId);
@@ -65,6 +64,7 @@ public class TasksTest extends LoginWithAdminAPIRunner {
     @Test(dataProvider = "testEditTaskWithValidData", dataProviderClass = DataProviderTask.class)
     public void testEditTaskWithValidData(String name, String headerText, String description, String picture,
                                           String date, int challengeId ) {
+        SoftAssert softAssert = new SoftAssert();
         TaskPutRequest validDataPutRequest = new TaskPutRequest(name, headerText, description, picture, date, challengeId);
 
         Response validDataResponse = taskClient.putTask(777, validDataPutRequest);
@@ -87,6 +87,7 @@ public class TasksTest extends LoginWithAdminAPIRunner {
     @Test(dataProvider = "testCreateTaskWithInvalidData", dataProviderClass = DataProviderTask.class)
     public void testCreateTaskWithInvalidData(String name, String headerText, String description, String picture,
                                               String date, String expectedErrorMsg) {
+        SoftAssert softAssert = new SoftAssert();
         TaskPostRequest invalidDataPostRequest = new TaskPostRequest(name, headerText, description, picture, date);
         Response postResponse = taskClient.postTask(777, invalidDataPostRequest);
         ErrorResponse errorResponse = postResponse.as(ErrorResponse.class);
@@ -104,6 +105,7 @@ public class TasksTest extends LoginWithAdminAPIRunner {
     @Test(dataProvider = "testCreateTaskWithValidData", dataProviderClass = DataProviderTask.class)
     public void testCreateTaskWithValidData(String name, String headerText, String description, String picture,
                                             String date){
+        SoftAssert softAssert = new SoftAssert();
         TaskPostRequest validDataPostRequest = new TaskPostRequest(name, headerText, description, picture, date);
 
         Response validDataResponse = taskClient.postTask(777, validDataPostRequest);
