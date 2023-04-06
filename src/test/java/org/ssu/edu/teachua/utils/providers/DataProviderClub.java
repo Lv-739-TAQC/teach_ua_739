@@ -86,13 +86,15 @@ public class DataProviderClub {
                 "\"data\":{}}]," +
                 "\"entityMap\":{}}");
 
+        List<String> categories = Arrays.asList("Танці, хореографія");
+
         return new Object[][]{
-                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "name", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(0)},
+                {categories, "name", 2, 18, true, null, description, null, 272, API_ERROR_MSG.get(0)},
 
-                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "namenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamen", 2, 18, true, null,
-                        description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(0)},
+                {categories, "namenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamen", 2, 18, true, null,
+                        description, null, 272, API_ERROR_MSG.get(0)},
 
-                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "nameЁёЫыЭэ", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(1)},
+                {categories, "nameЁёЫыЭэ", 2, 18, true, null, description, null, 272, API_ERROR_MSG.get(1)},
 
         };
     }

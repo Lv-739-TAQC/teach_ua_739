@@ -65,9 +65,9 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
     @Severity(SeverityLevel.MINOR)
     @Description("Verify that Admin cannot create club with invalid name data")
     @Test(dataProvider = "dpApiTestEditClubInvalidData", dataProviderClass = DataProviderClub.class)
-    public void testCreateClubWithInvalidData(ArrayList<String> categoriesName, String name, int ageFrom,
-                                              int ageTo, boolean isOnline, ArrayList<String> contacts,
-                                              String description, ArrayList<String> locations, Integer userId, String expectedErrorMsg) {
+    public void testCreateClubWithInvalidData(List<String> categoriesName, String name, int ageFrom,
+                                              int ageTo, boolean isOnline, List<String> contacts,
+                                              String description, List<String> locations, Integer userId, String expectedErrorMsg) {
 
         ClubRequest invalidDataRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId);
         Response postResponse = client.createClub(invalidDataRequest);
