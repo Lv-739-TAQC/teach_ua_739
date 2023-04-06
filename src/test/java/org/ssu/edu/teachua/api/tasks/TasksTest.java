@@ -24,6 +24,7 @@ import java.util.List;
 
 public class TasksTest extends LoginWithAdminAPIRunner {
     private TaskClient taskClient;
+    private final int ID_FOR_TASK_EDIT = 765;
 
     @BeforeClass
     private void initClient() {
@@ -110,13 +111,13 @@ public class TasksTest extends LoginWithAdminAPIRunner {
     @Severity(SeverityLevel.NORMAL)
     @Description("Verifies that admin cannot edit Task with invalid values")
     @Test(dataProvider = "dpAPITestEditTaskInvalidData2", dataProviderClass = DataProviderTask.class)
-    public void testEditTaskWithInvalidData2(String name, String headerText, String description, String picture, String startDate, BigInteger challengeId, String expectedErrorMessage) {
+    public void testEditTaskWithInvalidData2(String name, String headerText, String description, String picture, String startDate, BigInteger challengeId, String expectedErrorMessage,int expectedStatusCode) {
         TaskPutRequest invalidPutRequest = new TaskPutRequest(name, headerText, description, picture, startDate, challengeId);
-        Response response = taskClient.putTask(765, invalidPutRequest);
+        Response response = taskClient.putTask(ID_FOR_TASK_EDIT, invalidPutRequest);
 
-        Assert.assertEquals(response.statusCode(), 400);
+        Assert.assertEquals(response.statusCode(), expectedStatusCode);
         ErrorResponse errorResponse = response.as(ErrorResponse.class);
-        Assert.assertEquals(errorResponse.getStatus(), 400);
+        Assert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
 
         String actualErrorMessage = errorResponse.getMessage();
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
@@ -126,13 +127,13 @@ public class TasksTest extends LoginWithAdminAPIRunner {
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verifies that admin cannot edit Task with spaces and null values")
     @Test(dataProvider = "dpAPITestEditTaskInvalidData3", dataProviderClass = DataProviderTask.class)
-    public void testCreateTaskWithInvalidData3(String name, String headerText, String description, String picture, String startDate, BigInteger challengeId, String expectedErrorMessage) {
+    public void testCreateTaskWithInvalidData3(String name, String headerText, String description, String picture, String startDate, BigInteger challengeId, String expectedErrorMessage, int expectedStatusCode) {
         TaskPutRequest invalidPutRequest = new TaskPutRequest(name, headerText, description, picture, startDate, challengeId);
-        Response response = taskClient.putTask(765, invalidPutRequest);
+        Response response = taskClient.putTask(ID_FOR_TASK_EDIT, invalidPutRequest);
 
-        Assert.assertEquals(response.statusCode(), 400);
+        Assert.assertEquals(response.statusCode(), expectedStatusCode);
         ErrorResponse errorResponse = response.as(ErrorResponse.class);
-        Assert.assertEquals(errorResponse.getStatus(), 400);
+        Assert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
 
         String actualErrorMessage = errorResponse.getMessage();
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage);

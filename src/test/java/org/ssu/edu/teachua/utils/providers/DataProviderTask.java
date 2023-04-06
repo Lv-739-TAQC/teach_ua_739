@@ -111,7 +111,7 @@ public class DataProviderTask {
     public static Object[][] dpTestEditTask() {
         return new Object[][]{
                 {"namenamename1213#$%", "header text must contain min fourty letters",
-                "descriptiondescriptiondescriptiondescriptiondescription12345$%%^$#", "/upload/test/test.png", "2023-12-03", 777}
+                        "descriptiondescriptiondescriptiondescriptiondescription12345$%%^$#", "/upload/test/test.png", "2023-12-03", 777}
         };
     }
 
@@ -121,44 +121,44 @@ public class DataProviderTask {
                 {"name", "header text must contain min fourty letters", "descriptiondescriptiondescriptiondescriptiondescription",
                         "/upload/test/test.png", "2023-12-03", API_ERROR_MSG.get(0)},
                 {"namenamenamenamenamenamenamenamenamenamenamenamenam", "header text must contain min fourty letters",
-                "descriptiondescriptiondescriptiondescriptiondescription", "/upload/test/test.png", "2023-11-03", API_ERROR_MSG.get(0)},
+                        "descriptiondescriptiondescriptiondescriptiondescription", "/upload/test/test.png", "2023-11-03", API_ERROR_MSG.get(0)},
                 {"namenameЁ, Ы,Э", "header text must contain min fourty letters", "descriptiondescriptiondescriptiondescriptiondescription",
-                        "/upload/test/test.png",  "2023-11-03", API_ERROR_MSG.get(1)},
+                        "/upload/test/test.png", "2023-11-03", API_ERROR_MSG.get(1)},
                 {"namenamename", "header text must contain min fourty letters", "descriptiondescriptiondescriptiondescr", "/upload/test/test.png",
-                "2023-11-03", API_ERROR_MSG.get(2)},
+                        "2023-11-03", API_ERROR_MSG.get(2)},
                 {"namenamename", "header text must contain min fourty letters", " descriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondescridescriptiondescriptiondescriptiondedescriptiondescriptiondescridescriptionde ",
                         "/upload/test/test.png", "2023-11-03", API_ERROR_MSG.get(2)},
-                { "namenamename", "header text must contain min fourty letters", "descriptiondescriptiondescriptiondescriptiondescription Ё, Ы,Э ", "/upload/test/test.png",
+                {"namenamename", "header text must contain min fourty letters", "descriptiondescriptiondescriptiondescriptiondescription Ё, Ы,Э ", "/upload/test/test.png",
                         "2023-11-03", API_ERROR_MSG.get(3)}
         };
     }
 
     @DataProvider(name = "testCreateTaskWithValidData")
     public static Object[][] dpTestCreateTask() {
-        return new Object[][] {
+        return new Object[][]{
                 {"namenamename1213#$%", "header text must contain min fourty letters",
-                "descriptiondescriptiondescriptiondescriptiondescription12345$%%^$# ", "/upload/test/test.png",  "2023-12-03"}
+                        "descriptiondescriptiondescriptiondescriptiondescription12345$%%^$# ", "/upload/test/test.png", "2023-12-03"}
         };
     }
 
     @DataProvider(name = "dpAPITestEditTaskInvalidData2")
     public Object[][] dpAPITestEditTask2() {
         return new Object[][]{
-                {"name", "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(6)},
-                {"namenam".repeat(5), "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(0)},
-                {"namenameЁ, Ы,Э", "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(1)},
-                {"namenamename", "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(2)},
-                {"namenamename", "headerText".repeat(4), "description".repeat(50), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(2)},
-                {"namenamename".repeat(5), "headerText".repeat(4), " description".repeat(100) + "Ё, Ы,Э", "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(7)}
+                {"name", "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(6), 400},
+                {"namenam".repeat(5), "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(0), 400},
+                {"namenameЁ, Ы,Э", "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(1), 400},
+                {"namenamename", "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(2), 400},
+                {"namenamename", "headerText".repeat(4), "description".repeat(50), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(2), 400},
+                {"namenamename".repeat(5), "headerText".repeat(4), " description".repeat(100) + "Ё, Ы,Э", "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(7), 400}
         };
     }
 
     @DataProvider(name = "dpAPITestEditTaskInvalidData3")
     public Object[][] dpAPITestEditTask3() {
         return new Object[][]{
-                {"           ", "             ", "                 ", "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(8)},
-                {" namenam ".repeat(5), " headerText ".repeat(4), " description ".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(4)},
-                {null, null, null, "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(9)},
+                {"           ", "             ", "                 ", "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(8), 400},
+                {" namenam ".repeat(5), " headerText ".repeat(4), " description ".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(4), 400},
+                {null, null, null, "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(9), 400},
         };
     }
 }

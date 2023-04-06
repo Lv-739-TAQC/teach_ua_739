@@ -71,17 +71,13 @@ public class UserProfileTest extends LoginWithUserAPIRunner {
     @Issue("TUA-417")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verifies that the user cannot change its role to admin role")
-    @Test(dataProvider = "dpAPITestChangeRole", dataProviderClass = DataProviderProfilePage.class)
-    public void testRoleChange(int id, String firstName, String lastName, String email, String phone, String roleName, String urlLogo, boolean status) {
+    @Test(dataProvider = "dpAPITestChangeRole", dataProviderClass = DataProviderProfilePage.class) public void testRoleChange(int id, String firstName, String lastName, String email, String phone, String roleName, String urlLogo, boolean status,int expectedStatusCode) {
         ProfilePutRequest putRequest = new ProfilePutRequest(firstName, lastName, email, phone, roleName, urlLogo, status);
         Response response = client.updateProfile(id, putRequest);
 
-        if (putRequest.getRoleName().equals("ROLE_MANAGER")) {
-            Assert.assertEquals(response.statusCode(), 200);
-        } else {
-            Assert.assertEquals(response.statusCode(), 500);
-            ErrorResponse errorResponse = response.as(ErrorResponse.class);
-            Assert.assertEquals(errorResponse.getStatus(), 500);
-        }
+        Assert.assertEquals(response.statusCode(), expectedStatusCode);
+        ErrorResponse errorResponse = response.as(ErrorResponse.class);
+        Assert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
     }
 }
+
