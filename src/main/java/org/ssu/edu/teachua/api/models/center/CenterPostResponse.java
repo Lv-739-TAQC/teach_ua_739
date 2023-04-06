@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 @Data
 public class CenterPostResponse {
-    private int id;
-    private int userId;
+    private Integer id;
+    private Integer userId;
     private String name;
     private String email;
     private String phones;

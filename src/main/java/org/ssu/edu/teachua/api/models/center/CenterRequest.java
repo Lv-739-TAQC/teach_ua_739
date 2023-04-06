@@ -8,7 +8,7 @@ import java.util.ArrayList;
 @Data
 @AllArgsConstructor
 public class CenterRequest {
-    private int id;
+    private Integer id;
     private String name;
     private ArrayList<String> locations;
     private String description;
@@ -16,7 +16,7 @@ public class CenterRequest {
     private String urlBackgroundPicture;
     private String urlLogo;
     private ArrayList<String> clubsId;
-    private int userId;
+    private Integer userId;
     private String contacts;
-    private int centerExternalId;
+    private Integer centerExternalId;
 }

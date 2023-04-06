@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 @Data
 public class CenterPutResponse {
-    private int id;
+    private Integer id;
     private String name;
     private ArrayList<String> locations;
     private String description;
@@ -14,7 +14,7 @@ public class CenterPutResponse {
     private String urlBackgroundPicture;
     private String urlLogo;
     private ArrayList<String> clubsId;
-    private int userId;
+    private Integer userId;
     private String contacts;
-    private int centerExternalId;
+    private Integer centerExternalId;
 }

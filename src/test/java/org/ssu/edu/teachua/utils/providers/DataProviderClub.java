@@ -148,9 +148,10 @@ public class DataProviderClub {
                 "\"entityRanges\":[]," +
                 "\"data\":{}}]," +
                 "\"entityMap\":{}}");
+        ArrayList categories = new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти"));
+        String contacts = "{\"1\"::\"0679585753\"}";
         return new Object[][]{
-                {new ArrayList<>(Arrays.asList("Вокальна студія, музика, музичні інструменти")), "Голосисті діти", 2, 18,
-                        true, null, description, null, BigInteger.valueOf(854), 200}
+                {categories, "Голосисті діти нашого міста", 2, 18, null, null, true, description, "854", new ArrayList<String>(), contacts, 0, 200}
         };
     }
 }
