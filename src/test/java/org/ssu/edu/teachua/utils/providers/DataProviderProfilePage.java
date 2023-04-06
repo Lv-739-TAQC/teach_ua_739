@@ -98,6 +98,7 @@ public class DataProviderProfilePage {
                         400, ("phone Phone number must contain 10 numbers and can`t contain other symbols")}
         };
     }
+
     
     @DataProvider(name = "dpTestVerifyThatUserCanChangeRole")
    	private static Object[][] dpTestVerifyThatUserCanChangeRole() {
@@ -106,6 +107,16 @@ public class DataProviderProfilePage {
 			"0675673309", "ROLE_USER", null, true
    		}};
     }
+
+
+    @DataProvider(name = "dpAPITestChangeRole")
+    private static Object[][] dpAPITestChangeRole() {
+        return new Object[][]{
+                {203, "Nastia", "Kukh", "soyec48727@busantei.com", "0000000000", "ROLE_MANAGER", null, true, 200},
+                {203, "Nastia", "Kukh", "soyec48727@busantei.com", "0000000000", "ROLE_ADMIN", null, true, 500}
+        };
+    }
+
 }
 
 
