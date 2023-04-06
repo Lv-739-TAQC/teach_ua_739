@@ -169,6 +169,20 @@ public class DataProviderClub {
                         BigInteger.valueOf(264), API_ERROR_MSG.get(0), 400
                 }
         };
-
+    }
+    
+    @DataProvider(name = "dpTestDuplicateClubCannotBeCreated")
+    public static Object[][] dpTestDuplicateClubCannotBeCreated() {
+        return new Object[][]{
+                {
+                    "Спортивні секції",
+                    "Спроба1",
+                    2,
+                    18,
+                    "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"йййййййййййййййййййййййййййййййййййййййййййййййййййййййййй\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+                    409,
+                    "Club already exist with name: Спроба1"
+                }
+        };
     }
 }

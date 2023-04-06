@@ -34,7 +34,7 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
         @Test(dataProvider = "dpTestInvalidNameFieldForClub", dataProviderClass = DataProviderClub.class)
         public void testCreateClubWithInvalidName (ArrayList<String> categoriesName, String name, int ageFrom,
                                                    int ageTo, boolean isOnline, ArrayList<String> contacts,
-                                                   String description,ArrayList<String> locations, BigInteger userId,
+                                                   String description,ArrayList<String> locations, Integer userId,
                                                    int expectedStatusCode, String expectedErrorMsg) {
 
             ClubRequest clubRequest = new ClubRequest(
@@ -53,7 +53,7 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
         @Test(dataProvider = "dpTestDeletePreviouslyCreatedClub", dataProviderClass = DataProviderClub.class)
         public void testDeletePreviouslyCreatedClub(ArrayList<String> categoriesName, String name, int ageFrom,
                                                     int ageTo, boolean isOnline, ArrayList<String> contacts,
-                                                    String description, ArrayList<String> locations, BigInteger userId,
+                                                    String description, ArrayList<String> locations, Integer userId,
                                                     int expectedStatusCode) {
 
         ClubRequest clubRequest = new ClubRequest(
