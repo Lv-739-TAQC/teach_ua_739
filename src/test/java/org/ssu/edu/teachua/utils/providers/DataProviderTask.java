@@ -102,6 +102,7 @@ public class DataProviderTask {
                         "2023-11-03", BigInteger.valueOf(777)}
         };
     }
+
     @DataProvider(name = "testEditTaskWithValidData")
     public static Object[][] dpTestEditTask() {
         return new Object[][]{
@@ -133,6 +134,27 @@ public class DataProviderTask {
         return new Object[][] {
                 {"namenamename1213#$%", "header text must contain min fourty letters",
                 "descriptiondescriptiondescriptiondescriptiondescription12345$%%^$# ", "/upload/test/test.png",  "2023-12-03"}
+        };
+    }
+
+    @DataProvider(name = "dpAPITestEditTaskInvalidData2")
+    public Object[][] dpAPITestEditTask2() {
+        return new Object[][]{
+                {"name", "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(6), 400},
+                {"namenam".repeat(5), "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(0), 400},
+                {"namenameЁ, Ы,Э", "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(1), 400},
+                {"namenamename", "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(2), 400},
+                {"namenamename", "headerText".repeat(4), "description".repeat(50), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(2), 400},
+                {"namenamename".repeat(5), "headerText".repeat(4), " description".repeat(100) + "Ё, Ы,Э", "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(7), 400}
+        };
+    }
+
+    @DataProvider(name = "dpAPITestEditTaskInvalidData3")
+    public Object[][] dpAPITestEditTask3() {
+        return new Object[][]{
+                {"           ", "             ", "                 ", "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(8), 400},
+                {" namenam ".repeat(5), " headerText ".repeat(4), " description ".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(4), 400},
+                {null, null, null, "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(9), 400},
         };
     }
 }

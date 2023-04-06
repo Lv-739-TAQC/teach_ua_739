@@ -2,19 +2,24 @@ package org.ssu.edu.teachua.api.profile;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.ssu.edu.teachua.api.clients.LoginClient;
 import org.ssu.edu.teachua.api.clients.ProfileClient;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
+import org.ssu.edu.teachua.api.models.error.ErrorResponse;
+import org.ssu.edu.teachua.api.models.login.SignInResponse;
 import org.ssu.edu.teachua.api.models.profile.ProfilePutRequest;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
 import org.ssu.edu.teachua.utils.providers.DataProviderProfilePage;
 import org.ssu.edu.teachua.utils.runners.LoginWithUserAPIRunner;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
@@ -25,6 +30,37 @@ public class UserProfileTest extends LoginWithUserAPIRunner {
     @BeforeClass
     private void initClient() {
         client = new ProfileClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
+    }
+
+    @Issue(value = "TUA-421")
+    @Description(value = "Verify that user can not save changes where mandatory fields are empty")
+    @Test(dataProvider = "dpTestUpdateProfile", dataProviderClass = DataProviderProfilePage.class)
+    public void verifyThatUserCanNotSaveChangesWhereMandatoryFieldsAreEmpty(
+            String firstName, String lastName, String email, String phone, String roleName, String urlLogo, boolean status,
+            int statusCode, String firstNameErrorMessage, String lastNameErrorMessage, String phoneNameErrorMessage
+    ) {
+        ProfileClient profileClient = new ProfileClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
+
+        ProfilePutRequest profilePutRequest = new ProfilePutRequest(firstName, lastName, email, phone, roleName, urlLogo, status);
+        profilePutRequest.setFirstName(null);
+        Response updateResponse = profileClient.updateProfile(userId, profilePutRequest);
+        ErrorResponse errorResponse = updateResponse.as(ErrorResponse.class);
+        softAssert.assertEquals(errorResponse.getStatus(), statusCode);
+        softAssert.assertEquals(errorResponse.getMessage(), firstNameErrorMessage);
+
+        profilePutRequest.setFirstName(firstName);
+        profilePutRequest.setLastName(null);
+        updateResponse = profileClient.updateProfile(userId, profilePutRequest);
+        errorResponse = updateResponse.as(ErrorResponse.class);
+        softAssert.assertEquals(errorResponse.getStatus(), statusCode);
+        softAssert.assertEquals(errorResponse.getMessage(), lastNameErrorMessage);
+
+        profilePutRequest.setLastName(lastName);
+        profilePutRequest.setPhone(null);
+        updateResponse = profileClient.updateProfile(userId, profilePutRequest);
+        errorResponse = updateResponse.as(ErrorResponse.class);
+        softAssert.assertEquals(errorResponse.getStatus(), statusCode);
+        softAssert.assertEquals(errorResponse.getMessage(), phoneNameErrorMessage);
     }
 
     @Issue("TUA-408")
@@ -52,7 +88,7 @@ public class UserProfileTest extends LoginWithUserAPIRunner {
     @Issue("TUA-415")
     @Severity(SeverityLevel.CRITICAL)
     @Description("This test case verifies that user can not save changes with invalid" +
-                 "\n data where edit profile (fields lastName and firstName)")
+            "\n data where edit profile (fields lastName and firstName)")
     @Test(dataProvider = "dpTestUpdateFirstLastNamesInvalid", dataProviderClass = DataProviderProfilePage.class)
     public void testUpdateFirstLastNamesInvalid(int id, String firstName, String lastName, String email,
                                                 String phone, String roleName, String urlLogo, boolean status,
@@ -66,4 +102,17 @@ public class UserProfileTest extends LoginWithUserAPIRunner {
         softAssert.assertEquals(errorResponse.getMessage(), expectedErrorMsg);
         softAssert.assertAll();
     }
+
+    @Issue("TUA-417")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Verifies that the user cannot change its role to admin role")
+    @Test(dataProvider = "dpAPITestChangeRole", dataProviderClass = DataProviderProfilePage.class) public void testRoleChange(int id, String firstName, String lastName, String email, String phone, String roleName, String urlLogo, boolean status,int expectedStatusCode) {
+        ProfilePutRequest putRequest = new ProfilePutRequest(firstName, lastName, email, phone, roleName, urlLogo, status);
+        Response response = client.updateProfile(id, putRequest);
+
+        Assert.assertEquals(response.statusCode(), expectedStatusCode);
+        ErrorResponse errorResponse = response.as(ErrorResponse.class);
+        Assert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
+    }
 }
+
