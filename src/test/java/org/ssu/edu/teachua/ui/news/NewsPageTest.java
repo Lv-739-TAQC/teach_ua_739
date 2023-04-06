@@ -10,24 +10,18 @@ import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.news.NewsPage;
 import org.ssu.edu.teachua.ui.pages.view.ViewNewsPage;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminUIRunner;
-import org.ssu.edu.teachua.utils.TestNgListeners;
-import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderNews;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.ssu.edu.teachua.utils.Helper.checkFileSize;
 
-public class NewsPageTest extends LoginWithAdminRunner {
+public class NewsPageTest extends LoginWithAdminUIRunner {
 
     private static final int NEWS_INDEX = 1;
     private static final long EXPECTED_FILE_SIZE = 300;

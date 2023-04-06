@@ -7,10 +7,7 @@ import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.WebElement;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminUIRunner;
-import org.ssu.edu.teachua.utils.TestNgListeners;
-import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.List;
