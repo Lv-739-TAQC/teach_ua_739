@@ -11,7 +11,6 @@ import org.ssu.edu.teachua.api.models.user.User;
 import java.util.ArrayList;
 
 @Data
-@AllArgsConstructor
 public class ClubResponse {
         private int id;
         private int ageFrom;
