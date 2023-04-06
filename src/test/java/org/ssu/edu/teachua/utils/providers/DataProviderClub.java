@@ -154,6 +154,23 @@ public class DataProviderClub {
         };
     }
 
+    @DataProvider(name = "dpAPITestCreateClub")
+    public static Object[][] dpAPITestCreateClub() {
+        return new Object[][]{
+                {
+                        new ArrayList<>(Arrays.asList("Вокальна студія, музика, музичні інструменти")),
+                        "Жук",
+                        2,
+                        18,
+                        true,
+                        null,
+                        "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+                        null,
+                        BigInteger.valueOf(264), API_ERROR_MSG.get(0), 400
+                }
+        };
+    }
+    
     @DataProvider(name = "dpTestDuplicateClubCannotBeCreated")
     public static Object[][] dpTestDuplicateClubCannotBeCreated() {
         return new Object[][]{
