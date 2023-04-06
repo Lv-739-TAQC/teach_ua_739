@@ -31,6 +31,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdminClubTest extends LoginWithAdminAPIRunner {
 
@@ -48,7 +49,7 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
     @Test(dataProvider = "pdTestCreateClubDescriptionInvalid", dataProviderClass = DataProviderClub.class)
     public void testCreateClubDescriptionInvalid(ArrayList<String> categoriesName, String name, int ageForm,
                                                  int ageTo, boolean isOnline, ArrayList<String> contacts,
-                                                 String description, ArrayList<String> locations, BigInteger userId,
+                                                 String description, ArrayList<String> locations, Integer userId,
                                                  int expectedStatusCode, String expectedErrorMsg) {
         ClubRequest clubRequest = new ClubRequest(
                 categoriesName, name, ageForm, ageTo, isOnline, contacts, description, locations, userId
@@ -66,7 +67,7 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
     @Test(dataProvider = "dpApiTestEditClubInvalidData", dataProviderClass = DataProviderClub.class)
     public void testCreateClubWithInvalidData(ArrayList<String> categoriesName, String name, int ageFrom,
                                               int ageTo, boolean isOnline, ArrayList<String> contacts,
-                                              String description, ArrayList<String> locations, BigInteger userId, String expectedErrorMsg) {
+                                              String description, ArrayList<String> locations, Integer userId, String expectedErrorMsg) {
 
         ClubRequest invalidDataRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId);
         Response postResponse = client.createClub(invalidDataRequest);
@@ -83,27 +84,20 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
     @Issue(value = "TUA-469")
     @Description(value = "Verify that the duplicate club cannot be created")
     @Test(dataProvider = "dpTestDuplicateClubCannotBeCreated", dataProviderClass = DataProviderClub.class)
-    public void verifyThatTheDuplicateClubCannotBeCreated(
-            String category, String name, Integer ageFrom, Integer ageTo, Boolean isOnline, String contacts,
-            String description, ArrayList<String> locations, BigInteger userId, int statusCode, String errorMessage
-    ) {
-        ClubClient clubClient = new ClubClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
+    public void verifyThatTheDuplicateClubCannotBeCreated(String category, String name, Integer ageFrom, Integer ageTo,
+                                                          String description, int statusCode, String errorMessage) {
+
         ClubRequest clubRequest = new ClubRequest();
+        clubRequest.setName(name);
+        clubRequest.setDescription(description);
+        clubRequest.setAgeFrom(ageFrom);
+        clubRequest.setAgeTo(ageTo);
+
         ArrayList<String> categoriesName = new ArrayList<>();
         categoriesName.add(category);
         clubRequest.setCategoriesName(categoriesName);
-        clubRequest.setName(name);
-        clubRequest.setAgeFrom(ageFrom);
-        clubRequest.setAgeTo(ageTo);
-        clubRequest.setOnline(isOnline);
-        ArrayList<String> contactsList = new ArrayList<>();
-        contactsList.add(contacts);
-        clubRequest.setContacts(contactsList);
-        clubRequest.setDescription(description);
-        clubRequest.setLocations(locations);
-        clubRequest.setUserId(userId);
 
-        Response response = clubClient.createClub(clubRequest);
+        Response response = client.createClub(clubRequest);
         ErrorResponse errorResponse = response.as(ErrorResponse.class);
 
         softAssert.assertEquals(errorResponse.getStatus(), statusCode);

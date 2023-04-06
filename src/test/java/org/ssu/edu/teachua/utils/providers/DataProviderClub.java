@@ -162,11 +162,7 @@ public class DataProviderClub {
                     "Спроба1",
                     2,
                     18,
-                    true,
-                    "{}",
-                    "{\\\"blocks\\\":[{\\\"key\\\":\\\"brl63\\\",\\\"text\\\":\\\"йййййййййййййййййййййййййййййййййййййййййййййййййййййййййй\\\",\\\"type\\\":\\\"unstyled\\\",\\\"depth\\\":0,\\\"inlineStyleRanges\\\":[],\\\"entityRanges\\\":[],\\\"data\\\":{}}],\\\"entityMap\\\":{}}",
-                    new ArrayList<>(),
-                    BigInteger.valueOf(272),
+                    "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"йййййййййййййййййййййййййййййййййййййййййййййййййййййййййй\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
                     409,
                     "Club already exist with name: Спроба1"
                 }
