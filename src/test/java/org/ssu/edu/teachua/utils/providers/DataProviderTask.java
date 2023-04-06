@@ -2,6 +2,7 @@ package org.ssu.edu.teachua.utils.providers;
 
 import org.testng.annotations.DataProvider;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,7 +28,11 @@ public class DataProviderTask {
             "description must contain a minimum of 40 and a maximum of 3000 letters",
             "description Помилка. Текст містить недопустимі символи and name Помилка. Текст містить недопустимі символи",
             "name must not be blank",
-            "description must contain a maximum of 3000 letters and name must not be blank and name must contain a minimum of 5 and a maximum of 50 letters"
+            "description must contain a maximum of 3000 letters and name must not be blank and name must contain a minimum of 5 and a maximum of 50 letters",
+            "name must contain a minimum of 5 and a maximum of 255 letters",
+            "description Помилка. Текст містить недопустимі символи",
+            "name must not be blank and description must contain a maximum of 10000 letters and name must contain a minimum of 5 and a maximum of 255 letters and headerText must not be blank and headerText must contain a minimum of 40 and a maximum of 10000 letters",
+            "headerText must not be blank and name must not be blank"
     );
 
     @DataProvider(name = "dpTestAddTaskInvalidTitle")
@@ -101,6 +106,7 @@ public class DataProviderTask {
                         "2023-11-03", 777}
         };
     }
+
     @DataProvider(name = "testEditTaskWithValidData")
     public static Object[][] dpTestEditTask() {
         return new Object[][]{
@@ -132,6 +138,27 @@ public class DataProviderTask {
         return new Object[][] {
                 {"namenamename1213#$%", "header text must contain min fourty letters",
                 "descriptiondescriptiondescriptiondescriptiondescription12345$%%^$# ", "/upload/test/test.png",  "2023-12-03"}
+        };
+    }
+
+    @DataProvider(name = "dpAPITestEditTaskInvalidData2")
+    public Object[][] dpAPITestEditTask2() {
+        return new Object[][]{
+                {"name", "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(6)},
+                {"namenam".repeat(5), "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(0)},
+                {"namenameЁ, Ы,Э", "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(1)},
+                {"namenamename", "headerText".repeat(4), "description".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(2)},
+                {"namenamename", "headerText".repeat(4), "description".repeat(50), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(2)},
+                {"namenamename".repeat(5), "headerText".repeat(4), " description".repeat(100) + "Ё, Ы,Э", "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(7)}
+        };
+    }
+
+    @DataProvider(name = "dpAPITestEditTaskInvalidData3")
+    public Object[][] dpAPITestEditTask3() {
+        return new Object[][]{
+                {"           ", "             ", "                 ", "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(8)},
+                {" namenam ".repeat(5), " headerText ".repeat(4), " description ".repeat(5), "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(4)},
+                {null, null, null, "/upload/test/test.png", "2024-11-03", BigInteger.valueOf(765), API_ERROR_MSG.get(9)},
         };
     }
 }

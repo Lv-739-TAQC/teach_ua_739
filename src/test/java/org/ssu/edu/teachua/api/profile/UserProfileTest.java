@@ -13,6 +13,7 @@ import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
 import org.ssu.edu.teachua.utils.providers.DataProviderProfilePage;
 import org.ssu.edu.teachua.utils.runners.LoginWithUserAPIRunner;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -52,7 +53,7 @@ public class UserProfileTest extends LoginWithUserAPIRunner {
     @Issue("TUA-415")
     @Severity(SeverityLevel.CRITICAL)
     @Description("This test case verifies that user can not save changes with invalid" +
-                 "\n data where edit profile (fields lastName and firstName)")
+            "\n data where edit profile (fields lastName and firstName)")
     @Test(dataProvider = "dpTestUpdateFirstLastNamesInvalid", dataProviderClass = DataProviderProfilePage.class)
     public void testUpdateFirstLastNamesInvalid(int id, String firstName, String lastName, String email,
                                                 String phone, String roleName, String urlLogo, boolean status,
@@ -65,5 +66,22 @@ public class UserProfileTest extends LoginWithUserAPIRunner {
         softAssert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
         softAssert.assertEquals(errorResponse.getMessage(), expectedErrorMsg);
         softAssert.assertAll();
+    }
+
+    @Issue("TUA-417")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Verifies that the user cannot change its role to admin role")
+    @Test(dataProvider = "dpAPITestChangeRole", dataProviderClass = DataProviderProfilePage.class)
+    public void testRoleChange(int id, String firstName, String lastName, String email, String phone, String roleName, String urlLogo, boolean status) {
+        ProfilePutRequest putRequest = new ProfilePutRequest(firstName, lastName, email, phone, roleName, urlLogo, status);
+        Response response = client.updateProfile(id, putRequest);
+
+        if (putRequest.getRoleName().equals("ROLE_MANAGER")) {
+            Assert.assertEquals(response.statusCode(), 200);
+        } else {
+            Assert.assertEquals(response.statusCode(), 500);
+            ErrorResponse errorResponse = response.as(ErrorResponse.class);
+            Assert.assertEquals(errorResponse.getStatus(), 500);
+        }
     }
 }

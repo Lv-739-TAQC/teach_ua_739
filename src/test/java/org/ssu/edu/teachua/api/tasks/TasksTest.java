@@ -13,6 +13,7 @@ import org.ssu.edu.teachua.api.models.task.TaskPutRequest;
 import org.ssu.edu.teachua.api.models.task.TaskResponse;
 import org.ssu.edu.teachua.utils.providers.DataProviderTask;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminAPIRunner;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -104,4 +105,37 @@ public class TasksTest extends LoginWithAdminAPIRunner {
         softAssert.assertEquals(taskResponse.getChallengeId(), 777);
         softAssert.assertAll();
     }
+
+    @Issue("TUA-445")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verifies that admin cannot edit Task with invalid values")
+    @Test(dataProvider = "dpAPITestEditTaskInvalidData2", dataProviderClass = DataProviderTask.class)
+    public void testEditTaskWithInvalidData2(String name, String headerText, String description, String picture, String startDate, BigInteger challengeId, String expectedErrorMessage) {
+        TaskPutRequest invalidPutRequest = new TaskPutRequest(name, headerText, description, picture, startDate, challengeId);
+        Response response = taskClient.putTask(765, invalidPutRequest);
+
+        Assert.assertEquals(response.statusCode(), 400);
+        ErrorResponse errorResponse = response.as(ErrorResponse.class);
+        Assert.assertEquals(errorResponse.getStatus(), 400);
+
+        String actualErrorMessage = errorResponse.getMessage();
+        Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
+    }
+
+    @Issue("TUA-443")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Verifies that admin cannot edit Task with spaces and null values")
+    @Test(dataProvider = "dpAPITestEditTaskInvalidData3", dataProviderClass = DataProviderTask.class)
+    public void testCreateTaskWithInvalidData3(String name, String headerText, String description, String picture, String startDate, BigInteger challengeId, String expectedErrorMessage) {
+        TaskPutRequest invalidPutRequest = new TaskPutRequest(name, headerText, description, picture, startDate, challengeId);
+        Response response = taskClient.putTask(765, invalidPutRequest);
+
+        Assert.assertEquals(response.statusCode(), 400);
+        ErrorResponse errorResponse = response.as(ErrorResponse.class);
+        Assert.assertEquals(errorResponse.getStatus(), 400);
+
+        String actualErrorMessage = errorResponse.getMessage();
+        Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
+    }
 }
+

@@ -12,6 +12,7 @@ import org.ssu.edu.teachua.api.models.club.ClubResponse;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
 import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.ssu.edu.teachua.utils.runners.LoginWithLeadAPIRunner;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -55,14 +56,32 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
                                                     String description, ArrayList<String> locations, BigInteger userId,
                                                     int expectedStatusCode) {
 
-            ClubRequest clubRequest = new ClubRequest(
-                    categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId
-            );
-            Response okResponseCreate = client.createClub(clubRequest);
-            ClubResponse clubResponse = okResponseCreate.as(ClubResponse.class);
-            softAssert.assertEquals(okResponseCreate.getStatusCode(), expectedStatusCode);
-            Response okResponseDelete = client.deleteClub(clubResponse.getId());
-            softAssert.assertEquals(okResponseDelete.getStatusCode(), expectedStatusCode);
-            softAssert.assertAll();
-        }
+        ClubRequest clubRequest = new ClubRequest(
+                categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId
+        );
+        Response okResponseCreate = client.createClub(clubRequest);
+        ClubResponse clubResponse = okResponseCreate.as(ClubResponse.class);
+        softAssert.assertEquals(okResponseCreate.getStatusCode(), expectedStatusCode);
+        Response okResponseDelete = client.deleteClub(clubResponse.getId());
+        softAssert.assertEquals(okResponseDelete.getStatusCode(), expectedStatusCode);
+        softAssert.assertAll();
+    }
+
+    @Issue("TUA-502")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify that lead cannot create new club if name field contain less than 5 characters")
+    @Test(dataProvider = "dpAPITestCreateClub", dataProviderClass = DataProviderClub.class)
+    public void testClubCreationWithInvalidData(ArrayList<String> categoriesName, String name, int ageFrom, int ageTo,
+                                                boolean isOnline, ArrayList<String> contacts, String description,
+                                                ArrayList<String> locations, BigInteger userId, String expectedErrorMessage) {
+        ClubRequest clubRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId);
+        Response response = client.createClub(clubRequest);
+        Assert.assertEquals(response.statusCode(), 400);
+
+        ErrorResponse errorResponse = response.as(ErrorResponse.class);
+        Assert.assertEquals(errorResponse.getStatus(), 400);
+
+        String actualErrorMessage = errorResponse.getMessage();
+        Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
+    }
 }
