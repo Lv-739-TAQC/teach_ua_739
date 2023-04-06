@@ -39,7 +39,7 @@ public class ClubClient extends BaseClient {
     }
 
     @Step("Create a request for deleting an existing club entity using 'DELETE' method and club id {id} as parameter")
-    public Response deleteClub(BigInteger id) {
+    public Response deleteClub(Integer id) {
         return prepareRequest()
                 .when()
                 .delete(path + "/" + id);

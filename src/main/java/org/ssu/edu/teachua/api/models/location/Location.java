@@ -7,7 +7,6 @@ import org.ssu.edu.teachua.api.models.location_city.LocationCity;
 
 
 @Data
-@AllArgsConstructor
 public class Location {
     private Integer id;
     private String name;

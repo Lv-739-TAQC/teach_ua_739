@@ -151,7 +151,7 @@ public class DataProviderClub {
         ArrayList categories = new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти"));
         String contacts = "{\"1\"::\"0679585753\"}";
         return new Object[][]{
-                {categories, "Голосисті діти нашого міста", 2, 18, null, null, true, description, "854", new ArrayList<String>(), contacts, 0, 200}
+                {categories, "Голосисті діти нашого міста", 2, 18, null, null, true, description, "854", new ArrayList<String>(), contacts, null, 200}
         };
     }
 }

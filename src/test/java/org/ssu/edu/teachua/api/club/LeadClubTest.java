@@ -11,6 +11,7 @@ import org.ssu.edu.teachua.api.clients.ClubClient;
 import org.ssu.edu.teachua.api.models.club.ClubResponse;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
 import org.ssu.edu.teachua.api.models.location.Location;
+import org.ssu.edu.teachua.utils.StringGenerator;
 import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.ssu.edu.teachua.utils.runners.LoginWithLeadAPIRunner;
 import org.testng.annotations.BeforeClass;
@@ -57,7 +58,7 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
                                                 String description, String userId, ArrayList<Location> locations,
                                                 String contacts, Integer centerId, int expectedStatusCode) {
 
-
+        name += StringGenerator.generateRandomString(5);
         ClubRequest clubRequest = new ClubRequest(
                 categoriesName, name, ageFrom, ageTo, urlLogo, urlBackground, isOnline, description, userId, locations,
                 contacts, centerId

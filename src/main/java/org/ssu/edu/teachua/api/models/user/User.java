@@ -5,7 +5,6 @@ import lombok.Data;
 
 
 @Data
-@AllArgsConstructor
 public class User {
     private Integer id;
     private String email;
@@ -14,8 +13,8 @@ public class User {
     private String lastName;
     private String phone;
     private String urlLogo;
-    private Object provider;
-    private Object providerId;
+    private String provider;
+    private String providerId;
     private Boolean status;
-    private Object verificationCode;
+    private String verificationCode;
 }
