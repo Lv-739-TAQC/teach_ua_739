@@ -2,17 +2,19 @@ package org.ssu.edu.teachua.ui.profile;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.ssu.edu.teachua.ui.components.modal.EditProfileComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.profile.ProfilePage;
-import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminUIRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderProfilePage;
 import org.ssu.edu.teachua.utils.providers.DataProviderTua328;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class ProfilePageTest extends LoginWithAdminRunner {
+public class ProfilePageTest extends LoginWithAdminUIRunner {
 
     private ProfilePage profilePage;
 
@@ -26,6 +28,7 @@ public class ProfilePageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-359")
+    @Severity(SeverityLevel.CRITICAL)
     @Description("Verify that error messages are shown\n while leaving empty any field in the 'Змінити пароль' pop-up")
     @Test(dataProvider = "dpTestChangePassword", dataProviderClass = DataProviderProfilePage.class)
     public void testErrorMessagesForChangePassword(String redBorderColor, String errorMsgConfirmNewPassword,

@@ -62,6 +62,8 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
 
     /**
      * creation constructor matching super
+     *
+     * @param driver instance
      */
     public AddCenterDescriptionComponent(WebDriver driver) {
         super(driver);
@@ -71,6 +73,7 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
      * enter center logo
      *
      * @param centerLogoPath - path to center logo file location
+     * @return current page
      */
     @Step("Add a logo {logo}")
     public AddCenterDescriptionComponent addCenterLogo(String centerLogoPath) {
@@ -82,6 +85,7 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
      * enter center photo
      *
      * @param photo - path to center photo file location
+     * @return current page
      */
     @Step("Add a photo {photo}")
     public AddCenterDescriptionComponent addCenterPhoto(String photo) {
@@ -94,6 +98,7 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
      *
      * @param description - description of the center,
      *                    should contain from 40 to 3000 symbols
+     * @return current page
      */
     @Step("Fill in 'Опис' {description} field")
     public AddCenterDescriptionComponent addCenterDescription(String description) {
@@ -105,6 +110,8 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
 
     /**
      * successful validation of the description field
+     *
+     * @return boolean value
      */
     @Step("Validate description field for no error appearance")
     public boolean getDescriptionSuccess() {
@@ -113,6 +120,8 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
 
     /**
      * error message validation of the description field
+     *
+     * @return error message text
      */
     @Step("Validate description field for error appearance")
     public String getDescriptionErrorMessage() {
@@ -122,7 +131,7 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
     /**
      * click navigation to the next page button
      *
-     * @return opened Club tab of the center creation component
+     * @return opened {@link AddCenterClubsComponent}
      */
     @Step("Press 'Наступний крок' button")
     public AddCenterClubsComponent pressNextButton() {
@@ -133,7 +142,7 @@ public class AddCenterDescriptionComponent extends BaseAddCenterComponent {
     /**
      * click navigation to the previous page button
      *
-     * @return opened Contacts tab of the center creation component
+     * @return opened {@link AddCenterContactsComponent}
      */
     @Step("Press 'Назад' button")
     public AddCenterContactsComponent pressBackButton() {

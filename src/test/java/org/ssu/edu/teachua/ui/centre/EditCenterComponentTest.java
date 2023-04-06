@@ -2,10 +2,10 @@ package org.ssu.edu.teachua.ui.centre;
 
 import org.ssu.edu.teachua.ui.components.modal.edit_center_component.EditCenterMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminUIRunner;
 import org.testng.annotations.BeforeMethod;
 
-public class EditCenterComponentTest extends LoginWithAdminRunner {
+public class EditCenterComponentTest extends LoginWithAdminUIRunner {
 
     private EditCenterMainInfoComponent editCenterComponent;
 

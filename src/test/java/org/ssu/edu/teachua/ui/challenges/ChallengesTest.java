@@ -6,6 +6,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.WebElement;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminUIRunner;
 import org.ssu.edu.teachua.utils.TestNgListeners;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
 import org.testng.Assert;
@@ -14,7 +15,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class ChallengesTest extends LoginWithAdminRunner {
+public class ChallengesTest extends LoginWithAdminUIRunner {
 
     private static final String NAME = "Ukraine";
     private static final String TITLE = "Title";
@@ -37,7 +38,7 @@ public class ChallengesTest extends LoginWithAdminRunner {
                 .fillName(NAME)
                 .fillTitle(TITLE)
                 .fillDescription(DESCRIPTION)
-                .addPhoto(valueProvider.getFilePath("photos\\heart.png"))
+                .addPhoto(valueProvider.getFilePath("photos/heart.png"))
                 .clickSave()
                 .checkErrorMessage();
 

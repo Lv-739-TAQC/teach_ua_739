@@ -1,5 +1,6 @@
 package org.ssu.edu.teachua.db.service;
 
+import io.qameta.allure.Step;
 import org.ssu.edu.teachua.db.entities.Station;
 import org.ssu.edu.teachua.db.repository.DBException;
 import org.ssu.edu.teachua.db.repository.EntityException;
@@ -14,6 +15,7 @@ public class StationService extends BaseService {
         super(url, username, password);
     }
 
+    @Step("From database get stations by name: '{name}'")
     public List<Station> getStationByName(String name) throws DBException, EntityException {
         return new StationDAOImpl().findElementsBySQlRequest(
                 connection, SQL_FIND_STATION_BY_NAME, true, name

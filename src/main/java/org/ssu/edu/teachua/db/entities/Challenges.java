@@ -1,6 +1,5 @@
 package org.ssu.edu.teachua.db.entities;
 
-
 import lombok.Data;
 import org.ssu.edu.teachua.db.annotation.Column;
 import org.ssu.edu.teachua.db.annotation.ManyToOne;

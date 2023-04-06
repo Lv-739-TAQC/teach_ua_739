@@ -16,7 +16,6 @@ public class ClubService extends BaseService {
     static final String SQL_FIND_CLUB_SORTED_BY_RATING_ASC = "SELECT * FROM clubs WHERE id IN (SELECT DISTINCT club_category.club_id FROM club_category) ORDER BY rating ASC, id LIMIT 6;";
     static final String SQL_FIND_CLUB_SORTED_BY_RATING_DESC = "SELECT * FROM clubs WHERE id IN (SELECT DISTINCT club_category.club_id FROM club_category) ORDER BY rating DESC, id LIMIT 6;";
 
-
     public ClubService(String url, String username, String password) throws DBException {
         super(url, username, password);
     }

@@ -10,7 +10,7 @@ import org.ssu.edu.teachua.db.service.ChallengesService;
 import org.ssu.edu.teachua.ui.pages.challenges.AddChallengePage;
 import io.qameta.allure.Issue;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminUIRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderChallenge;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 import java.math.BigInteger;
 import java.util.List;
 
-public class ChallengesPageTest extends LoginWithAdminRunner {
+public class ChallengesPageTest extends LoginWithAdminUIRunner {
 
     private AddChallengePage addChallengePage;
     private ChallengesService challengesService;
@@ -65,6 +65,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-229")
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verify that a 'Керівник' can add a photo with invalid parameters\n into the ‘Баннер’ file picker")
     @Test(dataProvider = "dpTestCompressAndUploadPhoto", dataProviderClass = DataProviderChallenge.class)
     public void testIfPhotoCompressedAndUploaded(String photoPath) {
@@ -73,6 +74,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-231")
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verify the error messages of ‘Назва Челенджу’ field\n on ‘Основна інформація’ tab of 'Додати челендж' pop-up")
     @Test(dataProvider = "dpTestErrorMessageChallengeNameField", dataProviderClass = DataProviderChallenge.class)
     public void testErrorMessagesForChallengeNameField(String sortNumber, String title, String description,
@@ -138,6 +140,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-157")
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verify that a challenge can't be created if mandatory parameters are empty")
     @Test(dataProvider = "dpTestEmptySortNumber", dataProviderClass = DataProviderChallenge.class)
     public void testErrorMessagesForChallengeSortNumberField(String sortNumber, String name, String title,
@@ -165,6 +168,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-336")
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verify that admin cannot create challenge with invalid data in 'Назва' field")
     @Test(dataProvider = "dpTestInvalidValueNameField", dataProviderClass = DataProviderChallenge.class)
     public void testErrorMessagesForChallengeInvalidValueNameField(String title, String description,
@@ -199,6 +203,7 @@ public class ChallengesPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-335")
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verify that 'admin' is able to create a challenge with the valid data")
     @Test(dataProvider = "dpTestValidValueNameField", dataProviderClass = DataProviderChallenge.class)
     public void testCreatingChallengeWithValidNameField(String title, String description,

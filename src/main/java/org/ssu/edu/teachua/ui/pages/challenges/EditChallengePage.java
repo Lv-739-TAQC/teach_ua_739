@@ -23,6 +23,9 @@ public class EditChallengePage extends AddChallengePage {
     @FindBy(how = How.XPATH, using = "(//*[@class='ant-btn ant-btn-default flooded-button'])[3]")
     private WebElement changeDateBtn;
 
+    /**
+     * creation constructor matching super with one parameter
+     */
     public EditChallengePage(WebDriver driver) {
         super(driver);
     }

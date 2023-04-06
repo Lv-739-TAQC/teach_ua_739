@@ -11,7 +11,7 @@ import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.ui.pages.tasks.AddTaskPage;
 import org.ssu.edu.teachua.utils.StringGenerator;
 import org.ssu.edu.teachua.utils.providers.DataProviderTask;
-import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminUIRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -20,7 +20,7 @@ import org.testng.asserts.SoftAssert;
 import java.util.Calendar;
 import java.util.List;
 
-public class TasksPageTest extends LoginWithAdminRunner {
+public class TasksPageTest extends LoginWithAdminUIRunner {
 
     private static final String NAME = StringGenerator.generateRandomString(20);
     private static final String TITLE = StringGenerator.generateRandomString(50);
@@ -72,14 +72,15 @@ public class TasksPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-521")
+    @Severity(SeverityLevel.NORMAL)
     @Description("Verify that admin can't create a task with invalid date on 'Додайте завдання' page")
     @Test(dataProvider = "dpTestAddClubWithInvalidDate", dataProviderClass = DataProviderTask.class)
-    public void testAddClubWithInvalidDate(String photoPath, String name, String title, String description,
+    public void testAddTaskWithInvalidDate(String photoPath, String name, String title, String description,
                                            String challenge, int day, int month, int year, String expectedErrorMsg) {
         softAssert.assertTrue(addTaskPage.areWebElementsEmpty());
 
-        String actualErrorMsg = addTaskPage.
-                uploadPhoto(valueProvider.getFilePath(photoPath))
+        String actualErrorMsg = addTaskPage
+                .uploadPhoto(valueProvider.getFilePath(photoPath))
                 .typeName(name)
                 .typeTitle(title)
                 .typeDescription(description)
@@ -162,6 +163,7 @@ public class TasksPageTest extends LoginWithAdminRunner {
     }
 
     @Issue("TUA-525")
+    @Severity(SeverityLevel.NORMAL)
     @Description("This test-case covers negative scenario when introducing changes" +
             "\n to the task's 'Опис' field results in error message shown")
     @Test(dataProvider = "dpTestAddTaskInvalidDescription", dataProviderClass = DataProviderTask.class)

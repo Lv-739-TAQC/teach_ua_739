@@ -1,12 +1,7 @@
 package org.ssu.edu.teachua.utils;
 
 import org.ssu.edu.teachua.db.repository.DBException;
-import org.ssu.edu.teachua.db.service.CenterService;
-import org.ssu.edu.teachua.db.service.ChallengesService;
-import org.ssu.edu.teachua.db.service.ClubService;
-import org.ssu.edu.teachua.db.service.LocationService;
-import org.ssu.edu.teachua.db.service.TaskService;
-import org.ssu.edu.teachua.db.service.NewsService;
+import org.ssu.edu.teachua.db.service.*;
 
 public class EntityService {
 
@@ -73,5 +68,15 @@ public class EntityService {
             System.out.println(e.getMessage());
         }
         return newsService;
+    }
+
+    public UserService getUserService() {
+        UserService userService = null;
+        try {
+            userService = new UserService(dbUrl, dbName, dbPassword);
+        } catch (DBException e) {
+            System.out.println(e.getMessage());
+        }
+        return userService;
     }
 }

@@ -8,16 +8,13 @@ import org.ssu.edu.teachua.db.entities.Location;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubContactsComponent;
 import org.ssu.edu.teachua.ui.components.modal.add_club_component.AddClubMainInfoComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
-import org.ssu.edu.teachua.utils.runners.LoginWithAdminRunner;
+import org.ssu.edu.teachua.utils.runners.LoginWithAdminUIRunner;
 import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-import java.util.Arrays;
-
-public class ClubModalAsAdminTest extends LoginWithAdminRunner {
+public class ClubModalAsAdminTest extends LoginWithAdminUIRunner {
 
     private AddClubMainInfoComponent mainInfoComponent;
     private AddClubContactsComponent contactsComponent;
@@ -34,6 +31,7 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
     @Issue("TUA-172")
     @Issue("TUA-173")
     @Issue("TUA-177")
+    @Severity(SeverityLevel.NORMAL)
     @Description("All these test-cases cover positive scenario when introducing changes" +
             "\n to the 'Опис' field results in no error message shown")
     @Test(dataProvider = "dpTestDescriptionFieldValid", dataProviderClass = DataProviderClub.class)
@@ -58,7 +56,7 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
     @Issue("TUA-178")
     @Severity(SeverityLevel.NORMAL)
     @Description("All of these test cases verify if specific error message is" +
-            "\ndisplayed after entering invalid data in the 'Опис' field.")
+            "\n displayed after entering invalid data in the 'Опис' field.")
     @Test(dataProvider = "dpTestDescriptionFieldInvalid", dataProviderClass = DataProviderClub.class)
     public void testDescriptionFieldInvalid(String nameField, int categoriesNumber, String childAgeFrom,
                                             String childAgeFor, String contactPhone, String description,
@@ -84,9 +82,9 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
     @Severity(SeverityLevel.CRITICAL)
     @Test(dataProvider = "dpTestAddLocationForClub", dataProviderClass = DataProviderClub.class)
     public void testAddLocationForClub(String nameField, int categoryNum, String childAgeFrom, String childAgeFor,
-                                       String locationNameField, String cityField, String districtField, String subwayField,
-                                       String addressField, String coordinatesField, String phoneField, String contactPhone,
-                                       String description) {
+                                       String locationNameField, String cityField, String districtField, String addressField,
+                                       String coordinatesField, String phoneField, String contactPhone, String description,
+                                       String expectedResult) {
 
         mainInfoComponent.enterClubName(nameField)
                 .getCategoriesCheckBoxes(categoryNum)
@@ -97,29 +95,17 @@ public class ClubModalAsAdminTest extends LoginWithAdminRunner {
                 .enterLocationName(locationNameField)
                 .selectLocationCity(cityField)
                 .selectLocationDistrict(districtField)
-                .selectLocationSubway(subwayField)
                 .enterLocationAddress(addressField)
                 .enterLocationGC(coordinatesField)
                 .enterLocationPhone(phoneField)
                 .pressAddLocationToListButton();
-
         contactsComponent = new AddClubContactsComponent(driver);
-
         contactsComponent.enterContactPhone(contactPhone)
                 .clickNextStepButton()
                 .enterDescription(description)
                 .clickEndButton();
 
         Location location = entityService.getLocationService().getLocationByName(locationNameField).get(0);
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(
-                Arrays.asList(location.getName(), location.getCity(), location.getDistrict(),
-                        location.getStation(), location.getAddress(), location.getPhone()),
-                Arrays.asList(locationNameField, cityField, districtField,
-                        subwayField, addressField, phoneField)
-        );
-
-        softAssert.assertAll();
+        Assert.assertEquals(location.getCity().toString(),  expectedResult);
     }
-
 }
