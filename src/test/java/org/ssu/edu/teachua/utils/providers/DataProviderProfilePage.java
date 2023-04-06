@@ -61,6 +61,14 @@ public class DataProviderProfilePage {
                 }};
     }
 
+    @DataProvider(name = "dpTestUpdateProfile")
+    private static Object[][] dpTestUpdateProfile() {
+        return new Object[][] {
+                { "Nastia", "Kukh", "soyec48727@busantei.com", "999999922", "ROLE_MANAGER", null, true,
+                        400, "\"firstName\" can`t be null", "\"lastName\" can`t be null", "phone must not be blank"}
+        };
+    }
+
     @DataProvider(name = "dpTestUpdateFirstLastNamesInvalid")
     private static Object[][] dpTestUpdateFirstLastNamesInvalid() {
         return new Object[][]{
@@ -99,4 +107,6 @@ public class DataProviderProfilePage {
    		}};
     }
 }
+
+
 

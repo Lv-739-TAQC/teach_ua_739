@@ -153,6 +153,7 @@ public class DataProviderClub {
                         true, null, description, null, BigInteger.valueOf(854), 200}
         };
     }
+
     
     @DataProvider(name = "dpVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters")
     public static Object[][] dpVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters() {
@@ -162,5 +163,20 @@ public class DataProviderClub {
                 	2, 18,true, 
                 	"{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
                 	BigInteger.valueOf(264) }};
+    }
+
+    @DataProvider(name = "dpTestDuplicateClubCannotBeCreated")
+    public static Object[][] dpTestDuplicateClubCannotBeCreated() {
+        return new Object[][]{
+                {
+                    "Спортивні секції",
+                    "Спроба1",
+                    2,
+                    18,
+                    "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"йййййййййййййййййййййййййййййййййййййййййййййййййййййййййй\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+                    409,
+                    "Club already exist with name: Спроба1"
+                }
+        };
     }
 }
