@@ -73,7 +73,7 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
     @Test(dataProvider = "dpAPITestCreateClub", dataProviderClass = DataProviderClub.class)
     public void testClubCreationWithInvalidData(ArrayList<String> categoriesName, String name, int ageFrom, int ageTo,
                                                 boolean isOnline, ArrayList<String> contacts, String description,
-                                                ArrayList<String> locations, BigInteger userId, String expectedErrorMessage, int expectedStatusCode) {
+                                                ArrayList<String> locations, Integer userId, String expectedErrorMessage, int expectedStatusCode) {
         ClubRequest clubRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId);
         Response response = client.createClub(clubRequest);
         Assert.assertEquals(response.statusCode(), expectedStatusCode);
