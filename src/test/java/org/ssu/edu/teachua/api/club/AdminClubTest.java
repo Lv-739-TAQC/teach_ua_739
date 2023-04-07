@@ -26,42 +26,42 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
         client = new ClubClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
     }
 
-//    @Issue("TUA-749")
-//    @Severity(SeverityLevel.NORMAL)
-//    @Description("This test case verifies that user cannot create club" +
-//            "\nentering Russian characters in the 'description field'")
-//    @Test(dataProvider = "pdTestCreateClubDescriptionInvalid", dataProviderClass = DataProviderClub.class)
-//    public void testCreateClubDescriptionInvalid(ArrayList<String> categoriesName, String name, Integer ageForm,
-//                                                 Integer ageTo, boolean isOnline, String contacts,
-//                                                 String description, ArrayList<Location> locations, String userId,
-//                                                 int expectedStatusCode, String expectedErrorMsg) {
-//        ClubRequest clubRequest = new ClubRequest(
-//                categoriesName, name, ageForm, ageTo, isOnline, contacts, description, locations, userId
-//        );
-//        ErrorResponse errorResponse = client.createClub(clubRequest).as(ErrorResponse.class);
-//
-//        softAssert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
-//        softAssert.assertEquals(errorResponse.getMessage(), expectedErrorMsg);
-//        softAssert.assertAll();
-//    }
-//
-//    @Issue("TUA-759")
-//    @Severity(SeverityLevel.MINOR)
-//    @Description("Verify that Admin cannot create club with invalid name data")
-//    @Test(dataProvider = "dpApiTestEditClubInvalidData", dataProviderClass = DataProviderClub.class)
-//    public void testCreateClubWithInvalidData(ArrayList<String> categoriesName, String name, Integer ageFrom,
-//                                              Integer ageTo, boolean isOnline, String contacts,
-//                                              String description, ArrayList<Location> locations, String userId, String expectedErrorMsg) {
-//
-//        ClubRequest invalidDataRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId);
-//        Response postResponse = client.createClub(invalidDataRequest);
-//        ErrorResponse errorResponse = postResponse.as(ErrorResponse.class);
-//
-//        softAssert.assertEquals(postResponse.statusCode(), 400);
-//        softAssert.assertEquals(errorResponse.getStatus(), 400);
-//        softAssert.assertEquals(errorResponse.getMessage(), expectedErrorMsg);
-//
-//        softAssert.assertAll();
-//
-//    }
+    @Issue("TUA-749")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("This test case verifies that user cannot create club" +
+            "\nentering Russian characters in the 'description field'")
+    @Test(dataProvider = "pdTestCreateClubDescriptionInvalid", dataProviderClass = DataProviderClub.class)
+    public void testCreateClubDescriptionInvalid(ArrayList<String> categoriesName, String name, Integer ageFrom,
+                                                 Integer ageTo, Boolean isOnline, String description, String userId,
+                                                 ArrayList<Location> locations, String contacts,
+                                                 int expectedStatusCode, String expectedErrorMsg) {
+        ClubRequest clubRequest = new ClubRequest(
+                categoriesName, name, ageFrom, ageTo, isOnline, description, userId, locations, contacts
+        );
+        ErrorResponse errorResponse = client.createClub(clubRequest).as(ErrorResponse.class);
+
+        softAssert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
+        softAssert.assertEquals(errorResponse.getMessage(), expectedErrorMsg);
+        softAssert.assertAll();
+    }
+
+    @Issue("TUA-759")
+    @Severity(SeverityLevel.MINOR)
+    @Description("Verify that Admin cannot create club with invalid name data")
+    @Test(dataProvider = "dpApiTestEditClubInvalidData", dataProviderClass = DataProviderClub.class)
+    public void testCreateClubWithInvalidData(ArrayList<String> categoriesName, String name, Integer ageFrom,
+                                              Integer ageTo, Boolean isOnline, String description, String userId,
+                                              ArrayList<Location> locations, String contacts, String expectedErrorMsg) {
+
+        ClubRequest invalidDataRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, description, userId, locations, contacts);
+        Response postResponse = client.createClub(invalidDataRequest);
+        ErrorResponse errorResponse = postResponse.as(ErrorResponse.class);
+
+        softAssert.assertEquals(postResponse.statusCode(), 400);
+        softAssert.assertEquals(errorResponse.getStatus(), 400);
+        softAssert.assertEquals(errorResponse.getMessage(), expectedErrorMsg);
+
+        softAssert.assertAll();
+
+    }
 }

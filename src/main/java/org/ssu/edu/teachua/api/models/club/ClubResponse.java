@@ -1,6 +1,5 @@
 package org.ssu.edu.teachua.api.models.club;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.ssu.edu.teachua.api.models.category.Category;
 import org.ssu.edu.teachua.api.models.center.Center;

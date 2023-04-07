@@ -5,8 +5,6 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.models.club.ClubRequest;
 
-import java.math.BigInteger;
-
 public class ClubClient extends BaseClient {
 
     public ClubClient(String url, ContentType contentType, String accessToken) {
@@ -24,7 +22,7 @@ public class ClubClient extends BaseClient {
     }
 
     @Step("Create a request for updating an existing club entity using 'PUT' method and club id {id} as parameter. Enter values in 'Body': {request}")
-    public Response editClub(ClubRequest request, BigInteger id) {
+    public Response editClub(ClubRequest request, Integer id) {
         return prepareRequest()
                 .body(request)
                 .when()
@@ -32,7 +30,7 @@ public class ClubClient extends BaseClient {
     }
 
     @Step("Create a request for viewing an existing club entity using 'GET' method and club id {id} as parameter")
-    public Response viewClub(BigInteger id) {
+    public Response viewClub(Integer id) {
         return prepareRequest()
                 .when()
                 .get(path + "/" + id);
