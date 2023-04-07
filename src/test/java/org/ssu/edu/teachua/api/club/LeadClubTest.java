@@ -14,6 +14,7 @@ import org.ssu.edu.teachua.api.models.location.Location;
 import org.ssu.edu.teachua.utils.StringGenerator;
 import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.ssu.edu.teachua.utils.runners.LoginWithLeadAPIRunner;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -36,7 +37,6 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
                                               Integer ageTo, Boolean isOnline, String description, String userId,
                                               ArrayList<Location> locations, String contacts,
                                               int expectedStatusCode, String expectedErrorMsg) {
-
         ClubRequest clubRequest = new ClubRequest(
                 categoriesName, name, ageFrom, ageTo, isOnline, description, userId, locations, contacts
         );
@@ -66,5 +66,23 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
         Response okResponseDelete = client.deleteClub(clubResponse.getId());
         softAssert.assertEquals(okResponseDelete.getStatusCode(), expectedStatusCode);
         softAssert.assertAll();
+    }
+
+    @Issue("TUA-502")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Verify that lead cannot create new club if name field contain less than 5 characters")
+    @Test(dataProvider = "dpAPITestCreateClub", dataProviderClass = DataProviderClub.class)
+    public void testClubCreationWithInvalidData(ArrayList<String> categoriesName, String name, int ageFrom, int ageTo,
+                                                boolean isOnline, ArrayList<String> contacts, String description,
+                                                ArrayList<String> locations, Integer userId, String expectedErrorMessage, int expectedStatusCode) {
+        ClubRequest clubRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId);
+        Response response = client.createClub(clubRequest);
+        Assert.assertEquals(response.statusCode(), expectedStatusCode);
+
+        ErrorResponse errorResponse = response.as(ErrorResponse.class);
+        Assert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
+
+        String actualErrorMessage = errorResponse.getMessage();
+        Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
     }
 }

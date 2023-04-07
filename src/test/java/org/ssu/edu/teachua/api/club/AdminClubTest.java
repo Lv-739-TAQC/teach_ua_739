@@ -2,6 +2,15 @@ package org.ssu.edu.teachua.api.club;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.ssu.edu.teachua.api.clients.ClubClient;
+import org.ssu.edu.teachua.api.models.club.ClubRequest;
+import org.ssu.edu.teachua.api.models.error.ErrorResponse;
+import org.ssu.edu.teachua.api.models.location.Location;
+import org.ssu.edu.teachua.utils.providers.DataProviderClub;
+import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.restassured.http.ContentType;
@@ -12,10 +21,16 @@ import org.ssu.edu.teachua.api.models.error.ErrorResponse;
 import org.ssu.edu.teachua.api.models.location.Location;
 import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminAPIRunner;
+import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdminClubTest extends LoginWithAdminAPIRunner {
 
@@ -52,7 +67,6 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
     public void testCreateClubWithInvalidData(ArrayList<String> categoriesName, String name, Integer ageFrom,
                                               Integer ageTo, Boolean isOnline, String description, String userId,
                                               ArrayList<Location> locations, String contacts, String expectedErrorMsg) {
-
         ClubRequest invalidDataRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, description, userId, locations, contacts);
         Response postResponse = client.createClub(invalidDataRequest);
         ErrorResponse errorResponse = postResponse.as(ErrorResponse.class);
@@ -63,5 +77,29 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
 
         softAssert.assertAll();
 
+    }
+
+    @Issue(value = "TUA-469")
+    @Description(value = "Verify that the duplicate club cannot be created")
+    @Test(dataProvider = "dpTestDuplicateClubCannotBeCreated", dataProviderClass = DataProviderClub.class)
+    public void verifyThatTheDuplicateClubCannotBeCreated(String category, String name, Integer ageFrom, Integer ageTo,
+                                                          String description, int statusCode, String errorMessage) {
+
+        ClubRequest clubRequest = new ClubRequest();
+        clubRequest.setName(name);
+        clubRequest.setDescription(description);
+        clubRequest.setAgeFrom(ageFrom);
+        clubRequest.setAgeTo(ageTo);
+
+        ArrayList<String> categoriesName = new ArrayList<>();
+        categoriesName.add(category);
+        clubRequest.setCategoriesName(categoriesName);
+
+        Response response = client.createClub(clubRequest);
+        ErrorResponse errorResponse = response.as(ErrorResponse.class);
+
+        softAssert.assertEquals(errorResponse.getStatus(), statusCode);
+        softAssert.assertEquals(errorResponse.getMessage(), errorMessage);
+        softAssert.assertAll();
     }
 }

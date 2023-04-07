@@ -6,7 +6,6 @@ import lombok.Data;
 import java.util.ArrayList;
 
 @Data
-@AllArgsConstructor
 public class CenterRequest {
     private Integer id;
     private String name;
