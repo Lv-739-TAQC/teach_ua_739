@@ -4,19 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.ssu.edu.teachua.api.models.location.Location;
-import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClubRequest {
-    private ArrayList<String> categoriesName;
+    private List<String> categoriesName;
     private String name;
     private Integer ageFrom;
     private Integer ageTo;
     private Boolean isOnline;
     private String description;
     private String userId;
-    private ArrayList<Location> locations;
+    private List<Location> locations;
     private String contacts;
 }
