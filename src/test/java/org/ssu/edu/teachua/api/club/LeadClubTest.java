@@ -72,10 +72,10 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify that lead cannot create new club if name field contain less than 5 characters")
     @Test(dataProvider = "dpAPITestCreateClub", dataProviderClass = DataProviderClub.class)
-    public void testClubCreationWithInvalidData(ArrayList<String> categoriesName, String name, int ageFrom, int ageTo,
-                                                boolean isOnline, ArrayList<String> contacts, String description,
-                                                ArrayList<String> locations, Integer userId, String expectedErrorMessage, int expectedStatusCode) {
-        ClubRequest clubRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId);
+    public void testClubCreationWithInvalidData(ArrayList<String> categoriesName, String name, Integer ageFrom,
+                                                Integer ageTo, Boolean isOnline, String description, String userId,
+                                                ArrayList<Location> locations, String contacts, String expectedErrorMessage, int expectedStatusCode) {
+        ClubRequest clubRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, description, userId, locations, contacts);
         Response response = client.createClub(clubRequest);
         Assert.assertEquals(response.statusCode(), expectedStatusCode);
 
