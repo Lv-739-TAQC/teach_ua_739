@@ -10,17 +10,19 @@ import org.ssu.edu.teachua.api.models.club.ClubRequest;
 import org.ssu.edu.teachua.api.clients.ClubClient;
 import org.ssu.edu.teachua.api.models.club.ClubResponse;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
+import org.ssu.edu.teachua.utils.StringGenerator;
 import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.ssu.edu.teachua.utils.runners.LoginWithLeadAPIRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class LeadClubTest extends LoginWithLeadAPIRunner {
         private ClubClient client;
+
+
 
         @BeforeClass
         public void initClient() {
@@ -32,7 +34,7 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
         @Description("Verify that User as 'Керiвник гуртка' cannot create new club is in " +
                 "a center with Russian alphabet for 'Назва' field")
         @Test(dataProvider = "dpTestInvalidNameFieldForClub", dataProviderClass = DataProviderClub.class)
-        public void testCreateClubWithInvalidName (ArrayList<String> categoriesName, String name, int ageFrom,
+        public void testCreateClubWithInvalidName (ArrayList<String> categoriesName,String name, int ageFrom,
                                                    int ageTo, boolean isOnline, ArrayList<String> contacts,
                                                    String description,ArrayList<String> locations, Integer userId,
                                                    int expectedStatusCode, String expectedErrorMsg) {
@@ -83,5 +85,26 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
 
         String actualErrorMessage = errorResponse.getMessage();
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
+    }
+
+    @Issue("TUA-505")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify that User as 'Керiвник гуртка' can create new club is in a center if 'Назва' " +
+            "field consists of a word length of 100 characters")
+    @Test(dataProvider = "dpTestLengthOfName100CharactersForClub", dataProviderClass = DataProviderClub.class)
+    public void testCreateClubWithLengthOfName100Characters(ArrayList<String> categoriesName, int ageFrom,
+                                               int ageTo, boolean isOnline, ArrayList<String> contacts,
+                                               String description, ArrayList<String> locations, Integer userId,
+                                               int expectedStatusCode) {
+
+        ClubRequest clubRequest = new ClubRequest(
+                categoriesName, StringGenerator.generateRandomString(100), ageFrom, ageTo, isOnline,
+                contacts, description, locations, userId
+        );
+
+        Response okResponseCreate = client.createClub(clubRequest);
+        softAssert.assertEquals(okResponseCreate.getStatusCode(), expectedStatusCode);
+        softAssert.assertAll();
+
     }
 }

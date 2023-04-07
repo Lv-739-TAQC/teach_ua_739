@@ -19,7 +19,8 @@ public class DataProviderClub {
 
     public static final List<String> API_ERROR_MSG = Arrays.asList(
             "name Довжина назви має бути від 5 до 100 символів",
-            "name Помилка. Присутні недопустимі символи"
+            "name Помилка. Присутні недопустимі символи",
+            "name Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи’"
     );
 
     @DataProvider(name = "dpTestDescriptionFieldValid")
@@ -117,7 +118,7 @@ public class DataProviderClub {
     @DataProvider(name = "dpTestInvalidNameFieldForClub")
     public static Object[][] dpTestInvalidNameFieldForClub() {
         return new Object[][]{
-                {new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти")), "Э э ъ Ъ Ы ы",
+                {new ArrayList<>(Arrays.asList("Вокальна студія, музика, музичні інструменти")), "Э э ъ Ъ Ы ы",
                         2, 18, true, null,
                         "{\"blocks\":" +
                                 "[{\"key\":\"brl63\"," +
@@ -129,8 +130,7 @@ public class DataProviderClub {
                                 "\"entityRanges\":[]," +
                                 "\"data\":{}}]," +
                                 "\"entityMap\":{}}",
-                        new ArrayList<Location>(), BigInteger.valueOf(854), 400,
-                        "name Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи’"}
+                        null, 854, 400, API_ERROR_MSG.get(2)}
         };
     }
 
@@ -183,6 +183,26 @@ public class DataProviderClub {
                     409,
                     "Club already exist with name: Спроба1"
                 }
+        };
+    }
+
+    @DataProvider(name = "dpTestLengthOfName100CharactersForClub")
+    public static Object[][] dpTestLengthOfName100CharactersForClub() {
+        return new Object[][]{
+                {new ArrayList<>(Arrays.asList("Вокальна студія, музика, музичні інструменти")),
+
+                        2, 18, true, null,
+                        "{\"blocks\":" +
+                                "[{\"key\":\"brl63\"," +
+                                "\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього " +
+                                "розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\"," +
+                                "\"type\":\"unstyled\"," +
+                                "\"depth\":1," +
+                                "\"inlineStyleRanges\":[]," +
+                                "\"entityRanges\":[]," +
+                                "\"data\":{}}]," +
+                                "\"entityMap\":{}}",
+                        null, 854, 200}
         };
     }
 }
