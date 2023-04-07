@@ -22,8 +22,6 @@ import java.util.ArrayList;
 public class LeadClubTest extends LoginWithLeadAPIRunner {
         private ClubClient client;
 
-
-
         @BeforeClass
         public void initClient() {
             client = new ClubClient(valueProvider.getBaseUiUrl(), ContentType.JSON, accessToken);
@@ -34,7 +32,7 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
         @Description("Verify that User as 'Керiвник гуртка' cannot create new club is in " +
                 "a center with Russian alphabet for 'Назва' field")
         @Test(dataProvider = "dpTestInvalidNameFieldForClub", dataProviderClass = DataProviderClub.class)
-        public void testCreateClubWithInvalidName (ArrayList<String> categoriesName,String name, int ageFrom,
+        public void testCreateClubWithInvalidName (ArrayList<String> categoriesName, String name, int ageFrom,
                                                    int ageTo, boolean isOnline, ArrayList<String> contacts,
                                                    String description,ArrayList<String> locations, Integer userId,
                                                    int expectedStatusCode, String expectedErrorMsg) {
