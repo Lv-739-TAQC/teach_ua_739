@@ -138,4 +138,33 @@ public class DataProviderChallenge {
                         null, "/upload/test/image.png", null, 400, "Поле порядковий номер не має бути пустим"}
         };
     }
+
+    @DataProvider(name = "dpTestCreateChallengeInvalidCharacters")
+    public static Object[][] dpTestCreateChallengeInvalidCharacters() {
+        return new Object[][]{
+                {null, BigInteger.valueOf(2), 400},
+                {" ", BigInteger.valueOf(2), 400},
+                {"", BigInteger.valueOf(2), 400}
+        };
+    }
+
+    @DataProvider(name = "dpTestEditChallengeInvalidValues")
+    public static Object[][] dpTestEditChallengeInvalidValues() {
+        return new Object[][]{
+                {5, "nam", "tit", "des", null, "/upload/test/test.png", 1, true, 400},
+                {5, "Lorem ipsum dolor sit amet, consect", "Lorem ipsum dolor sit amet, consect",
+                        ("description").repeat(500), null, "/upload/test/test.png", 1, true, 400},
+                {5, "эЭъЪыЫёЁ", "эЭъЪыЫёЁ", "эЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁ", null,
+                        "/upload/test/test.png", 1, true, 400}
+        };
+    }
+
+    @DataProvider(name = "dpTestEditChallengeInvalidCharacters")
+    public static Object[][] dpTestEditChallengeInvalidCharacters() {
+        return new Object[][]{
+                {5, null, 2, true, 400},
+                {5, " ", 2, true, 400},
+                {5, "", 2, true, 400},
+        };
+    }
 }

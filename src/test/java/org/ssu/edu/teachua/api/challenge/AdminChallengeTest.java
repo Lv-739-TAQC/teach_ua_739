@@ -9,9 +9,11 @@ import org.ssu.edu.teachua.api.clients.ChallengeClient;
 import org.ssu.edu.teachua.api.models.challenge.PostChallengeRequest;
 import org.ssu.edu.teachua.api.models.challenge.GetChallengeResponse;
 import io.restassured.response.Response;
+import org.ssu.edu.teachua.api.models.challenge.PutChallengeRequest;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
 import org.ssu.edu.teachua.utils.providers.DataProviderChallenge;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminAPIRunner;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -116,6 +118,53 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
         softAssert.assertEquals(responseThird.getStatus(), expectedStatusCode);
         softAssert.assertEquals(responseFourth.getMessage(), expectedMsg.get(3));
         softAssert.assertEquals(responseFourth.getStatus(), expectedStatusCode);
+        softAssert.assertAll();
+    }
+
+    @Issue("TUA-431")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("This test case verifies that user is not able to create Challenge" +
+            "\nusing null, spaces or absence of symbols as values")
+    @Test(dataProvider = "dpTestCreateChallengeInvalidCharacters", dataProviderClass = DataProviderChallenge.class)
+    public void testCreateChallengeInvalidCharacters(String invalidValue, BigInteger sortNum, int statusCode) {
+
+        ErrorResponse errorResponse = client.createChallenge(new PostChallengeRequest(invalidValue,
+                invalidValue, invalidValue, invalidValue, invalidValue, sortNum)).as(ErrorResponse.class);
+
+        softAssert.assertFalse(errorResponse.getMessage().isEmpty());
+        softAssert.assertEquals(errorResponse.getStatus(), statusCode);
+        softAssert.assertAll();
+    }
+
+    @Issue("TUA-433")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("This test case verifies that user is not able to edit information " +
+            "\nabout Challenge using invalid values")
+    @Test(dataProvider = "dpTestEditChallengeInvalidValues", dataProviderClass = DataProviderChallenge.class)
+    public void testEditChallengeInvalidValues(int id, String name, String title, String description,
+                                               String registrationLink, String picture, int sortNum,
+                                               boolean isActive, int statusCode) {
+
+        ErrorResponse errorResponse = client.updateChallengePut(id, new PutChallengeRequest(name, title,
+                description, registrationLink, picture, sortNum, isActive)).as(ErrorResponse.class);
+
+        softAssert.assertFalse(errorResponse.getMessage().isEmpty());
+        softAssert.assertEquals(errorResponse.getStatus(), statusCode);
+        softAssert.assertAll();
+    }
+
+    @Issue("TUA-434")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("This test case verifies that user is not able to edit information " +
+            "\nabout Challenge using null, spaces or absence of symbols as values")
+    @Test(dataProvider = "dpTestEditChallengeInvalidCharacters", dataProviderClass = DataProviderChallenge.class)
+    public void testEditChallengeInvalidCharacters(int id, String invalidValue, int sortNum, boolean isActive, int statusCode) {
+
+        ErrorResponse errorResponse = client.updateChallengePut(id, new PutChallengeRequest(invalidValue,
+                invalidValue, invalidValue, invalidValue, invalidValue, sortNum, isActive)).as(ErrorResponse.class);
+
+        softAssert.assertFalse(errorResponse.getMessage().isEmpty());
+        softAssert.assertEquals(errorResponse.getStatus(), statusCode);
         softAssert.assertAll();
     }
 }
