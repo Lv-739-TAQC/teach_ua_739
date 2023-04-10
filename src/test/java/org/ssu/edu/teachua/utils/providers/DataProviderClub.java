@@ -154,6 +154,16 @@ public class DataProviderClub {
         };
     }
 
+    @DataProvider(name = "dpVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters")
+    public static Object[][] dpVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters() {
+        return new Object[][]{
+                { new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти")),
+                	"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів12346578901234657890123465789012346578901234657890123465789012346578901234657890123465789012346578901234657890",
+                	2, 18,true,
+                	"{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+                	BigInteger.valueOf(264) }};
+    }
+
     @DataProvider(name = "dpAPITestCreateClub")
     public static Object[][] dpAPITestCreateClub() {
         return new Object[][]{
@@ -166,9 +176,23 @@ public class DataProviderClub {
                         null,
                         "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
                         null,
-                        BigInteger.valueOf(264), API_ERROR_MSG.get(0), 400
+                        264, API_ERROR_MSG.get(0), 400
                 }
         };
+    }
 
+    @DataProvider(name = "dpTestDuplicateClubCannotBeCreated")
+    public static Object[][] dpTestDuplicateClubCannotBeCreated() {
+        return new Object[][]{
+                {
+                    "Спортивні секції",
+                    "Спроба1",
+                    2,
+                    18,
+                    "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"йййййййййййййййййййййййййййййййййййййййййййййййййййййййййй\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+                    409,
+                    "Club already exist with name: Спроба1"
+                }
+        };
     }
 }

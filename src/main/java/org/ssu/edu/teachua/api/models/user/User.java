@@ -5,7 +5,6 @@ import lombok.Data;
 import org.ssu.edu.teachua.api.models.role.Role;
 
 @Data
-@AllArgsConstructor
 public class User {
     private int id;
     private String email;

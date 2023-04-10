@@ -26,7 +26,7 @@ public class DataProviderTask {
             "name must contain a minimum of 5 and a maximum of 50 letters",
             "name Помилка. Текст містить недопустимі символи",
             "description must contain a minimum of 40 and a maximum of 3000 letters",
-            "description Помилка. Текст містить недопустимі символи and name Помилка. Текст містить недопустимі символи",
+            "description Помилка. Текст містить недопустимі символи",
             "name must not be blank",
             "description must contain a maximum of 3000 letters and name must not be blank and name must contain a minimum of 5 and a maximum of 50 letters",
             "name must contain a minimum of 5 and a maximum of 255 letters",
@@ -100,10 +100,10 @@ public class DataProviderTask {
     public static Object[][] dpCantEditTask() {
         return new Object[][]{
                 {" ", "header text must contain min fourty letters", " ", "/upload/test/test.png",
-                        "2023-11-03", 777},
+                        "2023-11-03", BigInteger.valueOf(777)},
 
                 {null, "header text must contain min fourty letters", null, "/upload/test/test.png",
-                        "2023-11-03", 777}
+                        "2023-11-03", BigInteger.valueOf(777)}
         };
     }
 
