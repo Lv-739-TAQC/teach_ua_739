@@ -1,10 +1,8 @@
 package org.ssu.edu.teachua.api.club;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import org.ssu.edu.teachua.api.clients.ClubClient;
 import org.ssu.edu.teachua.api.models.club.ClubRequest;
-import org.ssu.edu.teachua.api.models.location.Location;
 import org.ssu.edu.teachua.utils.runners.LoginWithUserAPIRunner;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -33,11 +31,11 @@ public class UserClubTest extends LoginWithUserAPIRunner{
 			dataProviderClass = DataProviderClub.class)
 	public void testVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters(
 			ArrayList<String> categoriesName, String name, int ageFrom, int ageTo,
-			boolean isOnline, String description, String userId ) {
+			boolean isOnline, String description, Integer userId ) {
 
 		ClubRequest request = new ClubRequest(
 				categoriesName, name, ageFrom, ageTo,
-				isOnline, null, description, new ArrayList<Location>(), userId);
+				isOnline, null, description, new ArrayList<String>(), userId);
 
 		ErrorResponse errorResponse = client.createClub(request).as(ErrorResponse.class);
 		softAssert.assertEquals(errorResponse.getStatus(), 400 );
