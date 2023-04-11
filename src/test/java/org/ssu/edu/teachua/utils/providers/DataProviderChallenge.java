@@ -151,6 +151,8 @@ public class DataProviderChallenge {
         return new Object[][]{
                 {857, "Ukrainian", "Заголовок Челенджу", "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>",
                         null, "/upload/challenges/image.png", BigInteger.valueOf(1679648262283L), true, 200}
+        };
+    }
 
     @DataProvider(name = "dpTestCreateChallengeInvalidCharacters")
     public static Object[][] dpTestCreateChallengeInvalidCharacters() {
@@ -177,7 +179,8 @@ public class DataProviderChallenge {
         return new Object[][]{
                 {5, null, 2, true, 400},
                 {5, " ", 2, true, 400},
-                {5, "", 2, true, 400},
+                {5, "", 2, true, 400},};
+    }
 
     @DataProvider(name = "dpTestDeleteChallenge")
     public static Object[][] dpTestDeleteChallenge() {

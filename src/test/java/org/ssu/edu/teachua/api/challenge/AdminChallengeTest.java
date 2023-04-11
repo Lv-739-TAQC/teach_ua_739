@@ -147,7 +147,7 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
         PutChallengeRequest putChallengeRequest = new PutChallengeRequest(
                 name, title, description, registrationLink, picture, sortNumber,isActive);
         Response response = client.updateChallengePut(id, putChallengeRequest);
-        softAssert.assertEquals((Integer)response.getStatusCode(), expectedStatusCode);
+        softAssert.assertEquals((Integer)response.getStatusCode(), expectedStatusCode);}
 
     @Issue("TUA-431")
     @Severity(SeverityLevel.NORMAL)
@@ -170,7 +170,7 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
             "\nabout Challenge using invalid values")
     @Test(dataProvider = "dpTestEditChallengeInvalidValues", dataProviderClass = DataProviderChallenge.class)
     public void testEditChallengeInvalidValues(int id, String name, String title, String description,
-                                               String registrationLink, String picture, int sortNum,
+                                               String registrationLink, String picture, BigInteger sortNum,
                                                boolean isActive, int statusCode) {
 
         ErrorResponse errorResponse = client.updateChallengePut(id, new PutChallengeRequest(name, title,
@@ -186,13 +186,13 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
     @Description("This test case verifies that user is not able to edit information " +
             "\nabout Challenge using null, spaces or absence of symbols as values")
     @Test(dataProvider = "dpTestEditChallengeInvalidCharacters", dataProviderClass = DataProviderChallenge.class)
-    public void testEditChallengeInvalidCharacters(int id, String invalidValue, int sortNum, boolean isActive, int statusCode) {
+    public void testEditChallengeInvalidCharacters(int id, String invalidValue, BigInteger sortNum, boolean isActive, int statusCode) {
 
         ErrorResponse errorResponse = client.updateChallengePut(id, new PutChallengeRequest(invalidValue,
                 invalidValue, invalidValue, invalidValue, invalidValue, sortNum, isActive)).as(ErrorResponse.class);
 
         softAssert.assertFalse(errorResponse.getMessage().isEmpty());
-        softAssert.assertEquals(errorResponse.getStatus(), statusCode);
+        softAssert.assertEquals(errorResponse.getStatus(), statusCode);}
         
     @Issue("TUA-435")
     @Severity(SeverityLevel.NORMAL)
