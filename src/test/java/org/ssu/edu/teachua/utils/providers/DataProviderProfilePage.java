@@ -99,7 +99,7 @@ public class DataProviderProfilePage {
         };
     }
 
-    
+
     @DataProvider(name = "dpTestVerifyThatUserCanChangeRole")
    	private static Object[][] dpTestVerifyThatUserCanChangeRole() {
    		return new Object[][] {{
@@ -118,6 +118,4 @@ public class DataProviderProfilePage {
     }
 
 }
-
-
 

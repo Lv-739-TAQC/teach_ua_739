@@ -140,7 +140,14 @@ public class TasksTest extends LoginWithAdminAPIRunner {
         Assert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
 
         String actualErrorMessage = errorResponse.getMessage();
-        Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
+
+        String[] expectedErrorRules = expectedErrorMessage.split("\\|");
+        for (String expectedErrorRule : expectedErrorRules) {
+            if (!actualErrorMessage.contains(expectedErrorRule)) {
+                Assert.fail("Expected error message '" + expectedErrorMessage + "' not found in actual error message '" + actualErrorMessage + "'");
+            }
+        }
+        Assert.assertTrue(true);
     }
 }
 

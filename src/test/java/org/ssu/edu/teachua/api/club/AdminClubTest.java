@@ -18,6 +18,7 @@ import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.clients.ClubClient;
 import org.ssu.edu.teachua.api.models.club.ClubRequest;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
+import org.ssu.edu.teachua.api.models.location.Location;
 import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminAPIRunner;
 import org.testng.annotations.Test;
@@ -27,9 +28,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,12 +46,12 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
     @Description("This test case verifies that user cannot create club" +
             "\nentering Russian characters in the 'description field'")
     @Test(dataProvider = "pdTestCreateClubDescriptionInvalid", dataProviderClass = DataProviderClub.class)
-    public void testCreateClubDescriptionInvalid(ArrayList<String> categoriesName, String name, int ageForm,
-                                                 int ageTo, boolean isOnline, ArrayList<String> contacts,
-                                                 String description, ArrayList<String> locations, Integer userId,
+    public void testCreateClubDescriptionInvalid(ArrayList<String> categoriesName, String name, Integer ageFrom,
+                                                 Integer ageTo, Boolean isOnline, String description, String userId,
+                                                 ArrayList<Location> locations, String contacts,
                                                  int expectedStatusCode, String expectedErrorMsg) {
         ClubRequest clubRequest = new ClubRequest(
-                categoriesName, name, ageForm, ageTo, isOnline, contacts, description, locations, userId
+                categoriesName, name, ageFrom, ageTo, isOnline, description, userId, locations, contacts
         );
         ErrorResponse errorResponse = client.createClub(clubRequest).as(ErrorResponse.class);
 

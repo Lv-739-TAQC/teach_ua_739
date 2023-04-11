@@ -8,7 +8,7 @@ import java.util.ArrayList;
 @Data
 @AllArgsConstructor
 public class Role {
-    private int id;
+    private Integer id;
     private String name;
     private ArrayList<String> users;
 }
