@@ -28,7 +28,9 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,11 +66,11 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
     @Severity(SeverityLevel.MINOR)
     @Description("Verify that Admin cannot create club with invalid name data")
     @Test(dataProvider = "dpApiTestEditClubInvalidData", dataProviderClass = DataProviderClub.class)
-    public void testCreateClubWithInvalidData(List<String> categoriesName, String name, int ageFrom,
-                                              int ageTo, boolean isOnline, List<String> contacts,
-                                              String description, List<String> locations, Integer userId, String expectedErrorMsg) {
+    public void testCreateClubWithInvalidData(List<String> categoriesName, String name, Integer ageFrom,
+                                              Integer ageTo, Boolean isOnline,
+                                              String description, String userId, List<Location> locations, String contacts, String expectedErrorMsg) {
 
-        ClubRequest invalidDataRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId);
+        ClubRequest invalidDataRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, description, userId, locations, contacts);
         Response postResponse = client.createClub(invalidDataRequest);
         ErrorResponse errorResponse = postResponse.as(ErrorResponse.class);
 
