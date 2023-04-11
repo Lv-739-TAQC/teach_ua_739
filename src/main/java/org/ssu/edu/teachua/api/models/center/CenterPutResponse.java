@@ -1,20 +1,21 @@
 package org.ssu.edu.teachua.api.models.center;
 
 import lombok.Data;
+import org.ssu.edu.teachua.api.models.location.LocationResponse;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class CenterPutResponse {
     private Integer id;
     private String name;
-    private ArrayList<String> locations;
+    private List<LocationResponse> locations;
     private String description;
     private String urlWeb;
     private String urlBackgroundPicture;
     private String urlLogo;
-    private ArrayList<String> clubsId;
-    private Integer userId;
+    private String clubsId;
+    private Object userId;
     private String contacts;
-    private Integer centerExternalId;
+    private Object centerExternalId;
 }

@@ -1,8 +1,9 @@
 package org.ssu.edu.teachua.api.models.center;
 
 import lombok.Data;
+import org.ssu.edu.teachua.api.models.location.LocationResponse;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class CenterPostResponse {
@@ -15,5 +16,5 @@ public class CenterPostResponse {
     private String urlWeb;
     private String urlLogo;
     private String contacts;
-    private ArrayList<String> locations;
+    private List<LocationResponse> locations;
 }
