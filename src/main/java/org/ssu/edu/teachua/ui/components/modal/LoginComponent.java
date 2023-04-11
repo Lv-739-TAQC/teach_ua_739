@@ -50,7 +50,7 @@ public class LoginComponent extends BaseComponent {
      */
     @Step("Set to input email field value: {email} ")
     public LoginComponent enterEmail(String email) {
-        emailField.sendKeys(email);
+        waitForElementToAppear(emailField).sendKeys(email);
         return this;
     }
 
