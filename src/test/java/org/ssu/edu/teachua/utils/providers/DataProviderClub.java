@@ -88,12 +88,11 @@ public class DataProviderClub {
                 "\"entityMap\":{}}");
 
         return new Object[][]{
-                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "name", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(0)},
+                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "name", 2, 18, true, description, "272", null, null, API_ERROR_MSG.get(0)},
 
-                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "namenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamen", 2, 18, true, null,
-                        description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(0)},
-
-                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "nameЁёЫыЭэ", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(1)},
+                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "namenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamen", 2, 18, true,
+                        description, "272", null, null, API_ERROR_MSG.get(0)},
+                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "nameЁёЫыЭэ", 2, 18, true, description, "272", null, null, API_ERROR_MSG.get(1)},
 
         };
     }
@@ -110,8 +109,8 @@ public class DataProviderClub {
                 "\"data\":{}}]," +
                 "\"entityMap\":{}}");
         String errorMsg = "Опис гуртка не може містити російські літери";
-        return new Object[][] {
-                {null, "NameName", 2, 18, true, null, description, null, BigInteger.valueOf(272), 400, errorMsg}
+        return new Object[][]{
+                {null, "NameName", 2, 18, true, description, "272", null, null, 400, errorMsg}
         };
     }
 
