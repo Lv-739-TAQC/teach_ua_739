@@ -10,6 +10,7 @@ import org.ssu.edu.teachua.api.clients.ChallengeClient;
 import org.ssu.edu.teachua.api.models.challenge.GetChallengeResponse;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
 import org.ssu.edu.teachua.utils.runners.LoginWithUserAPIRunner;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -50,5 +51,14 @@ public class UserChallengeTest extends LoginWithUserAPIRunner {
         softAssert.assertEquals(errorResponse.getMessage(), "You are not authenticated");
 
         softAssert.assertAll();
+    }
+
+    @Issue("TUA-438")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("This test case verifies that user with any rights can view challenge list (user rights)")
+    @Test
+    public void testViewChallengeListWithUserRights() {
+        Response response = client.getAllChallenges();
+        Assert.assertEquals(response.getStatusCode(), 200);
     }
 }

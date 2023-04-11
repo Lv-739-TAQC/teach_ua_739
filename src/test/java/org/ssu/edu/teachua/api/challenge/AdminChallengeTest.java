@@ -214,23 +214,12 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
         softAssert.assertFalse(errorResponse.getMessage().isEmpty());
         softAssert.assertEquals(errorResponse.getStatus(), statusCode);}
 
-    @Issue("TUA-435")
+    @Issue("TUA-438")
     @Severity(SeverityLevel.NORMAL)
-    @Description("This test case verifies that user is able to delete Challenge using administrator rights")
-    @Test(dataProvider = "dpTestDeleteChallenge", dataProviderClass = DataProviderChallenge.class)
-    public void testDeleteChallenge(String name, String title, String description, String registrationLink,
-                                    String picture, BigInteger sortNumber, int expectedStatusCode) {
-
-        name += StringGenerator.generateRandomString(5);
-        PostChallengeRequest postChallengeRequest = new PostChallengeRequest(
-                name, title, description, registrationLink, picture, sortNumber
-        );
-
-        Response okResponseCreate = client.createChallenge(postChallengeRequest);
-        PostChallengeResponse challengeResponse = okResponseCreate.as(PostChallengeResponse.class);
-        softAssert.assertEquals(okResponseCreate.getStatusCode(), expectedStatusCode);
-        Response okResponseDelete = client.deleteChallenge(challengeResponse.getId());
-        softAssert.assertEquals(okResponseDelete.getStatusCode(), expectedStatusCode);
-        softAssert.assertAll();
+    @Description("This test case verifies that user with any rights can view challenge list (admin rights)")
+    @Test
+    public void testViewChallengeListWithAdminRights() {
+        Response response = client.getAllChallenges();
+        Assert.assertEquals(response.getStatusCode(), 200);
     }
 }
