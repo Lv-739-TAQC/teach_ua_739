@@ -22,14 +22,6 @@ public class ChallengeClient extends BaseClient{
                 .post(path);
     }
 
-    @Step("Create a request for creating new challenge entity using 'POST' method. Enter values in 'Body': {request}")
-    public Response createChallenge(PostChallengeRequestTest request) {
-        return prepareRequest()
-                .body(request)
-                .when()
-                .post(path);
-    }
-
     @Step("Create a request for get full information about {id} challenge using 'GET' method. Enter values in 'parameter Id': {id}")
     public Response viewChallenge(int id) {
         return prepareRequest()
