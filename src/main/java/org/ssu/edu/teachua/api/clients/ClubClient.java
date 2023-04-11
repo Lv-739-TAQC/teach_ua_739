@@ -22,7 +22,7 @@ public class ClubClient extends BaseClient {
     }
 
     @Step("Create a request for updating an existing club entity using 'PUT' method and club id {id} as parameter. Enter values in 'Body': {request}")
-    public Response editClub(ClubRequest request, int id) {
+    public Response editClub(ClubRequest request, Integer id) {
         return prepareRequest()
                 .body(request)
                 .when()
@@ -30,14 +30,14 @@ public class ClubClient extends BaseClient {
     }
 
     @Step("Create a request for viewing an existing club entity using 'GET' method and club id {id} as parameter")
-    public Response viewClub(int id) {
+    public Response viewClub(Integer id) {
         return prepareRequest()
                 .when()
                 .get(path + "/" + id);
     }
 
     @Step("Create a request for deleting an existing club entity using 'DELETE' method and club id {id} as parameter")
-    public Response deleteClub(int id) {
+    public Response deleteClub(Integer id) {
         return prepareRequest()
                 .when()
                 .delete(path + "/" + id);

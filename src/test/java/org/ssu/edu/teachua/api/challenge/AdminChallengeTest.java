@@ -10,8 +10,11 @@ import org.ssu.edu.teachua.api.models.challenge.PostChallengeRequest;
 import org.ssu.edu.teachua.api.models.challenge.GetChallengeResponse;
 import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.models.challenge.PutChallengeRequest;
+import org.ssu.edu.teachua.api.models.challenge.PostChallengeResponse;
 import org.ssu.edu.teachua.api.models.error.ErrorResponse;
+import org.ssu.edu.teachua.utils.StringGenerator;
 import org.ssu.edu.teachua.utils.providers.DataProviderChallenge;
+import org.ssu.edu.teachua.utils.providers.DataProviderClub;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminAPIRunner;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -47,7 +50,7 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
     @Issue("TUA-437")
     @Severity(SeverityLevel.NORMAL)
     @Description("This test case verifies that user with any rights can view" +
-                 "\ninformation about specific challenge (admin rights)")
+            "\ninformation about specific challenge (admin rights)")
     @Test
     public void testViewChallengeWithAdminRights() {
         Response response = client.viewChallenge(837);
@@ -62,9 +65,9 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify that admin can't create challenge with invalid value that contains Russian letters in 'Назва' field")
     @Test(dataProvider = "dpTestRussianValueNameField", dataProviderClass = DataProviderChallenge.class)
-    public void testCreateChallengeWithInvalidName ( String name, String title, String description,
-                                                     String registrationLink, String picture, BigInteger sortNumber,
-                                                     int expectedStatusCode, String expectedErrorMsg){
+    public void testCreateChallengeWithInvalidName(String name, String title, String description,
+                                                   String registrationLink, String picture, BigInteger sortNumber,
+                                                   int expectedStatusCode, String expectedErrorMsg) {
 
         PostChallengeRequest postChallengeRequest = new PostChallengeRequest(
                 name, title, description, registrationLink, picture, sortNumber);
@@ -79,9 +82,9 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify that admin can't create challenge leaving empty 'Порядковий номер' field")
     @Test(dataProvider = "dpTestEmptySortNumberField", dataProviderClass = DataProviderChallenge.class)
-    public void testCreateChallengeWithEmptySortNumberField ( String name, String title, String description,
-                                                              String registrationLink, String picture, BigInteger sortNumber,
-                                                              int expectedStatusCode, String expectedErrorMsg){
+    public void testCreateChallengeWithEmptySortNumberField(String name, String title, String description,
+                                                            String registrationLink, String picture, BigInteger sortNumber,
+                                                            int expectedStatusCode, String expectedErrorMsg) {
 
         PostChallengeRequest postChallengeRequest = new PostChallengeRequest(
                 name, title, description, registrationLink, picture, sortNumber);
@@ -165,6 +168,24 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
 
         softAssert.assertFalse(errorResponse.getMessage().isEmpty());
         softAssert.assertEquals(errorResponse.getStatus(), statusCode);
+        
+    @Issue("TUA-435")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("This test case verifies that user is able to delete Challenge using administrator rights")
+    @Test(dataProvider = "dpTestDeleteChallenge", dataProviderClass = DataProviderChallenge.class)
+    public void testDeleteChallenge(String name, String title, String description, String registrationLink,
+                                    String picture, BigInteger sortNumber, int expectedStatusCode) {
+
+        name += StringGenerator.generateRandomString(5);
+        PostChallengeRequest postChallengeRequest = new PostChallengeRequest(
+                name, title, description, registrationLink, picture, sortNumber
+        );
+
+        Response okResponseCreate = client.createChallenge(postChallengeRequest);
+        PostChallengeResponse challengeResponse = okResponseCreate.as(PostChallengeResponse.class);
+        softAssert.assertEquals(okResponseCreate.getStatusCode(), expectedStatusCode);
+        Response okResponseDelete = client.deleteChallenge(challengeResponse.getId());
+        softAssert.assertEquals(okResponseDelete.getStatusCode(), expectedStatusCode);
         softAssert.assertAll();
     }
 }

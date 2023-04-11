@@ -22,6 +22,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static org.ssu.edu.teachua.utils.Helper.checkFileSize;
+
 public class NewsPageTest extends LoginWithAdminUIRunner {
 
     private static final int NEWS_INDEX = 1;
@@ -158,23 +160,7 @@ public class NewsPageTest extends LoginWithAdminUIRunner {
         String newsLogoURL = news.getUrlTitleLogo();
         String webNewsLogoURL = valueProvider.getBaseUiUrl() + newsLogoURL;
 
-
-        long actualFileSize = 0;
-        try {
-            URL url = new URL(webNewsLogoURL);
-            InputStream is = url.openStream();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] b = new byte[2048];
-            int length;
-            while ((length = is.read(b)) != -1) {
-                baos.write(b, 0, length);
-            }
-            is.close();
-            byte[] actualImageData = baos.toByteArray();
-            actualFileSize = actualImageData.length;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        long actualFileSize = checkFileSize(webNewsLogoURL);
         Assert.assertTrue(actualFileSize <= EXPECTED_FILE_SIZE, "File size was not compressed");
     }
 

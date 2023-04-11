@@ -165,6 +165,11 @@ public class DataProviderChallenge {
                 {5, null, 2, true, 400},
                 {5, " ", 2, true, 400},
                 {5, "", 2, true, 400},
+
+    @DataProvider(name = "dpTestDeleteChallenge")
+    public static Object[][] dpTestDeleteChallenge() {
+        return new Object[][]{
+                {"Challenge name", "Challenge title", ("description").repeat(10), null, "/upload/photos/image.png", BigInteger.valueOf(222), 200}
         };
     }
 }

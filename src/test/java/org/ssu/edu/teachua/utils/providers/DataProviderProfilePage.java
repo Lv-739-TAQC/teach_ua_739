@@ -99,6 +99,16 @@ public class DataProviderProfilePage {
         };
     }
 
+
+    @DataProvider(name = "dpTestVerifyThatUserCanChangeRole")
+   	private static Object[][] dpTestVerifyThatUserCanChangeRole() {
+   		return new Object[][] {{
+   			847, "Illia", "Kapustin", "k.ilya.v@gmail.com",
+			"0675673309", "ROLE_USER", null, true
+   		}};
+    }
+
+
     @DataProvider(name = "dpAPITestChangeRole")
     private static Object[][] dpAPITestChangeRole() {
         return new Object[][]{
@@ -108,6 +118,4 @@ public class DataProviderProfilePage {
     }
 
 }
-
-
 
