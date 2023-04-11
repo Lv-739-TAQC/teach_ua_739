@@ -111,8 +111,10 @@ public class UserProfileTest extends LoginWithUserAPIRunner {
         Response response = client.updateProfile(id, putRequest);
 
         Assert.assertEquals(response.statusCode(), expectedStatusCode);
-        ErrorResponse errorResponse = response.as(ErrorResponse.class);
-        Assert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
+        if (response.statusCode() != 200) {
+            ErrorResponse errorResponse = response.as(ErrorResponse.class);
+            Assert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
+        }
     }
 }
 
