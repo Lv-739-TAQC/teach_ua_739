@@ -9,8 +9,8 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class Feedback {
-    private int id;
-    private int rate;
+    private Integer id;
+    private Double rate;
     private Date date;
     private String text;
     private User user;

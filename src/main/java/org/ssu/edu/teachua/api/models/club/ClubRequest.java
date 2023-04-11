@@ -3,23 +3,20 @@ package org.ssu.edu.teachua.api.models.club;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.math.BigInteger;
-import java.util.ArrayList;
+import org.ssu.edu.teachua.api.models.location.Location;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClubRequest {
-
     private List<String> categoriesName;
     private String name;
-    private int ageFrom;
-    private int ageTo;
-    private boolean isOnline;
-    private List<String> contacts;
+    private Integer ageFrom;
+    private Integer ageTo;
+    private Boolean isOnline;
     private String description;
-    private List<String> locations;
-    private Integer userId;
+    private String userId;
+    private List<Location> locations;
+    private String contacts;
 }
