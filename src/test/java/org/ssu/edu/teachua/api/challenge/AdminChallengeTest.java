@@ -6,8 +6,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.restassured.http.ContentType;
 import org.ssu.edu.teachua.api.clients.ChallengeClient;
-import org.ssu.edu.teachua.api.models.challenge.PostChallengeRequest;
-import org.ssu.edu.teachua.api.models.challenge.GetChallengeResponse;
+import org.ssu.edu.teachua.api.models.challenge.*;
 import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.models.challenge.PutChallengeRequest;
 import org.ssu.edu.teachua.api.models.challenge.PostChallengeResponse;
@@ -22,6 +21,7 @@ import org.testng.annotations.Test;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 
 public class AdminChallengeTest extends LoginWithAdminAPIRunner {
     private ChallengeClient client;
@@ -123,6 +123,31 @@ public class AdminChallengeTest extends LoginWithAdminAPIRunner {
         softAssert.assertEquals(responseFourth.getStatus(), expectedStatusCode);
         softAssert.assertAll();
     }
+
+
+    @Issue("TUA-429")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("This test case verifies that user is able to create challenge using valid data")
+    @Test(dataProvider = "dpTestCreateChallengeWithValidData", dataProviderClass = DataProviderChallenge.class)
+    public void testCreateChallengeWithValidData(String name, String title, String description, String registrationLink,
+                                           String picture, BigInteger sortNumber, Integer expectedStatusCode) {
+        PostChallengeRequest postChallengeRequest = new PostChallengeRequest(
+                name, title, description, registrationLink, picture, sortNumber);
+        Response response = client.createChallenge(postChallengeRequest);
+        softAssert.assertEquals((Integer)response.getStatusCode(), expectedStatusCode);
+        softAssert.assertAll();
+    }
+
+    @Issue("TUA-432")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("This test case verifies that user is able to update challenge using valid data")
+    @Test(dataProvider = "dpTestUpdateChallengeWithValidData", dataProviderClass = DataProviderChallenge.class)
+    public void testUpdateChallengeWithValidData(Integer id, String name, String title, String description, String registrationLink,
+                                                 String picture, BigInteger sortNumber, Boolean isActive ,Integer expectedStatusCode) {
+        PutChallengeRequest putChallengeRequest = new PutChallengeRequest(
+                name, title, description, registrationLink, picture, sortNumber,isActive);
+        Response response = client.updateChallengePut(id, putChallengeRequest);
+        softAssert.assertEquals((Integer)response.getStatusCode(), expectedStatusCode);
 
     @Issue("TUA-431")
     @Severity(SeverityLevel.NORMAL)
