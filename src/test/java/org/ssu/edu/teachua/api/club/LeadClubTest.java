@@ -18,7 +18,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class LeadClubTest extends LoginWithLeadAPIRunner {
@@ -92,14 +91,14 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
     @Description("Verify that User as 'Керiвник гуртка' can create new club is in a center if 'Назва' " +
             "field consists of a word length of 100 characters")
     @Test(dataProvider = "dpTestLengthOfName100CharactersForClub", dataProviderClass = DataProviderClub.class)
-    public void testCreateClubWithLengthOfName100Characters(ArrayList<String> categoriesName, int ageFrom,
-                                               int ageTo, boolean isOnline, ArrayList<String> contacts,
-                                               String description, ArrayList<String> locations, Integer userId,
-                                               int expectedStatusCode) {
+    public void testCreateClubWithLengthOfName100Characters(ArrayList<String> categoriesName, Integer ageFrom,
+                                                            Integer ageTo, Boolean isOnline, String description,
+                                                            String userId, ArrayList<Location> locations, String contacts,
+                                                            int expectedStatusCode) {
 
         ClubRequest clubRequest = new ClubRequest(
-                categoriesName, StringGenerator.generateRandomString(100), ageFrom, ageTo, isOnline,
-                contacts, description, locations, userId
+                categoriesName, StringGenerator.generateRandomString(100), ageFrom, ageTo,
+                isOnline, description, userId, locations, contacts
         );
 
         Response okResponseCreate = client.createClub(clubRequest);

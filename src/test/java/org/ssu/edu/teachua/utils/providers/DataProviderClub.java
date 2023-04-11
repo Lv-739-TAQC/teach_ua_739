@@ -201,8 +201,7 @@ public class DataProviderClub {
     public static Object[][] dpTestLengthOfName100CharactersForClub() {
         return new Object[][]{
                 {new ArrayList<>(Arrays.asList("Вокальна студія, музика, музичні інструменти")),
-
-                        2, 18, true, null,
+                        2, 18, true,
                         "{\"blocks\":" +
                                 "[{\"key\":\"brl63\"," +
                                 "\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього " +
@@ -213,7 +212,7 @@ public class DataProviderClub {
                                 "\"entityRanges\":[]," +
                                 "\"data\":{}}]," +
                                 "\"entityMap\":{}}",
-                        null, 854, 200}
+                        "854", new ArrayList<Location>(), null, 200}
         };
     }
 }
