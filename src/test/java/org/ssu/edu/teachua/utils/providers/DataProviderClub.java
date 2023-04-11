@@ -87,12 +87,12 @@ public class DataProviderClub {
                 "\"entityMap\":{}}");
 
         return new Object[][]{
-                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "name", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(0)},
+                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "name", 2, 18, true, description, "272", null, null, API_ERROR_MSG.get(0)},
 
-                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "namenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamen", 2, 18, true, null,
-                        description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(0)},
+                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "namenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamen", 2, 18, true,
+                        description, "272", null, null, API_ERROR_MSG.get(0)},
 
-                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "nameЁёЫыЭэ", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(1)},
+                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "nameЁёЫыЭэ", 2, 18, true, description, "272", null, null, API_ERROR_MSG.get(1)},
 
         };
     }
@@ -109,8 +109,8 @@ public class DataProviderClub {
                 "\"data\":{}}]," +
                 "\"entityMap\":{}}");
         String errorMsg = "Опис гуртка не може містити російські літери";
-        return new Object[][] {
-                {null, "NameName", 2, 18, true, null, description, null, BigInteger.valueOf(272), 400, errorMsg}
+        return new Object[][]{
+                {null, "NameName", 2, 18, true, description, "272", null, null, 400, errorMsg}
         };
     }
 
@@ -118,7 +118,7 @@ public class DataProviderClub {
     public static Object[][] dpTestInvalidNameFieldForClub() {
         return new Object[][]{
                 {new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти")), "Э э ъ Ъ Ы ы",
-                        2, 18, true, null,
+                        2, 18, true,
                         "{\"blocks\":" +
                                 "[{\"key\":\"brl63\"," +
                                 "\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього " +
@@ -129,7 +129,7 @@ public class DataProviderClub {
                                 "\"entityRanges\":[]," +
                                 "\"data\":{}}]," +
                                 "\"entityMap\":{}}",
-                        new ArrayList<Location>(), BigInteger.valueOf(854), 400,
+                        "854", new ArrayList<Location>(), null, 400,
                         "name Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи’"}
         };
     }
@@ -148,9 +148,10 @@ public class DataProviderClub {
                 "\"entityRanges\":[]," +
                 "\"data\":{}}]," +
                 "\"entityMap\":{}}");
+        ArrayList categories = new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти"));
+        String contacts = "{\"1\"::\"0679585753\"}";
         return new Object[][]{
-                {new ArrayList<>(Arrays.asList("Вокальна студія, музика, музичні інструменти")), "Голосисті діти", 2, 18,
-                        true, null, description, null, BigInteger.valueOf(854), 200}
+                {categories, "Голосисті діти нашого міста", 2, 18, true, description, "854", new ArrayList<String>(), contacts, 200}
         };
     }
 
@@ -173,25 +174,24 @@ public class DataProviderClub {
                         2,
                         18,
                         true,
-                        null,
                         "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
-                        null,
-                        264, API_ERROR_MSG.get(0), 400
+                        "264",
+                        null, null, API_ERROR_MSG.get(0), 400
                 }
         };
     }
-    
+
     @DataProvider(name = "dpTestDuplicateClubCannotBeCreated")
     public static Object[][] dpTestDuplicateClubCannotBeCreated() {
         return new Object[][]{
                 {
-                    "Спортивні секції",
-                    "Спроба1",
-                    2,
-                    18,
-                    "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"йййййййййййййййййййййййййййййййййййййййййййййййййййййййййй\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
-                    409,
-                    "Club already exist with name: Спроба1"
+                        "Спортивні секції",
+                        "Спроба1",
+                        2,
+                        18,
+                        "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"йййййййййййййййййййййййййййййййййййййййййййййййййййййййййй\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+                        409,
+                        "Club already exist with name: Спроба1"
                 }
         };
     }

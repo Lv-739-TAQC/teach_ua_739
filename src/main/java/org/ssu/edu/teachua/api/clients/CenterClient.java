@@ -3,6 +3,7 @@ package org.ssu.edu.teachua.api.clients;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.ssu.edu.teachua.api.models.center.CenterPutRequest;
 import org.ssu.edu.teachua.api.models.center.CenterRequest;
 
 public class CenterClient extends BaseClient {
@@ -22,7 +23,7 @@ public class CenterClient extends BaseClient {
     }
 
     @Step("Create a request for updating an existing center entity using 'PUT' method and center id {id} as parameter. Enter values in 'Body': {request}")
-    public Response editCenter(CenterRequest request, int id) {
+    public Response editCenter(CenterPutRequest request, int id) {
         return prepareRequest()
                 .body(request)
                 .when()
