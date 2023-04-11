@@ -151,6 +151,39 @@ public class DataProviderChallenge {
         return new Object[][]{
                 {857, "Ukrainian", "Заголовок Челенджу", "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>",
                         null, "/upload/challenges/image.png", BigInteger.valueOf(1679648262283L), true, 200}
+
+    @DataProvider(name = "dpTestCreateChallengeInvalidCharacters")
+    public static Object[][] dpTestCreateChallengeInvalidCharacters() {
+        return new Object[][]{
+                {null, BigInteger.valueOf(2), 400},
+                {" ", BigInteger.valueOf(2), 400},
+                {"", BigInteger.valueOf(2), 400}
+        };
+    }
+
+    @DataProvider(name = "dpTestEditChallengeInvalidValues")
+    public static Object[][] dpTestEditChallengeInvalidValues() {
+        return new Object[][]{
+                {5, "nam", "tit", "des", null, "/upload/test/test.png", 1, true, 400},
+                {5, "Lorem ipsum dolor sit amet, consect", "Lorem ipsum dolor sit amet, consect",
+                        ("description").repeat(500), null, "/upload/test/test.png", 1, true, 400},
+                {5, "эЭъЪыЫёЁ", "эЭъЪыЫёЁ", "эЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁэЭъЪыЫёЁ", null,
+                        "/upload/test/test.png", 1, true, 400}
+        };
+    }
+
+    @DataProvider(name = "dpTestEditChallengeInvalidCharacters")
+    public static Object[][] dpTestEditChallengeInvalidCharacters() {
+        return new Object[][]{
+                {5, null, 2, true, 400},
+                {5, " ", 2, true, 400},
+                {5, "", 2, true, 400},
+
+    @DataProvider(name = "dpTestDeleteChallenge")
+    public static Object[][] dpTestDeleteChallenge() {
+        return new Object[][]{
+                {"Challenge name", "Challenge title", ("description").repeat(10), null, "/upload/photos/image.png", BigInteger.valueOf(222), 200}
+
         };
     }
 }
