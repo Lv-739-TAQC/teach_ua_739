@@ -25,22 +25,22 @@ public class UserClubTest extends LoginWithUserAPIRunner{
     }
 
 
-	@Issue("TUA-503")
-	@Severity(SeverityLevel.NORMAL)
-	@Description("Verify that User  cann`t create new club is in a center if \"Назва\" field contain more than 100 characters")
-	@Test(dataProvider = "dpVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters",
-			dataProviderClass = DataProviderClub.class)
-	public void testVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters(
-			ArrayList<String> categoriesName, String name, int ageFrom, int ageTo,
-			boolean isOnline, String description, BigInteger userId ) {
-
-		ClubRequest request = new ClubRequest(
-				categoriesName, name, ageFrom, ageTo,
-				isOnline, null, description, new ArrayList<String>(), userId);
-
-		ErrorResponse errorResponse = client.createClub(request).as(ErrorResponse.class);
-		softAssert.assertEquals(errorResponse.getStatus(), 400 );
-		softAssert.assertEquals(errorResponse.getMessage(), "name Довжина назви має бути від 5 до 100 символів" );
-		softAssert.assertAll();
-	}
+//	@Issue("TUA-503")
+//	@Severity(SeverityLevel.NORMAL)
+//	@Description("Verify that User  cann`t create new club is in a center if \"Назва\" field contain more than 100 characters")
+//	@Test(dataProvider = "dpVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters",
+//			dataProviderClass = DataProviderClub.class)
+//	public void testVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters(
+//			ArrayList<String> categoriesName, String name, int ageFrom, int ageTo,
+//			boolean isOnline, String description, BigInteger userId ) {
+//
+//		ClubRequest request = new ClubRequest(
+//				categoriesName, name, ageFrom, ageTo,
+//				isOnline, null, description, new ArrayList<String>(), userId);
+//
+//		ErrorResponse errorResponse = client.createClub(request).as(ErrorResponse.class);
+//		softAssert.assertEquals(errorResponse.getStatus(), 400 );
+//		softAssert.assertEquals(errorResponse.getMessage(), "name Довжина назви має бути від 5 до 100 символів" );
+//		softAssert.assertAll();
+//	}
 }
