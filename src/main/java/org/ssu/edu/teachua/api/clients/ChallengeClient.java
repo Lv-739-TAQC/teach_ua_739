@@ -1,9 +1,6 @@
 package org.ssu.edu.teachua.api.clients;
 
-import org.ssu.edu.teachua.api.models.challenge.PatchChallengeRequest;
-import org.ssu.edu.teachua.api.models.challenge.PostChallengeRequest;
-import org.ssu.edu.teachua.api.models.challenge.PutChallengeNewDateRequest;
-import org.ssu.edu.teachua.api.models.challenge.PutChallengeRequest;
+import org.ssu.edu.teachua.api.models.challenge.*;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

@@ -85,4 +85,25 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
         String actualErrorMessage = errorResponse.getMessage();
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
     }
+
+    @Issue("TUA-505")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify that User as 'Керiвник гуртка' can create new club is in a center if 'Назва' " +
+            "field consists of a word length of 100 characters")
+    @Test(dataProvider = "dpTestLengthOfName100CharactersForClub", dataProviderClass = DataProviderClub.class)
+    public void testCreateClubWithLengthOfName100Characters(ArrayList<String> categoriesName, Integer ageFrom,
+                                                            Integer ageTo, Boolean isOnline, String description,
+                                                            String userId, ArrayList<Location> locations, String contacts,
+                                                            int expectedStatusCode) {
+
+        ClubRequest clubRequest = new ClubRequest(
+                categoriesName, StringGenerator.generateRandomString(100), ageFrom, ageTo,
+                isOnline, description, userId, locations, contacts
+        );
+
+        Response okResponseCreate = client.createClub(clubRequest);
+        softAssert.assertEquals(okResponseCreate.getStatusCode(), expectedStatusCode);
+        softAssert.assertAll();
+
+    }
 }
