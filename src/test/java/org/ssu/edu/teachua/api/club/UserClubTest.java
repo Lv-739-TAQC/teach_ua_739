@@ -32,7 +32,7 @@ public class UserClubTest extends LoginWithUserAPIRunner{
 			dataProviderClass = DataProviderClub.class)
 	public void testVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters(
 			ArrayList<String> categoriesName, String name, int ageFrom, int ageTo,
-			boolean isOnline, String description, BigInteger userId ) {
+			boolean isOnline, String description, Integer userId ) {
 
 		ClubRequest request = new ClubRequest(
 				categoriesName, name, ageFrom, ageTo,
