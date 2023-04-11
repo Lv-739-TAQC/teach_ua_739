@@ -86,7 +86,7 @@ public class DataProviderTask {
     public static Object[][] dpTestEditTask() {
         return new Object[][]{
                 {"namenamename1213#$%", "header text must contain min fourty letters",
-                        "descriptiondescriptiondescriptiondescriptiondescription12345$%%^$#", "/upload/test/test.png", "2023-12-03", 777}
+                "descriptiondescriptiondescriptiondescriptiondescription12345$%%^$#", "/upload/test/test.png", "2023-12-03", BigInteger.valueOf(777)}
         };
     }
 
@@ -110,9 +110,9 @@ public class DataProviderTask {
 
     @DataProvider(name = "testCreateTaskWithValidData")
     public static Object[][] dpTestCreateTask() {
-        return new Object[][]{
+        return new Object[][] {
                 {"namenamename1213#$%", "header text must contain min fourty letters",
-                        "descriptiondescriptiondescriptiondescriptiondescription12345$%%^$# ", "/upload/test/test.png", "2023-12-03"}
+                "descriptiondescriptiondescriptiondescriptiondescription12345$%%^$# ", "/upload/test/test.png",  "2023-12-03"}
         };
     }
 
