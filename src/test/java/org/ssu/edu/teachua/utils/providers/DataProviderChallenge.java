@@ -139,6 +139,13 @@ public class DataProviderChallenge {
         };
     }
 
+    @DataProvider(name = "dpTestDeleteChallenge")
+    public static Object[][] dpTestDeleteChallenge() {
+        return new Object[][]{
+                {"Challenge name", "Challenge title", ("description").repeat(10), null, "/upload/photos/image.png", BigInteger.valueOf(222), 200}
+        };
+    }
+
     @DataProvider(name = "dpTestCreateChallengeWithValidData")
     public static Object[][] TestCreateChallengeWithValidData() {
         return new Object[][]{

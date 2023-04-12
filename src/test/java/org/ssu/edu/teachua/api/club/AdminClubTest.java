@@ -69,6 +69,10 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
                                               String description, List<String> locations, Integer userId, String expectedErrorMsg) {
 
         ClubRequest invalidDataRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId);
+    public void testCreateClubWithInvalidData(ArrayList<String> categoriesName, String name, Integer ageFrom,
+                                              Integer ageTo, Boolean isOnline, String description, String userId,
+                                              ArrayList<Location> locations, String contacts, String expectedErrorMsg) {
+        ClubRequest invalidDataRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, description, userId, locations, contacts);
         Response postResponse = client.createClub(invalidDataRequest);
         ErrorResponse errorResponse = postResponse.as(ErrorResponse.class);
 
