@@ -13,8 +13,9 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.ssu.edu.teachua.utils.runners.LoginWithAdminAPIRunner;
 import org.testng.annotations.Test;
-import java.util.ArrayList;
+import org.testng.asserts.SoftAssert;
 import org.testng.annotations.BeforeClass;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdminClubTest extends LoginWithAdminAPIRunner {
