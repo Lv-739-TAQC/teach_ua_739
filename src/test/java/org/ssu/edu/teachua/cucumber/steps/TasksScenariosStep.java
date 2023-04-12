@@ -27,6 +27,7 @@ public class TasksScenariosStep {
 
     private AddTaskPage addTaskPage;
     private String taskName;
+    private String errorMessage;
 
     @Given("User logins with admin credentials")
     public void userLoginsWithAdminCredentials() {
@@ -105,9 +106,19 @@ public class TasksScenariosStep {
         taskName = addTaskPage.clickSuccessSaveButton().getTaskName();
     }
 
+    @When("User clicks on the 'Зберегти' button after empty challenge")
+    public void userClicksSaveButtonAfterEmptyChallenge() {
+        errorMessage = addTaskPage.clickFailSaveButton().checkErrorMessage();
+    }
+
     @Then("User is on the task page with name {string}")
     public void userIsOnTheTaskPageWithName(String expectedTaskName) {
         Assert.assertEquals(taskName, expectedTaskName);
+    }
+
+    @Then("Error message appears: {string}")
+    public void errorMessageAppears(String expectedErrorMessage) {
+        Assert.assertEquals(errorMessage, expectedErrorMessage);
     }
 
     @Then("Task with name {string} is present in database")
@@ -116,6 +127,12 @@ public class TasksScenariosStep {
         for (Task task: tasks) {
             Assert.assertEquals(task.getName(), expectedTaskName);
         }
+    }
+
+    @Then("Task with name {string} is not added to the DB")
+    public void taskWithNameIsNotAddedToDB(String expectedTaskName) {
+        List<Task> tasks = entityService.getTaskService().getTasksByName(expectedTaskName);
+        Assert.assertEquals(tasks.size(), 0);
     }
 
     @After
