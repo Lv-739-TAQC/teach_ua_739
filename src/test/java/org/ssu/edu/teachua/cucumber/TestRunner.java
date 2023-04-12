@@ -7,7 +7,8 @@ import org.testng.ITestNGMethod;
 import org.testng.annotations.*;
 
 
-@CucumberOptions(features = "src/test/resources/features", glue = "org.ssu.edu.teachua.cucumber.steps")
+@CucumberOptions(features = "src/test/resources/features",
+                 glue = "org.ssu.edu.teachua.cucumber.steps")
 public class TestRunner extends AbstractTestNGCucumberTests {
     private TestNGCucumberRunner testNGCucumberRunner;
 
