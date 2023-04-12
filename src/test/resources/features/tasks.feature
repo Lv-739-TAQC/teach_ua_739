@@ -14,3 +14,14 @@ Feature: Task scenarios
     And User clicks on the 'Зберегти' button
     Then User is on the task page with name "Test task 123456789"
     And Task with name "Test task 123456789" is present in database
+
+  Scenario: Verify that admin can't create a task without choosing any challenge
+    When User open add task page
+    And User selects start date with day 21, month 3 and next year
+    And User downloads the image into 'Фото' field
+    And User enters "Test task without challenge" into 'Назва' field
+    And User enters "Test task title 12345678912345678901234567890" into 'Заголовок' field
+    And User enters "Test task Description 12345678912345678901234567890" into 'Опис' field
+    And User clicks on the 'Зберегти' button after empty challenge
+    Then Error message appears: "Please, select challenge"
+    And Task with name "Test task without challenge" is not added to the DB
