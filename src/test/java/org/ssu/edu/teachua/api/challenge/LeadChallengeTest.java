@@ -9,6 +9,7 @@ import io.restassured.response.Response;
 import org.ssu.edu.teachua.api.clients.ChallengeClient;
 import org.ssu.edu.teachua.api.models.challenge.GetChallengeResponse;
 import org.ssu.edu.teachua.utils.runners.LoginWithLeadAPIRunner;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -35,5 +36,14 @@ public class LeadChallengeTest extends LoginWithLeadAPIRunner {
         softAssert.assertEquals(response.as(GetChallengeResponse.class).getName(), "Ukrainian");
 
         softAssert.assertAll();
+    }
+
+    @Issue("TUA-438")
+    @Severity(SeverityLevel.NORMAL)
+    @Description("This test case verifies that user with any rights can view challenge list (lead rights)")
+    @Test
+    public void testViewChallengeListWithLeadRights() {
+        Response response = client.getAllChallenges();
+        Assert.assertEquals(response.getStatusCode(), 200);
     }
 }

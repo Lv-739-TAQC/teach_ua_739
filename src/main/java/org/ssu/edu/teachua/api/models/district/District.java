@@ -7,7 +7,7 @@ import org.ssu.edu.teachua.api.models.city.City;
 @Data
 @AllArgsConstructor
 public class District {
-    private int id;
+    private Integer id;
     private String name;
     private City city;
 }

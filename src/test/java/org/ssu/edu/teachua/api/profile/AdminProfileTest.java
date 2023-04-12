@@ -62,13 +62,11 @@ public class AdminProfileTest extends LoginWithAdminAPIRunner {
 		ProfilePutRequest profilePutRequest = new ProfilePutRequest(firstName, lastName, email, phone, roleName,
 				urlLogo, status);
 
-		//ProfileResponse profileResponse = client.updateProfile(id, profilePutRequest).as(ProfileResponse.class);
-		
-		String profileResponse = client.updateProfile(id,profilePutRequest).asPrettyString(); 
-		softAssert.assertTrue(profileResponse.contains("ROLE_USER"));
-		profilePutRequest.setRoleName("ROLE_MANAGER"); 
-		profileResponse = client.updateProfile(id, profilePutRequest).asPrettyString();
-		softAssert.assertTrue(profileResponse.contains("ROLE_MANAGER"));;
+		ProfileResponse profileResponse = client.updateProfile(id, profilePutRequest).as(ProfileResponse.class);
+		softAssert.assertEquals(profileResponse.getRoleName(), "ROLE_USER");
+		profilePutRequest.setRoleName("ROLE_MANAGER");
+		profileResponse = client.updateProfile(id, profilePutRequest).as(ProfileResponse.class);
+		softAssert.assertEquals(profileResponse.getRoleName(), "ROLE_MANAGER");
 		softAssert.assertAll();
 	}
 }

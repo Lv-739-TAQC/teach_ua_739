@@ -19,7 +19,8 @@ public class DataProviderClub {
 
     public static final List<String> API_ERROR_MSG = Arrays.asList(
             "name Довжина назви має бути від 5 до 100 символів",
-            "name Помилка. Присутні недопустимі символи"
+            "name Помилка. Присутні недопустимі символи",
+            "name Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи’"
     );
 
     @DataProvider(name = "dpTestDescriptionFieldValid")
@@ -87,12 +88,11 @@ public class DataProviderClub {
                 "\"entityMap\":{}}");
 
         return new Object[][]{
-                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "name", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(0)},
+                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "name", 2, 18, true, description, "272", null, null, API_ERROR_MSG.get(0)},
 
-                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "namenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamen", 2, 18, true, null,
-                        description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(0)},
-
-                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "nameЁёЫыЭэ", 2, 18, true, null, description, null, BigInteger.valueOf(272), API_ERROR_MSG.get(1)},
+                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "namenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamenamen", 2, 18, true,
+                        description, "272", null, null, API_ERROR_MSG.get(0)},
+                {new ArrayList<String>(Arrays.asList("Танці, хореографія")), "nameЁёЫыЭэ", 2, 18, true, description, "272", null, null, API_ERROR_MSG.get(1)},
 
         };
     }
@@ -109,16 +109,16 @@ public class DataProviderClub {
                 "\"data\":{}}]," +
                 "\"entityMap\":{}}");
         String errorMsg = "Опис гуртка не може містити російські літери";
-        return new Object[][] {
-                {null, "NameName", 2, 18, true, null, description, null, BigInteger.valueOf(272), 400, errorMsg}
+        return new Object[][]{
+                {null, "NameName", 2, 18, true, description, "272", null, null, 400, errorMsg}
         };
     }
 
     @DataProvider(name = "dpTestInvalidNameFieldForClub")
     public static Object[][] dpTestInvalidNameFieldForClub() {
         return new Object[][]{
-                {new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти")), "Э э ъ Ъ Ы ы",
-                        2, 18, true, null,
+                {new ArrayList<>(Arrays.asList("Вокальна студія, музика, музичні інструменти")), "Э э ъ Ъ Ы ы",
+                        2, 18, true,
                         "{\"blocks\":" +
                                 "[{\"key\":\"brl63\"," +
                                 "\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього " +
@@ -129,8 +129,8 @@ public class DataProviderClub {
                                 "\"entityRanges\":[]," +
                                 "\"data\":{}}]," +
                                 "\"entityMap\":{}}",
-                        new ArrayList<Location>(), BigInteger.valueOf(854), 400,
-                        "name Це поле може містити тільки українські та англійські літери, цифри та спеціальні символи’"}
+                        "854", new ArrayList<Location>(), null, 400,
+                API_ERROR_MSG.get(2)}
         };
     }
 
@@ -148,9 +148,10 @@ public class DataProviderClub {
                 "\"entityRanges\":[]," +
                 "\"data\":{}}]," +
                 "\"entityMap\":{}}");
+        ArrayList categories = new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти"));
+        String contacts = "{\"1\"::\"0679585753\"}";
         return new Object[][]{
-                {new ArrayList<>(Arrays.asList("Вокальна студія, музика, музичні інструменти")), "Голосисті діти", 2, 18,
-                        true, null, description, null, BigInteger.valueOf(854), 200}
+                {categories, "Голосисті діти нашого міста", 2, 18, true, description, "854", new ArrayList<String>(), contacts, 200}
         };
     }
 
@@ -158,10 +159,10 @@ public class DataProviderClub {
     public static Object[][] dpVerifyThatUserCanNotCreateClubWithNameMoreThan100Characters() {
         return new Object[][]{
                 { new ArrayList<String>(Arrays.asList("Вокальна студія, музика, музичні інструменти")),
-                	"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів12346578901234657890123465789012346578901234657890123465789012346578901234657890123465789012346578901234657890",
-                	2, 18,true,
-                	"{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
-                	BigInteger.valueOf(264) }};
+                        "Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів12346578901234657890123465789012346578901234657890123465789012346578901234657890123465789012346578901234657890",
+                        2, 18,true,
+                        "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+                        "264" }};
     }
 
     @DataProvider(name = "dpAPITestCreateClub")
@@ -173,10 +174,9 @@ public class DataProviderClub {
                         2,
                         18,
                         true,
-                        null,
                         "{\"blocks\":[{\"key\":\"brl63\",\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\",\"type\":\"unstyled\",\"depth\":1,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
-                        null,
-                        264, API_ERROR_MSG.get(0), 400
+                        "264",
+                        null, null, API_ERROR_MSG.get(0), 400
                 }
         };
     }
@@ -193,6 +193,25 @@ public class DataProviderClub {
                     409,
                     "Club already exist with name: Спроба1"
                 }
+        };
+    }
+
+    @DataProvider(name = "dpTestLengthOfName100CharactersForClub")
+    public static Object[][] dpTestLengthOfName100CharactersForClub() {
+        return new Object[][]{
+                {new ArrayList<>(Arrays.asList("Вокальна студія, музика, музичні інструменти")),
+                        2, 18, true,
+                        "{\"blocks\":" +
+                                "[{\"key\":\"brl63\"," +
+                                "\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього " +
+                                "розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\"," +
+                                "\"type\":\"unstyled\"," +
+                                "\"depth\":1," +
+                                "\"inlineStyleRanges\":[]," +
+                                "\"entityRanges\":[]," +
+                                "\"data\":{}}]," +
+                                "\"entityMap\":{}}",
+                        "854", new ArrayList<Location>(), null, 200}
         };
     }
 }
