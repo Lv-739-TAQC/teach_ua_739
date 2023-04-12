@@ -66,9 +66,9 @@ public class AdminClubTest extends LoginWithAdminAPIRunner {
     @Test(dataProvider = "dpApiTestEditClubInvalidData", dataProviderClass = DataProviderClub.class)
     public void testCreateClubWithInvalidData(List<String> categoriesName, String name, int ageFrom,
                                               int ageTo, boolean isOnline, List<String> contacts,
-                                              String description, List<Location> locations, String userId, String expectedErrorMsg) {
+                                              String description, List<String> locations, Integer userId, String expectedErrorMsg) {
 
-        ClubRequest invalidDataRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, contacts.get(0), description, locations, userId);
+        ClubRequest invalidDataRequest = new ClubRequest(categoriesName, name, ageFrom, ageTo, isOnline, contacts, description, locations, userId);
         Response postResponse = client.createClub(invalidDataRequest);
         ErrorResponse errorResponse = postResponse.as(ErrorResponse.class);
 
