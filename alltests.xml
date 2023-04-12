@@ -3,10 +3,15 @@
 
 <!--<suite name="Test Suite" configfailurepolicy="continue" verbose="1" parallel="classes" thread-count="3">-->
 <suite name="Test Suite" verbose="1" >
-    <test name="UI Tests" annotations="JDK" preserve-order="true" >
-        <parameter name="browser" value="chrome"/>
+    <test name="BDD Tests" annotations="JDK">
         <packages>
-            <package name="org.ssu.edu.teachua.ui.*" />
+            <package name="org.ssu.edu.teachua.cucumber.TestRunner"/>
         </packages>
     </test>
+<!--    <test name="UI Tests" annotations="JDK" preserve-order="true" >-->
+<!--        <parameter name="browser" value="chrome"/>-->
+<!--        <packages>-->
+<!--            <package name="org.ssu.edu.teachua.ui.*" />-->
+<!--        </packages>-->
+<!--    </test>-->
 </suite>
