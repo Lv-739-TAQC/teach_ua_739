@@ -115,28 +115,24 @@ public class NewsPageTest extends LoginWithAdminUIRunner {
         Assert.assertEquals(actualNewsTitle, expectedNewsTitle);
 
         homePage.getHeader().clickNewsButton();
-        String expectedNewsTitle1 = news.chooseCertainNews(NEWS_INDEX)
-                .getNewsTitle();
         String actualNewsTitle1 = news.chooseCertainNews(NEWS_INDEX)
                 .clickImage()
                 .getNewsTitle();
-        Assert.assertEquals(actualNewsTitle1, expectedNewsTitle1);
+        Assert.assertEquals(actualNewsTitle1, expectedNewsTitle);
 
         homePage.getHeader().clickNewsButton();
-        String expectedNewsTitle2 = news.chooseCertainNews(NEWS_INDEX)
-                .getNewsTitle();
+
         String actualNewsTitle2 = news.chooseCertainNews(NEWS_INDEX)
                 .clickTitle()
                 .getNewsTitle();
-        Assert.assertEquals(actualNewsTitle2, expectedNewsTitle2);
+        Assert.assertEquals(actualNewsTitle2, expectedNewsTitle);
 
         homePage.getHeader().clickNewsButton();
-        String expectedNewsTitle3 = news.chooseCertainNews(NEWS_INDEX)
-                .getNewsTitle();
+
         String actualNewsTitle3 = news.chooseCertainNews(NEWS_INDEX)
                 .clickDetailsButton()
                 .getNewsTitle();
-        Assert.assertEquals(actualNewsTitle3, expectedNewsTitle3);
+        Assert.assertEquals(actualNewsTitle3, expectedNewsTitle);
     }
 
     @Issue(value = "TUA-782")
@@ -144,7 +140,7 @@ public class NewsPageTest extends LoginWithAdminUIRunner {
     @Description("Verifies that image of a news article which is bigger than 300KB was compressed to 300KB")
     @Test(dataProvider = "newsData", dataProviderClass = DataProviderNews.class)
     public void testFileCompression(String title, String content, String photoPath) throws DBException, EntityException {
-        ViewNewsPage addNews = new HomePage(driver)
+        new HomePage(driver)
                 .getHeader()
                 .openAdminProfileMenu()
                 .openPageMenu()
