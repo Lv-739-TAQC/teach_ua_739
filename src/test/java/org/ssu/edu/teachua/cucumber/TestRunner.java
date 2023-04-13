@@ -6,8 +6,9 @@ import org.testng.ITestContext;
 import org.testng.ITestNGMethod;
 import org.testng.annotations.*;
 
-@CucumberOptions(features = "src/test/resources/features/tua71.feature",
-        glue = "org.ssu.edu.teachua.cucumber.steps")
+
+@CucumberOptions(features = "src/test/resources/features",
+                 glue = "org.ssu.edu.teachua.cucumber.steps")
 public class TestRunner extends AbstractTestNGCucumberTests {
     private TestNGCucumberRunner testNGCucumberRunner;
 
@@ -20,6 +21,7 @@ public class TestRunner extends AbstractTestNGCucumberTests {
 
     @BeforeClass(alwaysRun = true)
     public void setUpClass() {
+        System.out.println("setUpClass");
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
 
