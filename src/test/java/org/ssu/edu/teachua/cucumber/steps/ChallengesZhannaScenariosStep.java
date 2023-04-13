@@ -73,6 +73,11 @@ public class ChallengesZhannaScenariosStep {
         addChallengePage.fillSortNumber(sortNumber);
     }
 
+    @When("User enters sort number into 'Порядковий номер' field")
+    public void userEntersSortNumberIntoField() {
+        addChallengePage.fillSortNumber(String.valueOf(System.currentTimeMillis()));
+    }
+
     @When("User enters {string} into challenge 'Заголовок' field")
     public void userEntersTitle(String title) {
         addChallengePage.fillTitle(title);
@@ -111,6 +116,15 @@ public class ChallengesZhannaScenariosStep {
         String actualBorderColor = addChallengePage.getBorderColorForNameField();
         softAssert.assertEquals(actualError, expectedErrorMsg);
         softAssert.assertEquals(actualBorderColor, "rgb(255, 0, 0)");
+        softAssert.assertAll();
+    }
+
+    @Then("Error message {string} appeared")
+    public void userGetErrorMsg(String expectedErrorMsg) {
+        String actualError = addChallengePage
+                .clickSave()
+                .checkErrorMessage();
+        softAssert.assertEquals(actualError, expectedErrorMsg);
         softAssert.assertAll();
     }
 

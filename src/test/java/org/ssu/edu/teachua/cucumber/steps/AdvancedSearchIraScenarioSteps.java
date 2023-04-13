@@ -1,7 +1,6 @@
 package org.ssu.edu.teachua.cucumber.steps;
 
 import io.cucumber.java.After;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.ssu.edu.teachua.ui.components.search.AdvancedSearchCenterComponent;
+import org.ssu.edu.teachua.ui.components.search.AdvancedSearchClubComponent;
 import org.ssu.edu.teachua.ui.pages.home.HomePage;
 import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.testng.asserts.SoftAssert;
@@ -21,6 +21,8 @@ public class AdvancedSearchIraScenarioSteps {
     private final TestValueProvider valueProvider = new TestValueProvider();
 
     private AdvancedSearchCenterComponent advancedSearchCenterComponent;
+
+    private AdvancedSearchClubComponent advancedSearchClubComponent;
 
     private final SoftAssert softAssert = new SoftAssert();
 
@@ -48,11 +50,12 @@ public class AdvancedSearchIraScenarioSteps {
         }
     }
 
-    @When("User opens advanced search club component")
-    public void userOpensAdvancedSearchClubComponent() {
+    @When("User opens advanced search modal")
+    public void userOpensAdvancedSearchModal() {
         advancedSearchCenterComponent = new HomePage(driver)
                 .clickAdvancedSearchIcon();
     }
+
 
     @Then("Advanced search modal is displayed")
     public void advancedSearchModalIsDisplayed() {
@@ -61,10 +64,10 @@ public class AdvancedSearchIraScenarioSteps {
         softAssert.assertTrue(isAdvancedSearchModalDisplayed);
     }
 
-    @And("User clicks on advanced search icon")
+    @When("User clicks on advanced search icon")
     public void userClicksOnAdvancedSearchIcon() {
-        HomePage homePage = new HomePage(driver);
-        homePage.clickAdvancedSearchIcon();
+        HomePage advancedSearchClubComponent = new HomePage(driver);
+        advancedSearchClubComponent.clickAdvancedSearchIcon();
     }
 
     @Then("Advanced search modal is hidden")
@@ -72,6 +75,23 @@ public class AdvancedSearchIraScenarioSteps {
         boolean isAdvancedSearchModalDisplayed = advancedSearchCenterComponent.isAdvancedSearchModalDisplayed();
         softAssert.assertFalse(isAdvancedSearchModalDisplayed, "Advanced search modal should not be displayed");
         softAssert.assertAll();
+    }
+
+    @When("User opens advanced search modal and clears Age field")
+    public void userClearsAgeField() {
+        advancedSearchClubComponent = new HomePage(driver)
+                .clickAdvancedSearchIcon().clearAge();
+    }
+
+    @When("User sets {string} into Age field")
+    public void userSetsIntoAgeField(String age) {
+        advancedSearchClubComponent.setAge(age);
+    }
+
+    @Then("User compares actual age with {string}")
+    public void userComparesResults(String expectedAge){
+        String actualAge = advancedSearchClubComponent.getAge();
+        softAssert.assertEquals(actualAge, expectedAge);
     }
 
     @After
