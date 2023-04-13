@@ -8,17 +8,17 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <testng.version>7.7.0</testng.version>
+        <testng.version>7.4.0</testng.version>
         <allure-testng.version>2.21.0</allure-testng.version>
         <selenium-java.version>4.8.1</selenium-java.version>
         <webdrivermanager.version>5.3.2</webdrivermanager.version>
         <aspectj.version>1.9.19</aspectj.version>
-        
+
         <postgresql.version>42.5.4</postgresql.version>
         <apache.commons.version>2.9.0</apache.commons.version>
         <projectlombok.version>1.18.26</projectlombok.version>
-        
-        
+
+
     </properties>
 
     <dependencies>
@@ -50,26 +50,26 @@
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
         </dependency>
-        
+
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
-		<dependency>
-    		<groupId>org.postgresql</groupId>
-    		<artifactId>postgresql</artifactId>
-    		<version>${postgresql.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
 
-    	
-    	<dependency>
-      		<groupId>org.apache.commons</groupId>
-      		<artifactId>commons-dbcp2</artifactId>
-      		<version>${apache.commons.version}</version>
-    	</dependency>
 
-		<dependency>
-      		<groupId>org.projectlombok</groupId>
-      		<artifactId>lombok</artifactId>
-      		<version>${projectlombok.version}</version>
-    	</dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>${apache.commons.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${projectlombok.version}</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
@@ -111,11 +111,10 @@
             <scope>test</scope>
         </dependency>
 
-	</dependencies>
+    </dependencies>
 
 
-
-	<build>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
