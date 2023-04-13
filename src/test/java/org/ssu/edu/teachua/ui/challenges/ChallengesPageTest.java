@@ -256,11 +256,17 @@ public class ChallengesPageTest extends LoginWithAdminUIRunner {
     @Test(dataProvider = "challengeData", dataProviderClass = DataProviderChallenge.class)
     public void testChallengeCreation(String randomSortNumber, String photoPath, String name,
                                       String title, String description) throws DBException, EntityException {
-        Assert.assertTrue(addChallengePage.getSortNumber().getText().isEmpty());
-        Assert.assertTrue(addChallengePage.getName().getText().isEmpty());
-        Assert.assertTrue(addChallengePage.getTitle().getText().isEmpty());
-        Assert.assertTrue(addChallengePage.getDescription().getText().isEmpty());
-        Integer sortNumber = Integer.parseInt(randomSortNumber);
+        String sortNumberText = addChallengePage.getSortNumber().getText();
+        String nameText = addChallengePage.getName().getText();
+        String titleText = addChallengePage.getTitle().getText();
+        String descriptionText = addChallengePage.getDescription().getText();
+
+        Assert.assertTrue(sortNumberText.isEmpty(), "Sort number field is not empty.");
+        Assert.assertTrue(nameText.isEmpty(), "Name field is not empty.");
+        Assert.assertTrue(titleText.isEmpty(), "Title field is not empty.");
+        Assert.assertTrue(descriptionText.isEmpty(), "Description field is not empty.");
+
+        int sortNumber = Integer.parseInt(randomSortNumber);
 
         Challenges expectedChallenge = new Challenges();
         expectedChallenge.setName(name);
@@ -277,9 +283,11 @@ public class ChallengesPageTest extends LoginWithAdminUIRunner {
 
         challengesService = entityService.getChallengeService();
         Challenges actualChallenge = challengesService.getChallengeBySortNumber(sortNumber);
-        Assert.assertEquals(actualChallenge.getName(),expectedChallenge.getName());
-        Assert.assertEquals(actualChallenge.getTitle(),expectedChallenge.getTitle());
-        Assert.assertEquals(actualChallenge.getDescription().replaceAll("<[^>]*>", ""),expectedChallenge.getDescription());
-        Assert.assertEquals(actualChallenge.getSortNumber(),expectedChallenge.getSortNumber());
+        String actualDescription = actualChallenge.getDescription();
+        Assert.assertEquals(expectedChallenge.getName(), actualChallenge.getName(), "Challenge name doesn't match");
+        Assert.assertEquals(expectedChallenge.getTitle(), actualChallenge.getTitle(), "Challenge title doesn't match");
+        //regex is needed to remove html tags that are automatically added after insertion to database.
+        Assert.assertEquals(expectedChallenge.getDescription(), actualDescription.replaceAll("<[^>]*>", ""), "Challenge description doesn't match");
+        Assert.assertEquals(expectedChallenge.getSortNumber(), actualChallenge.getSortNumber(), "Challenge sort number doesn't match");
     }
 }
