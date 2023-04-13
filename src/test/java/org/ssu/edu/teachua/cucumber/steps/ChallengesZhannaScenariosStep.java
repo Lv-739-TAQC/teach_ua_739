@@ -1,7 +1,6 @@
 package org.ssu.edu.teachua.cucumber.steps;
 
 import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -73,6 +72,11 @@ public class ChallengesZhannaScenariosStep {
         addChallengePage.fillSortNumber(sortNumber);
     }
 
+    @When("User enters sort number into 'Порядковий номер' field")
+    public void userEntersSortNumberIntoField() {
+        addChallengePage.fillSortNumber(String.valueOf(System.currentTimeMillis()));
+    }
+
     @When("User enters {string} into challenge 'Заголовок' field")
     public void userEntersTitle(String title) {
         addChallengePage.fillTitle(title);
@@ -107,6 +111,12 @@ public class ChallengesZhannaScenariosStep {
     public void userGetErrorMsgAndFieldBorderColor(String expectedErrorMsg) {
         softAssert.assertEquals(addChallengePage.checkErrorMessage(), expectedErrorMsg);
         softAssert.assertEquals(addChallengePage.getBorderColorForNameField(), "rgb(255, 0, 0)");
+        softAssert.assertAll();
+    }
+
+    @Then("Error message {string} appeared")
+    public void userGetErrorMsg(String expectedErrorMsg) {
+        softAssert.assertEquals(addChallengePage.checkErrorMessage(), expectedErrorMsg);
         softAssert.assertAll();
     }
 

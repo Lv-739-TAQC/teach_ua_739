@@ -15,6 +15,7 @@ import org.ssu.edu.teachua.ui.pages.tasks.AddTaskPage;
 import org.ssu.edu.teachua.utils.EntityService;
 import org.ssu.edu.teachua.utils.TestValueProvider;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import java.util.Calendar;
 import java.util.List;
@@ -28,6 +29,8 @@ public class TasksScenariosStep {
     private AddTaskPage addTaskPage;
     private String taskName;
     private String errorMessage;
+
+    private SoftAssert softAssert = new SoftAssert();
 
     @Given("User logins with admin credentials")
     public void userLoginsWithAdminCredentials() {
@@ -76,6 +79,11 @@ public class TasksScenariosStep {
         addTaskPage.selectStartDate(day, month, now.get(Calendar.YEAR) + 1);
     }
 
+    @When("User selects start date with day {int}, month {int} and year {int}")
+    public void userSetStartDate(int day, int month, int year) {
+        addTaskPage.selectStartDate(day, month, year);
+    }
+
     @When("User downloads the image into 'Фото' field")
     public void userDownloadsTheImage() {
         addTaskPage.uploadPhoto(valueProvider.getFilePath("photos/heart.png"));
@@ -93,7 +101,7 @@ public class TasksScenariosStep {
 
     @When("User enters {string} into 'Опис' field")
     public void userEntersDescription(String description) {
-        addTaskPage.typeTitle(description);
+        addTaskPage.typeDescription(description);
     }
 
     @When("User choose the challenge with name {string} in dropdown list on the 'Челендж' field")
@@ -111,6 +119,11 @@ public class TasksScenariosStep {
         errorMessage = addTaskPage.clickFailSaveButton().checkErrorMessage();
     }
 
+    @When("User clicks on the 'Зберегти' button after selected invalid start date")
+    public void userClicksSaveButtonInvalidStartDate() {
+        errorMessage = addTaskPage.clickFailSaveButton().checkErrorMessage();
+    }
+
     @Then("User is on the task page with name {string}")
     public void userIsOnTheTaskPageWithName(String expectedTaskName) {
         Assert.assertEquals(taskName, expectedTaskName);
@@ -119,6 +132,11 @@ public class TasksScenariosStep {
     @Then("Error message appears: {string}")
     public void errorMessageAppears(String expectedErrorMessage) {
         Assert.assertEquals(errorMessage, expectedErrorMessage);
+    }
+
+    @Then("The error message appears: {string}")
+    public void theErrorMessageAppears(String expectedErrorMessage) {
+        softAssert.assertEquals(errorMessage, expectedErrorMessage);
     }
 
     @Then("Task with name {string} is present in database")
@@ -132,8 +150,10 @@ public class TasksScenariosStep {
     @Then("Task with name {string} is not added to the DB")
     public void taskWithNameIsNotAddedToDB(String expectedTaskName) {
         List<Task> tasks = entityService.getTaskService().getTasksByName(expectedTaskName);
-        Assert.assertEquals(tasks.size(), 0);
+        softAssert.assertEquals(tasks.size(), 0);
+        softAssert.assertAll();
     }
+
 
     @After
     public void afterScenario() {
