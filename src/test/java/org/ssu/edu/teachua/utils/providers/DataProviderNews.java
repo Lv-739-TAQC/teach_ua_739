@@ -18,7 +18,7 @@ public class DataProviderNews {
     @DataProvider(name = "newsData")
     public static Object[][] getNewsData() {
         return new Object[][]{
-                {"Example23_Приклад", "ExamplePOIUQ*$%9328r2390idkdslxmsn1!;?*(0_,/ЇЄПриклад~+=-", "photos/heart.png",}
+                {"Example23_Приклад", "ExamplePOIUQ*$%9328r2390idkdslxmsn1!;?*(0_,/ЇЄПриклад~+=-", "photos/heart.png", "heart.png", 300000}
         };
     }
 }

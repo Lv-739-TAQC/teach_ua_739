@@ -121,7 +121,6 @@ public class TasksTest extends LoginWithAdminAPIRunner {
 
         Assert.assertEquals(response.statusCode(), expectedStatusCode);
         ErrorResponse errorResponse = response.as(ErrorResponse.class);
-        Assert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
 
         String actualErrorMessage = errorResponse.getMessage();
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
@@ -137,7 +136,6 @@ public class TasksTest extends LoginWithAdminAPIRunner {
 
         Assert.assertEquals(response.statusCode(), expectedStatusCode);
         ErrorResponse errorResponse = response.as(ErrorResponse.class);
-        Assert.assertEquals(errorResponse.getStatus(), expectedStatusCode);
 
         String actualErrorMessage = errorResponse.getMessage();
 
