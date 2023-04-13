@@ -106,4 +106,22 @@ public class LeadClubTest extends LoginWithLeadAPIRunner {
         softAssert.assertAll();
 
     }
+
+    @Issue("TUA-500")
+    @Issue("TUA-463")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify that User as 'Керiвник гуртка' can create new club is in " +
+            "a center using valid characters for 'Назва' field")
+    @Test(dataProvider = "dpTestValidNameFieldForClub", dataProviderClass = DataProviderClub.class)
+    public void testCreateClubWithValidName(ArrayList<String> categoriesName, String name, Integer ageFrom,
+                                            Integer ageTo, Boolean isOnline, String description, String userId,
+                                            ArrayList<Location> locations, String contacts, int expectedStatusCode) {
+        ClubRequest clubRequest = new ClubRequest(
+                categoriesName, name, ageFrom, ageTo, isOnline, description, userId, locations, contacts
+        );
+        Response response = client.createClub(clubRequest);
+
+        softAssert.assertEquals(response.statusCode(), expectedStatusCode);
+        softAssert.assertAll();
+    }
 }

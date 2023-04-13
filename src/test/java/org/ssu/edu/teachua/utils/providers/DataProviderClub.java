@@ -214,4 +214,24 @@ public class DataProviderClub {
                         "854", new ArrayList<Location>(), null, 200}
         };
     }
+
+    @DataProvider(name = "dpTestValidNameFieldForClub")
+    public static Object[][] dpTestValidNameFieldForClub() {
+        return new Object[][]{
+                {new ArrayList<>(Arrays.asList("Вокальна студія, музика, музичні інструменти")),
+                        "Джмелик&company =,/ , , *, (, ), _, :, ;, #, %, ^, ?, [, ]",
+                        2, 18, true,
+                        "{\"blocks\":" +
+                                "[{\"key\":\"brl63\"," +
+                                "\"text\":\"Ми поставили перед собою ціль створити мережу найкращих центрів раннього " +
+                                "розвитку в Україні, де дітки навчатимуться з задоволенням, а батьки радітимуть від результатів.\"," +
+                                "\"type\":\"unstyled\"," +
+                                "\"depth\":1," +
+                                "\"inlineStyleRanges\":[]," +
+                                "\"entityRanges\":[]," +
+                                "\"data\":{}}]," +
+                                "\"entityMap\":{}}",
+                        "264", new ArrayList<Location>(), null, 200}
+        };
+    }
 }
