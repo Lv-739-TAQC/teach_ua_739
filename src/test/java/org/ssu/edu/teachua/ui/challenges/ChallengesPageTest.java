@@ -286,6 +286,7 @@ public class ChallengesPageTest extends LoginWithAdminUIRunner {
         String actualDescription = actualChallenge.getDescription();
         Assert.assertEquals(expectedChallenge.getName(), actualChallenge.getName(), "Challenge name doesn't match");
         Assert.assertEquals(expectedChallenge.getTitle(), actualChallenge.getTitle(), "Challenge title doesn't match");
+        //regex is needed to remove html tags that are automatically added after insertion to database.
         Assert.assertEquals(expectedChallenge.getDescription(), actualDescription.replaceAll("<[^>]*>", ""), "Challenge description doesn't match");
         Assert.assertEquals(expectedChallenge.getSortNumber(), actualChallenge.getSortNumber(), "Challenge sort number doesn't match");
     }

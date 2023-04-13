@@ -27,8 +27,6 @@ import static org.ssu.edu.teachua.utils.Helper.checkFileSize;
 public class NewsPageTest extends LoginWithAdminUIRunner {
 
     private static final int NEWS_INDEX = 1;
-    private static final long EXPECTED_FILE_SIZE = 300000;
-    private static final String IMG_NAME = "heart.png";
 
     @Issue("TUA-31")
     @Severity(SeverityLevel.NORMAL)
@@ -115,31 +113,31 @@ public class NewsPageTest extends LoginWithAdminUIRunner {
         Assert.assertEquals(actualNewsTitle, expectedNewsTitle);
 
         homePage.getHeader().clickNewsButton();
-        String actualNewsTitle1 = news.chooseCertainNews(NEWS_INDEX)
+        String actualNewsTitleAfterClickImage = news.chooseCertainNews(NEWS_INDEX)
                 .clickImage()
                 .getNewsTitle();
-        Assert.assertEquals(actualNewsTitle1, expectedNewsTitle);
+        Assert.assertEquals(actualNewsTitleAfterClickImage, expectedNewsTitle);
 
         homePage.getHeader().clickNewsButton();
 
-        String actualNewsTitle2 = news.chooseCertainNews(NEWS_INDEX)
+        String actualNewsTitleAfterClickTitle = news.chooseCertainNews(NEWS_INDEX)
                 .clickTitle()
                 .getNewsTitle();
-        Assert.assertEquals(actualNewsTitle2, expectedNewsTitle);
+        Assert.assertEquals(actualNewsTitleAfterClickTitle, expectedNewsTitle);
 
         homePage.getHeader().clickNewsButton();
 
-        String actualNewsTitle3 = news.chooseCertainNews(NEWS_INDEX)
+        String actualNewsTitleAfterClickDetails = news.chooseCertainNews(NEWS_INDEX)
                 .clickDetailsButton()
                 .getNewsTitle();
-        Assert.assertEquals(actualNewsTitle3, expectedNewsTitle);
+        Assert.assertEquals(actualNewsTitleAfterClickDetails, expectedNewsTitle);
     }
 
     @Issue(value = "TUA-782")
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verifies that image of a news article which is bigger than 300KB was compressed to 300KB")
     @Test(dataProvider = "newsData", dataProviderClass = DataProviderNews.class)
-    public void testFileCompression(String title, String content, String photoPath) throws DBException, EntityException {
+    public void testFileCompression(String title, String content, String photoPath, String imageName, int expectedFileSize) throws DBException, EntityException {
         new HomePage(driver)
                 .getHeader()
                 .openAdminProfileMenu()
@@ -152,12 +150,12 @@ public class NewsPageTest extends LoginWithAdminUIRunner {
                 .clickSubmit();
         NewsService newsService = entityService.getNewsService();
 
-        News news = newsService.getNewsByURLTitleLogo(IMG_NAME);
+        News news = newsService.getNewsByURLTitleLogo(imageName);
         String newsLogoURL = news.getUrlTitleLogo();
         String webNewsLogoURL = valueProvider.getBaseUiUrl() + newsLogoURL;
 
         long actualFileSize = checkFileSize(webNewsLogoURL);
-        Assert.assertTrue(actualFileSize <= EXPECTED_FILE_SIZE, "File size was not compressed");
+        Assert.assertTrue(actualFileSize <= expectedFileSize, "File size was not compressed");
     }
 
 }
