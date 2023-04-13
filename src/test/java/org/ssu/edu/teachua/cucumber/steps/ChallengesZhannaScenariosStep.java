@@ -105,12 +105,8 @@ public class ChallengesZhannaScenariosStep {
 
     @Then("Error message {string} appeared and 'Назва' field is bordered in red color")
     public void userGetErrorMsgAndFieldBorderColor(String expectedErrorMsg) {
-        String actualError = addChallengePage
-                .clickSave()
-                .checkErrorMessage();
-        String actualBorderColor = addChallengePage.getBorderColorForNameField();
-        softAssert.assertEquals(actualError, expectedErrorMsg);
-        softAssert.assertEquals(actualBorderColor, "rgb(255, 0, 0)");
+        softAssert.assertEquals(addChallengePage.checkErrorMessage(), expectedErrorMsg);
+        softAssert.assertEquals(addChallengePage.getBorderColorForNameField(), "rgb(255, 0, 0)");
         softAssert.assertAll();
     }
 
