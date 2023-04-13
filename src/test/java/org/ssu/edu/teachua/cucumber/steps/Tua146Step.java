@@ -51,12 +51,11 @@ public class Tua146Step {
         }
     }
 
-    @When("User open 'Новини' page")
+    @When("User open news page")
     public void openNewsPage() {
         newsPage = new HomePage(driver)
                 .getHeader()
                 .clickNewsButton();
-        throw new io.cucumber.java.PendingException();
     }
 
     @When("User get all dates from news cards and add them to list")
@@ -69,14 +68,12 @@ public class Tua146Step {
                 throw new RuntimeException(e);
             }
         }
-        throw new io.cucumber.java.PendingException();
     }
 
     @When("User sort all this dates by desc order and add them to new list")
     public void sortDatesDesc() {
         descNewsDates = new ArrayList<>(newsDates);
         Collections.sort(descNewsDates, Collections.reverseOrder());
-        throw new io.cucumber.java.PendingException();
     }
 
     @Then("First list equal to second list")
