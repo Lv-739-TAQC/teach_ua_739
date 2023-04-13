@@ -1,7 +1,6 @@
 package org.ssu.edu.teachua.cucumber.steps;
 
 import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -110,21 +109,14 @@ public class ChallengesZhannaScenariosStep {
 
     @Then("Error message {string} appeared and 'Назва' field is bordered in red color")
     public void userGetErrorMsgAndFieldBorderColor(String expectedErrorMsg) {
-        String actualError = addChallengePage
-                .clickSave()
-                .checkErrorMessage();
-        String actualBorderColor = addChallengePage.getBorderColorForNameField();
-        softAssert.assertEquals(actualError, expectedErrorMsg);
-        softAssert.assertEquals(actualBorderColor, "rgb(255, 0, 0)");
+        softAssert.assertEquals(addChallengePage.checkErrorMessage(), expectedErrorMsg);
+        softAssert.assertEquals(addChallengePage.getBorderColorForNameField(), "rgb(255, 0, 0)");
         softAssert.assertAll();
     }
 
     @Then("Error message {string} appeared")
     public void userGetErrorMsg(String expectedErrorMsg) {
-        String actualError = addChallengePage
-                .clickSave()
-                .checkErrorMessage();
-        softAssert.assertEquals(actualError, expectedErrorMsg);
+        softAssert.assertEquals(addChallengePage.checkErrorMessage(), expectedErrorMsg);
         softAssert.assertAll();
     }
 
